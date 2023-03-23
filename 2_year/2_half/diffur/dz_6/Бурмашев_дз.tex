@@ -1,0 +1,185 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Диффуры, дз -- 6}
+\date{\today}
+\begin{document}
+\maketitle
+[Завал по дедлайнам, на диффуры особо не оставалось времени :(]
+\clearpage
+\section*{Номер 4}
+\[
+\begin{cases}
+x' = xz \\
+y' = x + yz \\
+z' = -z^2
+\end{cases}
+\]
+Решаем по аналогии с семинаром. Поделим 1 и 3 ($z > 0$, все супер):
+\[
+\frac{dx}{dz} = \frac{xz}{-z^2} = -\frac{x}{z}
+\]
+\[
+dx \cdot z = -dz \cdot x
+\]
+\[
+dx \cdot z + dz \cdot x = 0
+\]
+\[
+d(xz) = 0
+\]
+Первый интеграл:
+\[
+xz = C_1
+\]
+На семе решали при $x > 0$, но тут такого ограничения к сожалению нет, поэтому потом отдельно посмотрим случай $x = 0$:
+\[
+x' = C_1 
+\]
+\[
+x = C_1 t + C_2
+\]
+\[
+z = \frac{C_1}{x} = \frac{C_1}{C_1t + C_2}
+\]
+Подставим $x$ и $z$ во второе уравнение:
+\[
+y' = C_1 t + C_2 + y \cdot \frac{C_1}{C_1t + C_2}
+\]
+Ну а это линейное уравнение. Решим его, начнем с однородного:
+\[
+\frac{dy}{dt} = y \cdot \frac{C_1}{C_1 t + C_2}
+\]
+\[
+\frac{dy}{y} = \frac{C_1}{C_1 t + C_2} dt
+\]
+Тогда интеграл:
+\[
+\ln |y| = \ln |C_1 t + C_2| + D
+\]
+\[
+y = D(C_1 t + C_2)
+\]
+Метод вариации постоянной:
+\[
+y' = D(t)' (C_1 t + C_2) + D(t) C_1
+\]
+В уравнении:
+\[
+D(t)' (C_1 t + C_2) + D(t) C_1 = C_1t + C_2 + \frac{C_1 D(t)(C_1 t + C_2)}{C_1t + C_2}
+\]
+Отсюда:
+\[
+D(t)' (C_1t + C_2) = C_1 t + C_2
+\]
+\[
+D(t)' = 1
+\]
+\[
+D(t) = t + C_3
+\]
+А решение:
+\[
+y = (t + C_3) ( C_1t + C_2)
+\]
+Терь посмотрим при $x = 0$, тогда система примет вид:
+\[
+\begin{cases}
+x' = 0\\
+y' = yz \\
+z' = -z^2
+\end{cases}
+\]
+Пусть $ y \neq 0$:
+\[
+\frac{dy}{dz} = \frac{dy}{dz} = -\frac{y}{z}
+\]
+\[
+d(yz) = 0
+\]
+\[
+yz = C_1
+\]
+\[
+z = \frac{C_1}{y}
+\]
+\[
+y' = y \frac{C_1}{y} 
+\]
+\[
+y' = C_1
+\]
+Отсюда:
+\[
+y = C_1 t + C_2
+\]
+При $y = 0$:
+\[
+z = \frac{1}{C_1 + t}
+\]
+Вроде все.
+\begin{center}
+\textbf{Ответ: } 
+\\
+Если $x = 0, y = 0$:
+\[
+\begin{cases}
+x = 0 \\
+y = 0 \\
+z = \frac{1}{C_1 + t}
+\end{cases}
+\]
+Если $x = 0$:
+\[
+\begin{cases}
+x = 0 \\
+y = C_1t + C_2 \\
+z = \frac{C_1}{C_1 t + C_2}
+\end{cases}
+\]
+Иначе:
+\[
+\begin{cases}
+x = C_1 t + C_2 \\
+y = (t + C_3)(C_1t + C_2) \\
+z = \frac{C_1}{C_1 t + C_2}
+\end{cases}
+\]
+\end{center}
+\end{document}

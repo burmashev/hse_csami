@@ -1,0 +1,191 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{picture/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Линал. ИДЗ - 2 Вариант 2.}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий.  208. Матан. Д/з -- 8
+\end{center}
+\begin{center}
+\includegraphics[scale=0.3]{lc4hntpQu94.jpg}
+\end{center}
+\newpage
+\section*{Номер 10 }
+\begin{center}
+Вычислить пределы:
+\end{center}
+\subsection*{а)} 
+\[
+\lim_{x \rightarrow 1} \frac{\ln (x^2 + \cos \frac{\pi x}{2})}{\sqrt{x} - 1}
+\]
+Сделаем замену:
+\[
+x = y  + 1
+\]
+\[
+x \rightarrow 1 \equiv y \rightarrow 0
+\]
+Тогда:
+\[
+\lim_{y \rightarrow 0} \frac{\ln (y^2 + 2y + 1 + \cos \frac{\pi y + \pi}{2})}{\sqrt{y + 1} - 1} = \lim_{y \rightarrow 0} \frac{\ln (y^2 + 2y -  \sin \frac{\pi y}{2}) \cdot (\sqrt{y + 1} + 1)}{y + 1 - 1}  = 
+\]
+Домножим так, чтобы получилось следствие первого замечательного предела:
+\[
+\text{\#   } \lim_{x \rightarrow 0} \frac{\ln (1 + x)}{x} = 1
+\]
+\[
+= \lim_{y \rightarrow 0} \frac{\ln (y^2 + 2y -  \sin \frac{\pi y}{2}) \cdot (\sqrt{y + 1} + 1)}{y} \cdot \frac{(y^2 + 2y - \sin \frac{\pi y}{2})}{(y^2 + 2y - \sin \frac{\pi y}{2})} =
+\]
+\[
+= \lim_{y \rightarrow 0} 1 \cdot \frac{(y^2 + 2y - \sin \frac{\pi y}{2})(\sqrt{y+1} + 1)}{y} = \lim_{y \rightarrow 0} (\frac{y}{1} + \frac{2}{1} - \frac{\sin \frac{\pi y}{2}}{y})  \cdot (\sqrt{y  +1 } + 1) = 
+\]
+\[
+= \lim_{y \rightarrow 0}(0 + 2 - \frac{\frac{\pi y}{2}}{y} \cdot \frac{\sin \frac{\pi y}{2}}{\frac{\pi y}{2}}) \cdot (\sqrt{1} + 1) = (0 + 2 - \frac{\pi}{2} \cdot 1) \cdot 2 = 4 - \pi
+\]
+\begin{center}
+\textbf{Ответ:} $4 - \pi$
+\end{center}
+\subsection*{b)}
+\[
+\lim_{x \rightarrow 0} \frac{\sqrt{1- e^{-x}} - \sqrt{1 - \cos x}}{\sqrt{\sin x}} = \lim_{x \rightarrow 0} \frac{\sqrt{\frac{e^{-x} - 1}{-x}} - \sqrt{\frac{1-\cos x}{x}}}{\sqrt{\frac{\sin x}{x}}} = \lim_{x \rightarrow 0} \frac{\sqrt{1} - \sqrt{\frac{1 - \cos x}{x} \cdot \frac{\frac{x^2}{2}}{\frac{x^2}{2}}}}{\sqrt{1}} = 
+\]
+\[
+= \lim_{x \rightarrow 0} \frac{\sqrt{1} - \sqrt{\frac{x}{2}}}{\sqrt{1}} = \lim_{x \rightarrow 0} \frac{\sqrt{1} - \sqrt{0}}{\sqrt{1}} = \frac{1 - 0}{1} = 1
+\]
+\begin{center}
+\textbf{Ответ:} 1
+\end{center}
+
+\subsection*{c)}
+\[
+\lim_{x \rightarrow 1} \frac{\ln (2x^2 - x)}{\ln (x^4 + x^2 - x)}
+\]
+Сделаем замену:
+\[
+x = y + 1
+\]
+\[
+x \rightarrow 1 \equiv y \rightarrow 0
+\]
+\[
+= \lim_{y \rightarrow 0} \frac{\ln(2(y+1)^2 -y - 1)}{\ln((y+1)^4 + (y+1)^2 - y -1)} = 
+\]
+\[
+= \lim_{y \rightarrow 0} \left( \frac{\ln (1 + 2y^2 + 3y)}{\ln (y^4 + 4y^3 + 6y^2 + 4y + 1 + y^2 + 2y + 1 - y - 1)} \cdot \frac{2y^2 + 3y}{ 2y^2 + 3y} \right) =
+\]
+\[
+= \lim_{y \rightarrow 0} ( 1 \cdot \frac{2y^2 + 3y}{\ln (1 + y^4 + 4y^3 + 7y^2 + 5y )} \cdot \]
+\[
+\cdot
+ \frac{y^4 + 4y^3 + 7y^2 + 5y }{y^4 + 4y^3 + 7y^2 + 5y } )= 
+\]
+\[
+= 
+\lim_{y \rightarrow 0} \left( 1 \cdot 1 \cdot \frac{2y^2 + 3y}{y^4 + 4y^3 + 7y^2 + 5y}  \right)= \lim_{y \rightarrow 0} \frac{2y + 3}{y^3 + 4y^2 + 7y + 5} = 
+\frac{3}{5}
+\]
+\begin{center}
+\textbf{Ответ:} $\frac{3}{5}$
+\end{center}
+
+\subsection*{d)}
+\[
+\lim_{x \rightarrow a} \frac{a^x - x^a}{x -a }, \; \; a > 0 
+\]
+Сделаем замену:
+\[
+x = y + a
+\]
+\[
+x \rightarrow a \equiv y \rightarrow 0
+\]
+\[
+\lim_{y \rightarrow 0} \frac{a^{y+a} - (y+a)^a}{y} = \lim_{y \rightarrow 0} \frac{a^{a} \cdot e^{y\ln a}-  (\frac{y}{a} + 1)^a \cdot a^a}{y} = 
+\]
+\[
+= 
+\lim_{y \rightarrow 0} \frac{a^{a} \cdot (e^{y\ln a} - 1 + 1) - a^a \cdot (\frac{y}{a} + 1)^a  + a^a - a^a}{y} =
+\]
+\[
+=
+\lim_{y \rightarrow 0} \left( a^a \cdot \frac{e^{y \ln a} - 1}{y \ln a} \cdot \ln a+ \frac{a^a}{y} - a^{a-1} \cdot \frac{(1 + \frac{y}{a} )^a - 1}{\frac{y}{a} \cdot a} \cdot a- \frac{a^a}{y}  \right) = 
+\]
+\[
+= a^a \cdot 1 \cdot \ln a + 0 -   a^{a-1} \cdot a - 0= a^a \cdot 1 \cdot  \ln a - a^a = a^a \cdot \ln a - a^a
+\]
+\begin{center}
+\textbf{Ответ: } $a^a \cdot \ln a - a^a$ 
+\end{center}
+
+
+
+\subsection*{e) }
+\[
+\lim_{x \rightarrow a} \frac{\ln x - \ln a}{x - a}
+\]
+Сделаем замену:
+\[
+x = y + a
+\]
+\[
+x \rightarrow a \equiv y \rightarrow 0
+\]
+\[
+\lim_{y \rightarrow 0} \frac{\ln (y + a) - \ln a}{y} = \lim_{y \rightarrow 0} \frac{\ln (\frac{y + a}{a})}{y} = \lim_{y \rightarrow 0} \frac{\ln (1 + \frac{y}{a})}{y\cdot \frac{a}{a}}  = \lim_{y \rightarrow 0} \frac{\ln (1 + \frac{y}{a})}{a \cdot \frac{y}{a}} = \lim_{y \rightarrow 0} \frac{1}{a} = \frac{1}{a}
+\]
+\begin{center}
+\textbf{Ответ: } $\frac{1}{a}$
+\end{center}
+
+
+\subsection*{f)} 
+\[
+\lim_{x \rightarrow 0} \frac{\ln(x^2 + e^x)}{\ln (x^4 + e^{2x})} = \lim_{x \rightarrow 0} \left( \frac{\ln (1 + x^2 + e^x -1 )}{\ln (x^4 + e^{2x})} \cdot \frac{x^2 + e^x - 1}{x^2 + e^x - 1} \right) = 
+\]
+\[
+= \lim_{x \rightarrow 0} \left( \frac{x^2 + e^x - 1}{\ln (1 + x^4 + e^{2x} - 1)} \cdot \frac{x^4 + e^{2x} -1}{x^4 + e^{2x} -1 } \right) = \lim_{x \rightarrow 0} \frac{x^2 + e^x -1 }{x^4 + e^{2x} - 1} = \lim_{x \rightarrow 0} \left( \frac{x + \frac{e^x - 1}{x}}{x^3 + 2 \cdot \frac{e^{2x} -1 }{2x}} \right) = 
+\]
+\[
+= \lim_{x \rightarrow 0} \frac{x + 1}{x^3 + 2}  =\frac{1}{2}
+\]
+\begin{center}
+\textbf{Ответ: } $\frac{1}{2}$
+\end{center}
+\end{document}

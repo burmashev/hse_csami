@@ -1,0 +1,567 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий}
+\title{Матанализ  -3}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий.  208. Матан. Д/з - 3 
+\begin{center}
+\includegraphics[scale=0.3]{cat.jpg}
+\end{center}
+\end{center}
+\newpage
+\section*{№ 10}
+Исследуйте следующие рекуррентные последовательности на сходимость
+\subsection*{a)}
+\[
+a_{n+1} = \sqrt{2a_n}, \; a_1 = \sqrt{2}
+\]
+\begin{itemize}
+\item Докажем,  что $a_n \leq 2$:
+\\
+Воспользуемся методом математической индукции:
+\\
+База:  $n = 1 $
+\[
+\sqrt{2} \leq 2
+\]
+\begin{center}
+Верно
+\end{center}
+Переход: пусть верно для  $n$, докажем, что это верно для $n+1$:
+\[
+a_{n+1} \leq 2
+\]
+\[
+\sqrt{2a_n} \leq 2
+\]
+\[
+2a_n \leq 4
+\]
+\[
+a_n \leq 2
+\]
+\begin{center}
+Верно
+\end{center}
+\item Докажем, что $a_{n+1} \geq a_n $
+\\
+\[
+a_{n+1} \geq a_n
+\]
+\[
+\sqrt{2a_n} \geq a_n
+\]
+\[
+2a_n \geq a_n^2
+\]
+\[
+a^2_n - 2a_n \leq 0
+\]
+\[
+a_n(a_n-2) \leq 0
+\]
+Т.к мы доказали, что $a_n \leq 2$, то это верно 
+\\
+\item Т.к последовательность не убывает и ограничена сверху, то по теореме Вейерштрасса:
+\[
+\exists \lim_{n \rightarrow \infty} a_n = a
+\]
+Тогда:
+\[
+a = \sqrt{2a}
+\]
+\[
+a^2 = 2a
+\]
+\[
+a(a-2) = 0
+\]
+Т.к $a_1 > 0$ и последовательнось не убывает, то:
+\[
+\lim_{n \rightarrow \infty} a_n = 2
+\]
+\textbf{Ответ:} $\lim_{n \rightarrow \infty} a_n = 2$
+\end{itemize}
+\subsection*{b)}
+\[
+a_{n+1} = \sqrt{6 + a_n}, \; a_1 = 0
+\]
+\begin{itemize}
+\item Докажем, что $a_n \leq 3$:
+\\
+Воспользуемся методом математической индукции:
+\\
+База: n = 1 
+\[
+0 \leq 3
+\]
+\begin{center}
+Верно
+\end{center}
+Переход: пусть верно для $n$, докажем, что верно для $n+1$:
+\[
+a_{n+1} \leq 3
+\]
+\[
+\sqrt{6 + a_n} \leq 3
+\]
+\[
+6 + a_n \leq 9 
+\]
+\[
+a_n \leq 3
+\]
+\begin{center}
+Верно
+\end{center}
+\item Докажем, что $a_{n+1} \geq a_n $:
+\[
+a_{n+1} \geq a_n
+\]
+\[
+\sqrt{6+a_n} \geq a_n
+\]
+\[
+6 + a_n \geq a_n^2
+\]
+\[
+a_n^2 - a_n -6 \leq 0
+\]
+\[
+(a - 3)(a +2) \leq 0
+\]
+Т.к мы доказали, что $ a_n \leq 3$,  то это верно
+\\
+\item Т.к последовательность не убывает и ограничена сверху, значит:
+\[
+\exists \lim_{n \rightarrow \infty } a_n = a
+\]
+Тогда:
+\[
+a = \sqrt{6 + a}
+\]
+\[
+a^2 = 6 + a
+\]
+\[
+a^2 - a - 6 = 0
+\]
+\[
+(a-3)(a+2) = 0
+\]
+Значит $(a = 3) \vee (a = -2)$. Но $a_1 \geq 0$ и последовательность не убывает, тогда:
+\[
+\lim_{n \rightarrow \infty} a_n = 3
+\]
+\textbf{Ответ:} $\lim_{n \rightarrow \infty} a_n = 3$
+\end{itemize}
+\subsection*{c)}
+\[
+a_{n+1} = \frac{1}{3} \times (2a_n + \frac{3}{a_n^2}), \; a_1 = 3
+\]
+\begin{itemize}
+\item Докажем, что $a_n \geq \sqrt[3]{3}$:\\
+Воспользуемся методом математической индукции:
+\\
+База: n = 1
+\\
+\[
+3 \geq \sqrt[3]{3}
+\]
+\[
+3^3 \geq 3
+\]
+\[
+27 \geq 3
+\]
+\begin{center}
+Верно
+\end{center}
+Переход: пусть верно для  $n$,  докажем, что это верно и для $n+1$:
+\[
+a_{n+1} \geq \sqrt[3]{3}
+\]
+\[
+\frac{1}{3} \times (2a_n + \frac{3}{a_n^2}) \geq \sqrt[3]{3}
+\]
+\[
+\frac{a_n + a_n + \frac{3}{a_n^2} }{3} \geq \sqrt[3]{3}
+\]
+Видно, что слева от знака $ \geq $ находится среднее арифметическое, при этом мы знаем, что среднее арифметическое больше, чем среднее геометрическое, тогда:
+\[
+\frac{a_n + a_n + \frac{3}{a_n^2} }{3} \geq \sqrt[3]{a_n \times a_n \times \frac{3}{a_n^2}} \geq \sqrt[3]{3}
+\]
+\[
+\sqrt[3]{\frac{3a_n^2}{3}} \geq \sqrt[3]{3}
+\]
+\[
+\sqrt[3]{3} \geq \sqrt[3]{3}
+\]
+\begin{center}
+Верно
+\end{center}
+\item Докажем, что $a_{n+1} \leq a_n$:
+\[
+a_{n+1} \leq a_n
+\]
+\[
+\frac{1}{3}(2a_n + \frac{3}{a_n^2}) \leq a_n
+\]
+\[
+2a_n + \frac{3}{a_n^2} \leq 3a_n
+\]
+\[
+\frac{3}{a_n^2} \leq a_n
+\]
+\[
+3 \leq a_n \times a_n^2
+\]
+\[
+a_n^3 \geq 3
+\]
+\[
+a_n \geq \sqrt[3]{3}
+\]
+Мы это уже доказали, значит это верно
+\\
+\item Т.к последовательность не возрастает и ограничена снизу, значит:
+\[
+\exists \lim_{n \rightarrow \infty} a_n = a
+\]
+\[
+a = \frac{1}{3} (2a + \frac{3}{a^2})
+\]
+\[
+3a = 2a + \frac{3}{a^2}
+\]
+\[
+a = \frac{3}{a^2}
+\]
+\[
+a^3 = 3
+\]
+\[
+a = \sqrt[3]{3}
+\]
+Значит:
+\[
+\lim_{n \rightarrow \infty} a_n = \sqrt[3]{3}
+\]
+\textbf{Ответ:} $\lim_{n \rightarrow \infty} a_n = \sqrt[3]{3}$
+\section*{№ 11}
+Докажите,  что:
+\[
+\left(\frac{n}{e}\right)^n \leq n! \leq e\times \left(\frac{n}{2}\right)^n
+\]
+Для начала докажем нижнюю границу:
+\[
+\left(\frac{n}{e}\right)^n \leq n!
+\]
+Воспользуемся методом математической индукции:
+\\
+База: n = 1
+\\
+\[
+\frac{1}{e} \leq 1
+\]
+Мы знаем, что $e \geq 1$, значит неравенство выполняется
+\\
+Переход:
+\\
+Пусть верно для $ n $, докажем,  что это верно и для $n+1$:
+\[
+\left(\frac{n+1}{e}\right)^{n+1} \leq (n+1)!
+\]
+\[
+\left(\frac{n+1}{e}\right)^{n+1} \leq n! \times (n+1)
+\]
+\[
+\left(\frac{n+1}{e}\right)^{n+1} \leq \left(\frac{n}{e}\right)^n \times (n+1)
+\]
+\[
+\left(\frac{n+1}{e}\right)^{n} \times \frac{n+1}{e} \leq \frac{n^n}{e^n} \times (n+1)
+\]
+Умножим на $e^n$:
+\[
+(n+1)^n \times \frac{n+1}{e} \leq n^n \times (n+1)
+\]
+Поделим на $(n+1)$:
+\[
+\frac{(n+1)^n}{e} \leq n^n
+\]
+\[
+(n+1) ^ n \leq n^n \times e
+\]
+\[
+\left(1 + \frac{1}{n}\right)^n \leq e
+\]
+Мы знаем про второй замечательный предел, докажем, что $x_n =  \left(1 + \frac{1}{n}\right)^n $ не убывает, посмотрим на:
+\[
+\frac{x_{n+1}}{x_n} = \left(\frac{(1+\frac{1}{n+1})^{n+1}}{(1+\frac{1}{n})^n}\right) = \frac{(n+2)^{n+1}\times n^n}{(n+1)^{2n+1}} = \frac{n+2}{n+1} \times \frac{(n^2+2n)^n}{(n^2+2n+1)^n} = 
+\]
+\[
+= \frac{n+2}{n+1} \times \left(1 - \frac{1}{n^2+2n+1}\right)^n \geq \frac{n+2}{n+1} \times \left(1 - \frac{n}{n^2+2n+1}\right) = \frac{(n+2)(n^2+n+1)}{(n+1)^3} = 
+\]
+\[
+= \frac{n^3 + 3n^2 +3n + 2}{n^3 + 3n^2 +3n + 1} > 1 
+\]
+\begin{center}
+Т.к $\frac{x_n{n+1}}{x_n} > 1$, то $x_n$ не убывает
+\end{center}
+$ \lim_{n \rightarrow \infty} \left(1 + \frac{1}{n}\right)^n = e $, а также $ \left(1 + \frac{1}{n}\right)^n $ не убывает, значит:
+\[
+\left(1 + \frac{1}{n}\right)^n \leq e
+\]
+Теперь докажем верхнюю границу:
+\[
+n! \leq e \times \left(\frac{n}{2}\right) ^ n
+\]
+Воспользуемся методом математической индукции:
+\\
+База: n = 1
+\\
+\[
+1 \leq e \times 0.5
+\]
+\[
+e \geq 2 \rightarrow 0.5 \times e \geq 1
+\]
+\begin{center}
+Верно
+\end{center}
+Переход: пусть верно для n, докажем,  что это верно и для  $n+1$:
+\[
+(n+1)! \leq e \times \left(\frac{n+1}{2}\right)^{n+1}
+\]
+\[
+n! \times (n+1) \leq e \times \left(\frac{n+1}{2}\right)^{n+1}
+\]
+\[
+e \times \left( \frac{n}{2}\right) ^ n \times (n+1) \leq e \times \left(\frac{n+1}{2}\right)^{n+1}
+\]
+\[
+\left( \frac{n}{2}\right) ^ n \leq  \left(\frac{n+1}{2}\right)^{n+1}
+\]
+\[
+n^n \times (n+1) \leq \frac{(n+1)^n \times(n+1)}{2}
+\]
+\[
+2n^n \leq (n+1)^n
+\]
+\[
+\left(1+\frac{1}{n}\right) ^ n \geq 2
+\]
+При n = 1: $\left(1+\frac{1}{n}\right) ^ n = 2$, и при этом эта функция не убывает (мы это уже доказали), значит это верно $\forall n, \; n \geq 1$\\
+\textbf{Ч.Т.Д}
+\\\\
+Итог: мы доказали как нижнюю, так и верхнюю границу, что и требовалось от нас в задаче
+\section*{№ 12}
+Рассмотрим последовательности:
+\[
+a_n = \frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \ldots + \frac{1}{\sqrt{n}} - 2\sqrt{n}
+\]
+\[
+b_n = \frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \ldots + \frac{1}{\sqrt{n}} -2 \sqrt{n+1}
+\]
+\subsection*{a)}
+Доказать, что $a_n \geq b_n $, $a_n$ - не возрастает, $b_n$ - не убывает
+\item \[
+a_n \geq b_n
+\]
+\[
+\frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \ldots + \frac{1}{\sqrt{n}} - 2\sqrt{n} \geq
+\]
+\[
+\geq \frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \ldots + \frac{1}{\sqrt{n}} -2 \sqrt{n+1}
+\]
+\[
+-2\sqrt{n} + 2\sqrt{n+1} \geq 0
+\]
+\[
+-\sqrt{n} + \sqrt{n+1} \geq 0
+\]
+\[
+\sqrt{n+1} \geq \sqrt{n}
+\]
+\[
+n+1 \geq n
+\]
+\[
+1 \geq 0
+\]
+\begin{center}
+Верно
+\end{center}
+\item
+\[
+a_{n+1} \leq a_n
+\]
+\[
+\frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \ldots + \frac{1}{\sqrt{n}} + \frac{1}{\sqrt{n+1}}- 2\sqrt{n+1} \leq 
+\]
+\[
+\leq \frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \ldots + \frac{1}{\sqrt{n}} -2 \sqrt{n}
+\]
+\[
+\frac{1}{\sqrt{n+1}} - 2 \sqrt{n+1} \leq -2\sqrt{n}
+\]
+\[
+\frac{2-2n}{\sqrt{n+1}} \leq -2 \sqrt{n}
+\]
+\[
+\frac{1-n}{\sqrt{n+1}} \leq -\sqrt{n}
+\]
+\[
+\frac{1-2n+n^2}{\sqrt{n+1}} \leq -\sqrt{n}
+\]
+\[
+n^2-2n+1 \leq n^2+n
+\]
+\[
+1 \leq 3n
+\]
+\[
+n \geq \frac{1}{3}
+\]
+\begin{center}
+Верно
+\end{center}
+\item
+\[
+b_{n+1} \geq b_n
+\]
+\[
+\frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \ldots + \frac{1}{\sqrt{n}} + \frac{1}{\sqrt{n+1}} - 2\sqrt{n+2} \geq
+\]
+\[
+\geq \frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \ldots + \frac{1}{n} - 2\sqrt{n+1}
+\]
+\[
+\frac{1}{\sqrt{n+1}} - 2\sqrt{n+1} \geq -2 \sqrt{n+1}
+\]
+\[
+2(n+1) - 2\sqrt{(n+1)(n+2)} +1 \geq 0
+\]
+\[
+2n+3 \geq 2 \sqrt{n^2 +3n + 2}
+\]
+\[
+4n^2 + 12n + 0 \geq 4n^2 + 12n + 8
+\]
+\[
+9 \geq 8
+\]
+\begin{center}
+Верно
+\end{center}
+\subsection*{b)}
+Из пункта a) получите, что $a_k \geq b_m$ для произвольных индексов $k, m \in \mathbb{N}$ и обе последовательности ограничены
+\item
+Возьмем произвольный k такой, что $k < n$, тогда:
+\[
+a_k \geq a_n \geq b_n \rightarrow a_k \geq b_n
+\]
+Аналогично, возьмем произвольный m такой, что $ m > n$, тогда:
+\[
+b_n \leq b_m \leq a_n
+\]
+Соединяя, получим:
+\[
+a_k \geq a_n \geq b_m \geq b_n 
+\]
+Т.е:
+\[
+a_k \geq b_m \; \forall k, m \in \mathbb{N}
+\]
+\item
+Т.к $a_n \geq b_n$ и $a_n$ не возрастает, то $a_n$ \textbf{ограничена} снизу $ b_n $
+\\\\
+Т.к  $a_n \geq b_n$ и $b_n$ не убывает, то  $b_n$  \textbf{ограничена} сверху $a_n$
+\subsection*{c)}
+Докажите, что:
+\[
+\frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \ldots + \frac{1}{\sqrt{n}} = 2 \sqrt{n} - c + \alpha_n \text{ где:}
+\]
+\begin{center}
+c -  положительное число
+\[
+\lim_{n \rightarrow \infty} \alpha_n = 0
+\]
+Пусть:
+\[
+\lim_{n \rightarrow \infty } a_n = A
+\]
+\[
+\lim_{n \rightarrow \infty} b_n = B
+\]
+Мы знаем, что:
+\[
+a_n = b_n + 2\sqrt{n+1} - 2\sqrt{n}
+\]
+\[
+A = \lim\limits_{n \rightarrow \infty} (b_n + 2\sqrt{n+1} - 2\sqrt{n}) = B + \lim_{n \rightarrow \infty} \left( \frac{2(n+1-n)}{\sqrt{n+1} + \sqrt{n}} \right) = B
+\]
+\[
+ \lim_{n \rightarrow \infty}  \left(\frac{2}{\sqrt{n+1} + \sqrt{n}}\right) = 0 \text{  т.к при n стремящемся к бесконечности} 
+\]
+\[
+\text{знаменатель увеличивается, а числитель не меняется}
+\]
+Пускай:
+\[
+a_n = -1,\; \;\; b_n \leq a_n \rightarrow b_n \leq -1
+\]
+Если $b_n \leq -1$, то и $a_n \leq -1$
+\[
+a_n = A + \alpha_n \text{ ,где } \alpha_n \rightarrow 0
+\]
+\[
+\frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \ldots + \frac{1}{\sqrt{n}} = 2\sqrt{n} + A + \alpha_n
+\]
+Пусть $c = -A$, c > 0 (т.к $ A < 0$, $ -A >0$)
+\[
+\frac{1}{\sqrt{1}} + \frac{1}{\sqrt{2}} + \ldots + \frac{1}{\sqrt{n}} = 2\sqrt{n} - c + \alpha_n
+\]
+\\
+\textbf{Ч.Т.Д}
+\end{center}
+\end{itemize}
+\end{document}

@@ -1,0 +1,61 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\section*{Номер 3}
+\begin{center}
+\includegraphics[scale=0.4]{3.png}
+\end{center}
+\begin{enumerate}
+\item Проводим прямую AC (тип 1а)
+\item Строим окружности с центрами A и C, проходящиее через C и A соотвественно (тип 1б)
+\item Назовем точки пересечения этих окружностей с двух сторон как F и E (тип 2)
+\item Проводим прямую EF (тип 1а)
+
+\item Отмечаем точку пересечения AC и EF как O (тип 2)
+
+\item Проводим окружность с центром в O, проходящую через A (тип 1б)
+\item Отметим точки преесечения окружности с EF как B и D (тип 2)
+\item Строим прямые AB, BC, CD, DA
+
+Точки A, B, C, D образуют квадрат с диагональю AC
+\end{enumerate}
+\end{document}

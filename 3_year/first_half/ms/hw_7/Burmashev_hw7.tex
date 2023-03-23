@@ -1,0 +1,77 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\maketitle
+\clearpage
+\section*{Номер 1}
+\begin{itemize}
+\item
+Докажите, что существует неперечислимое множество, дополнение которого тоже неперечислимо
+\end{itemize}
+Для доказательства воспользуемся фактом существования неперечислимого множества. Возьмем некое неперечислимое подмножество натуральных чисел: $D \subset \mathbb{N}$. Тогда рассмотрим два подмножества $\mathbb{N}$, такие что:
+\begin{enumerate}
+\item 
+\[
+A = \{ 
+2k : k \in D, \; 2k + 1 : k \not \in  D
+\}
+\]
+\item 
+\[
+B = \{
+2k : k \not \in D, \; 2k + 1: k \in D 
+\}
+\]
+\end{enumerate}
+Легко заметить, что $\mathbb{N} \setminus A = B$, поскольку $A \cup B = \mathbb{N}$ и $A \cup B = \emptyset$. Теперь нужно показать, что $A$ и $B$ -- неперечислимы.
+\\\\
+Предположим, что множество $А$ является перечислимым. Тогда будем перебирать все $2k : k \in D$, а оставшиеся элементы пропускать. Поделим эти элементы на два, мы получаем алгоритм перечисления множества $D$,  но оно \textbf{неперечислимо}, значит и $A$ также неперечислимо
+\\\\
+Предположим, что множество $B$ является перечислимым. Тогда будем перебирать все $2k + 1 : k \in D$, а оставшиеся элементы пропускать. Вычтем из каждого выбранного элемента единицу и после поделим на два, тогда мы снова получим алгорим перечисления множества $D$, но оно \textbf{неперечислимо}, значит и $B$ также неперечислимо
+\\\\
+В конце концов получаем, что мы смогли предоставить такое неперечислимое множество $A$, что его дополнение также является неперечислимым.
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\clearpage
+\section*{Номер 2}
+\end{document}

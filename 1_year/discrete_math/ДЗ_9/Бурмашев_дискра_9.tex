@@ -1,0 +1,189 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Линал. ИДЗ - 2 Вариант 2.}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий.  208. Дискра. Д/З -- 9
+\end{center}
+\newpage
+\subsection*{Задание 1}
+По определению композиции нужно для всех пар (x, y) найти z,  что:
+\[
+\frac{z}{y} > 0
+\]
+\[
+\frac{x}{z} > 0
+\]
+Очевидно, что x, y, z не могут быть равны нулю. Тогда xy > 0 и $\frac{x}{y} > 0$
+
+Поскольку $\frac{x}{y} > 0$,  то возможны случаи:
+\\\\
+а)
+\[
+\frac{x}{1} > 0
+\]
+\[
+\frac{1}{y} > 0
+\]
+б)
+\[
+\frac{x}{-1} > 0
+\]
+\[
+\frac{-1}{y} > 0
+\]
+Значит $ (x, y) \in R \circ R $, $R \circ R = R$
+\begin{center}
+\textbf{Ответ:} $R \circ R = R$
+\end{center}
+
+\subsection*{Задание 2}
+Найдем $R^T$:
+\[
+\{   (a, 1), (2, b), (4, c), (8,  d), (8, e), (8, f), (8, g), (8, h) \}
+\]
+Найдем $R^T \circ R:$
+\[
+\{  
+(a, a), (b, b), (c, c), (d, d), (e, e), (f, f), (g, g), (h, h) (d, e), (d, f),
+\]
+\[
+ (d, g), (d, g), (d, h), (e, e), (e, d), (e, f), (e, g), (e, h), \]
+\[(f, d), (f, e), (f, g), (f, h), (g, d), (g, e), (g, f), (g, h), (h, d), (h, e), (h, f), (h, g)
+\}
+\]
+\begin{center}
+Итого 28
+\end{center}
+Найдем $R \circ R^T$:
+\[
+\{ (1, 1), (2, 2), (4, 4), (8, 8)\}
+\]
+\begin{center}
+Итого 4
+\end{center}
+\begin{center}
+\textbf{Ответ:} В $R^T \circ R$ 28 элементов. В $R \circ R^T$ 4 элемента.
+\end{center}
+
+\subsection*{Задание 3}
+Предположим, что  R1 не является функцией. Тогда в множестве пар в R1  может быть несколько значений. Но и в $R1 \cup R2$ будет тоже самое, $\rightarrow$ это не будет функцией. Аналогичная ситуация будет, если R2 -- не функция. А значит, в множестве пар как в R1, так и в R2 должны быть различные левые элементы. Т.е R1 и R2 --  функции. \textbf{Ч.Т.Д}
+
+\subsection*{Задание 4}
+По условию все элементы множества X переходят в B.
+
+Положим:
+
+X = \{1, 2\}.  Пусть все элементы переходят в 1. Тогда  B = \{1\}. При этом пусть Y = \{1, 10, 11\}. Все условия задачи сохраняются и выполняются, но при этом B $\neq$ Y.
+\begin{center}
+\textbf{Ответ:} нет
+\end{center}
+\subsection*{Задание 5}
+Рассмотрим первый случай:
+\[
+f(A \triangle B) \subseteq f(A) \triangle f(B) 
+\]
+Положим:
+
+\[
+A = \{ 1, 2\}
+\]
+\[
+B = \{ 3, 4\}
+\]
+Тогда:
+\[
+A \triangle B = \{1, 2, 3, 4\}
+\]
+Пускай при этом множество Y задано следующим образом:
+\[
+f(1) = f(3) = 5
+\]
+\[
+f(2) = f(4) = 6
+\]
+А значит:
+\[
+f(A \triangle B) = \{5, 6\}
+\]
+\[
+f(A) = \{5, 6\} = f(B)
+\]
+Но при этом:
+\[
+f(A) \triangle f(B) = \emptyset 
+\]
+\[
+\{5, 6\} \subseteq \emptyset
+\]
+\begin{center}
+\textbf{противоречие}
+\end{center}
+
+Рассмотрим второй случай:
+\[
+f(A \triangle B) \supseteq f(A) \triangle f(B) 
+\] Т.к в условии задачи сказано, что при одном из знаков получается верное утверждение, а в первом случае мы уже получили противоречие, то заведомо предположим, что этот случай истиный. Тогда попробуем доказать от обратного. Пусть найдется такой $y$, что:
+\[
+y \notin f(A \triangle B) \cap y \in f(A) \triangle f(B).
+\]
+В таком случае $y = f(z)$, что  $f(z) \in f(A)$. А также $f(z) \in f(B)$. Отсюда $z \in f(A) \cap f(B)$.  Ну и $f(z) \notin f(A) \triangle f(B)$. Мы получили противоречие $\rightarrow$ такого быть не может.
+\subsection*{Задание 8}
+Функция от функции изменяет четность числа. Можно построить следующую биекцию, которая в квадрате будет делать именно то, что нужно:
+\[
+\begin{pmatrix}
+1 & 2 & 3 & 4 \\
+3 & 1 & 4  &2 \\
+\end{pmatrix}
+\]
+Таким образом при взятии функции 2 раза:
+
+1 переведется в 3 и затем в 4
+
+2 переведется в 1 и затем в 3
+
+3 переведется в 4 и затем в 2
+
+4 переведется в 2 и затем в 1
+\\\\
+Т.е если мы разобьем наши числа на 4 группы, то сможем менять их четность  вызывая эту функцию 2 раза,
+что и требовалось в условии задачи.
+\end{document}

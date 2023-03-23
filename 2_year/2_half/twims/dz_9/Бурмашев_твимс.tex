@@ -1,0 +1,200 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\section*{Номер 1}
+Собственно проверяем все свойства:
+\subsubsection*{Состоятельность:}
+Воспользуемся ЗБЧ (аналогично семинарской таске). Для этого нужно найти мат.ожидание, можем это сделать, зная плотность:
+\[
+\mathbb{E} X_1 = \int\limits_{-\infty}^{+\infty} x \cdot \frac{3x^2}{\theta^3} \cdot I_{x \in [0, \theta]} = \int\limits_0^{\theta} \frac{3x^3}{\theta^3} dx =
+\frac{3}{\theta^3}
+\cdot 
+\int\limits_0^{\theta} x^3  dx
+=
+\frac{3}{4} \cdot \theta 
+ \]
+Теперь по ЗБЧ:
+\[
+\frac{4}{3} \cdot \overline{X} \overset{P}{\longrightarrow} \frac{4}{3} \cdot \frac{3}{4} \theta = \theta
+\]
+\begin{center}
+\textbf{Ответ: } состоятельность сть
+\end{center}
+\subsubsection*{Сильная состоятельность:}
+Тут будем использовать уЗБЧ, по нему:
+\[
+\frac{4}{3} \overline{X} \overset{\text{п.н}}{\longrightarrow} \frac{4}{3} \cdot \frac{3}{4} \theta  = \theta 
+\]
+\begin{center}
+\textbf{Ответ: } сильная состоятельность сть
+\end{center}
+\subsubsection*{Несмещенность:}
+\[
+\mathbb{E} \left[ \frac{4}{3} \overline{X} \right]  = \frac{4}{3} \cdot \mathbb{E} \left[
+\frac{X_1 + \ldots + X_n}{n}
+\right] = \frac{4}{3n} \cdot n \cdot \frac{3}{4} \cdot \theta = \theta
+\]
+Получили:
+\[
+\mathbb{E} \left[ \frac{4}{3} \overline{X} \right]   = \theta
+\]
+\begin{center}
+\textbf{Ответ: } несмещенность есть
+\end{center}
+\clearpage
+\section*{Номер 10 [листок 6]}
+Положим оценку:
+\[
+\stackrel{\wedge}{\theta} = X_{(n)} - X_{(1)}
+\]
+Где $X_{(n)} $ -- максимальное значение из выборки, $X_{(1)}$ -- минимальное значение из выборки. 
+Ну а теперь проверим её на несмещенность и состоятельность. Почти аналогичная семинару задача, будем опираться на него.
+\subsubsection*{Состоятельность:}
+По определению хотим проверить:
+\[
+X_{(n)} - X_{(1)} \overset{P}{\longrightarrow} \theta \; ? 
+\]
+Делаем аналогично семинару:
+\[
+P \left(
+|X_{(1)} - a | \geq \varepsilon
+\right) = 
+P \left(
+X_{(1)} - a
+ \leq -\varepsilon \right)
++ 
+P \left(
+X_{(1)} - a
+\geq \varepsilon \right)  = 
+P \left(
+X_{(1)} - a
+\geq \varepsilon \right)  = 
+\]
+\[
+=
+1 - P \left(
+X_{(1)} - a
+\leq \varepsilon \right)  = 
+1 - P \left(
+X_{(1)}
+\leq \varepsilon  + a\right) = 
+\begin{cases}
+0,  b - \varepsilon  < a \\
+\left(
+\frac{-\varepsilon - a + b}{b - a} \right)^n , \; a \leq b  - \varepsilon 
+\end{cases}
+\]
+Оба в системе стремятся к нулю, значит по определению:
+\[
+X_{(1)} \overset{P}{\longrightarrow} a
+\]
+Теперь проделываем аналогичную операцию, только с  $X_{(n)}$ и$b$:
+\[
+P \left(
+|X_{(n)} - b | \geq \varepsilon
+\right)  = P \left(
+X_{(n)} \leq b - \varepsilon
+\right) =
+\begin{cases}
+0, \; b - \varepsilon < a \\
+\left(
+\frac{b - a - \varepsilon}{b - a}
+\right)^n, \; b - \varepsilon \geq a
+\end{cases}
+\]
+Тут также все к нулю, получаем:
+\[
+X_{(n)} \overset{P}{\longrightarrow} b
+\]
+Cуммируем и получаем:
+\[
+\stackrel{\wedge}{\theta}  
+=
+X_{(n)} - X_{(1)} \overset{P}{\longrightarrow} b - a = \theta 
+\]
+А значит есть состоятельность!
+\subsubsection*{Несмещенность:}
+По определению хотим проверить:
+\[
+\mathbb{E} \left[
+X_{(n)} - X_{(1)}
+\right] = \theta ?
+\]
+Ну, нужно найти мат.ожидания, так что ищем их, для этого надо выразить плотности, выражаем (берем с сема, хех):
+\[
+\rho_{X_{(n)}} (t) = 
+I_{[a, b]}
+\cdot \frac{n \cdot (t - a)^{n - 1}}{(b - a)^n}
+\]
+\[
+\rho_{X_{(1)}} (t) =I_{[a, b]} \cdot  \frac{n \cdot (b - t)^{n - 1}}{(b - a)^n}
+\]
+Тогда:
+\[
+\mathbb{E}\left[
+X_{(n)}
+\right] = \int\limits_a^b  t \cdot
+ \frac{n \cdot (t - a)^{n - 1}}{(b - a)^n} dt = \frac{n}{(b - a)^n} \int\limits_a^b (t - a)^n dt + \frac{na}{(b - a)^n} \int\limits_a^b (t - a)^{n - 1} dt = \frac{a + bn }{n + 1}
+\]
+А для $X_{(1)}$:
+\[
+\mathbb{E} \left[
+X_{(1)}
+\right]
+=
+\int\limits_a^b  t  \cdot  \frac{n \cdot (b - t)^{n - 1}}{(b - a)^n}dt = n \cdot  \int\limits_a^b  \frac{(t -b )(b -t)^{n - 1}}{(b - a)^n } dt + nb \int\limits_a^b \frac{(b - t)^{n - 1}}{(b -a)^n} dt =  \frac{an + b}{n + 1}
+\]
+Тогда нужное нам матожидание:
+\[
+\mathbb{E} \left[
+X_{(n)} - X_{(1)}
+\right]  = \mathbb{E} \left[
+X_{(n)}
+\right] - \mathbb{E} \left[
+X_{(1)}
+\right]  =  \frac{a + bn }{n + 1} - \frac{an + b}{n + 1}  = \frac{(n-1)(b - a)}{n + 1}\neq b-a = \theta 
+\]
+Нужного нам равенства никак не получаем, значит нет несмещенности
+\begin{center}
+\textbf{Ответ: } есть состоятельность, нет несмещенности
+\end{center}
+\end{document}

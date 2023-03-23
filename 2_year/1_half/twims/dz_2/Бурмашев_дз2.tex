@@ -1,0 +1,130 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{ТВиМС, дз -- 2}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{Номер 8 [листок 1]}
+\subsection*{a) В прикупе два туза}
+Общее число исходов (2 любые туза из общего числа):
+\[
+C^2_{32}
+\]
+\\
+Нам подходит выбор 2 тузов из 4:
+\[
+C^2_4
+\]
+Итого:
+\[
+P = \frac{C^2_4}{C^2_{32}} = \frac{6}{496} = \frac{3}{248}
+\]
+\begin{center}
+\textbf{Ответ: } $\frac{3}{248}$
+\end{center}
+\subsection*{a) Вы один из игроков}
+При таком раскладе мы точно знаем, что одному из игроков раздали 10 карт и тузов у него \textbf{не} оказалось. 
+\\\\
+Тогда общее число исходов будет выбрать 2 карты в прикуп из 22: 
+\[
+C^2_{22}
+\]
+Нам подходят все тот же выбор 2 тузов из 4:
+\[
+C^2_4
+\]
+Итого:
+\[
+P = \frac{C^2_4}{C^2_{22}} = \frac{6}{231} = \frac{2}{77}
+\]
+\begin{center}
+\textbf{Ответ: } $\frac{2}{77}$
+\end{center}
+\clearpage
+\section*{Задача 10 [листок 1]}
+Т.к все люди разные, то всего у нас способов рассадить $k$ человек по $n$ вагонам:
+\[
+n^k
+\]
+Выберем теперь $r$ из $n$ вагонов, на это нужно:
+\[
+C^r_n
+\]
+Теперь работаем с $r$ вагонами, рассадим $k$ человек по $r$ вагонам так, чтобы ни один из $r$ вагонов не был пустым, для этого воспользуемся формулой для числа сюръекций из $k$ -- элементного множества в $r$ -- элементное, а именно:
+\[
+\sum_{i = 0}^{r} (-1)^i C^i_r (r - i)^k
+\]
+Тогда получаем ответ:
+\[
+P = \frac{C_n^r \cdot \left(\sum\limits_{i = 0}^{r} (-1)^i C^i_r (r - i)^k\right)}{n^k}
+\]
+\clearpage
+\section*{Задача 8 [листок 2]}
+Введем события:
+\begin{center}
+A -- орел выпал ровно 2 раза
+\end{center}
+\begin{center}
+B -- выпало четное число орлов
+\end{center}
+Нас интересует:
+\[
+P(A | B) = \frac{P(A \cap B)}{P(B)}
+\]
+Тогда:
+\[
+A \cap B  \text{ -- выпало всего 2 орла}
+\]
+Знаем вероятность $B$:
+\[
+P(B) = \frac12
+\]
+Посчитаем вероятность $A$, расставим 2 орлов на $N$ позиций, это будет $C_n^2$, вероятность выбрать 2 орла будет $\left( \frac{1}{2} \right)^2$. На оставшиеся $N - 2$ позиции нужно поставить решек, вероятность этого будет $ \left( \frac{1}{2} \right)^{N -2}$, итого:
+\[
+P(A \cap B) = \frac{C_N^2 \cdot \left( \frac{1}{2} \right)^2 \cdot\left( \frac{1}{2} \right)^{N -2} }{1} = C_N^2 \left(\frac{1}{2}\right)^{N}
+\]
+ Тогда ответ:
+\[
+P(A | B) = \frac{C_N^2 \cdot \left( \frac{1}{2}\right)^N}{\frac12} = C_N^2 \cdot \left(\frac12\right)^{N- 1}
+\]
+\begin{center}
+\textbf{Ответ: } $ C_N^2 \cdot \left(\frac12\right)^{N- 1}$
+\end{center}
+\end{document}

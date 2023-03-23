@@ -1,0 +1,81 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\section*{Задание 1}
+Пусть $S = (n + 0) + (n + 1) + \ldots + (n + 2019)$.
+
+Всего у нас 2020 скобок, в каждой есть $n$, значит все эти $n-$ки можем заменить на $2020 \cdot n$. Тогда вынесем это за скобки и получим вид:
+\[
+S = 2020 \cdot n \cdot (0 + 1 + \ldots + 2019)
+\]
+0 ничего не значит и его мы можем отбросить, сумму чисел 1 от до 2019 можем посчитать с помощью формулы : $S_n = \frac{n(n+1)}{2}$. Докажем её корректность методом мат.индукции:
+\begin{itemize}
+\item База:
+\[
+S_1 = \frac{1(1 + 1)}{2} = 1
+\]
+\item Индукция:
+
+пусть $S_n = \frac{n(n+1)}{2}$, тогда для $n + 1$:
+\[
+S_{n + 1} = S_n + (n + 1) = \frac{n(n+1)}{2} + n + 1 = \frac{n^2 + n + 2n + 2}{2} =
+\]
+\[
+=
+\frac{n^2 + 3n + 2}{2} = \frac{(n+1)(n+2)}{2} = S_{n + 1}
+\]
+\end{itemize}
+\begin{center}
+\textbf{Корректность доказана} 
+\end{center}
+Теперь считаем:
+\[
+S_{2019} = \frac{2019 \cdot 2020}{2} = 2039190
+\]
+По итогу получаем:
+\[
+S = (n + 0) + (n + 1) + \ldots + (n + 2019) = 2020 \cdot n + 2039190
+\]
+\begin{center}
+\textbf{Ответ: } $2020 \cdot n + 2039190$
+\end{center}
+\end{document}

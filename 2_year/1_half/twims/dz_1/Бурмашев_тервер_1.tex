@@ -1,0 +1,243 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{ulem}
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{\sout{Матан} ТВиМС, дз -- 1}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{2. [С помощью условной вероятности]} 
+\subsection*{а) Еще хотя бы один туз}
+
+Сразу посчитаем важные для решения переменные:
+\begin{itemize}
+\item Ровно 1 туз в руке (6 карт):
+\[
+C^5_{32} \cdot C^1_4 
+\]
+\begin{center}
+(C из 32 по 5 выбрать не тузовые карты и С из 4 по 1 выбрать 1 туз)
+\end{center}
+
+\item Ровно 2 туза в руке:
+\[
+C^4_{32} \cdot 	C^2_4
+\]
+
+\item Ровно 3 туза в руке:
+\[
+C^3_{32} \cdot C^3_4
+\]
+
+\item Ровно 4 туза в руке:
+\[
+C^2_{32} \cdot C^4_4
+\]
+
+\item 0 тузов в руке:
+\[
+C^6_{32}
+\]
+
+\item Общее число вариантов выбрать руку:
+\[
+C^6_{36}
+\]
+\end{itemize}
+\clearpage
+Т.к  нужно решить через условную вероятность, то задать искомую вероятность можно так : 
+
+$P$(есть \textbf{еще} хотя бы 1 туз, при условии, что есть хотя бы 1 туз)
+\\
+
+Тогда введем события:
+\begin{center}
+$A$ -- есть \textbf{еще} хотя бы один туз
+\\
+$B$ -- есть хотя бы один туз
+\end{center}
+
+Ответом будет:
+\[
+P(A |B) = \frac{P(A \cap B)}{P(B)}
+\]
+
+Теперь считаем:
+\begin{center}
+$A \cap B$ -- есть хотя бы 2 туза 
+\end{center}
+\[
+P(A \cap B) = \frac{C^4_{32} \cdot 	C^2_4 +C^3_{32} \cdot C^3_4 +  C^2_{32} \cdot C^4_4}{C^6_{36}}  = \frac{215760 + 19840 + 496}{1947792} = \frac{236096}{1947792}
+\]
+
+\[
+P(B) = 1 - P(\text{нет тузов}) =  1 - \frac{C^6_{32}}{C^6_{36}} = 1 - \frac{906192}{1947792} = \frac{100}{187}
+\]
+
+\[
+P(A | B) = \frac{\frac{236096}{1947792}}{\frac{100}{187}} = \frac{17}{75}
+\]
+\begin{center}
+\textbf{Ответ: }  $\frac{17}{75}$
+\end{center}
+\clearpage
+\subsection*{b) Еще хотя бы один туз, при условии туз пик}
+\begin{center}Делаем все аналогично пункту $a)$\end{center}
+
+Ищем вероятности для решения:
+\begin{itemize}
+\item Ровно 1 туз пик:
+\[
+\frac{C^5_{32} \cdot C^1_4}{4}
+\]
+\item 2 туза и есть туз пик:
+\[
+\frac{2 \cdot C^4_{32} \cdot C^2_4}{4}
+\]
+\item 3 туза и есть туз пик:
+\[
+\frac{3 \cdot C^3_{32} \cdot C^3_4}{4}
+\]
+\item 4 туза (аналогично пункту \textbf{a})
+\end{itemize}
+
+Ищем :
+\begin{center}
+$P$(есть еще хотя бы один туз, при условии, что есть хотя бы 1 туз пик)
+\end{center}
+События:
+\begin{center}
+$A$ -- есть еще хотя бы один туз \\
+$B$ -- есть хотя бы 1 туз пик \\
+$A \cap B$ -- хотя бы 2 туза, причем хотя бы 1 туз пик
+\end{center}
+\[
+P(A\cap B) = \frac{\frac{2 \cdot C^4_{32} \cdot C^2_4 }{4} +\frac{3 \cdot C^3_{32} \cdot C^3_4}{4} + \frac{C^2_{32} \cdot C^4_4}{1} }{C^6_{36}}
+\]
+\[
+P(B) = \frac{\frac{2 \cdot C^4_{32} \cdot C^2_4 }{4} +\frac{3 \cdot C^3_{32} \cdot C^3_4}{4} + \frac{C^2_{32} \cdot C^4_4}{1} + \frac{C^5_{32} \cdot C^1_4}{4}}{C^6_{36}} 
+\]
+\[
+P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{\frac{2 \cdot C^4_{32} \cdot C^2_4 }{4} +\frac{3 \cdot C^3_{32} \cdot C^3_4}{4} + \frac{4 \cdot C^2_{32} \cdot C^4_4}{4}}{\frac{2 \cdot C^4_{32} \cdot C^2_4 }{4} +\frac{3 \cdot C^3_{32} \cdot C^3_4}{4} + \frac{4 \cdot C^2_{32} \cdot C^4_4}{4} + \frac{C^5_{32} \cdot C^1_4}{4}} = 
+\]
+\[
+=
+\frac{2\cdot C^4_{32} \cdot C^2_4 + 3 \cdot C^3_{32} \cdot C^3_4 + 4 \cdot C^2_{32} \cdot C^4_4}{2\cdot C^4_{32} \cdot C^2_4 + 3 \cdot C^3_{32} \cdot C^3_4 + 4 \cdot C^2_{32} \cdot C^4_4 + C^5_{32} \cdot C^1_4} = \frac{431520 + 59520 + 1984}{493024 +805504 } = \frac{493024}{1298528} =
+\]
+\[
+= \frac{71}{187}
+\]
+\begin{center}
+\textbf{Ответ: } $\frac{71}{187}$
+\end{center}
+\clearpage
+\section*{5.}
+\subsection*{а) Неразличимые шары}
+Общее число исходов (по методу шаров и перегородок):
+\[
+C^{n -1}_{n + k - 1}
+\]
+Нам нужно, чтобы во всех коробках было хотя бы по одному шару, разложим в каждую из $n$ коробок по 1 шару, у нас останется $k - n$ шаров, их раскладываем уже произвольно (тем же методом, что и выше):
+\\\\
+Тогда наше событие:
+\[
+P(\text{нет пустых ящиков}) = \frac{C^{n - 1}_{k - n + n - 1}}{C^{n -1 }_{n + k - 1}} = \frac{C^{n - 1}_{k - 1}}{C^{n -1 }_{n + k - 1}}
+\]
+\begin{center}
+\textbf{Ответ: } $\frac{C^{n - 1}_{k - 1}}{C^{n -1 }_{n + k - 1}}$
+\end{center}
+\subsection*{b) Различимые шары}
+Общее число исходов:
+\[
+n^k
+\]
+Наше событие:
+\[
+P(\text{нет пустых ящиков}) = 1 - P(\text{есть пустой ящик})
+\]
+Найдем вероятность наличия хотя бы одного пустого ящика, пусть i-й ящик -- пустой. Тогда нам нужно будет (как угодно) разложить $k$ шаров по $n - 1$ ящику. Тогда вероятность наличия хотя бы одного пустого ящика будет определяться объединением события выше по всем $i$ от $1$ до $n$. Назовем такое событие A, т.е:
+\[
+A_i = \{\text{i-й ящик пустой}\}
+\]
+\[
+P(\text{есть пустой ящик}) = P \left(A_1 \cup A_2 \cup \ldots \cup A_n \right) = P \left(\sum_{j = 1}^n A_j\right) = 
+\]
+\[
+=
+\sum_{m = 1}^{n } (-1)^{m - 1}  C_n^m \cdot \frac{(n - m)^k}{n^k}
+\]
+\begin{center}
+\textbf{Ответ: } $ \sum\limits_{m = 1}^{n } (-1)^{m - 1}  C_n^m \cdot \frac{(n - m)^k}{n^k}$
+\end{center}
+\clearpage
+\section*{9.}
+\begin{center}
+[Похожа на задачу 5]
+\end{center}
+\subsection*{a) Неразличимые шары}
+Общее число исходов:
+\[
+C^{n - 1}_{n + k - 1}
+\]
+Теперь кладем в  $j$-й ящик $k_j$ шаров. У нас остается $k - k_j$ шаров и $n - 1$ ящиков, т.е:
+\[
+C^{(n - 1) - 1}_{(n - 1)+ (k - k_j) - 1} = C^{n - 2}_{n + k - k_j - 2}
+\]
+Тогда наше событие:
+\[
+P = \frac{C^{n - 2}_{n + k - k_j - 2}}{C^{n - 1}_{n + k - 1}}
+\]
+\begin{center}
+\textbf{Ответ: } $P = \frac{C^{n - 2}_{n + k - k_j - 2}}{C^{n - 1}_{n + k - 1}}$
+\end{center}
+\subsection*{b) Различимые шары}
+Общее число исходов:
+\[
+n^k
+\]
+Кладем в $j$-й ящик $k_j$ шаров, т.к шары различимы, это можно сделать $C_k^{k_j}$ (выбор $k_j$ шаров из $k$ шаров) способами. У нас остается $n - 1$ ящиков и $k - k_j$ шаров. Остальные шары раскладываем как хотим, на это уйдет $(n - 1)^{k - k_j}$ способов.
+
+По итогу:
+\[
+P = \frac{C_k^{k_j} (n - 1)^{k - k_j}}{n^k}
+\]
+\begin{center}
+\textbf{Ответ: } $P =  \frac{C_k^{k_j} (n - 1)^{k - k_j}}{n^k}$
+\end{center}
+\end{document}

@@ -1,0 +1,182 @@
+\documentclass[a4p aper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\author{Бурмашев Григорий}
+\title{Матанализ  -1}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий, 208. Матан. Д/з - 1
+\end{center}
+\section{Задача 8}
+Вычислите сумму:
+\subsection*{a)}
+\[S = \frac{1}{1\times5} + \frac{1}{5\times9} + \ldots + \frac{1}{(4n-3)(4n+1)}\]
+Можно заметить, что:\\
+\begin{eqnarray*}
+\begin{gathered}
+\left(\frac{1}{4n-3} - \frac{1}{4n+1}\right)\times \frac{1}{4} = \frac{1}{4(4n-3)} - \frac{1}{4(4n+1)} = \frac{4n+1 - (4n-3)}{4(4n-3)(4n+1)} =\\ = \frac{4}{4(4n-3)(4n+1)} = \frac{1}{(4n-3)(4n+1)}
+\end{gathered}
+\end{eqnarray*}
+Представим всю нашу сумму в виде таких разностей, умноженных на $\frac{1}{4}$
+Тогда:
+\begin{equation*}
+\begin{gathered}
+(\frac{1}{1} - \frac{1}{5}) \times \frac{1}{4} + (\frac{1}{5} - \frac{1}{9}) \times \frac{1}{4} + \ldots + (\frac{1}{4n-3} - \frac{1}{4n+1}) \times \frac{1}{4}
+\end{gathered}
+\end{equation*}
+Вынесем общий множитель $\frac{1}{4}$ за скобки:
+\begin{equation*}
+\begin{gathered}
+\frac{1}{4} \times \left(\frac{1}{1}- \frac{1}{5} + \frac{1}{5} - \frac{1}{9} + \frac{1}{9}  +\ldots- \frac{1}{4n-3} +\frac{1}{4n-3} - \frac{1}{4n+1}\right)
+\end{gathered}
+\end{equation*}
+Все множители внутри скобок, кроме первого и последнего, сокращаются:
+\begin{equation*}
+\begin{gathered}
+\frac{1}{4} \times \left(\frac{1}{1} -\frac{1}{4n+1}\right)\\\\
+\frac{1}{4} -\frac{1}{4(4n+1)}\\\\
+\frac{4n+1-1}{4(4n+1)}\\\\
+\frac{n}{4n+1}
+\end{gathered}
+\end{equation*}
+{\textbf{Ответ:} $ \frac{n}{4n+1}$
+\subsection*{б)}
+\[S =  \frac{1}{2} + \frac{3}{2^2} + \ldots + \frac{2n-1}{2^n}\]\\
+
+Представим сумму в виде $ S = 2S - S$, чтобы избавиться от "$\ldots$":
+\begin{equation*}
+\begin{gathered}
+S =  2\times(\frac{1}{2} + \frac{3}{2^2} + \ldots + \frac{2n-1}{2^n})\; -  \\
+-\; (\frac{1}{2} + \frac{3}{2^2} + \ldots + \frac{2n-1}{2^n})\\\\
+S = \frac{2}{2} + \frac{3}{2} + \frac{5}{2^2} + \ldots   + \frac{2n-1}{2^{n-1}} \;- \\
+-\;\frac{1}{2} - \frac{3}{2^2} - \frac{5}{2^3} - \ldots - \frac{2n-1}{2^n}\\\\
+\text{Вычтем попарно множители (кроме первого и последнего) и получим:}\\
+S = 1 + 1 + \frac{1}{2} + \frac{1}{2^2} + \frac{1}{2^3} + \ldots + \frac{1}{2^{n-1}} - \frac{2n-1}{2^n}\\
+\text{Применим формулу суммы геометрической последовательности для ряда } \frac{1}{2} + \frac{1}{2^2} + \ldots + \\ +\frac{1}{2^{n-1}}:\\\\
+S = 2 + 1 - \frac{1}{2^{n-1}} - \frac{2n-1}{2^n}\\\\
+S = 3 - \frac{2}{2^n} - \frac{2n-1}{2^n}\\
+S = 3 - \frac{2n-3}{2^n}\\\\
+S = \frac{3\times2^n -2n -3}{2^n}
+\end{gathered}
+\end{equation*}
+{\large \textbf{Ответ:} $\frac{3\times2^n -2n -3}{2^n}$}
+
+\section{Задача 9}
+Применяя метод математической индукции, докажите, что:
+\subsection*{а)}
+\[ 1^2+2^2+ 3^2 + \ldots + n^2 = \frac{n(n+1)(2n+1)}{6}
+\]
+\textbf{База:}
+
+Пусть $n = 1$, тогда:
+\begin{equation*}
+\begin{gathered}
+1^2 = \frac{1(1+1)(2\times1+1)}{6} \\\\
+1 = \frac{6}{6}\\\\
+1 = 1
+\end{gathered}
+\end{equation*}
+ \begin{center}
+\textbf{Верно}
+\end{center}
+\textbf{Переход:}
+
+Докажем, что это верно для $n+1$:
+\begin{equation*}
+\begin{gathered}
+1^2+2^2+3^2+\ldots+n^2+(n+1)^2 = \frac{(n+1)(n+1+1)(2(n+1)+1)}{6}\\\\
+\frac{n(n+1)(2n+1)}{6}+(n+1)^2 =  \frac{(n+1)(n+1+1)(2(n+1)+1)}{6}\\\\
+\frac{n(n+1)(2n+1)+6(n+1)^2}{6}  =  \frac{(n+1)(n+1+1)(2(n+1)+1)}{6}\\\\
+(n^2+n)(2n+1)+6n^2+12n+6 = (n+1)(n+2)(2n+3)\\\\
+2n^3+n^2+2n^2+n+6n^2+12n +6 = (n^2+3n+2)(2n+3)\\\\
+2n^3+9n^2+13n+6=2n^3+6n^2+4n+3n^2+9n+6\\\\
+2n^3+9n^2+13n+6=2n^3+9n^2+13n+6
+\end{gathered}
+\end{equation*}
+\begin{center}
+\textbf{Ч.Т.Д}
+\end{center}
+\subsection*{б)}
+\[
+\sqrt{n}< \frac{1}{\sqrt1}+\frac{1}{\sqrt{2}} + \ldots + \frac{1}{\sqrt{n}} < 2\sqrt{n}, n\geq2
+\]
+\textbf{База:}
+
+Пусть n = 2, тогда:
+\begin{equation*}
+\begin{gathered}
+\sqrt{2} < 1 + \frac{1}{\sqrt{2}} < 2\sqrt{2} \;\;\;\; | \times \sqrt{2}\\\\
+2 < \sqrt{2} + 1 < 4\\\\
+1 < \sqrt{2} < 3\\\\
+1 < 2 < 9
+\end{gathered}
+\end{equation*}
+\begin{center}
+\textbf{Верно}
+\end{center}
+\textbf{Переход:}
+
+Докажем, что это верно для $n+1$:
+\begin{equation*}
+\begin{gathered}
+\sqrt{n+1} < 1 + \frac{1}{\sqrt{2}} +\ldots + \frac{1}{\sqrt{n}} + \frac{1}{\sqrt{n+1}} < 2\sqrt{n+1}\\\\
+\text{Сначала докажем нижнюю границу:}\\
+\sqrt{n+1} < 1 + \frac{1}{\sqrt{2}} +\ldots + \frac{1}{\sqrt{n}} + \frac{1}{\sqrt{n+1}}\\\\
+\text{Т.к мы считаем, что неравенство выполняется для n, то прибавим к нему} \frac{1}{\sqrt{n+1}}\\\\
+\sqrt{n} + \frac{1}{\sqrt{n+1}}< \frac{1}{\sqrt1}+\frac{1}{\sqrt{2}} + \ldots + \frac{1}{\sqrt{n}} + \frac{1}{\sqrt{n+1}}\\\\
+\text{Нужно доказать, что:}\\\\
+\sqrt{n+1} < \sqrt{n} + \frac{1}{\sqrt{n+1}}\\
+\sqrt{n+1} < \frac{\sqrt{n}\times\sqrt{n+1} +1}{\sqrt{n+1}}\\\\
+n+1 < \sqrt{n} \times \sqrt{n+1} + 1\\
+n < \sqrt{n} \times \sqrt{n+1}\\
+n^2 < n(n+1)\\
+n^2 < n^2 + n\\
+0 < n\\
+\text{Т.к } n \geq 2 \text{,то неравенство выполняется}\\
+\text{\textbf{ч.т.д}}\\\\
+\text{Теперь, аналогично (прибавляя к исходному неравенству) } \frac{1}{\sqrt{n+1}} \\\text{ докажем верхнюю границу:}\\\\
+\end{gathered}
+\end{equation*}
+\begin{equation*}
+\begin{gathered}
+2\sqrt{n} + \frac{1}{\sqrt{n+1}} < 2\sqrt{n+1}\\
+\frac{2\sqrt{n(n+1)} +1}{\sqrt{n+1}} < 2\sqrt{n+1}\\\\
+2\sqrt{n(n+1)} +1 <2n+2\\
+2\sqrt{n^2+n} < 2n + 1\\
+\sqrt{n^2+n} < n + 0.5\\
+n^2 + n < n^2  + n +0.25\\
+0 < 0.25\\
+\text{\textbf{ч.т.д}}
+\end{gathered}
+\end{equation*}
+Мы доказали как верхнюю, так и нижнюю границу, значит все неравенство верно.\\
+\begin{center}
+\textbf{\textbf{Ч.Т.Д}}
+\end{center}
+\end{document}

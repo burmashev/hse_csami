@@ -1,0 +1,118 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\section*{Задание 4}
+Можем заметить, что начиная с 18 достаточно легко собирать цифры из 4к и 7к:
+\[
+18 = 4 + 7 + 7
+\]
+\[
+19 = 4 + 4 + 4 + 7
+\]
+\[
+20 = 4 + 4 +4 +4 +4 
+\]
+\[
+21 = 7 + 7 + 7
+\]
+\[
+22 = 4 + 4 + 7 + 7 
+\]
+Теперь воспользуемся методом математической индукии и докажем, что все цифры далее можно собрать из 4к и 7к. Назовем наши числа как $Q$, тогда базой будет являться $Q_{18}, Q_{19}, Q_{20}, Q_{21}, Q_{22}$.
+
+Шаг индукции:
+
+Пусть верно для $Q_n, Q_{n + 1}, Q_{n + 2}, Q_{n + 3}$. Тогда получаем (прибавлением числа 4):
+\[
+Q_n \rightarrow Q_{n + 4}
+\]
+\[
+Q_{n + 1} \rightarrow Q_{n + 5}
+\]
+\[
+Q_{n + 2} \rightarrow Q_{n + 6}
+\]
+\[
+Q_{n + 3} \rightarrow Q_{n + 7}
+\]
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+Теперь покажем с другой стороны, что меньше 17 не может быть (т.к $k + n$  и $n$ хотя бы 1, то рассматриваем не с 18, а с 17), для этого воспользуемся полным перебором всех комбинаций (таким образом, что при прибавлении 4 или 7 мы либо выйдем за верхнюю границу, либо попадем в уже рассмотренный вариант):
+\[
+16 = 4 + 4 +4 +4 
+\]
+\[
+15 = 4 + 4 + 7
+\]
+\[
+14 = 7 + 7
+\]
+\[
+13 - \text{мимо }
+\]
+\[
+12 = 4 + 4 + 4
+\]
+\[
+11 = 4 + 7
+\]
+\[
+10 - \text{мимо }
+\]
+\[
+9 - \text{мимо }
+\]
+\[
+8 = 4 + 4
+\]
+\[
+7 = 7
+\]
+\[
+4 = 4
+\]
+Прибавляя к любому из вариантов 4 или 7, мы либо выскочим за пределы 17, либо попадем в уже рассмотренное число $\rightarrow$ составить меньше 17 не получится, а значит 17 -- это ответ
+\begin{center}
+\textbf{Ответ: } 17
+\end{center}
+\end{document}

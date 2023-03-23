@@ -1,0 +1,508 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Диффуры, дз -- 5}
+\date{\today} 
+\begin{document}
+\maketitle
+\section*{Номер 2}
+\subsection*{a)}
+\[
+(2x - x^2)y'' + 2y' - \frac{2}{x}y = (2-x)^2 xe^{-x}
+\]
+Избавимся от скобки, для этого поделим на $(2x-x^2)$, заведомо заметив, что $x = 0$ и $x = 2$ -- не являются корнями уравнения, получаем:
+\[
+y'' + \frac{2}{(2-x)x} y'  - \frac{2}{(2 - x)x^2} y = (2 - x)e^{-x}
+\]
+Разберемся сначала с однородным уравнением, замечаем, что $y_1 = x$ -- частное решение, тогда применяем формулу Луивилля--Остроградского и получаем:
+\[
+xy_2' - y_2 = C \cdot e^{\int \frac{2}{x^2 - 2x}dx}
+\]
+Выражаем:
+\[
+xy_2' - y_2 = C \cdot e^{\ln(2 - x) - \ln (x)}
+\]
+\[
+xy_2' - y_2 = C \cdot \frac{2 - x}{x}
+\]
+\[
+\frac{xy_2' - y_2}{x^2} =C \cdot \frac{2 - x}{x^3}
+\]
+Тогда делим на $y_1^2 = x^2 $ и получаем:
+\[
+\left(
+\frac{y_2}{x}
+\right)'_x = C \cdot \frac{2 - x}{x^3}
+\]
+\[
+\frac{y_2}{x} = C \cdot \int \frac{2-x}{x^3} = C \cdot \frac{x-1}{x^2} + D = \frac{C}{x} - \frac{C}{x^2} + D
+\]
+\[
+y_2 = C - \frac{C}{x} + D \cdot x
+\]
+Назовем $C = C_1$ и $D = C_2$, тогда:
+\[
+y_2 = C_1(x) - \frac{C_1(x)}{x } +  C_2(x) \cdot x
+\]
+\[
+y_2 = C_1(x) \left(
+1 - \frac{1}{x} 
+\right) + C_2(x) \cdot x
+\]
+Теперь решим неоднородное методом вариации постоянных:
+\[
+\begin{cases}
+C_1' \cdot \left(
+1 - \frac{1}{x}
+\right)+ C_2' x = 0  \\
+C_1' \cdot \frac{1}{x^2} + C_2' = (2 - x)e^{-x}
+\end{cases}
+\]
+Выражаем производные в системе:
+\[
+\begin{cases} 
+C_1' = x^2 e^{-x} \\
+C_2' = (1 - x)e^{-x}
+\end{cases}
+\]
+А теперь находим сами С-шки:
+\[
+C_1 = \int x^2 e^{-x} dx =  - x^2 e^{-x} + 2 \int e^{-x} xdx = -x^2e^{-x} - 2e^{-x} x + 2 \int e^{-x} dx = 
+\]
+\[
+=
+-e^{-x} \left(
+x^2 + 2x + 2
+\right) + D_1
+\]
+\[
+C_2 = \int (1 - x) e^{-x} dx = \int (e^{-x} - x e^{-x}) dx =  \int e^{-x} dx - \int x e^{-x} dx =
+\] 
+\[
+=
+-e^{-x}  + e^{-x} x + e^{-x} + D_2 = 
+e^{-x} x + D_2
+\]
+Отсюда получаем решение:
+\[
+y = \left(
+-e^{-x} (x^2 + 2x +2) + D_1 
+\right) \cdot \left(
+ 1- \frac{1}{x}
+\right)
++ (e^{-x}x + D_2) x = 
+\]
+\[
+=
+e^{-x} x^2 + D_2 \cdot x +\left(
+-e^{-x} (x^2 + 2x +2) + D_1 
+\right) - \frac{\left(
+-e^{-x} (x^2 + 2x +2) + D_1 
+\right)}{x} = 
+\]
+\[
+=
+e^{-x} x^2 + D_2 \cdot x - e^{-x}(x^2 + 2x + 2) + D_1 + \frac{e^{-x}(x^2 + 2x + 2)}{x} - \frac{D_1}{x}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+y = e^{-x} x^2 + D_2 \cdot x - e^{-x}(x^2 + 2x + 2) + \frac{e^{-x}(x^2 + 2x + 2)}{x} + D_1 \cdot \left(
+1 - \frac{1}{x}
+\right)
+\]
+\end{center}
+\clearpage
+\subsection*{b)}
+\[
+xy'' - (4x + 2)y' + (4x + 4)y = x^2 e^{2x}
+\]
+Поделим на $x$, заведомо посмотрев, что $x = 0$ не является решением, получаем:
+\[
+y'' - \frac{4x + 2}{x} y' + \frac{4x + 4}{x} y = x e^{2x}
+\]
+Сначала решаем однородное, для этого замечаем, что $y_1 = e^{2x}$ является частным решением и после используем формулу  аналогично предыдущему пункту:
+\[
+e^{2x} y'  - 2e^{2x} y = C \cdot e^{\int \frac{4x  + 2}{x} dx}
+\]
+\[
+e^{2x} y_2'  - 2e^{2x} y_2  = C \cdot e^{4x + 2 \ln x}
+\]
+\[
+e^{2x} y_2'  - 2e^{2x} y_2   = C \cdot e^{4x} \cdot x^2
+\]
+Аналогично делим и получаем:
+\[
+\frac{e^{2x} y_2'  - 2e^{2x} y_2 }{e^{4x}} = C \cdot x^2
+\]
+\[
+\left(
+\frac{y_2}{y_1}
+\right) ' = C x^2
+\]
+\[
+\frac{y_2}{y_1} = C \cdot \int x^2 dx  = C \cdot \frac{x^3}{3} + D 
+\]
+\[
+y_2 = C \frac{x_3}{3} \cdot y_1  = C \cdot \frac{x^3}{3} \cdot e^{2x} + D \cdot e^{2x} 
+\]
+Итого получаем (закинув тройку в константу):
+\[
+y_2 =  C_1(x) \cdot  x^3 \cdot e^{2x} + C_2 \cdot e^{2x}
+\]
+Теперь применяем метод вариации переменных:
+\[
+\begin{cases}
+C_1' \cdot x^3 \cdot e^{2x} + C_2' \cdot e^{2x} = 0 \\
+C_1' \cdot (3x^2 e^{2x} + x^32 e^{2x})  + C_2' \cdot 2e^{2x} = xe^{2x}
+\end{cases}
+\]
+Отсюда:
+\[
+\begin{cases}
+C_1' = \frac{1}{3x} \\
+C_2' = -\frac{x^2}{3}
+\end{cases}
+\]
+Получаем:
+\[
+C_1 = \frac{\ln x}{3} + D_1 
+\]
+\[
+C_2 = - \frac{x^3}{9} + D_2
+\]
+Отсюда ответ:
+\[
+y = 
+\left(
+ \frac{\ln x}{3} + D_1 
+\right) x^3 \cdot e^{2x} + 
+\left(
+- \frac{x^3}{9} + D_2
+\right) \cdot e^{2x} = \frac{\ln x \cdot x^3 \cdot e^{2x}}{3} + x^3 \cdot e^{2x} \cdot D_1  - \frac{x^3 \cdot e^{2x}}{9} + e^{2x} \cdot D_2
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+y =  \frac{\ln x \cdot x^3 \cdot e^{2x}}{3} + x^3 \cdot e^{2x} \cdot D_1  - \frac{x^3 \cdot e^{2x}}{9} + e^{2x} \cdot D_2
+\]
+\end{center}
+\clearpage
+\section*{Номер 3}
+\[
+a(x) y'' + b(x)y' + c(x) y = f(x), \; f(x) = 1
+\]
+Из условия фундаментальные решения:
+\[
+y_1 = x, \; y_2 = x^2 - 1
+\]
+Сразу выразим производные для определителя:
+\[
+y_1' = 1, \; y_1'' = 0 
+\]
+\[
+y_2' = 2x, \; y_2' = 2
+\]
+Тогда:
+\[
+\begin{vmatrix}
+x & x^2 - 1 & y \\
+1 & 2x & y' \\
+0 & 2 & y''
+\end{vmatrix} = 0
+\]
+Cчитаем:
+\[
+x^2 y'' - 2xy' + y'' + 2y = 0
+\]
+\[
+y''(x^2 + 1) - 2xy' + 2y = 0
+\]
+Ну все, вид уравнения нашли, теперь вспоминаем про $f(x) = 1$ и ищем общее решение:
+\[
+y''(x^2 + 1) - 2xy' + 2y = 1 
+\]
+Ищем частное решение в виде:
+\[
+y_3 = Ax^2 + Bx + C 
+\]
+\[
+y_3' = A \cdot 2x + B 
+\]
+\[
+y_3'' = 2A
+\]
+Тогда подставляем:
+\[
+2A(x^2 + 1) - 2x(2x A + B) + 2(Ax^2 + Bx + C) = 1
+\]
+\[
+2Ax^2 + 2A - 4x^2A - 2xB + 2Ax^2 + 2Bx + 2C = 1
+\]
+Отсюда:
+\[
+x^2(2A - 4A + 2A) + x(-2B + 2B) + 2A + 2C = 1
+\]
+\[
+\begin{cases}
+2A - 4A + 2A = 0 \\
+-2B + 2B = 0 \\
+2A + 2C = 1
+\end{cases}
+\]
+Тогда положим самый простой из вариантов:
+\[
+\begin{cases}
+A = 0 \\
+B = 1 \\
+C = \frac{1}{2}
+\end{cases}
+\]
+И получаем:
+\[
+y_3 =  x + \frac{1}{2}
+\]
+Тогда общее решение:
+\[
+y = C_1 \cdot x + C_2 \cdot (x^2 - 1) + x + \frac{1}{2}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\\
+вид уравнения:
+\[
+y''(x^2 + 1) - 2xy' + 2y = 1 
+\]
+общее решение:
+\[
+y = C_1 \cdot x + C_2 \cdot (x^2 - 1) + x + \frac{1}{2}
+\]
+\end{center}
+\clearpage
+\section*{Номер 4}
+Знаем:
+\[
+y'' + p(x) y = 0, \; x \geq 0, \; p(x) \text{ -- непрерывна }
+\]
+К тому же есть два решения со свойствами:
+\[
+y_1(x) \overset{x \rightarrow + \infty }{\longrightarrow} 0 
+\]
+\[
+y_2(x) \overset{x \rightarrow + \infty }{\longrightarrow} 0 
+\]
+\[
+y_1'(x), y_2'(x) \text{  ограничены на } x \geq 0 
+\]
+Тогда смотрим, по Луивиллю-Остроградскому:
+\[
+\begin{vmatrix}
+y_1 & y_2 \\
+y_1' & y_2'
+\end{vmatrix} = y_1 y_2' - y_1' y_2 = C \cdot e^{0} = C, \; C \text{ -- const }
+\]
+Из вида уравнения получили, что справа просто стоит константа, нужно ее оценить, мы можем это сделать из условия об ограниченности производных:
+\[
+|y_1 y_2' - y_1' y_2| \leq \left(
+|y_1(x)| + |y_2(x)| 
+\right) M 
+\]
+Но (опять же из условия) обе функции стремятся к нулю, поэтому если взять достаточно большие $x$, $|y_1(x)| + |y_2(x)|$ станет очень и очень малой величиной. Но при этом $C$ -- константа и мы ее ограничили чем-то, что очень близко к нулю, значит $C = 0$, тобишь определитель равен нулю, из чего по определению $y_1(x)$ и $y_2(x)$ являются зависимыми
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\clearpage
+\section*{Номер 5}
+\subsection*{a)}
+\[
+y'' + \frac{1}{1 + x^2} y = 0, \; x \geq 0 
+\]
+Доказываем, нужно по теореме Штурма искать такое:
+\[
+y'' + q(x) \cdot  y = 0
+\]
+Что:
+\[
+q(x) \leq \frac{1}{1 + x^2}
+\] 
+Совсем нетрудно заметить, что мы можем оценить как (взяв $x \geq 1$):
+\[
+\frac{1}{2x^2} \leq \frac{1}{1 + x^2}
+\]
+Тогда получаем понятное нам уравнение:
+\[
+y'' + \frac{1}{2x^2} y = 0
+\]
+Домножаем:
+\[
+2x^2y'' + y = 0
+\]
+А такое уравнение мы решать умеем, это уравнение Эйлера, решаем:
+\[
+2 \lambda ( \lambda -  1) + 1 = 0 
+\]
+\[
+2\lambda^2 - 2 \lambda + 1  = 0
+\]
+Отсюда корни:
+\[
+\lambda_{1, 2} = \frac{1 \pm i }{2 }
+\]
+Значит:
+\[
+y = e^{\frac{t}{2}} \left(
+C_1 \cos \frac{t}{2} + C_2 \sin \frac{t}{2}
+\right)
+\]
+Возвращаемся от стандартной замены:
+\[
+y = \sqrt{x} \left(
+D_1 \cos \frac{\ln |x| }{2} + D_2 \sin \frac{\ln |x| }{2}
+\right)
+\]
+Видим, что здесь бесконечно много корней (периодичные функции), ну тогда по теореме Штурма и для нашего исходного уравнения тоже бесконечно много корней
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\clearpage
+\subsection*{b)}
+\[
+y'' - xy' + y = 0, \; (-\infty, + \infty) 
+\]
+Пусть:
+\[
+y(x) = a(x) \cdot z(x) 
+\]
+Найдем производные:
+\[
+y' = a' z + az' 
+\]
+\[
+y'' = a'' z + az'' + 2a'z'
+\]
+\[
+a'' z + az'' + 2a'z' -  xa'z  - xaz + az = 0
+\]
+Отсюда:
+\[ 
+2a' - xa = 0
+\]
+\[
+2(a)'_x = xa
+\]
+\[
+2 \int \frac{a'}{a} = \int x dx 
+\]
+\[
+2 \ln |a| = \frac{x^2}{2}  + C
+\]
+\[
+\ln |a| = \frac{x^2}{4} + C
+\]
+\[
+a = C \cdot e^{\frac{x^2}{4}}
+\]
+Пусть $C = 1$, тогда:
+\[
+y(x) = e^{\frac{x^2}{4}} \cdot z(x)
+\]
+Теперь будем подставлять, посчитаем:
+\[
+a = e^{\frac{x^2}{4}}
+\]
+\[
+a' = \frac{x}{2} \cdot e^{\frac{x^2}{4}}
+\]
+\[
+a'' = \left(\frac{1}{2} + \frac{x^2}{4} \right) e^{\frac{x^2}{4}}
+\]
+\[
+e^{\frac{x^2}{4}}  \cdot z'' + 
+\left(
+\frac12 + 
+\frac{x^2}{4}
+- \frac{x^2}{2}
++1
+\right)
+\cdot 
+z \cdot 
+e^{\frac{x^2}{4}}  = 0
+\]
+Тогда уравнение:
+\[
+z'' +  \left(
+\frac{6 - x^2}{4 }
+\right) z= 0
+\]
+Хотим как-то применять Штурма, Заметим, что на $[-\sqrt{6}, \sqrt{6}]$ дробь $\frac{6 - x^2}{4}$ положительна. Тогда оценим тут как:
+\[
+\frac{6 - x^2}{4} \leq \frac{3}{2},  x \in [-\sqrt{6}, \sqrt{6}]
+\]
+Тогда рассматриваем более простое уравнение:
+\[
+z'' + \frac32 z = 0
+\]
+И решаем его:
+\[
+\lambda^2 + \frac{3}{2} = 0 
+\]
+\[
+\lambda_{1, 2} = \pm \sqrt{\frac{3}{2}}i
+\]
+Отсюда:
+\[
+z = C_1 \cos\left( \sqrt{\frac{3}{2}} x  \right)  + C_2 \sin \left( \sqrt{\frac{3}{2}} x  \right)
+\]
+Замечаем, что корней здесь не более двух в силу периодичности функций $\sin, \cos$ (в наш отрезок тупо не влезет больше двух нулей).  Еще сами точки $-\sqrt{6}, \sqrt{6}$ могут иметь нули, тогда набирается четыре корня, теперь осталось проверить что происходит вне этого промежутка (должен быть 1 корень для условия задачи), там дробь отрицательна, значит можем оценить:
+\[
+\frac{6 - x^2}{4} \leq 0
+\]
+Тогда по теореме Штурма можем смотреть на уравнение:
+\[
+z'' + 0 z = 0
+\]
+У него корни имеют вид:
+\[
+y = Ax + B
+\]
+Значит их тут не более одного. Итого суммируем и получаем, что на $(-\infty, +\infty)$ у нашего уравнения не более 5 корней, что от нас и требовалось получить.
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\end{document}

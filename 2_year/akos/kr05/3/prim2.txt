@@ -1,0 +1,10 @@
+a.out
+gen.py
+logto.c
+output.txt
+prim1.txt
+prim2.txt
+solve.py
+statement.html
+statement.md
+tests

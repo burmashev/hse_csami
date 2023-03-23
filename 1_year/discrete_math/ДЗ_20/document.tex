@@ -1,0 +1,88 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий. Дискра -- 20
+\end{center}
+\section*{Номер 1}
+\subsection*{а)}
+\[
+\{\neg, \rightarrow \}
+\]
+Проверим по теореме Поста на принадлежность к классам:
+\[
+\begin{matrix}
+x_1 & x_2 & f_1  = \neg x_1 &f_2 = x_1  \rightarrow x_ 2 \\
+0 & 0 & 1 & 1 \\
+0 & 1 & 1 & 1\\
+1 & 0 & 0 & 0 \\
+1 & 1 & 0  & 1 \\
+\end{matrix}
+\]
+\begin{enumerate}
+\item $T_1$
+\[f_1 (1) = 0; f_1 \notin T_1
+\]
+\item $T_0$
+\[
+f_1(0) = 1; f_1 \notin T_0
+\]
+\[
+f_2(0, 0) = 1; f_2 \notin T_0
+\]
+\item $M$
+
+Рассмотрим наборы $(0, 1)$  и $(1, 0)$. $(0, 1) < (1, 0)$. 
+
+При этом $f_2(0, 1) = 1 > f_2(1, 0) = 0$. Значит $f_2 \notin M$
+
+\item $L$
+
+В многочлене Жегалкина $f_2$ имеет вид $x_1 \odot x_1x_2$, значит $f_2 \notin L$
+\item $S$
+$f_2 \notin S$, т.к $f_2(0, 0) \neq \neg f_2(1, 1), 1 \neq 0$
+ \end{enumerate}
+\begin{center}
+\textbf{Ответ: } система полная
+\end{center}
+\subsection*{б)}
+\end{document}

@@ -1,0 +1,130 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Математические структуры, дз -- 3}
+\date{\today}
+\begin{document}
+\maketitle
+\clearpage
+\section*{Номер 1}
+Является ли интуиционисткой тавтологией следующая формула:
+\[
+(
+	(
+	\neg \neg p
+	\rightarrow 
+	p
+	)
+\rightarrow
+	(
+	p \vee \neg p
+	)
+)
+\rightarrow
+	(
+	\neg p \vee \neg \neg p
+	)
+)?
+\]
+Пусть:
+\[
+M, x \not \models
+(
+	(
+	\neg \neg p
+	\rightarrow 
+	p
+	)
+\rightarrow
+	(
+	p \vee \neg p
+	)
+)
+\rightarrow
+	(
+	\neg p \vee \neg \neg p
+	)
+)
+\]
+Тогда $\exists y : x \preceq  y$, что:
+\[
+\begin{cases}
+	y\models (\neg \neg p \to p) \to (p \vee \neg p) \\
+	y \not \models (\neg p \vee \neg \neg p)
+\end{cases}
+\]
+Разберемся со вторым, хотим:
+\[
+\begin{cases}
+y \not \models \neg p \\
+y \not \models \neg \neg p
+\end{cases}
+\sim
+\begin{cases}
+y \not \models p  \rightarrow  \bot \\
+y \not \models \neg p \rightarrow \bot
+\end{cases}
+\]
+Т.е $\exists z , z' : y \preceq  z, y \preceq z'$, что:
+\[
+z \models p
+\]
+\[
+z' \models \neg p
+\]
+Теперь разберемся с первым, из полученного выше получаем $(\times)$:
+\[
+y \not \models (\neg \neg p \rightarrow p) 
+\]
+Но тогда мы не сможем получить:
+\[
+\begin{cases}
+y \models (\neg \neg p \rightarrow p) \\
+y \not \models (p \vee \neg p)
+\end{cases}
+\]
+По итогу из $(\times)$ получаем:
+\[
+y\models (\neg \neg p \to p) \to (p \vee \neg p)
+\]
+А значит исходная формула \textbf{не} является интуиционисткой тавтологией
+\begin{center}
+\textbf{Ответ: } \textbf{не} является интуиционисткой тавтологией
+\end{center}
+\end{document}

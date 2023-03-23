@@ -1,0 +1,13 @@
+a.out
+gen.py
+logto.c
+mprim1.txt
+mprim2.txt
+output.txt
+prim1.txt
+prim2.txt
+prim3.txt
+solve.py
+statement.html
+statement.md
+tests

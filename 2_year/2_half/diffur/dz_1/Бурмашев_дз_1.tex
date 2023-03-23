@@ -1,0 +1,682 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[left=2cm,right=2cm,
+    top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Дифференциальные уравнения, дз -- 1}
+\date{\today}
+\begin{document}
+\maketitle
+\clearpage
+\section*{Номер 1}
+\subsection*{a)}
+\[
+(2xy^2 -y) d x + x dy = 0
+\]
+Начинаем решать стандартно
+\[
+(2xy^2 -y) d x = - xdy
+\]
+Теперь поделим обе части на $xdx$. Проверим случай $x = 0$, при таком $x$ получаем $0 = 0$, значит это решение
+\[
+2y^2 - \frac{y}{x} = - \frac{dy}{dx}
+\]
+\[
+y' - \frac{y}{x} = -2y^2
+\]
+Получили уравнение Бернулли с $n = 2$. Делим на $y^2$. Проверим случай $y = 0$, при таком $y$ получаем $0 = 0$, значит это решение
+\[
+\frac{y'}{y^2} - \frac{1}{xy} = -2
+\]
+Делаем замену $z = \frac{1}{y^{n -1}} = \frac{1}{y}$. Тогда $dz = -\frac{dy}{y^2} = -z^2dy$, отсюда $dy =  -\frac{dz}{z^2}$. Подставляем замену
+\[
+-\frac{z^2}{z^2} \cdot \frac{dz}{dz} - \frac{z}{x}  = -2
+\]
+Меняем знак 
+\[
+\frac{dz}{dx} + \frac{z}{x} = 2
+\]
+Получили понятное нам уравнение, решаем его с помощью метода вариации постоянной
+\\\\
+Шаг 1
+\[
+\frac{dz}{dx} + \frac{z}{x} = 0
+\]
+\[
+\frac{dz}{z} = -\frac{dx}{x}
+\]
+\[
+\int \frac{dz}{z}  = - \int \frac{dx}{x}
+\]
+\[
+\ln |z| = - \left(\ln |x| + C_0\right)
+\]
+\[
+- \ln |z| =  \ln |x| + C_0
+\]
+\[
+|z| = \frac{1}{|x| \cdot C_1}
+\]
+\[
+z = \frac{C}{x}
+\]
+Шаг 2 (вариация переменной)
+\[
+z = \frac{C(x)}{x}
+\]
+\[
+z' = \frac{xC'(x) - C(x)}{x^2}
+\]
+Подставляем
+\[
+\frac{xC'(x) - C(x)}{x^2} + \frac{C(x)}{x^2} = 2
+\]
+\[
+\frac{xC'(x)}{x^2} = 2
+\]
+\[
+C'(x) = 2x
+\]
+\[
+C(x) = x^2 + D
+\]
+Возвращаемся к $z$
+\[
+z = \frac{C(x)}{x} = \frac{x^2 + D}{x}
+\]
+Избавляемся от замены
+\[
+y = \frac{1}{z} = \frac{x}{x^2 + D}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+x = 0
+\]
+\[
+y = 0
+\]
+\[
+y = \frac{x}{x^2 + D}
+\]
+\end{center}
+\clearpage
+\subsection*{b)}
+\[
+y + y' \ln^2y = (x + 2 \ln y) y'
+\] 
+\[
+y + \frac{dy}{dx} \ln^2 y = (x + 2 \ln y) \frac{dy}{dx}
+\]
+Домножим на  $dx$
+\[
+ydx + dy \ln^2 y = (x + 2\ln y) dy 
+\]
+\[
+y dx + (\ln^2 y - x - 2\ln y) dy = 0
+\]
+Получили вид УПД. Проверяем производные:
+\[
+(y)^{'}_y = 1
+\]
+\[
+(\ln^2 y - x - 2\ln y)^{'}_x = -1 
+\]
+\[
+1 \neq -1
+\]
+Равенства нет, тогда подберем  $m(x, y)$ для общей теоремы. Нам подходит $\frac{1}{y^2}$.
+\[
+\frac{1}{y} dx + \frac{\ln^2 y - x - 2\ln y}{y^2} dy = 0
+\] 
+Снова проверяем производные
+\[
+\left( \frac{1}{y}  \right)_y' = -\frac{1}{y^2}
+\]
+\[
+\left( \frac{\ln^2 y - x - 2\ln y}{y^2} \right)_x' = -\frac{1}{y^2}
+\]
+Получили равенство, теперь ищем такую функцию, что
+\[
+\begin{cases}
+F_x'(x, y) = \frac{1}{y} \\
+F_y'(x, y) = \frac{\ln^2 y - x - 2\ln y}{y^2}
+\end{cases}
+\]
+Для этого проинтегрируем пока только одно соотношение, например первое
+\[
+F_x(x, y) = \int \frac{1}{y} dx = \frac{1}{y} \int dx = \frac{x}{y} + C(y)
+\]
+Теперь из второго найдем, чему равно это $C(y)$
+\[
+\left( \frac{x}{y} + C(y) \right)_y' = \frac{\ln^2 y - x - 2\ln y}{y^2}
+\]
+\[
+C'(y) -\frac{x}{y^2} = \frac{\ln^2 y - x - 2\ln y}{y^2}
+\]
+\[
+C'(y) = \frac{\ln^2 y - 2\ln y}{y^2}
+\]
+\[
+C(y) = \int \frac{\ln^2 y - 2\ln y}{y^2} = \int \frac{\ln^2 y}{y^2} dy - 2 \int \frac{\ln y}{y^2} dy = 
+-\frac{\ln^2 y + 2 \ln y + 2}{y} - 2 \cdot \left(- \frac{\ln y + 1}{y}\right) = - \frac{\ln^2 y}{y}
+\]
+Итак
+\[
+F(x, y) = \frac{x}{y} + C(y) = \frac{x - \ln^2 y}{y}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\end{center}
+\[
+C=  \frac{x - \ln^2 y}{y}
+\]
+\clearpage
+\section*{c)}
+\[
+\frac{y - xy'}{x + yy'} = 2
+\]
+\[
+y - xy' - 2x - 2yy' = 0
+\]
+\[
+y - 2x = (x + 2y)y'
+\]
+Делим на $x + 2y$. Проверим случай $x + 2y = 0, x = -2y$. При таком получаем $5y = 0$, значит это не решение
+\[
+\frac{y - 2x}{x + 2y} = y'
+\]
+Пусть $y = tx$, тогда $y'= x \frac{dt}{dx} + t$
+\[
+\frac{tx - 2x}{x + 2tx} = x \frac{dt}{dx} + t
+\]
+Делим на $x$ числитель и знаменатель левой части. Проверим случай $x = 0$, при таком получаем $0 = t$, значит это не решение
+\[
+\frac{t - 2}{1 + 2t} = x \frac{dt}{dx} + t
+\]
+\[
+x \frac{dt}{dx} = \frac{t - 2}{1 + 2t}  - t
+\]
+\[
+x \frac{dt}{dx} = \frac{t - 2 - t - 2t^2}{1 + 2t}  
+\]
+\[
+x \frac{dt}{dx} = \frac{- 2 - 2t^2}{1 + 2t}  
+\]
+Делим на $x$
+\[
+\frac{dt}{dx} = \frac{- 2 (1+ t^2)}{(1 + 2t)x}  
+\]
+Делим на $\frac{1+t^2}{1+2t}$
+\[
+\frac{dt}{dx} \cdot \frac{1+2t}{1+t^2} = \frac{-2}{x}
+\]
+Домножим на $dx$
+\[
+dt \cdot \frac{1 + 2t}{1 + t^2} = -\frac{2}{x} dx
+\]
+Теперь интегрируем
+\[
+\int \frac{1 + 2t}{1 + t^2}  dt = \int -\frac{2}{x} dx = - 2 \ln |x| + C_0
+\]
+Посчитаем отдельно интеграл слева
+\[
+\int \frac{1 + 2t}{1 + t^2}  dt = \int \frac{dt}{1 +t^2} + 2\int \frac{t}{1 + t^2} dt =\arctg(t) +  \ln (1 + t^2) + C_1
+\]
+Итого
+\[
+\arctg(t) + \ln (1 + t^2) + C_1 = - 2 \ln |x| + C_0
+\]
+Вспоминаем про $y = tx$, отсюда $t = \frac{y}{x}$, также перенесим все налево
+\[
+\arctg\left(\frac{y}{x}\right) + \ln \left( 1 + \frac{y^2}{x^2} \right) + 2 \ln |x| + C = 0
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\arctg\left(\frac{y}{x}\right) + \ln \left( 1 + \frac{y^2}{x^2}\right)  + 2 \ln |x| + C = 0
+\]
+\end{center}
+\clearpage
+\section*{d)}
+\[
+(\sin x + y)dy + (y \cos x - x^2) dx = 0
+\]
+Видим вид УПД. Проверяяем производные
+\[
+\left( \sin x + y \right)_x' = \cos x
+\]
+\[
+\left( y \cos x - x^2 \right)_y' =  \cos x
+\]
+Получили равенство, теперь ищем такую функцию, что
+\[
+\begin{cases}
+F_x'(x, y) = y \cos x - x^2 \\
+F_y'(x, y) = \sin x + y 
+\end{cases}
+\]
+Для этого проинтегрируем пока только одно соотношение, например первое
+\[
+F_x(x, y) = \int (y \cos x - x^2 )dx = y \sin x - \frac{x^3}{3} + C(y)
+\]
+Теперь из второго найдем, чему равно это $C(y)$
+\[
+\left( y \sin x - \frac{x^3}{3} + C(y) \right)_y'= \sin x + y
+\]
+\[
+\sin x + C'(y)  = \sin x + y
+\]
+\[
+C'(y) = y
+\]
+Отсюда
+\[
+C(y) = \frac{y^2}{2}
+\]
+Итак
+\[
+F(x, y) = y \sin x - \frac{x^3}{3} + C(y) = y \sin x - \frac{x^3}{3} + \frac{y^2}{2}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+C =  y \sin x - \frac{x^3}{3} + \frac{y^2}{2}
+\]
+\end{center}
+\clearpage
+
+\subsection*{e)}
+\[
+y' = \frac{x}{y} e^{2x} + y
+\]
+\[
+y' - y = \frac{x}{y} e^{2x}
+\]
+\[
+\frac{dy}{dx} - y =x e^{2x} \frac{1}{y} 
+\]
+Получили уравнение Бернулли с $n = -1$. Домножим уравнение на $y$
+\[
+\frac{ydy}{dx} - y^2 =x e^{2x}
+\]
+Делаем замену $z = \frac{1}{y^{n - 1}} = \frac{1}{y^{-2}} = y^2$. Тогда $dz = 2ydy$, отсюда $dy = \frac{dz}{2y}$. Подставляем замену
+\[
+\frac{y\frac{dz}{2y}}{dx} - z = xe^{2x}
+\]
+\[
+\frac{dz}{2dx} - z = xe^{2x}
+\]
+Делим на $e^{2x}$
+\[
+\frac{dz}{2e^{2x}dx} - \frac{z}{e^{2x}} = x
+\]
+Домножим на 2
+\[
+\frac{dz}{e^{2x}dx} - 2\frac{z}{e^{2x}} = 2x
+\]
+\[
+e^{-2x}\frac{dz}{dx} - 2e^{-2x}z = 2x
+\]
+Заметим, что $-2e^{-2x}$ есть $(e^{-2x})'$
+\[
+e^{-2x}\frac{dz}{dx} - (e^{-2x})'z = 2x
+\]
+\[
+e^{-2x}\frac{dz}{dx} +  z\frac{d(e^{-2x})}{dx}= 2x
+\]
+\[
+e^{-2x}(z)' +  (e^{-2x})'z= 2x
+\]
+Имеем вид $f g' + f'g = (fg)'$. Получаем
+\[
+\frac{d(e^{-2x} z)}{dx} = 2x
+\]
+Интегрируем с двух сторон
+\[
+\int \left( \frac{d(e^{-2x} z}{dx})\right) dx = \int 2x dx
+\]
+\[
+e^{-2x} z = x^2 + C_0
+\]
+Вспоминаем про замену
+\[
+e^{-2x} y^2  = x^2 + C_0
+\]
+\[
+y^2  = e^{2x} \cdot (x^2 + C_0)
+\]
+\[
+y = \pm e^{x} \cdot \sqrt{x^2 + C}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+y = \pm e^{x} \cdot \sqrt{x^2 + C}
+\]
+\end{center}
+\clearpage
+
+\subsection*{f)}
+\[
+xy' = x \sqrt{y - x^2} + 2y
+\]
+Пусть $y = tx^2, y' =  2xt + x^2t' $. Проверим случай $x = 0 $, при таком получаем $0 = 2y$, значит это не решение
+\[
+x(2xt + x^2t') = x \sqrt{tx^2- x^2} + 2x^2t
+\]
+\[
+x(2xt + x^2t') = x \sqrt{tx^2- x^2} + 2x^2t
+\]
+\[
+2x^2t  + x^3t' = x \sqrt{x^2 (t - 1)} + 2x^2 t
+\]
+\[
+x^3t' = x^2 \sqrt{(t - 1)}
+\]
+Делим на $x^3$
+\[
+xt' = \sqrt{t - 1}
+\]
+\[
+ \frac{dt}{dx} = \frac{\sqrt{t - 1}}{x}
+\]
+Делим на $\sqrt{t - 1}$. Проверим случай $t = 1, y = x^2$, при таком получаем $0 = 0$, значит это решение
+\[
+ \frac{dt}{\sqrt{t-1}dx} = \frac{1}{x}
+\]
+Берем интеграл
+\[
+ \int \left( \frac{dt}{\sqrt{t-1}dx} \right)dx=\int  \frac{1}{x} dx
+\]
+\[
+2 \sqrt{t - 1} = \ln|x| + C
+\]
+Вытаскиваем $t$ из под корня
+\[
+4(t -1) = (\ln|x| + C)^2
+\]
+\[
+4t - 4 = \ln|x|^2 + 2\ln|x| \cdot C + C^2
+\]
+\[
+t = \frac{ \ln|x|^2 + 2\ln|x| \cdot C + C^2 + 4 }{4}
+\]
+Вспоминаем про нашу замену, $y = tx^2$, отсюда $t = \frac{y}{x^2}$
+\[
+ \frac{y}{x^2}=  \frac{ \ln^2 |x| + 2\ln|x| \cdot C + C^2 + 4 }{4}
+\]
+\[
+y = \frac{x^2( \ln^2 |x| + 2\ln|x| \cdot C + C^2 + 4) }{4}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+y = x^2
+\]
+\[
+y = \frac{x^2( \ln^2 |x| + 2\ln|x| \cdot C + C^2 + 4) }{4}
+\]
+\end{center}
+\clearpage
+\subsection*{g)}
+\[
+xy'(\ln y - \ln x)  = y 
+\]
+Поделим на $x$. 
+\[
+y' ( \ln \frac{y}{x}) = \frac{y}{x}
+\]
+\[
+y' = \frac{\frac{y}{x}}{( \ln \frac{y}{x})}
+\]
+Введем замену $y = tx, y' = t'x + t$
+\[
+t'x + t = \frac{t}{\ln t}
+\]
+Перекинем все с $x$ налево
+\[
+\frac{dt}{dx} x = \frac{t}{\ln t} - t
+\]
+\[
+\frac{dt}{dx} = \frac{t - t\ln t}{x\ln t}
+\]
+\[
+\frac{dx}{dt} = \frac{x\ln t}{ t - t\ln t}
+\]
+\[
+dx = \frac{x dt \ln t}{ t - t\ln t}
+\]
+\[
+\frac{dx}{x} = \frac{\ln t dt}{t - t  \ln t}
+\]
+Интегрируем
+\[
+\int \frac{dx}{x} =  \ln(x) + C  = \int \frac{\ln t dt}{t - t  \ln t}
+\]
+Считаем интеграл справа отдельно
+\[
+ \int \frac{\ln t dt}{t - t  \ln t} = \begin{bmatrix}
+u = t - t \ln (t) \\
+du = - \ln t dt
+\end{bmatrix} = - \int \frac{1}{u} du  = - \ln(u) = - \ln (t - \ln t)
+\]
+Получаем
+\[
+\ln(x) + C  = - \ln (t - \ln t)
+\]
+\[
+C = - \ln (t - \ln t) - \ln x
+\]
+Вспоминаем про замену $y = tx$, $t = \frac{y}{x}$
+\[
+C = - \ln \left(\frac{y}{x}- \ln \frac{y}{x}\right) -  \ln x
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+C = - \ln \left(\frac{y}{x}- \ln \frac{y}{x}\right) - \ln x
+\]
+\end{center}
+\clearpage
+\subsection*{i)}
+\[
+y' - 8x \sqrt{y} = \frac{4xy}{x^2 - 1}
+\]
+Пусть $z = \sqrt{y}$, тогда $dz = \frac{1}{2\sqrt{y}}dy$. Подставим замену
+\[
+\frac{dy}{dx} - 8x \sqrt{y} = \frac{4xy}{x^2 - 1}
+\]
+\[
+\frac{2\sqrt{y} dz}{dx} - 8x \sqrt{y} = \frac{4xy}{x^2 - 1}
+\]
+\[
+\frac{2\sqrt{y} dz}{dx} = \frac{4xy}{x^2 - 1} + 8x \sqrt{y}
+\]
+Поделим на $\sqrt{y}$. Проверим случай $y = 0$, при таком $y$ получаем $0 = 0$, значит это решение
+\[
+\frac{2dz}{dx} = 8x + \frac{4xz}{x^2 - 1}
+\]
+Избавимся от двойки, поделим на 2
+\[
+\frac{dz}{dx} = 4x + \frac{2xz}{x^2 - 1}
+\]
+\[
+\frac{dz}{dx}  - \frac{2xz}{x^2 - 1} = 4x
+\]
+Получили понятное нам уравнение, решаем его с помощью метода вариации постоянной
+\\\\
+Шаг 1
+\[
+\frac{dz}{dx} - \frac{2xz}{x^2 - 1} = 0
+\]
+\[
+\frac{dz}{dx} = \frac{2xz}{x^2 - 1}
+\]
+\[
+\frac{dz}{z} = \frac{2x dx}{x^2 - 1}
+\]
+Интегрируем
+\[
+\int \frac{dz}{z} = 2\int \frac{x dx}{x^2 - 1}
+\]
+\[
+\ln |z| = \ln |x^2 -1| + C_0
+\]
+\[
+\ln|z| = \ln |C_1 (x^2 - 1) |
+\]
+\[
+|z| = |C_1(x^2 -1)|
+\]
+\[
+z = C \cdot (x^2 - 1)
+\]
+Шаг 2 (вариация переменной) 
+\[
+z = C(x)  \cdot (x^2 - 1)
+\]
+\[
+z' = C'(x) (x^2 - 1) + C(x) 2x
+\]
+Подставляем
+\[
+\frac{dz}{dx}  - \frac{2xz}{x^2 - 1} = 4x = 
+C'(x) (x^2 - 1) + C(x) 2x - \frac{2x\left(C(x)  \cdot (x^2 - 1)\right)}{x^2-1} = 4x
+\]
+\[
+C'(x)(x^2 - 1) = 4x
+\]
+\[
+C'(x) = \frac{4x}{x^2 - 1}
+\]
+\[
+C(x) = 2 \ln |x^2 - 1| + D
+\]
+Возвращаемся к $z$
+\[
+z = (2 \ln|x^2 - 1| + D)(x^2 - 1)
+\]
+Избавляемся от замены
+\[
+\sqrt{y} = (2 \ln|x^2 - 1| + D)(x^2 - 1)
+\]
+\[
+y = \left( (2 \ln|x^2 - 1| + D)(x^2 - 1) \right)^2
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+y = 0
+\]
+\[
+y = \left( (2 \ln|x^2 - 1| + D)(x^2 - 1) \right)^2
+\]
+\end{center}
+\clearpage
+\section*{Номер 2}
+\[
+y' = y^2 - 2e^x y + e^{2x} + e^x
+\]
+Известно частное решение $y = e^x$, проверим
+\[
+e^x = e^{2x} - 2e^{2x} + e^{2x} + e^x
+\]
+\[
+0 = 0
+\]
+Введем новую неизвестную функцию $z$, чтобы
+\[
+y = z + e^x 
+\]
+\[
+dy = dz + e^x dx
+\]
+Подставляем в исходное уравнение
+\[
+\frac{dz + e^x dx}{dx} =(z + e^x)^2 - 2e^x(z + e^x) + e^{2x} + e^x
+\]
+\[
+\frac{dz}{dx} + e^x =(z + e^x)^2 - 2e^x(z + e^x) + e^{2x} + e^x
+\]
+\[
+\frac{dz}{dx}  = (z + e^x)^2 - 2e^x(z + e^x) + e^{2x}
+\]
+\[
+\frac{dz}{dx}  = z^2 + 2ze^x + e^{2x} - 2e^xz - 2e^{2x} + e^{2x}
+\]
+\[
+\frac{dz}{dx} = z^2 
+\]
+\[
+dz = z^2 dx
+\]
+Поделим на $z^2$. Решение $z = 0$  это $y = e^x$, мы уже на него смотрели и его знаем
+\[
+\frac{dz}{z^2} = dx
+\]
+Интегрируем 
+\[
+\int \frac{dz}{z^2} = \int  dx
+\]
+\[
+-\frac{1}{z} = x + C
+\]
+\[
+-z = \frac{1}{x + C}
+\]
+\[
+z = - \frac{1}{x + C}
+\]
+Вспоминаем про замену $y = z + e^x$, отсюда $z = y - e^x$
+\[
+y - e^x = - \frac{1}{x + C}
+\]
+\[
+y = e^x - \frac{1}{x + C}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+y = e^x - \frac{1}{x + C}
+\]
+\[
+y = e^x
+\]
+\end{center}
+ \end{document}

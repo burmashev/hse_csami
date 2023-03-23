@@ -1,0 +1,231 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{00FFFF} % цвет ссылок
+\definecolor{urlcolor}{HTML}{4682B4} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+\usepackage{enumerate}
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмаzшев Григорий, 208. \href{https://teleg.run/burmashev}{@burmashev}}
+\title{Дискретная математика. Коллок -- 1. Определения и задачи по ним.}
+
+\begin{document}
+{\Large \begin{center}
+Бурмашев Григорий.  208. Дискра -- 15
+\end{center}}
+Пусть A -- благоприятные исходы
+\section*{Номер 1}
+\begin{equation*}
+\begin{gathered}
+\Omega  = \{
+\overline{x_1 x_2}; 0 \leq x_1 \leq 9, 0 \leq x_2 \leq 9
+\}\\
+|\Omega| = 10 \cdot 10 = 100 \\
+A = \{0, 11, 22, 33, \ldots, 99 \} \\
+|A| = 10 \\
+P(A) = \frac{10}{100} = 0.1
+\end{gathered}
+\end{equation*}
+\begin{center}
+\textbf{Ответ: } $0.1$
+\end{center}
+
+\section*{Номер 2}
+\begin{equation*}
+\begin{gathered}
+\Omega = \{
+(x_1, x_2, x_3), x_i \in [1, 6], i = 1, 2, 3
+\} \\
+|\Omega| = 6^3 = 216
+\\
+A = \{ (x1, x2, x3), \text{ где элементы нечетные}\} \\
+|A| = 3^3 = 27
+\\
+P(A) = \frac{27}{216} = \frac{1}{8} = 0.125
+\end{gathered}
+\end{equation*}
+
+\begin{center}
+\textbf{Ответ: } $0.125$
+\end{center}
+\section*{Номер 3}
+\begin{equation*}
+\begin{gathered}
+\Omega = \{ 
+(x_1, \ldots x_{36}), x_i \in (0, 8) 
+\}
+\\
+|\Omega| = 7^{36}
+\}
+\\
+A = \{ (x_1, \ldots x_{36}), x_i \neq x_j \forall i = j - 1
+\} \\
+|A| = 7 \cdot \overbrace{6 \cdot  \ldots \cdot 6}^{35} = 7 \cdot 6^{35}
+\\
+P(A) = \frac{7 \cdot 6^{35}}{7^{30}} = \frac{6^{35}}{7^{35}} \approx 0,004537
+\end{gathered}
+\end{equation*}
+\begin{center}
+\textbf{Ответ: } $\approx 0,004537$, 2 знака после запятой
+\end{center}
+\section*{Номер 4}
+\begin{equation*}
+\begin{gathered}
+\Omega = \{
+1000, 1001, \ldots, 9999
+\} \\
+|\Omega| = 9000 \\
+A = \{\text{сумма цифр 8}
+\}
+\end{gathered}
+\end{equation*}
+Для подсчета A разобьем наше четырехзначное число на две пары чисел (a+b и c+d), заметим, что $a \neq 0$
+\\\\
+Посчитаем количество способов получения сумм от 0 до 8 для (a + b):
+\begin{equation*}
+\begin{gathered}
+0 - \text{невозможно, т.к a $\neq 0$}
+\\
+1 - 1 \text{ способ } (10)\\
+2 - 2 \text{ способа } (20, 11)\\
+\ldots \\
+8 - 8 \text{ способов}
+\end{gathered}
+\end{equation*}
+Посчитаем количество способов для c + d:
+\begin{equation*}
+\begin{gathered}
+0 - 1 \text{ способ } (00)\\
+1 - 2 \text{ способа } (01, 10) \\
+\ldots \\
+7 - 8 \text{ способов } \\
+8 - \text{нам не нужно, т.к в первой паре будет как минимум 1}
+\end{gathered}
+\end{equation*}
+Чтобы получить восемь, нужны пары:
+\[
+8 + 0 \text{ (но такого быть не может)}, 7 + 1, 6 + 2, 5 + 3, 4 + 4
+\]
+А значит по итогу будет 8 пар:
+\begin{equation*}
+\begin{gathered}
+|A| = 8 \cdot 1 + 7 \cdot 2 + 6 \cdot 3 + 5 \cdot 4 + 4 \cdot 5 + 3 \cdot 6 + 2 \cdot 7 + 1 \cdot 8 = 120\\
+P(A) = \frac{120}{9000} = \frac{4}{300} = \frac{1}{75} < \frac{1}{100}
+\end{gathered}
+\end{equation*}
+\begin{center}
+\textbf{Ответ: } $\frac{1}{75}$, меньше, чем $\frac{1}{100}$
+\end{center}
+\newpage
+\section*{Номер 5}
+У нас есть 20 первых чисел, 8 чисел в середине и 20 чисел в конце, всего у нас 48 чисел и $\Omega = \{ \text{все перестановки из 48 чисел} \}, |\Omega| = 48!$. Посмотрим на 40 чисел, которые оказались в начале и в конце. Среди них есть ровно 1 максимум, этот максимум может находится либо среди первых 20, либо среди последних 20, а значит подходит нам $|A| = \frac{48!}{2}$. Тогда:
+\[
+P(A) = \frac{\frac{48!}{2}}{48!} = \frac{1}{2}
+\]
+\begin{center}
+\textbf{Ответ: } $ \frac{1}{2} $
+\end{center}
+ \section*{Номер 6}
+\begin{equation*}
+\begin{gathered}
+\Omega = \{матрица 4 на 4 из нулей и единиц\} \\
+|\Omega| = 2^{16} \\
+A = \{
+\text{верхняя строка из нулей}
+\}
+\\
+B = \{
+\text{правый столбец из нулей}
+\}
+\\
+C = \{
+\text{нижняя строка из нулей}
+\}
+\\
+D = \{
+\text{левый столбец из нулей
+}
+\}
+\\
+X = \{\text{хотя бы один из четырех вариантов A,B,C,D}\} \\
+|X| = |A| + |B| + |C| + |D| - |AB| - |AC| - |AD| - |BC| \\
+- |BD| - |CD| + |ABC| + |ABD| + |ACD| + |BCD| - |ABCD| 
+\end{gathered}
+\end{equation*}
+Один из четырех:
+\begin{equation*}
+\begin{gathered}
+|A| = |B| = |C| = |D| = 2^{12}
+\end{gathered}
+\end{equation*}
+Напротив друг друга:
+\begin{equation*}
+\begin{gathered}
+|AC| = |BD| = 2^8
+\end{gathered}
+\end{equation*}
+Cоседние (строка + столбец):
+\begin{equation*}
+\begin{gathered}
+|AB| = |AD| = |BC| = |CD| = 2^9
+\end{gathered}
+\end{equation*}
+Три из четырех:
+\begin{equation*}
+\begin{gathered}
+|ABC| = |ABD| = |ACD| = |BCD| = 2^6
+\end{gathered}
+\end{equation*}
+Все четыре:
+\begin{equation*}
+\begin{gathered}
+|ABCD| = 2^4
+\end{gathered}
+\end{equation*}
+Итого:
+\begin{equation*}
+\begin{gathered}
+P(X) = \frac{2^{12} \cdot 4 - 2^8 \cdot 2 - 2^9 \cdot 4 + 2^6 \cdot 4 - 2^4}{2^{16}} = \frac{2^{14} - 2^9 - 2^{11} + 2^8 - 2^4}{2^{16}} =
+\end{gathered}
+\end{equation*}
+\begin{equation*}
+\begin{gathered}
+= 
+\frac{14064}{65536} = \frac{879}{4096}
+\end{gathered}
+\end{equation*}
+\begin{center}
+\textbf{Ответ: } $\frac{879}{4096}$
+\end{center}
+\end{document}

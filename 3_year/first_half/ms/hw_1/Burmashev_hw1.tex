@@ -1,0 +1,95 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Математические структуры, дз -- 1}
+\date{28 сентября 2022 г.}
+\begin{document}
+\maketitle
+\section*{Номер 1}
+Приведите к ДНФ формулу:
+\[
+(p \vee q ) \to (p \vee \neg r)
+\]
+\\
+Решаем, для начала избавимся от $\to$:
+\[
+(p \vee q ) \to (p \vee \neg r) \equiv \neg (p \vee q) \vee (p \vee \neg r) \equiv
+\]
+Теперь избавимся от отрицания:
+\[
+\equiv 
+(\neg p \wedge \neg q) \vee (p \vee \neg r) 
+\equiv
+(\neg p \wedge \neg q) \vee p \vee \neg r
+\equiv 
+\]
+Теперь используем дистрибутивность и "сократим" скобку, которая всегда равна 1 $(\neg p \vee p)$:
+\[
+\equiv
+(\neg p \vee p) \wedge (\neg q \vee p) \vee \neg r
+\equiv
+\neg q  \vee p \vee \neg r
+\]
+\begin{center}
+\textbf{Ответ: } $ \neg q  \vee p \vee \neg r $
+\end{center}
+\clearpage
+\section*{Номер 2}
+Докажите, что следующая формула является тавтологией для любого $ n > 0 $:
+\[
+\bigwedge\limits_{i=1}^{n+1} \bigvee\limits_{j=1}^{n} p_{ij} \to \bigvee\limits_{j=1}^{n}\bigvee\limits_{\begin{matrix}i_1, i_2 = 1 \\ i_1 < i_2 \end{matrix}}^{n+1} (p_{i_1j} \wedge p_{i_2j})
+\]
+Доказательство:
+\\\
+
+Чтобы показать, что эта формула -- тавтология, нужно понять, что она всегда равна 1. Нам нужно проверить случай $1 \to 0$,  поскольку только этот случай дает 0.  
+
+Если абсолютно все наши переменные ложны, то мы получаем $0 \rightarrow 0 $, что равно 1.
+
+Посмотрим, как выглядит левое выражение:
+\[
+(p_{11} \vee p_{12} \vee \ldots \vee p_{1n}) \wedge \ldots \wedge (p_{n + 1, 1} \vee \ldots \vee p_{n + 1, n})
+\]
+
+Теперь предположим, что левая часть выражения дает 1. Простыми словами это означает, что в каждой скобке найдется хотя бы один элемент, который не равен нулю. Т.е для любого $i$  от $1$ до $n + 1$ мы найдем $p_{ij} = 1$. С другой стороны заметим, что тогда для $i_1 < i_2$ найдется такое $j$, что $(p_{i_1 j} \wedge p_{i_2 j }) = 1$ (вытекает из рассуждений выше). Следовательно хотя бы одна скобка даст нам 1 в правом выражении, а значит все правое выражение тоже даст нам 1, следовательно случай $ 1 \to 0 $ получить мы никак не можем, а значит формула -- тавтология.
+
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\end{document}

@@ -1,0 +1,148 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий. 208. Матан -- 15
+\end{center}
+\section*{Номер 10}
+\subsection*{a)}
+\[
+f(x, y) = \ln(x + y^2)
+\]
+\[
+\frac{\sigma f}{\sigma x} = \frac{1}{x + y^2}
+\]
+\[
+\frac{\sigma f}{\sigma y} = \frac{2y}{x + y^2}
+\]
+\[
+\frac{\sigma^2f}{\sigma x^2} = -\frac{1}{(x + y^2)^2}
+\]
+\[
+\frac{\sigma^2 f}{\sigma y^2} = \frac{2(x - y^2)}{(x+y^2)^2}
+\]
+\[
+\frac{\sigma^2 f}{\sigma x \sigma y} = -\frac{2y}{(x+y^2)^2}
+\]
+\[
+\frac{\sigma^2 f}{\sigma y \sigma x} = -\frac{2y}{(x+y^2)^2}
+\]
+\clearpage
+\subsection*{b)}
+\[
+f(x, y, z) = \sin (xy + z^2)x
+\]
+\[
+\frac{\sigma f}{\sigma x} = y \cos (xy + z^2) 
+\]
+\[
+\frac{\sigma f}{\sigma y} = x \cos (xy + z^2)
+\]
+\[
+\frac{\sigma f}{\sigma z} = 2z \cos (xy + z^2)
+\]
+\[
+\frac{\sigma^2 f}{\sigma x^2} = -y^2 \sin(xy + z^2) 
+\]
+\[
+\frac{\sigma^2 f}{\sigma y^2} = 
+-x^2 \sin (xy + z^2)
+\]
+\[
+\frac{\sigma^2f}{\sigma z^2} = 2 (\cos(x y + z^2) - 2 z^2 \sin(x y + z^2))
+\]
+\[
+\frac{\sigma^2f}{\sigma y \sigma x} = \cos (xy + z^2) - xy \sin (xy + z^2)
+\]
+\[
+\frac{\sigma^2f}{\sigma z \sigma x} = -2 yz \sin (xy + z^2)
+\]
+\[
+\frac{\sigma^2f}{\sigma x \sigma y} = \cos (xy + z^2) - xy \sin(xy + z^2)
+\]
+\[
+\frac{\sigma^2f}{\sigma z \sigma y} = - 2xz \sin(xy + z^2)
+\]
+\[
+\frac{\sigma^2f}{\sigma x \sigma z} = -2yz \sin (xy + z^2)
+\]
+\[
+\frac{\sigma^2f}{\sigma y \sigma z} = - 2xz \sin(xy + z^2)
+\]
+\clearpage
+\section*{Номер 11}
+\subsection*{a)}
+\[
+f(x, y) = x \ln (xy), \; \text{найти } \frac{\sigma^3 f}{\sigma x^2 \sigma y}
+\]
+\[
+\frac{\sigma f}{\sigma y} = \frac{x}{y}
+\]
+\[
+\frac{\sigma^2 f}{\sigma x \sigma y} = \frac{1}{y}
+\]
+\[
+\frac{\sigma^3 f}{\sigma x^2 \sigma y} = \frac{1}{y} = 0
+\]
+\begin{center}
+\textbf{Ответ: } 0
+\end{center}
+\subsection*{b)}
+\[
+f(x, y, z) = \sin (xy + z^2), \; \text{найти } \frac{\sigma^3 f}{\sigma x \sigma y \sigma z}
+\]
+\[
+\frac{\sigma f}{\sigma z} = 2z \cos (xy + z^2)
+\]
+\[
+\frac{\sigma^2 f}{\sigma y \sigma z} = -2xz \sin (xy + z^2)
+\]
+\[
+\frac{\sigma^3 f}{\sigma x \sigma y \sigma z} = -2 z (x y \cos(x y + z^2) + \sin(x y + z^2))
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+-2 z (x y \cos(x y + z^2) + \sin(x y + z^2))
+\]
+\end{center}
+\end{document}

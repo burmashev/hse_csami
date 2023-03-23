@@ -1,0 +1,212 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий. Дискра -- 17
+\end{center}
+\section*{Номер 1}
+Пусть f -- выигрыш, он точно неотрицательный. Математическое ожидание выигрыша равно $40 \cdot 25\% = 10$. Положим a = 1000, тогда по неравенству Маркова:
+\[
+Pr[f \geq a] \leq \frac{E[f]}{a}
+\]
+\[
+Pr[f \geq 1000] \leq \frac{10}{1000}  = 0.01
+\]
+Вероятность получить не менее 1000 рублей не превосходит 1\%
+\section*{Номер 2}
+Посчитаем вероятности:
+\begin{enumerate}
+\item Шестерка выпала ровно 0 раз:
+\[
+\frac{5^3}{6^3} = \frac{125}{216}
+\]
+\item Шестерка выпала ровно 1 раз:
+\[
+\frac{1}{6} \cdot \frac{5^2}{6^2} \cdot 3 = \frac{1}{2} \cdot \frac{5^2}{6^2} = \frac{25}{72}
+\]
+\item Шестерка выпала ровно 2 раза:
+\[
+\frac{1}{6^2} \cdot \frac{5}{6} \cdot 3 = \frac{1}{6^2} \cdot \frac{5}{2}  = \frac{5}{72}
+\]
+\item Шестерка выпала ровно 3 раза:
+\[
+\frac{1}{6^3} = \frac{1}{216}
+\]
+Тогда мат.ожидание:
+\[
+E(\text{Sum}) = \frac{1}{216} \cdot 3 + \frac{5}{72} \cdot 2 + \frac{25}{72} \cdot 1 - \frac{125}{216} = \frac{3 + 30 + 75 - 125 }{216} = -\frac{17}{216}
+\]
+\end{enumerate}
+\begin{center}
+\textbf{Ответ: } $-\frac{17}{216}$
+\end{center}
+\clearpage
+\section*{Номер 3}
+Очевидно, что:
+\[
+2^x \geq 64, \text{ если }  x \geq 6
+\]
+А значит:
+\[
+Pr[x \geq 6] = Pr[2^x \geq 64]
+\]
+Тогда по неравенству Маркова:
+\[
+Pr[2^x \geq 64] \leq \frac{E[2^x]}{64}
+\]
+Ну а по условию $E[2^x] = 5$, итого:
+\[
+Pr[x \geq 6] \leq \frac{5}{64} = \frac{50}{640} < \frac{1}{10} = \frac{64}{640}
+\]
+\section*{Номер 4}
+Два события являются независимыми, а значит:
+\[
+E[LR] = E[L] \cdot E[R]
+\]
+\[
+E[L] = E[R]
+\]
+Найдем $E[L]$:
+\\\\
+Вероятность получить i единиц равна:
+\[
+\frac{C^i_{50}}{2^{50}}
+\]
+Где:
+
+$C^i_{50}$ -- количество спобосов расставить i единиц на 50 позиций
+
+$2^{50}$ -- вероятность получения именно этой расстановки
+\\\\
+А значит:
+\[
+E[L] = 1 \cdot \frac{C^1_{50}}{2^{50}} + \ldots + 50 \cdot \frac{C^{50}_{50}}{2^{50}} =\sum_{i = 0}^{50} i \cdot \frac{C^i_{50}}{2^{50}}
+\]
+Тогда:
+\[
+E[LR]  = \left(\sum_{i = 0}^{50} i \cdot \frac{C^i_{50}}{2^{50}} \right)^2
+\]
+(Не очень понимаю, как можно красиво посчитать эту штуку, поэтому оставил как есть)
+\begin{center}
+\textbf{Ответ: } $E[LR]  = \left(\sum_{i = 0}^{50} i \cdot \frac{C^i_{50}}{2^{50}} \right)^2$
+\end{center}
+\section*{Номер 5}
+Введем следующую индикаторную функцию $I$, которая будет обозначать количество элементов, которые перешли сами в себя, т.е:
+\[
+I = I_1 + I_2 + \ldots I_n
+\]
+Где:
+\[
+I_i = 
+\begin{cases}
+1, \text {если i переходит в перестановке сам в себя} \\
+0, \text {иначе}
+\end{cases}
+\]
+Тогда:
+\[
+E[I] = E[I_1 + \ldots I_n] = E[I_1] + \ldots + E[I_n]
+\]
+Посчитаем $E[I_i]$:
+\[
+E[I_i] = 1 \cdot Pr[\text{i перешла в перестановке сама в себя}] + 
+\]
+\[
++
+0 \cdot Pr[\text{i перешла не сама в себя}] = Pr[\text{i перешла в перестановке сама в себя}] 
+=
+\]
+\[
+= \frac{(n-1)!}{n!} = \frac{1}{n}
+\]
+Тогда:
+\[
+I = \frac{1}{n} \cdot n = 1
+\]
+\begin{center}
+\textbf{Ответ: } $1$ элемент
+\end{center}
+\section*{Номер 6}
+Введем следующую индикаторную функцию I, которая будет обозначать количество элементов, попавших  в пересечение:
+\[
+I = I_1 + I_2 + \ldots I_n
+\]
+Где:
+\[
+I_i = 
+\begin{cases}
+1, \text {если i-й элемент попал в пересечение} \\
+0, \text {иначе}
+\end{cases}
+\]
+Тогда:
+\[
+E[I] = E[I_1 + \ldots I_n] = E[I_1] + \ldots + E[I_n]
+\]
+Посчитаем $E[I_i]$:
+\[
+E[I_i] = 1 \cdot Pr[\text{i-й в пересечении}] + 
+\]
+\[
++
+0 \cdot Pr[\text{i-й не в пересечении}] = Pr[\text{i-й  в пересечении}] 
+\]
+Количество способов задать множество X или Y:
+\[
+C^k_n
+\]
+В свою очередь количество способов задать множество X или Y с i-тым элементом:
+\[
+C^{k-1}_{n-1}
+\]
+А значит:
+\[
+E[I_i] = \frac{\left(C^{k-1}_{n-1}\right)^2}{\left(C^k_n\right)^2} = \left(\frac{(n-1)!}{(k-1)!(n-k)!} \cdot \frac{k!(n-k)!}{n!}\right)^2 =  \left(\frac{k}{n}\right)^2
+\]
+По итогу:
+\[
+E[I] =\left( \frac{k}{n}\right)^2 \cdot n  = \frac{k^2}{n}
+\]
+\begin{center}
+\textbf{Ответ: } $\frac{k^2}{n}$
+\end{center}
+\end{document}

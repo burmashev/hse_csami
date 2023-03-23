@@ -1,0 +1,79 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- 5}
+\date{\today}
+\begin{document}
+\maketitle 
+\clearpage
+\section*{Номер 1}
+\[
+\sum_{n = 1}^{\infty} \frac{1}{x^2 + nx + n^2}, D = (0, \infty)
+\]
+Воспользуемся признаком Вейерштрасса:
+\begin{flushleft}
+\includegraphics[scale=0.3]{1.png}
+\end{flushleft}
+Заметим, что $D = (0, \infty)$, $n$ идет от 1 до $\infty$, отсюда делаем вывод, что $x^2 + nx + n^2$ в знаменателе будет положительным, а значит:
+\[
+\frac{1}{x^2 + nx + n^2} < \frac{1}{n^2}
+\]
+Но поскольку все члены нашего ряда положительные $(x > 0, n >= 1)$, то выполняется:
+\[
+\Big| \frac{1}{x^2 + nx + n^2} \Big| < \frac{1}{n^2} \; \forall x \in D = (0, \infty)
+\]
+При этом заметим, что ряд $\sum \frac{1}{n^2}$ сходится (очевидно), а значит по признаку Вейерштрасса наш исходный ряд сходится абсолютно и равномерно 
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\clearpage
+\section*{Номер 2}
+\[
+\sum_{n = 1}^{\infty} \frac{x^n}{1 + x^{2n}}, \; D = (-1, 1)
+\]
+Предположим, что ряд сходится равномерно на $(-1, 1)$, тогда он должен сходиться равномерно и на $[-1, 1]$ (аналогично подобной задаче с семинара), \textbf{но} в граничной точке $x = 1$ мы получаем:
+\[
+\sum_{n = 1}^{\infty} \frac{1^n}{1 + 1^n} =\sum_{n = 1}^{\infty} \frac{1}{2}
+\]
+Видим, что такой ряд будет расходится $\rightarrow$ исходный ряд сходится не равномерно
+\begin{center}
+\textbf{Ч.Т.Д}  
+\end{center}
+
+\end{document}

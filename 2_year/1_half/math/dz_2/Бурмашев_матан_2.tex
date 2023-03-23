@@ -1,0 +1,122 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- 2}
+\date{\today}
+\begin{document}
+\maketitle
+\clearpage
+\section*{Номер 1}
+\[
+\sum_{n =1 }^{\infty} \frac{(2n+3)!!}{n^3(2n)!!}
+\]
+Пытаемся решить по Даламберу/Гауссу, аналогично таскам с сема (смотря что пойдет):
+\[
+\frac{a_{n+1}}{a_n} =\frac{ \frac{(2(n+1) + 3)!!}{(n+1)^3 (2(n+1))!!}}{\frac{(2n+3)!!}{n^3(2n)!!}}= \frac{(2n + 5)!!}{(n+1)^3(2n + 2)!!} \cdot \frac{n^3(2n)!!}{(2n+3)!!}
+\]
+Избавляемся от факториалов путем сокращения:
+\[
+\frac{(2n+5)}{(n+1)^3 \cdot (2n + 2)} \cdot \frac{n^3}{1} = \frac{2n^4 + 5n^3}{(n^3 + 3n^2 + 3n + 1)(2n+2)} = \frac{2n^4 + 5n^3}{2 n^4 +8n^3 + 12n^2 + 8n + 2 } =
+\]
+\[
+= \frac{2 + \frac{5}{n}}{2 + \frac{8}{n} + \frac{12}{n^2} + \frac{8}{n^3} + \frac{2}{n^4}} \overset{n \rightarrow \infty}{\rightarrow} \frac{2}{2} = 1 \rightarrow \text{Даламбер не работает}
+\]
+Тогда будем пытаться по Гауссу:
+\[
+\frac{2 + \frac{5}{n}}{2 + \frac{8}{n} + \frac{12}{n^2} + \frac{8}{n^3} + \frac{2}{n^4}} = \frac{1 + \frac{5}{2n}}{1 + \frac{4}{n} + \frac{6}{n^2} + \frac{4}{n^3} + \frac{1}{n^4}} = 
+\]
+Загоняем лишнее под O (ряд вида $(1 + x)^{\alpha}, x = \frac{1}{n}, \alpha = 4)$
+\[
+ = \frac{1 + \frac5{2n}}{1 + \frac4n + O(\frac{1}{n^2})}
+\]
+Приводим к норм.виду (знаем, что при $x \rightarrow 0$ : $\frac{1}{1+x} = 1 - x + O(x^2) \rightarrow \frac{a}{1 + x} = a(1 - x + O(x^2)))$:
+\[
+\left(1 + \frac5{2n}\right)\left(1 - \frac{4}{n} + O\left(\frac{1}{n^2}\right) \right) = 1 - \frac{4}{n} + O\left(\frac{1}{n^2}\right)  + \frac{5}{2n} = 1 - \frac{3}{2n} + O\left(\frac{1}{n^2}\right)
+\]
+Привели к виду $1 - \frac{p}{n} + O\left(\frac{1}{n^{1 + \delta}}\right)$, причем $\delta = 1, p = \frac{3}{2} > 1$
+\\\\
+Т.к $p > 1$, то по признаку Гаусса ряд \textbf{сходится}
+\begin{center}
+\textbf{Ответ: } сходится
+\end{center}
+\clearpage
+\section*{Номер 2}
+\[
+\sum_{k = n}^{\infty} \frac{1}{k^2} = \frac{1}{n}  + o \left(\frac1n\right)
+\]
+Будем действовать аналогично семинару, используя теорему Штольца.
+\\
+Для начала поделим обе части выражения на $\frac1n$, получим:
+\[
+n \cdot \sum_{k = n}^{\infty} \frac{1}{k^2} = 1 + o\left(1\right)
+\]
+Нам нужно проверить, что:
+\[
+\lim_{n \rightarrow \infty} \left(n \cdot \sum_{k = n}^{\infty} \frac{1}{k^2} \right) = 1
+\]
+Для этого воспользуемся теоремой Штольца, заметим, что:
+\begin{enumerate}
+\item
+\[
+\sum \frac{1}{k^2} \underset{n \rightarrow \infty}{\longrightarrow 0}
+\]
+\item
+\[
+\frac{1}{n} \underset{n \rightarrow \infty}{\longrightarrow 0}
+\]
+\item
+\[
+\frac{1}{n} \downarrow
+\]
+\end{enumerate}
+Теперь посмотрим, существует ли предел:
+\[
+\frac{\sum\limits_{k = n + 1}^{\infty} \frac{1}{k^2} - \sum\limits_{k = n}^{\infty} \frac{1}{k^2}}{\frac{1}{n + 1} - \frac{1}{n}} = -\frac{\frac{1}{n^2}}{\frac{1}{n + 1} - \frac{1}{n}} = - \frac{1}{n^2\left(\frac{1}{n+1} - \frac{1}{n}\right)} = - \frac{1}{\frac{n^2}{n + 1} - n} = - \frac{1}{\frac{n^2 - n^2 - n}{n + 1}} = \frac{1}{\frac{n}{n+1}} =
+\]
+\[
+= \frac{n+1 }{n } = \frac{1 + \frac{1}{n}}{1} \underset{n \rightarrow \infty}{\longrightarrow 1}
+\]
+Предел существует, тогда применяем теорему Штольца и получаем, что:
+\[
+\lim_{n \rightarrow \infty} \frac{\sum\limits_{k = n}^{\infty} \frac{1}{k^2}}{\frac{1}{n}} =\lim_{n \rightarrow \infty}   \frac{\sum\limits_{k = n + 1}^{\infty} \frac{1}{k^2} - \sum\limits_{k = n}^{\infty} \frac{1}{k^2}}{\frac{1}{n + 1} - \frac{1}{n}} = 1 \rightarrow n \cdot \sum_{k = n}^{\infty} \frac{1}{k^2} = 1 + o\left(1\right)  \rightarrow \sum_{k = n}^{\infty} \frac{1}{k^2} = \frac{1}{n}  + o \left(\frac1n\right)
+\]
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\end{document}

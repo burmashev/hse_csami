@@ -1,0 +1,105 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- 4}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{Номер 1}
+\[
+f(x) = 
+\begin{cases}
+e^{-ax},& x \geq 0 \\
+0, &x < 0
+\end{cases}, \text{ где } \; a > 0 
+\]
+Ищем прямое преобразование Фурье:
+\[
+\stackrel{\wedge}{f}(y) = \frac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^{\infty} f(x) e^{-ixy} dx = \frac{1}{\sqrt{2\pi}} \int\limits_{0}^{\infty} e^{-ax} e^{-ixy} dx = \frac{1}{\sqrt{2\pi}} \int\limits_{0}^{\infty} e^{-ax - ixy} dx =
+\]  
+\[
+=
+\frac{1}{2\sqrt{\pi}} \int\limits_{0}^{\infty} e^{x(-a- iy)} dx  = \frac{1}{\sqrt{2\pi}} \cdot \frac{1}{-a-iy} \cdot \int_{0}^{+\infty} e^u du = \frac{1}{\sqrt{2\pi}} \cdot \frac{e^{-x(a + iy)}}{-a-iy}  \Bigg|_0^{\infty} = \frac{1}{\sqrt{2\pi}} \cdot \frac{1}{a + iy }
+\] 
+Теперь обратное:
+\[
+\stackrel{\vee}{f} (y)= \frac{1}{\sqrt{2\pi}}  \int\limits_{-\infty}^{+\infty} \stackrel{\wedge}{f}(x) e^{ixy} dy = \frac{1}{\sqrt{2\pi}}  \int\limits_{-\infty}^{+\infty}  \frac{1}{\sqrt{2\pi}} \cdot \frac{1}{a + iy } e^{ixy} dy = \frac{1}{\sqrt{2\pi}}  \int\limits_{-\infty}^{+\infty}  \frac{e^{ixy} }{(a + iy)} dy = 
+\]
+\[
+ = \frac{1}{\sqrt{2\pi}}  \int\limits_{-\infty}^{+\infty}  \frac{1 }{(a + iy)}  \cdot \frac{a - iy}{a - iy}\cdot \left((\cos (xy) + i \sin (xy)\right)dy = \frac{1}{\sqrt{2\pi}}  \int\limits_{-\infty}^{+\infty}  \frac{a - iy}{a^2 + y^2}\cdot \left((\cos (xy) + i \sin (xy)\right)dy  = 
+\]
+\[
+ = 
+\frac{1}{\sqrt{2\pi}}  \int\limits_{-\infty}^{+\infty}  \frac{a \cos (xy) +  y \sin (xy) }{a^2 + y^2} dy + \frac{1}{\sqrt{2\pi}} \int\limits_{-\infty}^{+\infty}  \frac{i(a \sin (xy) -y \cos (xy) )}{a^2 + y^2} dy
+\]
+Правый элемент обнуляется в силу нечетности, получаем ответ:
+\begin{center}
+\textbf{Ответ: } 
+\[
+\frac{1}{\sqrt{2\pi}}  \int\limits_{-\infty}^{+\infty}  \frac{a \cos (xy) +  y \sin (xy) }{a^2 + y^2} dy 
+\]
+\end{center}
+\clearpage
+\section*{Номер 2}
+\[
+f(x) = \frac{\sin x}{x}
+\]
+Ищем:
+\[
+\stackrel{\wedge}{f}(x)  =\sqrt{ \frac{2}{\pi}} \int\limits_0^{\infty} \frac{\sin x}{x}  \cdot cos (xy) dx =
+\]
+\[
+=
+ \frac{1}{\sqrt{2\pi}} \int\limits_0^{\infty}  \frac{\sin (x ( 1- y))}{x} dx + \frac{1}{\sqrt{2\pi}} \int\limits_0^{\infty} \frac{\sin(x(1 + y))}{x} dx =
+\]
+\[
+=
+ \frac{1}{\sqrt{2\pi}}  \left(
+\frac{\pi}{2} \sgn(1 -y) + \frac{\pi}{2} \cdot \sgn( 1 +y )
+\right)
+\] 
+\begin{center}
+\textbf{Ответ: } 
+\[
+ \frac{1}{\sqrt{2\pi}}  \left(
+\frac{\pi}{2} \sgn(1 -y) + \frac{\pi}{2} \cdot \sgn( 1 +y )
+\right)
+\]
+\end{center}
+\end{document}

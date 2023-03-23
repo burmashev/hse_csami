@@ -1,0 +1,184 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+\DeclareMathOperator*\lowlim{\underline{lim}}
+\DeclareMathOperator*\uplim{\overline{lim}}
+
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий}
+\title{Матан, коллок - 1 }
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий.  208. Матан. Д/з - 5
+\end{center}
+\begin{center}
+\includegraphics[scale=0.4]{jz.jpg}
+\end{center}
+\newpage
+\section*{Задача № 12}
+Найти:
+\[
+\lowlim_{n \rightarrow \infty} a_n
+\]
+\[
+\uplim_{n \rightarrow \infty} a_n
+\]
+\subsection*{а)}
+\[
+a_n = \frac{(-1)^n}{n} + \frac{1+(-1)^n}{2}
+\]
+Пускай n = 2k (т.е четное), тогда:
+\[
+a_n = \frac{(-1)^{2k}}{2k} + \frac{1+(-1)^{2k}}{2} = \frac{1}{2k} + 1
+\]
+\[
+\lim_{k \rightarrow \infty} (1 + \frac{1}{2k}) = 1
+\]
+А значит:
+\[
+\uplim_{n \rightarrow \infty} a_n = 1
+\]
+Пускай n = 2k+1 (т.е нечетное), тогда:
+\[
+a_n = \frac{(-1)^{2k+1}}{2k+1} + \frac{1+(-1)^{2k+1}}{2} = -\frac{1}{2k+1} + \frac{0}{2} = -\frac{1}{2k+1}
+\]
+\[
+\lim_{k \rightarrow \infty}a_n (-\frac{1}{2k+1}) = 0
+\]
+А значит:
+\[
+\lowlim_{n \rightarrow \infty} a_n = 0
+\]
+\begin{center}
+\textbf{Ответ:}
+\end{center}
+\[
+\uplim_{n \rightarrow \infty} a_n = 1
+\]
+\[
+\lowlim_{n \rightarrow \infty} a_n = 0
+\]
+\subsection*{б) }
+\[
+a_n = \frac{n}{n+1} \sin^2{\frac{n\pi}{4}}
+\]
+Мы знаем, что:
+\[
+\sin^2{\frac{n\pi}{4}} \in [0, 1]
+\]
+Рассмотрим случай, когда $\sin^2{\frac{n\pi}{4}}  = 0$:
+\[
+\frac{n\pi}{4} = \pi k \rightarrow n = 4k
+\]
+Тогда:
+\[
+a_n = \frac{4k}{4k+1} \cdot 0  = 0 
+\]
+\[
+\lim_{k \rightarrow \infty} \frac{4k}{4k+1} \cdot 0  = 0
+\]
+А значит:
+\[
+\lowlim_{n \rightarrow \infty} a_n = 0
+\]
+Теперь рассмотрим случай, когда $\sin^2{\frac{n\pi}{4}}  = 1$:
+\[
+\frac{n\pi}{4} = \frac{\pi k}{2} + \pi k \rightarrow n = 4k + 2
+\]
+Тогда:
+\[
+a_n = \frac{4k+2}{4k+3} \cdot 1 
+\]
+\[
+\lim_{k \rightarrow \infty} \frac{4k+2}{4k+3} \cdot 1  = 1
+\]
+А значит:
+\[
+\uplim_{n \rightarrow \infty} a_n = 1
+\]
+\begin{center}
+\textbf{Ответ:}
+\end{center}
+\[
+\uplim_{n \rightarrow \infty} a_n = 1
+\]
+\[
+\lowlim_{n \rightarrow \infty} a_n = 0
+\]
+\subsection*{c) }
+\[
+a_n = 1 + 2 \cdot (-1)^{n+1} + 3 \cdot (-1)^{\frac{n(n-1)}{2}}
+\]
+Рассмотрим случай, когда
+$\frac{n(n-1)}{2}$ четно, тогда n = 4k:
+\[
+1 + 2 \cdot (-1)^{4k+1} + 3 \cdot (-1)^{\frac{4k(4k-1)}{2}}
+\]
+\[
+1 + 2 \cdot (-1) + 3 \cdot 1 = 2 
+\]
+Рассмотрим оставшиеся n, пусть n = 4k + 1:
+\[
+1 + 2 \cdot (-1)^{4k+2} + 3 \cdot (-1)^{\frac{(4k+1)(4k)}{2}}
+\]
+\[
+1 + 2 \cdot 1 + 3 \cdot 1 = 6
+\]
+Пусть n = 4k + 2:
+\[
+1 + 2 \cdot (-1)^{4k+3} + 3 \cdot (-1)^{\frac{(4k+2)(4k+1)}{2}}
+\]
+\[
+1 + 2 \cdot (-1) + 3 \cdot (-1) = -4 
+\]
+Пусть n = 4k + 3:
+\[
+1 + 2 \cdot (-1)^{4k+4} + 3 \cdot (-1)^{\frac{(4k+3)(4k+2)}{2}}
+\]
+\[
+1 + 2 \cdot 1 + 3 \cdot (-1) = 0
+\]
+Мы рассмотрели все возможные значения n.
+\begin{center}
+\textbf{Ответ:}
+\end{center}
+\[
+\uplim_{n \rightarrow \infty} a_n = 6
+\]
+\[
+\lowlim_{n \rightarrow \infty} a_n = -4
+\]
+\end{document}

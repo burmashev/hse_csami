@@ -1,0 +1,103 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- 4}
+\date{\today}
+\begin{document}
+\maketitle
+\clearpage
+\section*{Номер 1}
+\[
+\prod_{n = 1}^{\infty} \frac{n^2 + n + 2}{n^2 + 3n +1 }
+\]
+Проверяем для начала необходимое условие сходимости:
+\[
+a_n = \frac{n^2 + n + 2}{n^2 + 3n + 1} = \frac{1 + \frac1n + \frac{2}{n^2}}{1 + \frac3n + \frac{1}{n^2}} \underset{n \rightarrow \infty}{\longrightarrow} 1
+\]
+Переходим к рассмотрению обычного ряда:
+\[
+\prod_{n = 1}^{\infty} \frac{n^2 + n + 2}{n^2 + 3n +1 } \underset{\text{сход}}{\sim} \sum_{n = 1}^{\infty} \ln \left(\frac{n^2 + n + 2}{n^2 + 3n +1 } \right)
+\]
+Приведем к виду $\ln( 1 + x)$ :
+\[
+\sum_{n = 1}^{\infty} \ln \left(\frac{n^2 + n + 2}{n^2 + 3n +1 } \right) = \sum_{n = 1}^{\infty} \ln \left(1 + \left(-\frac{2n-1}{n^2 + 3n + 1}\right)\right)
+\]
+$\frac{2n -1 }{n^2 + 3n + 1} = \frac{\frac{2}{n} - \frac{1}{n^2}}{1 + \frac{3}{n} + \frac{1}{n^2}} \rightarrow 0$, поэтому имеем право представить сумму в виде:
+\[
+\sum_{n = 1}^{\infty} \left( - \frac{2n - 1}{n^2 + 3n + 1} + o \left( \frac{2n-1}{n^2 + 3n + 1}\right) \right) \sim \sum_{n = 1}^{\infty} \left( - \frac{2n - 1}{n^2 + 3n + 1} + o \left( \frac{1}{n^2}\right) \right)
+\]
+Заметим, что правый элемент в сумме сходится, нам нужно лишь проверить сходимость левой суммы ($-\frac{2n-1}{n^2+3n+1})$, для этого воспользуемся признаком Гаусса (пусть  левая сумма будет $\sum\limits_{n=1}^{\infty}$ $b_n$), тогда:
+\[
+\frac{b_{n+1}}{b_n} = \frac{-\frac{2(n+1)-1}{(n+1)^2+3(n+1)+1}}{-\frac{2n-1}{n^2+3n+1}} = \frac{(2n +1) \cdot (n^2 +3n + 1)}{\left((n+1)^2 + 3n + 4\right)\cdot (2n - 1)} = \frac{2n^3 + 7n^2 + 5n + 1}{2n^3 + 9n^2 +5n - 5} =
+\] 
+\[
+= \frac{2 + \frac7n +\frac{5}{n^2} + \frac{1}{n^3}}{2 + \frac9n + \frac{5}{n^2} -\frac{5}{n^3}} = \frac{1 + \frac{7}{2n} + \frac{5}{2n^2} + \frac{1}{2n^3}}{1 + \frac{9}{2n} + \frac{5}{2n^2} - \frac{5}{n^3}} = \frac{1 + \frac{7}{2n} + o(\frac{1}{n^2})}{1+\frac{9}{2n} + o(\frac{1}{n^2})} = 
+\]
+Привели к виду $\frac{a}{1 + x}$,  причем в данном случае $x \rightarrow 0$, а значит можем раскрыть как $\frac{1}{1 + x} = 1 - x + o\left(x\right)$ 
+\[
+= \left(1 + \frac{7}{2n} + o\left(\frac{1}{n^2}\right) \right) \cdot \left( 1 - \frac{9}{2n} + o\left(\frac{1}{n^2}\right) \right) = 1- \frac1n + o\left(\frac{1}{n^{1 + 1}}\right)
+\]
+Получаем, что $p = 1, \delta = 1$, т.к $p \leq 1$, то по признаку Гаусса ряд \textbf{расходится} $\rightarrow$ и наше исходное бесконечное произведение \textbf{расходится}
+\begin{center}
+\textbf{Ответ: } расходится
+\end{center}
+\clearpage
+\section*{Номер 2}
+\[
+f_n(x) = \frac{nx}{1 + n^3x^2}, D = \left[1; + \infty \right)
+\]
+
+Заметим, что предельная функция $f$ равна нулю, т.е будем смотреть на:
+\[
+\left| \left|\frac{nx}{1+n^3x^2}- 0\right| \right|  = \underset{x \in D}{\sup} \left| \frac{nx}{1+n^3x^2}\right|
+\]
+Сделаем, как на семинаре, посмотрим на производную:
+\[
+(f_n)' =  \frac{n(1 + n^3x^2) - 3n^2x^2 \cdot nx}{(1+n^3x^2)^2} = \frac{n - 2n^4x^3}{(1+n^3x^2)^2} = \frac{n}{(1+n^3x^2)^2} \cdot (1 -2n^3x^3) 
+\]
+$D =  \left[1; + \infty \right)$, отсюда получаем, что производная меньше нуля и функция убывает, значит можем взять супремум как значение в точке $x = 1$, тогда:
+\[
+\underset{x \in D}{\sup} \left| \frac{nx}{1+n^3x^2}\right| = \frac{n}{1 + n^3} = \frac{\frac{1}{n^2}}{\frac{1}{n^3} + 1 } \rightarrow 0
+\]
+По определению равномерной сходимости получаем, что последовательность \textbf{сходится равномерно}
+\begin{center}
+\textbf{Ответ: } сходится равномерно
+
+\end{center}
+\end{document}

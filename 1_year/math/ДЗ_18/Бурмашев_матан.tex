@@ -1,0 +1,292 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий. Матан -- какой-то там не помню какой
+\end{center}
+\includegraphics[scale=0.4]{1.jpg}
+\clearpage
+\section*{Номер 7}
+\subsection*{2)}
+\[
+\int \frac{dx}{2\sin + 3\cos + 5} 
+\]
+Универсальная триг.подстановка:
+\[
+\tan \frac{x}{2} = t
+\]
+\[
+\sin x = \frac{2 \tan \frac{x}{2}}{1 + \tan^2 \frac{x}{2}}
+\]
+\[
+\cos x = \frac{ 1 - \tan^2 \frac{x}{2}}{1 + \tan^2 \frac{x}{2}}
+\]
+\[
+dx = \frac{2dt}{1 + t^2}
+\]
+Тогда получаем:
+\[
+\int \frac{1}{ \frac{4t}{1 + t^2} + \frac{3-3t^2}{1+t^2} + 5} \cdot \frac{2dt}{1 + t^2} = \int \frac{2dt}{\left( \frac{4t + 3 - 3t^2 + 5(1+t^2)}{1 + t^2}\right)} \cdot \frac{1}{1 + t^2} = 
+\]
+\[
+= \int \frac{2dt}{2t^2 + 4t + 8} = \int \frac{dt}{t^2 + 2 + 4} = \int \frac{dt}{(t+ 1)^2 + 3} = \frac{\arctan \frac{t+1}{\sqrt{3}}}{\sqrt{3}} + C = 
+\]
+\[
+= \frac{\arctan \frac{\tan \frac{x}{2}+1}{\sqrt{3}}}{\sqrt{3}} + C
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\frac{\arctan \frac{\tan \frac{x}{2}+1}{\sqrt{3}}}{\sqrt{3}} + C
+\]
+\end{center}
+\subsection*{3)}
+\[
+\int \frac{dx}{2\sin^2x + 3\cos^2x }
+\]
+Вынесем $\sin^2x + \cos^2x$ за скобки:
+\[
+\int \frac{dx}{(\sin^2x + \cos^2x) \cdot 2 + \cos^2 x}  = \int \frac{dx}{2 + \cos^2 x} = \int \frac{\frac{1}{\cos ^ 2x} \, dx}{\frac{2}{\cos ^ 2x} + 1} = 
+\]
+\[
+=
+\int \frac{\tan^2 x + 1}{2 \tan^2x + 3} \, dx \]
+Сделаем замену:
+\[
+u = \tan x 
+\]
+\[
+du = \frac{1}{\cos^2x} \, dx
+\]
+\[
+dx = \frac{du}{\frac{1}{\cos^2x}}
+\]
+Тогда:
+\[
+\int \frac{1}{2u^2 + 3} \, du = \frac{1}{2} \int \frac{du}{u^2 + \frac{3}{2}} = \frac{1}{2} \cdot \frac{1}{\sqrt{\frac{3}{2}}} \arctan (\sqrt{\frac{2}{3}} u) + C = \frac{\arctan\left( \sqrt{\frac{2}{3}} \tan x \right)}{\sqrt{6}} + С
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\frac{\arctan\left(\sqrt{ \frac{2}{3}} \tan x \right)}{\sqrt{6}} + С
+\]
+\end{center}
+\subsection*{4)}
+\[
+\int \frac{\cos x}{\sin x - 5 \cos x} \, dx =  \int \frac{\frac{1}{\cos^2 x}}{\frac{\sin x}{ \cos x} \cdot \frac{1}{\cos^2 x} - \frac{5}{\cos^2x}}\, dx = 
+\]
+\[
+=
+\int \frac{\frac{1}{\cos^2 x}}{\tan x \cdot \frac{1}{\cos ^2 x} - \frac{5}{\cos^2x}} \, dx = 
+\]
+Сделаем замену:
+\[
+u = \tan x 
+\]
+\[
+du = \frac{1}{\cos^2x} \, dx
+\]
+\[
+dx = \frac{du}{\frac{1}{\cos^2x}}
+\]
+Тогда:
+\[
+\int \frac{du}{u^3 -u^2+ u- 5} = \int \frac{du}{(u-5)(u^2 +1)}
+\]
+Согласно степеням в знаменателе:
+\[
+\frac{1}{(u-5)(u^2+1)} = \frac{a}{u-5} + \frac{bu + c}{u^2 + 1}
+\]
+\[
+1 = a(u^2+1) + (bu + c)(u-5) = au^2 + a + bu^2 -5bu +cu -5c
+\]
+Получаем систему:
+\[
+\begin{cases}
+a + b= 0 \\ c - 5b = 0 \\ a -5c = 1
+\end{cases}
+\]
+\[
+\begin{cases}
+a= -b \\ c = 5b \\ -b -25b = 1
+\end{cases}
+\]
+\[
+\begin{cases}
+a= -b \\ c = 5b \\ b = -\frac{1}{26}
+\end{cases}
+\]
+\[
+\begin{cases}
+a= \frac{1}{26} \\ b= -\frac{5}{26} \\ c = -\frac{5}{26}
+\end{cases}
+\]
+Значит:
+\[
+\frac{1}{(u-5)(u^2+1)} = \frac{\frac{1}{26}}{u-5} + \frac{-\frac{1}{26}u - \frac{5}{26}}{u^2 + 1}
+\]
+Тогда:
+\[
+\frac{1}{26} \int \frac{u + 5}{u^2 + 1} - \frac{1}{u - 5} \, du = \frac{1}{26} \left( \int \frac{du}{u-5} - \int \frac{u+5}{u^2+1} \, du \right) = 
+\]
+Посчитаем второй интеграл отдельно:
+\[
+\int \frac{u+5}{u^2+1} \, du = \int \frac{u}{u^2 + 1} \, du + 5 \cdot  \int \frac{1}{u^2 + 1} \, du = \frac{1}{2} \ln |u^2 + 1| + 5 \arctan u   + C
+\]
+Тогда:
+\[
+= \frac{1}{26} \left(\ln |u -5| - \frac{1}{2} \ln |u^2 + 1| - 5 \arctan u \right) = \frac{\ln |u - 5| - 5 \arctan u}{26} - \frac{\ln |u^2 + 1|}{52} + C = 
+\]
+\[
+=
+\frac{\ln |\tan x - 5| - 5x}{26} - \frac{\ln |\tan^2 x + 1|}{52} + C 
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\frac{\ln |\tan x - 5| - 5x}{26} - \frac{\ln |\tan^2 x + 1|}{52} + C 
+\]
+\end{center}
+\subsection*{5)}
+\[
+\int \frac{dx}{\sqrt[3]{(x+1)^2(x-1)^7}} = \int \frac{dx}{(x+1)^{\frac{2}{3}} (x-1)^{\frac{7}{3}}} = 
+\]
+$p + q = \frac{2}{3}  + \frac{7}{3} = 3 \in \mathbb{Z} \rightarrow $ интегрируется.
+\[
+=
+\int \frac{dx}{(x-1)^2 \cdot \sqrt{(x+1)^2(x-1)}} \cdot \frac{\sqrt[3]{x+1}}{\sqrt[3]{x+1}} = 
+\]
+\[
+\int \frac{\sqrt[3]{x+1} \, dx}{(x+1)(x-1)^2 \cdot \sqrt[3]{x-1}} = \int \frac{dx}{(x+1)(x-1)^2} \cdot \sqrt[3]{\frac{x+1}{x-1}}
+\]
+ Делаем замену (по аналогии с семинаром):
+\[
+t = \sqrt[3]{\frac{x+1}{x-1}}
+\]
+\[
+x + 1 = t^2(x-1)
+\]
+\[
+x = - \frac{1+t^3}{1-t^3}
+\]
+\[
+dx  = - \frac{6t^2}{(1-t^3)^2} \, dt
+\]
+Тогда получаем:
+\[
+\int \frac{-6t^2 \, dt}{(1-t^3)^2 \cdot \left(-\frac{1+t^3}{1-t^3} + 1\right) \left( - \frac{1+t^3}{1-t^3} - 1\right)^2} \cdot t= \int \frac{-6t^3 \, dt}{(1-t^3)^2 \cdot \left(-\frac{2t^3}{1 - t^3}\right) \left( -\frac{2}{1-t^3} \right)^2}  = 
+\]
+\[
+= \int \frac{3t^3 - 3}{4} \, dt = \frac{3}{4} \int \frac{t^3 - 1}{1} \, dt = \frac{3}{4} \int (t^3 -1) \, dt = 
+\]
+\[
+= \frac{3}{4} \int t^3 \, dt - \frac{3}{4} \int \, dt = \frac{3t^4}{16}  - \frac{3t}{4} + C = 
+\]
+\[
+= \frac{3}{16} \left( \sqrt[3]{ \frac{x+1}{x-1} } \right)^4 - \frac{3}{4} \left( \sqrt[3]{ \frac{x+1}{x-1} } \right) + C
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\frac{3}{16} \left( \sqrt[3]{ \frac{x+1}{x-1} } \right)^4 - \frac{3}{4} \left( \sqrt[3]{ \frac{x+1}{x-1} } \right) + C
+\]
+\end{center}
+
+\section*{Номер 8}
+\[
+I_n = \int \sin^{-n} \, dx = \int \sin^{-n-1} \cdot \sin x \, dx = 
+\]
+Воспользуемся интегрированием по частям:
+\[
+v = \sin^{-n-1} x
+\]
+\[
+u' = \sin x
+\]
+Тогда:
+\[
+= 
+-\cos x \sin^{-n-1} \cdot x - \int (-\cos x)(-n-1) \sin ^{-n - 2} \cos x \, dx =
+\]
+\[
+=
+- \cos x \sin^{-n-1} x - (n+1)(I_{n-2} - I_n) = 
+\]
+\[
+=
+-\cos x \sin^{-n-1} x - (n+1)I_{n-2} +(n+1)I_n
+\]
+Тогда выражаем $I_n$:
+\[
+I_n - (n+1)I_n = -\cos x \sin^{-n-1} x - (n+1) \cdot I_{n-2}
+\]
+\[
+I_n -nI_n -I_n = -\cos x \sin^{-n-1} x - (n+1) \cdot I_{n-2}
+\]
+\[
+nI_n = \cos x \sin^{-n-1} x + (n+1)I_{n-2}
+\]
+\[
+I_n = \frac{\cos x \sin^{-n-1} x + (n+1)I_{n-2}}{n}
+\]
+Если n -- четное:
+\[
+I_0 = \int \frac{dx}{\sin^0 x} = \int \, dx = x + c
+\]
+Если n -- нечетное:
+\[
+I_1 = \int \frac{dx}{\sin x} 
+\]
+Универсальная триг.подстановка:
+\[
+\tan \frac{x}{2} = t
+\]
+\[
+\sin x = \frac{2 \tan \frac{x}{2}}{1 + \tan^2 \frac{x}{2}}
+\]
+\[
+dx = \frac{2dt}{1 + t^2}
+\]
+\[
+\int \frac{\frac{2dt}{t^2 + 1}}{\frac{2t}{t^2+1}} = \ln |t| + C = \ln |\tan \frac{x}{2}| + C
+\]
+\end{document}

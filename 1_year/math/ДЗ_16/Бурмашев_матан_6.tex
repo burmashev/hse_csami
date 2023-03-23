@@ -1,0 +1,144 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий. 208. Матан -- 6 
+\end{center}
+\begin{center}
+\includegraphics[scale=1]{2.png}
+\end{center}
+\begin{center}
+\includegraphics[scale=0.4]{1.jpg}
+\end{center}
+\clearpage
+\section*{Номер 6}
+\section*{1)}
+\[
+\int \frac{dx}{x(x+1)(x+2)}
+\]
+$\text{deg } Q = 3$, а значит:
+\[
+ \int \left( \frac{a}{x} + \frac{b}{x+1} + \frac{c}{x+2} \right) \, dx
+\]
+Найдем коэффы:
+\[
+(x+1)(x+2)a + x(x+2)b + x(x+1)c = 1
+\]
+Воспользуемся методом постановки x:
+\[ 
+x = 0 : 2a +0b + 0c = 1; a = \frac{1}{2}
+\]
+\[
+x = -1: 0a + (-b) + 0c = 1; b = -1
+\]
+\[
+x = -2: 0a + 0b + 2c =1 ; c = \frac{1}{2}
+\]
+Тогда:
+\[
+\int \left( \frac{\frac{1}{2}}{x} + \frac{-1}{x+1} + \frac{\frac{1}{2}}{x+2} \right) \, dx = \int \frac{1}{2x} \,dx - \int \frac{1}{1+x} \, dx + \int \frac{1}{2(x+2)} \, dx = 
+\]
+\[
+= \frac{\ln|x|}{2} - \ln |x+1| + \frac{\ln |x+2|}{2} + C
+\]
+{\Large \begin{center}
+\textbf{Ответ: } 
+\[
+\frac{\ln|x|}{2} - \ln |x+1| + \frac{\ln |x+2|}{2} + C
+\]
+\end{center}}
+\subsection*{2)}
+\[
+\int \frac{x^2 + 5x + 4}{x^4 + 5x^2 + 4} \, dx = \int \frac{x^2 + 5x + 4}{(x^2+4)(x^2+1)} \, dx
+\]
+$\text{deg Q} = 4 < \text{deq P}$, а значит:
+\[
+\int \left( \frac{ax + b}{x^2+4} + \frac{cx + d}{x^2 + 1}  \right) \, dx
+\]
+Найдем коэфы:
+\[
+(x^2+4)(cx+d)  + (x^2+1)(ax+b) = x^2 + 5x + 4
+\]
+\[
+(a+c)x^3 + (b+d)x^2 + (a+4c)x + (b+4d) = x^2 + 5x + 4
+\]
+А значит:
+\[
+\begin{cases}
+a + c = 0 \\ b + d = 1 \\ a + 4c = 5 \\ b + 4d = 4\\
+\end{cases}
+\]
+\[
+\begin{cases}
+a = - \frac{5}{3} \\b =  0 \\c =  \frac{5}{3} \\ d = 1
+\end{cases}
+\]
+Тогда интеграл имеет вид:
+\[
+\int \frac{-\frac{5}{3} x +0 }{x^2+4} + \frac{\frac{5}{3}x + 1}{x^2+1} \, dx = 
+\]
+\[
+=
+\int \frac{-\frac{5}{3} x +0 }{x^2+4} \, dx + \int \frac{\frac{5}{3}x + 1}{x^2+1} \, dx  
+\]
+Посчитаем отдельно:
+\begin{itemize}
+\item
+\[
+\int \frac{-\frac{5}{3} x +0 }{x^2+4} \, dx = -\frac{5}{3} \int \frac{x}{x^2+4} \, dx = -\frac{5}{3} \cdot \frac{1}{2} \ln (x^2+4)  + C\] 
+\item
+\[
+ \int \frac{\frac{5}{3}x + 1}{x^2+1} = \frac{1}{3} \int \left( \frac{5x}{x^2+1} + \frac{3}{x^2+1} \right) \,dx  = \frac{1}{3} \cdot \frac{5}{2} \ln(x^2 + 1) + \frac{1}{3} \cdot 3 \;\text{arctg} (x) + C
+\]
+\end{itemize}
+И по итогу получаем:
+\[
+=-\frac{5}{6} \ln(x^2+4) + \frac{5}{6} \ln(x^2 +1) + \text{arctg} (x) + C = 
+\frac{5}{6}\left[\ln(x^2 + 1) - \ln(x^2 + 4) \right] + \text{arctg} (x) + C
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\frac{5}{6}\left[\ln(x^2 + 1) - \ln(x^2 + 4) \right] + \text{arctg} (x) + C
+\]
+\end{center}
+\end{document}

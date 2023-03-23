@@ -1,0 +1,409 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[left=2cm,right=2cm,
+    top=4cm,bottom=4cm,bindingoffset=0cm]{geometry}
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий. 208. Алгебра -- 8
+\end{center}
+\section*{Номер 1}
+\[
+\frac{9 - 40\sqrt[3]{6} -6 \sqrt[6]{36}}{1 - \sqrt[3]{6} - 3\sqrt[3]{36}} \in \mathbb{Q}(\sqrt[6]{6})
+\]
+
+\begin{center}
+Делаю по алгосу с семинара.
+\end{center}
+
+Пусть $x = \sqrt[3]{6}$, тогда $x^3 = 6$
+
+x есть алгебр. над $\mathbb{Q}$ с минимальным многочленом $h = x^3 - 6$. А также:
+
+\[
+\mathbb{Q}(\sqrt[3]{6}) \simeq \mathbb{Q}[x]/(h)
+\]
+
+Тогда:
+
+\[
+\frac{9-40x-6x^2}{1-x-3x^2} = \beta_0 + \beta_1x + \beta_2x^2
+\]
+\[
+9-40x - 6x^2 = ( \beta_0 + \beta_1x + \beta_2x^2) \cdot (1 - x -3x^2)
+\]
+\[
+9-40x-6x^2 = -3\beta_0x^2 - \beta_0 x + \beta_0 - 3\beta_1x^3 - \beta_1x^2 + \beta_1 x - 3\beta_2x^4 - \beta_2x^3 + \beta_2x^2
+\]
+\[
+9-40x-6x^2 = -3\beta_0x^2 - \beta_0 x + \beta_0 - 18\beta_1 - \beta_1x^2 + \beta_1 x - 18\beta_2x - 6\beta_2x + \beta_2x^2
+\]
+\[
+9-40x-6x^2 = (\beta_0 - 18\beta_1 - 6\beta_2) - (\beta_0 - \beta_1 + 18\beta_2)x - (3\beta_0 +\beta_1 - \beta_2)x^2
+\]
+
+Получаем СЛУ, которую нам нужно решить, а именно:
+
+\[
+\begin{cases}
+\beta_0 - 18\beta_1 - 6\beta_2 = 9 \\
+-(\beta_0 - \beta_1 + 18\beta_2)  = -40\\
+ -(3\beta_0 + \beta_1 - \beta_2) = -6
+\end{cases}
+\]
+
+\[
+\begin{cases}
+\beta_0 - 18\beta_1 - 6\beta_2 = 9 \\
+\beta_0 - \beta_1 + 18\beta_2 = 40\\
+3\beta_0 + \beta_1 - \beta_2 = 6
+\end{cases}
+\]
+
+Переводим в матричный вид и считаем:
+\[
+\begin{pmatrix}
+1 & -18 & -6 & \vrule &9 \\
+1 & -1 & 18 & \vrule &40  \\
+3 & 1 & -1 & \vrule &6 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & -18 & -6 & \vrule &9 \\
+1 & -1 & 18 & \vrule &40 \\
+0 & 4 & -55 & \vrule &-114  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+0 & -17 & -24 & \vrule &-31  \\
+1 & -1 & 18 & \vrule &40 \\
+0 & 4 & -55 & \vrule &-114  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & -1 & 18 & \vrule &40  \\
+0 & -1 & -244 & \vrule &-487 \\
+0 & 4 & -55 & \vrule &-114  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -1 & 18 & \vrule &40  \\
+0 & 1 & 244 & \vrule &487 \\
+0 & 0 & -1031 & \vrule &-2062  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & -1 & 18 & \vrule &40  \\
+0 & 1 & 0 & \vrule &-1  \\
+0 & 0 & 1 & \vrule &2 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -1 & 0 & \vrule &4  \\
+0 & 1 & 0 & \vrule &-1  \\
+0 & 0 & 1 & \vrule &2  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 0 & \vrule &3 \\
+0 & 1 & 0 & \vrule &-1  \\
+0 & 0 & 1 & \vrule &2 \\
+\end{pmatrix}
+\]
+Получаем, что:
+\[
+\begin{cases}
+\beta_0 = 3\\
+\beta_1 = -1\\
+\beta_2 = 2\\
+\end{cases}
+\]
+А значит получаем вид:
+\[
+2x^2 - x + 3 = 2 \sqrt[3]{36} - \sqrt[3]{6} + 3
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+2 \sqrt[3]{36} - \sqrt[3]{6} + 3
+\]
+\end{center}
+
+\clearpage
+\section*{Номер 2}
+\[
+\sqrt{7} - \sqrt{3} + 1
+\]
+
+Ищем какой-нибудь многочлен:
+
+\[
+\alpha = \sqrt{7} - \sqrt{3} + 1
+\]
+\[
+\alpha - 1 = \sqrt{7} - \sqrt{3}
+\]
+\[
+(\alpha - 1)^2 = 10 - 2\sqrt{21}
+\]
+\[
+(\alpha - 1)^2 - 10 = -2\sqrt{21}
+\]
+\[
+((\alpha - 1)^2 - 10 )^2 = 84
+\]
+\[
+(a^2 - 2a - 9)^2 = 84
+\]
+\[
+a^4 - 4a^3 - 14a^2 + 36a + 81 = 84
+\]
+\[
+a^4 - 4a^3 - 14a^2 + 36a -3 = 0
+\]
+
+Теперь нужно показать, что найденный многочлен является минимальным, т.е $[\mathbb{Q}(\alpha) : \mathbb{Q}] = 4$.
+
+Важно заметить, что:
+
+\[
+1 \in \mathbb{Q} \rightarrow \mathbb{Q}(1) = \mathbb{Q}
+\]
+
+Далее:
+
+\[
+\mathbb{Q} \subseteq \mathbb{Q}(\sqrt{3}) \subseteq \mathbb{Q}(\sqrt{3})(\sqrt{7}) = K
+\]
+\[
+[\mathbb{Q}(\sqrt{3}) : \mathbb{Q}] = 2
+\]
+
+Покажем теперь, что $\sqrt{7} \notin \mathbb{Q}(\sqrt{3})$:
+
+Пусть лежит, тогда:
+\[
+\sqrt{7} = a + b\sqrt{3}
+\]
+
+\[
+7 = a^2 + 2\sqrt{3}ab + 3b^2
+\]
+
+Значит:
+\[
+\begin{cases}
+7 = a^2 + 3b^2 \\
+2\sqrt{3}ab = 0
+\end{cases}
+\]
+
+А значит либо $a = 0$, либо $b = 0$ $\rightarrow$ нет решений. 
+
+Итак, $\sqrt{7} \notin \mathbb{Q}(\sqrt{ 3}) \rightarrow$ $x^2 - 7$ это мин.многочлен для $\sqrt{7}$ над $\mathbb{Q}(\sqrt{3})$, тогда:
+
+\[
+[K : \mathbb{Q}(\sqrt{3})] = 2 \rightarrow [K : \mathbb{Q}] = 4
+\]
+
+Причем базис $K$ над $\mathbb{Q}$ -- это $1, \sqrt{3}, \sqrt{7}, \sqrt{21}$
+
+\[
+\alpha = \sqrt{7} - \sqrt{3} + 1 \in \mathbb{Q}(\alpha)
+\]
+
+Тогда:
+
+\[
+(\alpha - 1)^2\in \mathbb{Q}(\alpha) 
+\]
+\[
+(\alpha - 1)^2 = 10 - 2\sqrt{21} \rightarrow 10 \in \mathbb{Q}(\alpha) \rightarrow \sqrt{21} \in \mathbb{Q}(\alpha)
+\]
+
+Но тогда и:
+
+\[
+\alpha \sqrt{21} \in \mathbb{Q}(\alpha) \rightarrow 7\sqrt{3} - 3\sqrt{7} \in \mathbb{Q}(\alpha)
+\]
+
+А также:
+\[
+\alpha = \sqrt{7} - \sqrt{3} + 1 \in \mathbb{Q}(\alpha) 
+\]
+\[
+\alpha - 1 = \sqrt{7} - \sqrt{3} \in \mathbb{Q}(\alpha) \rightarrow \sqrt{7} - \sqrt{3} \in \mathbb{Q}(\alpha)
+\]
+
+\[
+\begin{cases}
+7\sqrt{3} - 3\sqrt{7} \in \mathbb{Q}(\alpha)\\
+ \sqrt{7} - \sqrt{3} \in \mathbb{Q}(\alpha)
+\end{cases} \rightarrow \sqrt{3} \in \mathbb{Q}(\alpha), \sqrt{7} \in \mathbb{Q}(\alpha)
+\]
+
+Вывод:
+
+\[
+1, \sqrt{3}, \sqrt{7}, \sqrt{21} \in \mathbb{Q}(\alpha) 
+\]
+
+Важно:
+
+\[
+\mathbb{Q}(\alpha) \subseteq K = \mathbb{Q}(\sqrt{3})(\sqrt{7}) \rightarrow 
+\]
+\[
+\rightarrow \mathbb{Q}(\alpha) = K  \rightarrow [\mathbb{Q}(\alpha) : \mathbb{Q}] = 4
+\]
+Значит это действительно минимальный многочлен
+\begin{center}
+\textbf{Ответ: } 
+\[
+a^4 - 4a^3 - 14a^2 + 36a -3
+\]
+\end{center}
+
+\clearpage
+\section*{Номер 3}
+\begin{center}
+Поле $\mathbb{F}_8$
+\end{center}
+Заметим, что $8 = 2^3$
+
+Ищем неприводимый многочлен в $\mathbb{Z}_2[x]$ степени 3: $h = x^3 + ax^2 + bx + c$
+
+Чтобы он был неприводимым, требуем:
+
+\[
+\begin{cases}
+h(0) \neq 0 : c \neq 0 \\
+h(1) \neq 0 : 1 + a + b + c \neq 0
+\end{cases}
+\]
+
+Подойдет $x^3 + x + 1$, т.к в 0 он обращается в 1, в 1 обращается в 3 (условие выше выполнено)
+
+Тогда:
+
+\begin{center}
+[не рисую $\overline{\text{overline}}$, т.к получается как-то очень некрасиво + чтобы сэкономить время]
+\end{center}
+\[
+\mathbb{F}_8 = \mathbb{Z}[x] / (x^3 + x + 1) = \{0, 1, x, x+1, x^2, x^2 + 1, x^2 + x, x^2 + x, x^2 + x + 1\}
+\]
+
+\begin{center}
+Теперь составляем таблицу сложения:
+\end{center}
+
+\begin{center}
+{\footnotesize \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+ $+$ & $0$ & $1$ & $x$ & $x + 1 $ &  $x^2$& $ x^2 + 1$ & $x^2 + x$  &$  x^2 + x + 1 $\\
+\hline
+ $0$&  $0$&$1$  &$x$  &$x+1$  &$x^2$  &$x^2+1$ &$x^2+x$   & $x^2 + x + 1$ \\
+\hline
+$1$ & $1$ &  $0$& $x + 1$  &$x$  &$x^2 + 1$  & $x^2$ &  $x^2 + x + 1$& $x^2 + x$ \\
+\hline
+ $x$& $x$ &  $x+1$&  $0$&$1$  & $x^2 + x$ &  $x^2 + x + 1$&  $x^2$& $x^2 + 1$ \\
+\hline
+$x + 1$ & $x + 1$ & $x$& $1$ &$0$  &$x^2 + x  +1$  &$x^2 + x$  & $x^2 + 1$ &$x^2$  \\
+\hline
+$x^2$ &$x^2$  &$x^2 + 1$  &$x^2 + x$  & $x^2 + x + 1$ & $0$ & $1$ &$x$  &$x+1$  \\
+\hline
+ $x^2 + 1$&$x^2 + 1$  & $x^2$ & $x^2 + x +1$ & $x^2 + x$ &  $1$&$0$  &  $x + 1$&  $x$\\
+\hline
+ $x^2 + x$&$x^2 + x$  &$x^2 + x + 1$  & $x^2$ & $x^2 + 1$ &  $x$& $x+1$ &$0$  & $1$ \\
+\hline
+ $x^2 + x + 1$& $x^2 + x +1$ & $x^2+x$ &$x^2+1$  &$x^2$  &$x + 1$  & $x$ & $1$ & $0$ \\
+\hline
+\end{tabular}
+}
+\end{center}
+
+\begin{center}
+Формула понижения степени:
+\end{center}
+\[
+x^3 = x + 1
+\]
+
+\begin{center}
+Теперь составляем таблицу умножения:
+\end{center}
+
+\begin{center}
+{\footnotesize \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+\hline
+ $\times$ & $0$ & $1$ & $x$ & $x + 1 $ &  $x^2$& $ x^2 + 1$ & $x^2 + x$  &$  x^2 + x + 1 $\\
+\hline
+ $0$&  $0$&$0$  &$0$  &$0$  &$0$  &$0$ &$0$   & $0$ \\
+\hline
+$1$ & $0$ &  $1$& $x $  &$x + 1$  &$x^2$  & $x^2 + 1$ &  $x^2 + x $& $x^2 + x + 1$ \\
+\hline
+ $x$& $0$ &  $x$&  $x^2$&$x^2  + x$  & $x+ 1$ &  $1$&  $x^2 + x + 1$& $x^2+ 1$ \\
+\hline
+$x + 1$ & $0$ & $x  + 1$& $x^2 + x$ &$x^2 + 1$  &$x^2 + x + 1$  &$x^2$  & $1$ &$x$  \\
+\hline
+$x^2$ &$0$  &$x^2$  &$x + 1$  & $x^2 + x + 1$ & $x^2 + x$ & $x$ &$x^2 + 1$  &$1$  \\
+\hline
+ $x^2 + 1$&$0$  & $x^2 + 1$ & $1$ & $x^2$ &  $x$&$x^2 + x + 1$  &  $x + 1$&  $x^2 + x$\\
+\hline
+ $x^2 + x$&$0$  &$x^2 + x$  & $x^2 + x + 1$ & $1$ &  $x^2 +1$& $x+1$ &$x$  & $x^2$ \\
+\hline
+ $x^2 + x + 1$& $0$ & $x^2+x + 1$ &$x^2+1$  &$x$  &$1$  & $x^2 + x$ & $x^2$ & $x+1$ \\
+\hline
+\end{tabular}
+}
+\end{center}
+\begin{center}
+Умер пока считал + техал :(
+\end{center}
+\end{document}

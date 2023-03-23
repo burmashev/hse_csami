@@ -1,0 +1,78 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[left=2cm,right=2cm,
+    top=4cm,bottom=4cm,bindingoffset=0cm]{geometry}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- 1}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{1.}
+\begin{equation*}
+\begin{gathered}
+\sum_{n = 3}^{\infty} \left( 2 \sqrt[5]{n - 2} +3 \sqrt[5]{n} - 5 \sqrt[5]{n + 1} \right) \\
+\end{gathered}
+\end{equation*}
+Находим частичную сумму:
+\[
+S_n =  2\sum_{k = 3}^{n}  \sqrt[5]{k - 2} + 3\sum_{k = 3}^{n} \sqrt[5]{k}- 5\sum_{k = 3}^{n} \sqrt[5]{k + 1} 
+\]
+\[
+= 2 \sum_{k = 1}^{n - 2} \sqrt[5]{k} + 3 \sum_{k = 3}^{n} \sqrt[5]{k} - 5\sum_{k = 4}^{n + 1} \sqrt[5]{k} = 2 \sqrt[5]{1} + 2 \sqrt[5]{2} + 5 \sqrt[5]{3} - 2 \sqrt[5]{n - 1} - 2 \sqrt[5]{n}  - 5 \sqrt[5]{n + 1} \underset{n \rightarrow \infty}{\longrightarrow} - \infty
+\]
+\begin{center}
+\textbf{Ряд расходится} 
+\end{center}
+\subsection*{2.}
+\[
+\sum_{n = 1}^{\infty} n \sin \frac{n + 1}{n^2 + 2}
+\]
+Проверяем по необходимому условию сходимости ряда:
+
+
+Синус можем разложить в $x + \overline{o}(x)$, т.к аргумент синуса стремится к нулю ($n^2$ в знаменателе сильнее) при $n \rightarrow \infty$
+\[
+a_n = n \left(\frac{n + 1}{n^2 + 2} + \overline{o} \left[\frac{n + 1}{n^2 + 2} \right] \right) = \frac{n^2 + n}{n^2 + 2} + \overline{o}(1) = \frac{1 + \frac{1}{n}}{1 + \frac{2}{n^2}} \underset{n \rightarrow \infty}{\longrightarrow} 1 \neq 0 
+\]
+Необходимое условие не выполняется $\rightarrow$ ряд \textbf{расходится}
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\end{document}

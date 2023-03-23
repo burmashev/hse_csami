@@ -1,0 +1,183 @@
+Ч%\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий, 208, Дискра -- 16
+\end{center}
+\section*{Номер 1}
+\begin{equation*}
+\begin{gathered}
+\Omega = \{x : 0 < x < 101\} \\
+|\Omega| = 100 \\
+A = \{x : 0 < x < 101, \;x \vdots 3\} \\
+|A| = 33 \\
+B = \{x : 0 < x < 101, \; x \vdots 7\} \\
+|B| = 14\\
+A \cap B = \{x : 0 < x < 101, \; (x \vdots 3) \cap (x \vdots 7)\} \\
+|A \cap B| = 4 \\
+P(A|B) = \frac{P(A\cap B)}{P(B)} = \frac{\frac{4}{100}}{\frac{14}{100}} = \frac{2}{7}
+\end{gathered}
+\end{equation*}
+\begin{center}
+\textbf{Ответ: } $\frac{2}{7}$
+\end{center}
+\section*{Номер 2}
+\begin{equation*}
+\begin{gathered}
+\Omega = \{ f : \{1 \ldots n\} \rightarrow \{1 \ldots n\}\} \\
+|\Omega| = n^n \\
+A = \{f : f(1) = 1\} \\
+|A| = n^{n-1} \\
+B = \{f : f \text{ является иньекцией}\} \\
+|B| = n! \\
+A \cap B = \{f : (f(1) = 1) \cap (f \text{ является иньекцией})\} \\
+|A \cap B| = (n-1)!\\
+P(A|B) = \frac{P(A\cap B)}{P(B)} = \frac{(n-1)! \cdot n^n}{n^n \cdot n!} = \frac{1}{n} \\
+P(A) = \frac{n^{n-1}}{n^n} = \frac{1}{n} \\
+P(A) = P(A|B) \rightarrow \text{ А и B независмы }
+\end{gathered}
+\end{equation*}
+\section*{Номер 3}
+\begin{equation*}
+\begin{gathered}
+A = \{\text{вероятность вытащить карту из 1 колоды}\} \\
+B = \{\text{вероятность вытащить 8 червей либо из 1, либо из 2 колоды}\}\\
+A \cap B = \{ \text{вытащить 8 червей из 1 колоды} \} \\
+P(B) = \frac{2}{36+35}\\
+P(A \cap B) = \frac{1}{71}\\
+P(A|B) = \frac{P(A\cap B)}{P(B)} = \frac{\frac{1}{71}}{\frac{2}{71}} = \frac{1}{2}
+\end{gathered}
+\end{equation*}
+\begin{center}
+\textbf{Ответ: } $\frac{1}{2}$
+\end{center}
+\section*{Номер 4}
+\begin{equation*}
+\begin{gathered}
+\frac{1}{10} - \text{ вероятность наличия ошибки в задаче} \\
+\frac{4}{5} - \text{ вероятность правильного ответа ассистента} \\
+\frac{3}{4} - \text{ вероятность правильного ответа лектора}\\
+A  = \{\text{в задаче есть ошибка}\} \\
+B = \{\text{по ассистенту ошибки нет, по лектору ошибка есть}\} \\
+A \cap B = \{\text{в задаче  точно есть ошибка, при этом ассистент ошибся, а лектор был прав}\}
+\end{gathered} 
+\end{equation*}
+Найдем вероятность B: 
+
+если ошибка действительно есть, тогда ассистент был прав, а лектор ошибься. Если же ошибки не было, то ассистат ошибся, а лектор был прав, тогда вероятность:
+\begin{equation*}
+\begin{gathered}
+P(B) = \frac{1}{10} \cdot (1 - \frac{4}{5}) \cdot \frac{3}{4} + \frac{9}{10} \cdot \frac{4}{5} \cdot ( 1 - \frac{3}{4}) = \frac{3}{200} + \frac{36}{100} = \frac{39}{100}
+\end{gathered}
+\end{equation*}
+Тогда найдем вероятность $A \cap B$:
+\begin{equation*}
+\begin{gathered}
+P(A \cap B) = \frac{1}{10} \cdot \frac{1}{5} \cdot \frac{3}{4}  = \frac{3}{200}
+\end{gathered}
+\end{equation*}
+Тогда:
+\[
+P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{\frac{3}{200}}{\frac{39}{200}} = \frac{1}{13}
+\]
+\begin{center}
+\textbf{Ответ: } $\frac{1}{13}$
+\end{center}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section*{Номер 5}
+Для проверки независимости нужно посмотреть на вероятность:
+\[
+P(A|B \cap C) = \frac{P(A \cap B \cap C)}{P(B \cap C)}
+\]
+Из попарной независимости событий следует:
+\[
+P(A \cap B) = P(A) \cdot P(B)
+\]
+\[
+P(B \cap C) = P(B) \cdot P(C)
+\]
+\[
+P(A \cap C) = P(A) \cdot P(C)
+\]
+\[
+P(A\cap B\cap C) = P(A) \cdot P(B) \cdot P(C)
+\]
+\[
+P(A|(B \cap C)) = \frac{P(A \cap B \cap C)}{P(B \cap C)} = \frac{Pr(A) \cdot P(B) \cdot P(C)}{P(B) \cdot P(C)} = P(A)
+\]
+Значит события A и $B \cap C$ независимы
+\section*{Номер 6}
+Пускай:
+\begin{equation*}
+\begin{gathered}
+\Omega = \{1, 2, 3, 4, 5, 6, 7, 8\} \\ 
+|\Omega| = 8 \\
+A  = \{\text{выбрать } (1, 6, 7, 8) \text{ из } \Omega \} \\
+B = \{\text{выбрать } (1, 3, 7, 8) \text{ из } \Omega \} \\
+C =  \{\text{выбрать } (1, 2, 4, 5) \text{ из } \Omega \} \\
+P(A) = \frac{4}{8} = \frac{1}{2} \\
+P(B) = \frac{4}{8} = \frac{1}{2}  \\
+P(C) = \frac{4}{8} = \frac{1}{2}  \\
+P(A) \cdot P(B) \cdot P(C) = \frac{1}{2^3} = \frac{1}{8} \\
+A \cap B \cap C = \{\text{выбрать } (1) \text{ из } \Omega \} \\
+P(A \cap B \cap C) = \frac{1}{8} \\
+P(A \cap B \cap C) = P(A) \cdot P(B) \cdot P(C) = \frac{1}{8}
+\end{gathered}
+\end{equation*}
+\begin{center}
+\textbf{Ч.Т.Д}
+\end{center}
+\end{document} 

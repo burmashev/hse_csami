@@ -1,0 +1,189 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- 2}
+\date{\today}
+\begin{document}
+\maketitle 
+\section*{Номер 1}
+Исследовать семейство функций $f(x, y)$ на равномерную по $y$ сходимость на указанном множестве:
+\[
+f(x, y) = \frac{x \arctg(xy)}{x + 1 }, y \in \left(0, + \infty \right), x \rightarrow 0+
+\]
+Заметим:
+\[
+\lim_{x \rightarrow 0+} \frac{x \arctg(xy)}{x + 1} = 0
+\]
+Предположим, что сходится к $g(y) = 0$, рассмотрим:
+\[
+\underset{(0, +\infty)}{\sup} | f - g | \overset{?}{\underset{x \rightarrow 0+}{\longrightarrow}} 0
+\]
+Берем частную производную:
+\[
+\frac{\partial f}{\partial y} = \frac{x^2}{(x + 1)(x^2y^2 + 1)}
+\]
+Частная производная больше нуля, функция возрастает, значит супремум будет при $y \rightarrow \infty$. Получаем:
+\[
+\lim_{
+\begin{matrix}
+x \rightarrow 0+ \\
+y \rightarrow +\infty 
+\end{matrix}} 
+\underset{y \in (0, +\infty)}{\sup} \left|  \frac{x \arctg(xy)}{x + 1 } - 0\right|  = 
+\lim_{
+\begin{matrix}
+x \rightarrow 0+ \\
+y \rightarrow +\infty 
+\end{matrix}} 
+\left(
+\frac{x \arctg(xy)}{x + 1 }
+\right) =
+\]
+\[
+=
+\begin{bmatrix}
+\arctg(xy) \text{ ограничен} \\
+\frac{x}{x + 1} \underset{x \rightarrow 0+}{\longrightarrow} 0
+\end{bmatrix} = 
+0 
+\]
+Предел равен нулю, а значит равномерная сходимость есть.
+\begin{center}
+\textbf{Ответ: } равномерная сходимость есть
+\end{center}
+\clearpage
+
+\section*{Номер 2}
+Исследовать семейство функций $f(x, y)$ на равномерную по $y$ сходимость на указанном множестве:
+\[
+f(x, y) = \frac{x \arctg(xy)}{x + 1 }, y \in \left(0, + \infty \right), x \rightarrow +\infty
+\]
+Заметим:
+\[
+\lim_{x \rightarrow + \infty} \frac{x \arctg(xy)}{x + 1} = \lim_{x \rightarrow + \infty} \frac{\frac{xy}{x^2y^2 + 1} + \arctg(xy)}{0 + 1}  = \frac{\pi}{2}
+\]
+Всё аналогично первому номеру, только теперь $g(y) = \frac{\pi}{2}$ и супремум работает по другому. Функция у нас возрастает (выяснили в первом номере). При устремлении $x \rightarrow \infty, y \rightarrow \infty$ мы получаем в пределе $\frac{\pi}{2}$. Тогда $| f(x, y) - \frac{\pi}{2}|$ будет минимален (а мы хотим его максимизировать по определению). Из-за этого понимаем, что супремум будет слева (т.е при $y \rightarrow 0$). Смотрим:
+\[
+\lim_{
+\begin{matrix}
+x \rightarrow +\infty \\
+y \rightarrow 0
+\end{matrix}}
+\underset{y \in (0, +\infty)}{\sup} \left|  \frac{x \arctg(xy)}{x + 1 } - \frac{\pi}{2}\right|  = 
+\lim_{
+\begin{matrix}
+x \rightarrow +\infty \\
+y \rightarrow 0
+\end{matrix}}
+\left|
+  \frac{x \arctg(xy)}{x + 1 } - \frac{\pi}{2}
+ \right| =
+\]
+\[
+=
+\begin{bmatrix}
+\arctg (xy) \underset{y \rightarrow 0}{\rightarrow}0 \\
+\frac{x}{x + 1} \underset{x \rightarrow +\infty}{\rightarrow} 1
+\end{bmatrix} = 
+ \frac{\pi}{2} \neq 0
+\]
+Получили \textbf{не} ноль, значит равномерной сходимости нет
+\begin{center}
+\textbf{Ответ: } равномерной сходимости нет
+\end{center}
+\clearpage
+
+\section*{Номер 3}
+Исследовать несобственный интеграл на равномерную сходимость (по определению):
+\[
+\int\limits_1^{+\infty} \frac{pdx}{1 + p^2x^2}, p \in [1, p_0], p_0 > 1
+\]
+Нас интересует предел:
+\[
+\lim_{A \rightarrow + \infty} \; \underset{[1, p_0]}{\sup} \left|
+\int\limits_A^{+\infty}  \frac{pdx}{1 + p^2x^2}
+ \right| = 0?
+\]
+Считаем:
+\[
+\int\limits_A^{+\infty}  \frac{pdx}{1 + p^2x^2} = \arctg(px) \Bigg|^{+\infty}_{A} = \frac{\pi}{2} - \arctg(pA)
+\]
+Функция убывает, супремум будет достигаться слева. Теперь смотрим предел:
+\[
+\lim_{A \rightarrow +\infty}
+\underset{[1, p_0]}{\sup} \left|
+ \frac{\pi}{2} - \arctg(pA) \right| =
+ \lim_{A \rightarrow +\infty} \left|
+ \frac{\pi}{2} - \arctg(A) \right| =
+0
+\]
+Получили 0, значит есть равномерная сходимость
+\begin{center}
+\textbf{Ответ: } равномерная сходимость есть
+\end{center}
+\clearpage
+\section*{Номер 4}
+Исследовать несобственный интеграл на равномерную сходимость (по определению):
+\[
+\int\limits_1^{+\infty} \frac{pdx}{1 + p^2x^2}, p \in [0, p_0], p_0 > 0
+\]
+Аналогично предыдущему номеру нас интересует предел:
+\[
+\lim_{A \rightarrow + \infty} \; \underset{[0, p_0]}{\sup} \left|
+\int\limits_A^{+\infty}  \frac{pdx}{1 + p^2x^2}
+ \right| = 0?
+\]
+Интеграл все тот же, считаем сразу:
+\[
+\lim_{A \rightarrow +\infty}
+\underset{[0, p_0]}{\sup} \left|
+ \frac{\pi}{2} - \arctg(pA) \right| =
+ \lim_{
+\begin{matrix}
+A \rightarrow +\infty \\
+p \rightarrow 0
+\end{matrix}} \left|
+ \frac{\pi}{2} - \arctg(pA) \right| =
+\frac{\pi}{2} \neq 0
+\]
+Получили \textbf{не} ноль, значит равномерной сходимости нет
+\begin{center}
+\textbf{Ответ: } равномерной сходимости нет
+\end{center}
+\end{document}

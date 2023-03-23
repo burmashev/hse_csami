@@ -1,0 +1,290 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- 5}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{Номер 1}
+\[
+F(p) = \int\limits_0^{\infty} \frac{e^{-px} - e^{-qx}}{x} \sin 3x \; dx, p, q > 0
+\]
+1)
+Дифференцируем по параметру, возьмем $p$, начинаем обосновывать. Проблемы у нас в нуле, так что нужно будет доопределить (синус в нуле ведет себя как ноль):
+\[
+f = 
+\begin{cases}
+\frac{e^{-px} - e^{-qx}}{x} \sin 3x, &x > 0 \\
+0, &x = 0 
+\end{cases}
+\]
+$f$ непрерывна на $[0, +\infty) \times [c, d], c > 0$, $c$ содержит в себе $q$. Берем производную по параметру:
+\[
+\frac{\partial f}{\partial p}  =
+\begin{cases}
+ -e^{-px} \sin 3x &x > 0\\
+0, &x = 0
+\end{cases}
+\]
+Заметим, что в нуле производная для $x > 0$ тоже дает ноль, так что можно избавиться от системы:
+\[
+\frac{\partial f}{\partial p}  =  -e^{-px} \sin 3x, x \geq 0,  \text{ непрерывна там же}
+\]
+2) $\exists \; p_0 = q : \; \int\limits_0^{\infty} \frac{e^{-p_0x} - e^{-qx}}{x} \sin 3x =  \int\limits_0^{\infty} 0 dx $ сходится
+\newline
+3) $ -\int\limits_0^{\infty} e^{-px} \sin 3x $ равномерно сходится на $[c, d]$ по признаку Вейерштрасса : $|-e^{-px} \sin 3x | \leq e^{-cx} $, а $\int\limits_0^{\infty} e^{-cx} dx $ сходится. Значит на $[c, d]$ можно брать производную по теореме о дифференцировании НИЗП:
+\[
+F'(p) = - \int\limits_0^{\infty} e^{-px} \sin 3x dx 
+\]
+А в силу произвольности выбора $c, d$ мы можем утверждать это для любого $p > 0 $:
+\[
+F'(p) = - \int\limits_0^{\infty} e^{-px} \sin 3x dx , p > 0
+\]
+Ну а теперь считаем:
+\[
+- \int\limits_0^{\infty} e^{-px} \sin 3x dx  = - \left(\frac{e^{-px}}{p^2 + 9}
+ \left(
+-p \sin 3x - 3 \cos 3 x 
+ \right)
+\right)
+\Bigg|_0^{+\infty} = - 
+\left( 
+0 + \frac{3}{p^2 + 9}
+\right)
+=
+- \frac{3}{p^2 + 9}
+\]
+Тогда:
+\[
+F(p) = - \int \frac{3}{p^2 + 9} =  - \arctg \left( \frac{p}{3}\right) + C
+\]
+Нужно найти константу, возьмем $p = q$, тогда:
+\[
+F(q) = 0 = - \arctg \left( \frac{q}{3}\right) + C
+\]
+\[
+C = \arctg \left( \frac{q}{3}\right)
+\]
+Итого:
+\[
+F = -  \arctg \left( \frac{p}{3}\right) +  \arctg \left( \frac{q}{3}\right)
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+F = -  \arctg \left( \frac{p}{3}\right) +  \arctg \left( \frac{q}{3}\right)
+\]
+\end{center}
+\clearpage
+\section*{Номер 2}
+\[
+\int\limits_0^{\infty} x e^{-px} \cos 2x dx , p > 0
+\]
+Заметим, что номер аналогичен 7 с семинара и при откидывании икса и последующем взятии частной производной мы вернемся к исходной функции, т.е:
+\[
+(- e^{-px} \cos 2x)'_p = x e^{-px} \cos 2x 
+\]
+Поэтому рассмотрим интеграл $\int - e^{-px} \cos 2x dx $, а его мы как раз считали в 4 номере из семинара. Так что:
+\[
+F(p) = -\int\limits_0^{\infty} e^{-px} \cos 2x dx =- \frac{e^{-px}}{p^2 + 4} ( 2 \sin 2x -p \cos 2x) \Bigg|_0^{\infty} = -\frac{p}{p^2 + 4} 
+\]
+Теперь обосновываем:
+\newline
+1) 
+\[
+f = e^{-px} \cos 2x \text{ непрерывна }
+\]
+\[
+\frac{\partial f}{\partial p} = -x e^{-px} \cos 2x \text{ непрерывна на } [0, + \infty] \times [c, d]
+\]
+2) $\exists \; p_0 > 0 $ -- любой, т.к  сходится
+\newline
+3) $\int\limits_0^{\infty} xe^{-px} \cos 2x dx $ сходится равномерно по признаку Вейерштрасса, т.к $\left| -x e^{-px} \cos 2x \right| \leq \left|-x e^{-px} \right| \leq xe^{-cx}$.
+Ну а такой интеграл сходится. Значит по той же теореме из 1 номера:
+\[
+F'(p) = \int\limits_0^{\infty} xe^{-px} \cos 2x dx  = \left( -\frac{p}{p^2 + 4}\right)' = \frac{p^2 - 4}{(p^2 + 4)^2}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\frac{p^2 - 4}{(p^2 + 4)^2}
+\]
+\end{center}
+
+
+
+
+
+
+
+\clearpage
+\section*{Номер 3}
+\[
+\int_0^1 x^{p - 1} \ln^2 x dx, p > 0 
+\]
+Можно заметить, что т.к у нас тут $\ln$, то от более простой функции можно прийти к нашей исходной с помощью производных, а именно:
+\[
+(x^{p-1})'_p = x^{p-1} \ln x
+\]
+\[
+(x^{p-1})^{''}_p = \left( x^{p-1} \ln x \right)'_p =  x^{p-1} \ln^2 x
+\]
+Так что рассмотрим:
+\[
+F(p) = \int_0^1 x^{p-1} dx = \frac{1}{p}
+\]
+Но надо это все будет обосновать, так что по теореме о дифференцируемости проверяем сначала первый переход (от $F(p)$ к $F'(p))$:
+\newline
+1) 
+\[
+f = x^{p-1} \text{ непрерывна }
+\]
+В частной производной проблемы из-за $\ln x$, так что дополним 
+\[
+\frac{\partial f}{\partial p} = 
+\begin{cases}
+x^{p-1} \ln x, &x > 0 \\
+0, & x = 0 
+\end{cases} \text{ непрерывна на } [0, 1] \times [c, d]
+\]
+2) $\exists \; p_0 > 0 $ -- любой, т.к  $\int\limits_0^1 x^{p-1} dx = \frac{1}{p}$сходится
+\newline
+3) $\int\limits_0^1 x^{p-1} \ln x$ сходится равномерно по признаку Вейерштрасса : $|x^{p-1} \ln x| \leq |x^{c-1} \ln x |$. Ну а $\lim\limits_{a \rightarrow 0} \int\limits_a^1  x^{c-1} \ln x dx$ сходится как собственный интеграл.Значит по теореме о дифференцируемости:
+\[
+F'(p) = \left(\frac{1}{p} \right)' = -\frac{1}{p^2}
+\]
+Теперь проверяем второй переход, чтобы наконец вернуться к исходной функции, рассмотрим:
+\[
+F'(p) = \int_0^1 x^{p-1} \ln x
+\]
+1) 
+\[
+f = 
+\begin{cases}
+ x^{p-1} \ln x, &x > 0 \\
+0, &x = 0
+\end{cases}
+\text{ непрерывна }
+\]
+\[
+\frac{\partial f}{\partial p} = 
+\begin{cases}
+x^{p-1} \ln^2 x, &x > 0 \\
+0, & x = 0 
+\end{cases} \text{ непрерывна на } [0, 1] \times [c, d]
+\]
+2) $\exists \; p_0 > 0 $ -- любой, т.к  т.к  $\int\limits_0^1 x^{p-1} \ln x dx = -\frac{1}{p^2}$ сходится
+\newline
+3) $\int\limits_0^1 x^{p-1} \ln^2 x$ сходится равномерно по признаку Вейерштрасса : $|x^{p-1} \ln^2 x| \leq |x^{c-1} \ln^2 x |$. Ну а $\lim\limits_{a \rightarrow 0} \int\limits_a^1  x^{c-1} \ln^2 x dx$ сходится как собственный интеграл. Значит по теореме о дифференцируемости:
+\[
+F''(p) = \left(-\frac{1}{p^2} \right)' = \frac{2}{p^3}
+\]
+Ну а из показанного в самом начале это и будет нашим исходным интегралом, т.е:
+\[
+\int_0^1 x^{p - 1} \ln^2 x dx, = F''(p) =  \frac{2}{p^3}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+ \frac{2}{p^3}
+\]
+\end{center}
+\clearpage
+
+
+
+
+\section*{Номер 4}
+\[
+F(p) = \int_0^1 \frac{x^{p-1} - 1}{\ln x} dx, p  > 0 
+\]
+Начинаем обосновывать:
+\newline
+1) Проблема у нас при $x = 1$, т.к имеем логарифм, так что нужно будет доопределить, при стремлении к 1 получаем неопределенность ($\frac{0}{0}$), поэтому посмотрим по Лопиталю:
+\[
+ \frac{x^{p-1} - 1}{\ln x} \sim  \frac{(p-1)x^{p-2}}{\frac{1}{x}} \underset{x \rightarrow 1}{\longrightarrow} p - 1
+\]
+\[
+f =
+\begin{cases}
+ \frac{x^{p-1} - 1}{\ln x}, &x > 1 \\
+p - 1 , & x = 1
+\end{cases}
+\]
+$f$ непрерывна на $[0, 1] \times [c, d]$, берем производную по параметру:
+\[
+\frac{\partial f}{\partial p} = 
+\begin{cases}
+x^{p-1}, &x > 1 \\
+1, &x = 1
+\end{cases}
+\]
+Заметим, что в единице производная для $x > 1$ тоже дает один, так что можно избавиться от системы:
+\[
+\frac{\partial f}{\partial p}
+= x^{p-1}
+\]
+2) $\exists \; p_0 = 1 : \; \int\limits_0^1 \frac{x^{p_0 - 1} - 1}{ \ln x } dx = \int\limits_0^1 0 dx$ сходится
+\newline
+3) $\int\limits_0^1 x^{p-1} dx$ сходится равномерно по признаку Вейерштрасса:  $|x^{p-1}| \leq x^{c - 1} $, а $\int\limits_0^1 x^{c-1} dx$ сходится. Значит можно брать производную по теореме о дифференцировании НИЗП:
+\[
+F'(p) = \int_0^1 x^{p-1} dx  = \frac{1}{p}
+\]
+Отсюда:
+\[
+F = \int  \frac{1}{p} = \ln p + C
+\]
+Нужно найти константу, возьмем $p = 1$, тогда:
+\[
+F(1) = 0 = \ln p + C
+\]
+\[
+C = 0
+\]
+Итого:
+\[
+F = \ln p
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+F = \ln p
+\]
+\end{center}
+\end{document}

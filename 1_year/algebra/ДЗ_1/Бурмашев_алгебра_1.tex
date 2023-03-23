@@ -1,0 +1,442 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий. 208. Алгебра -- 1
+\end{center}
+\section*{Номер 1} 
+\begin{itemize}
+\item
+Проверим, что формула действительно задает бинарную операцию, т.е мы из $ (\mathbb{Q} \setminus \{1\}) \times (\mathbb{Q} \setminus \{1\}) $ попадаем в $(\mathbb{Q} \setminus \{1\})$
+
+Из  $m, n \in \mathbb{Q} \setminus \{1\}$ следует, что $3mn - 3m - 3n + 4$ точно приведет нас в $\mathbb{Q}$. Нам нужно  доказать, что этой операцией мы не сможем получить 1. Пойдем методом от противного:
+
+\quad Пусть $3mn - 3m - 3n + 4 = 1$, $m \neq 1, n \neq 1 $. Тогда:
+\[
+3mn - 3m = 3n -3
+\]
+\[
+mn - m  =  n - 1
+\]
+\[
+m( n -1 ) = n - 1 \;  \bigg| : (n - 1) \text{ т.к n  $\neq $ 1}
+\]
+\[
+m = 1
+\]
+
+\quad Получили противоречие, значит $m \circ n $ -- бинарная операция
+
+\item Теперь докажем, что $\left( \mathbb{Q} \setminus \{1\}, \circ \right)$ является группой,  для этого посмотрим на три аксиомы:
+
+\begin{enumerate}
+\item Ассоциативность:
+
+Пусть  $a, b, c \in \mathbb{Q} \setminus 1$, тогда:
+
+\quad С одной стороны:
+\[
+(a \circ b) = 3ab - 3a - 3b + 4
+\]
+\[
+(a \circ b) \circ c = 3(3ab - 3a - 3b + 4)c - 3(3ab - 3a - 3b + 4) - 3c + 4 = 
+\]
+\[
+=
+9 a b c - 9 a b - 9 a c + 9 a - 9 b c + 9 b + 9 c - 8
+\]
+\quad С другой стороны:
+\[
+(b \circ c) = 3bc - 3b - 3c + 4
+\]
+\[
+a \circ (b \circ c) = 3a(3bc - 3b - 3c + 4) - 3a - 3(3bc - 3b -3c + 4)  + 4=
+\]
+\[
+= 9 a b c - 9 a b - 9 a c + 9 a - 9 b c + 9 b + 9 c - 8
+\]
+Значит:
+\[
+(a \circ b) \circ c = a \circ (b \circ c)
+\]
+
+
+\item Нейтральный элемент:
+
+Пусть $a \in \mathbb{Q} \setminus \{1\}$
+
+\quad Найдем его:
+\[
+e \circ a = a
+\]
+\[
+3ea - 3e - 3a + 4 = a
+\]
+\[
+e = \frac{4}{3} \in \mathbb{Q} \setminus \{1\}
+\]
+
+\quad Теперь проверяем:
+\[
+a \circ e = 3ae - 3a - 3e + 4 = 3a \cdot \frac{4}{3} - 3a - 3\cdot \frac{4}{3} + 4 = 
+\]
+\[
+= 4a - 3a -4 + 4 = a
+\]
+\quad По итогу получаем:
+\[
+e \circ a = a \circ e = a \; \; \forall a \in \mathbb{Q} \setminus \{1\}
+\]
+
+\item Обратный элемент:
+
+\quad Найдем его:
+\[
+a \circ b = e = \frac{4}{3}
+\]
+\[
+3ab - 3b - 3a + 4 = \frac{4}{3}
+\]
+\[
+9(ab - b - a) + 12 = 4
+\]
+\[
+9ab - 9b  = -8 + 9a
+\]
+\[
+b(9a - 9) = 9a - 8 \; \bigg| : (9a - 9) \neq 0 \text{ т.к $a \neq 1$}
+\]
+\[
+b = \frac{9a-8}{9a - 9} \in \mathbb{Q} \setminus \{1\}
+\]
+\quad Теперь проверяем:
+\[
+b \circ a = 3ab - 3a - 3b + 4 = 3a \cdot \frac{9a-8}{9a - 9} - 3a - 3 \cdot \frac{9a-8}{9a - 9} + 4 = 
+\]
+\[
+=
+\frac{3a(9a - 8) - 3a(9a-9) - 3(9a-8) + 4(9a-9)}{9a-9} = \frac{12a-12}{9a-9} = \frac{12(a - 1)}{9(a - 1)} = \frac{4}{3}
+\]
+\quad По итогу получаем:
+\[
+a \circ b = b \circ a  = e
+\]
+{\large \begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}}
+P.S Можно было конечно доказать коммутативность, но я слишком поздно это понял :( поэтому пофиг
+\end{enumerate}
+ \end{itemize}
+
+\clearpage
+\section*{Номер 2}
+Для группы $\left( \mathbb{C} \setminus \{0\}, \times \right) $ $e$ (нейтральный элемент) будет равен 1.
+
+
+Мы ищем все такие z (как на семинаре), что:
+\[
+\begin{cases}
+z^{18} = 1 \\
+z^{i} \neq 1 \; \forall \; i < 18
+\end{cases}
+\]
+
+Найдем множество $z^{18} =1 $:
+
+
+\quad По формуле Муавра это будет следующее множество:
+\[
+\{ z : z = \cos \frac{2\pi  k}{18} + i \cdot \sin \frac{2  \pi k}{18}, \; k = 0, 1 \ldots 17\}
+\]
+Откинем сразу те k, которые нам не подходят по второму условию из системы:
+\begin{itemize}
+\item 
+\quad k = 0 нам не подходит, т.к в таком случае у нас $\cos 0 + i \sin 0 = 1$ и, возводя в любую степень, мы  будем получать 1 (например $[\cos 0 + i \sin 0]^2 = \cos (0 \cdot 2 )+ i \sin (0 \cdot 2) = 1) $
+
+\item
+\quad Если возвести любое  z из этого множества в 9 степень, то по формуле :
+\[
+z^9 = \cos \left(9 \cdot \frac{2\pi k}{18} \right) + i \cdot \sin \left( 9 \cdot \frac{2 \pi k}{18} \right) = \cos \pi k + i \sin \pi k
+\]
+
+Т.к $z^9$ не должен быть равен единице, мы должны откинуть k, кратные двум, ибо при четном k:
+\[
+\begin{cases}
+\cos \pi k = 1 \\
+i \sin \pi k = 0 \\
+\cos \pi k + i \sin \pi k = 1 \text{ (чего мы не хотим)}
+\end{cases}
+\]
+
+\item
+\quad Если же возвести в 6 степень, то по формуле получим:
+\[
+z^6 =\cos \frac{2\pi k}{3} + i \sin \frac{2\pi k}{3}
+\]
+
+Т.к это тоже не должно быть равно единице, можем откинуть k кратные трем, т.к при k кратном трем:
+\[
+\begin{cases}
+\cos \frac{2\pi k}{3} = 1 \\
+i \sin \frac{2\pi k}{3} = 0  \\
+\cos \frac{2\pi k}{3} + i \sin \frac{2\pi k}{3} = 1
+\end{cases}
+\]
+Остаются k:
+\[
+1, 5, 7, 11, 13, 17 
+\]
+Пока откидывал k заметил, что у всех k, которые не подходят, gcd$(18, k) \neq 1$. А остались как раз те k, у которых gcd = 1. Поэтому стоит показать, что при gcd$(18, k) = j \;(>1)$ все очень плохо, из gcd = $j$ следует:
+\[
+k = k' \cdot j \; (k' < k)
+\]
+\[
+18 = n \cdot j \; (n < 18)
+\]
+Тогда:
+\[
+z = \cos \frac{2 \pi k' \cdot j}{n \cdot j } + i \cdot \sin \frac{2\pi k' \cdot j}{n \cdot j} = \cos \frac{2 \pi k' }{n} + i \cdot \sin \frac{2\pi k' }{n}
+\]
+Видно, что достаточно возвести $z$ всего лишь в степень $n$, чтобы получить 1. Т.е:
+\[
+z^n = \cos 2 \pi k'+ i \cdot \sin 2\pi k' = 1
+\]
+
+Но $n < 18$, а значит 2е условие в системе не выполняется. Из этого наблюдения получаем, что если gcd$(18, k) = 1$, то получить 1 мы сможем начиная с 18й степени, а при иных gcd нам достаточно будет возвести в меньшую степень (что я и делал, когда откидывал k руками). А значит$k : {1, 5, 7, 11, 13, 17}$ действительно подходят. Получаем ответ:
+{\large \begin{center}
+\textbf{Ответ: } 
+\[
+\cos \frac{\pi  k}{9} + i \cdot \sin \frac{ \pi k}{9}; \; k = 1, 5, 7, 11, 13, 17
+\]
+\end{center}}
+\end{itemize}
+\clearpage
+\section*{Номер 3}
+\begin{center}
+[Вот это я понимаю глина, давно такого не делал]
+\end{center}
+
+Посмотрим, что происходит в степенях у сигмы, чтобы найти $\langle \sigma \rangle$. 
+
+(перемножение справа налево, как у Авдеева)
+\begin{equation*}
+\begin{array}{lcl} 
+\sigma = \;\begin{pmatrix}
+1 & 2 & 3 &4 \\ 3 & 2 & 4 & 1 
+\end{pmatrix}
+\\\\
+\sigma^2 = \begin{pmatrix}
+1 & 2 & 3 &4 \\ 3 & 2 & 4 & 1 
+\end{pmatrix} \cdot \begin{pmatrix}
+1 & 2 & 3 &4 \\ 3 & 2 & 4 & 1 
+\end{pmatrix} = \begin{pmatrix}
+1 & 2 & 3 & 4 \\ 4 & 2 & 1 & 3
+\end{pmatrix}
+\\\\
+\sigma^3 = \begin{pmatrix}
+1 & 2 & 3 &4 \\ 1 & 2 & 3 & 4
+\end{pmatrix} = id 
+\end{array}
+\end{equation*}
+
+
+
+Назовем также $ \langle \sigma \rangle = H $ [ для дальнейшего удобства :) ]
+
+Получается, что: \[\langle \sigma \rangle = \left\{ id, \begin{pmatrix}
+1 & 2 & 3 &4 \\ 3 & 2 & 4 & 1 
+\end{pmatrix},  \begin{pmatrix}
+1 & 2 & 3 & 4 \\ 4 & 2 & 1 & 3
+\end{pmatrix}\right\}\]
+Тогда множество xH для элемента x будет выглядеть следующим образом:
+\[
+xH = \left\{x \cdot id, x \cdot \sigma, x  \cdot \sigma^2\right\}
+\]
+А множество Hx соотвественно :
+\[
+Hx= \left\{id \cdot x , \sigma \cdot  x , \sigma^2 \cdot x \right\}
+\]
+Я решил не пытаться что-то мудрить и упрощать себе решение, поэтому сделаю все перебором всех возможных вариантов :)
+\clearpage
+\begin{itemize}
+\item 
+Найдем все левые смежные классы группы $A_4$:
+
+\quad Пройдемся по всем 24 перестановкам :) :) :), каждую текущую буду заново называть a,  и посчитаем для каждой левый класс aH
+
+\begin{center}
+Глина
+\end{center}
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&3&4\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&3&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&4&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&1&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&4&3\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&4&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&3&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&1&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&2&4\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&2&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&4&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&1&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&4&2\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&4&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&2&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&1&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&2&3\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&2&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&3&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&1&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&3&2\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&3&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&2&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&1&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&3&4\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&3&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&4&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&2&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&4&3\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&4&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&3&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&2&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&1&4\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&1&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&4&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&2&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&4&1\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&4&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&1&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&2&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&1&3\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&1&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&3&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&2&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&3&1\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&3&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&1&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&2&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&2&4\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&2&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&4&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&3&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&4&2\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&4&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&2&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&3&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&1&4\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&1&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&4&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&3&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&4&1\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&4&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&1&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&3&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&1&2\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&1&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&2&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&3&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&2&1\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&2&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&1&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&3&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&2&3\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&2&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&3&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&4&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&3&2\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&3&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&2&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&4&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&1&3\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&1&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&3&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&4&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&3&1\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&3&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&1&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&4&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&1&2\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&1&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&2&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&4&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&2&1\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&2&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&1&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&4&2\end{pmatrix} \right\}\]
+
+
+
+\textbf{[Ответ] }У нас получилось очень много одинаковых множеств, поэтому выкинем повторяющиеся и оставим только уникальные множества (выкидывал рандомно по одинаковым элементам, особо ни к чему не привязываясь):
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&3&2\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&3&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&2&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&1&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&4&3\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&4&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&3&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&2&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&4&1\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&4&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&1&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&2&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&3&1\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&3&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&1&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&2&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&1&4\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&1&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&4&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&3&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&3&2\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&3&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&2&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&4&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&1&3\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&1&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&3&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&4&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&1&2\end{pmatrix}, \; aH = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&1&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&2&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&4&1\end{pmatrix} \right\}\]
+
+\item Найдем все правые смежные классы:
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&3&4\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&3&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&4&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&1&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&4&3\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&4&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&1&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&3&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&2&4\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&2&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&2&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&2&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&4&2\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&4&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&1&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&3&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&2&3\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&2&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&2&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&2&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&3&2\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&3&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&4&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&1&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&3&4\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&3&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&4&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&1&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&4&3\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&4&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&1&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&3&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&1&4\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&1&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&3&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&4&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&4&1\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&4&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&1&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&3&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&1&3\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&1&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&3&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&4&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&3&1\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&3&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&4&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&1&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&2&4\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&2&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&2&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&2&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&4&2\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&4&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&1&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&3&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&1&4\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&1&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&3&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&4&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&4&1\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&4&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&1&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&3&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&1&2\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&1&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&3&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&4&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&2&1\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&2&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&2&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&2&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&2&3\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&2&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&2&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&2&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&3&2\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&3&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&4&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&1&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&1&3\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&1&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&3&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&4&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&3&1\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&3&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&4&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&1&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&1&2\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&1&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&3&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&4&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&2&1\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&2&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&2&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&2&4\end{pmatrix} \right\}\]
+
+\textbf{[Ответ]} Аналогично оставляю только уникальные множества:
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&3&4\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&3&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&4&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&1&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&4&3\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&2&4&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&2&1&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&2&3&1\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&4&2\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&4&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&1&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&3&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&2&4\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&3&2&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&4&2&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&1&2&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&3&2\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&3&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&4&2\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&1&2\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&3&4\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&3&4\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&4&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&1&3\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&3&1\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&4&3&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&1&4&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 2&3&1&4\end{pmatrix} \right\}\]
+\[a = \begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&2&1\end{pmatrix}, \; Ha = \left\{\begin{pmatrix} 1 & 2 & 3 & 4 \\ 4&3&2&1\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 1&4&2&3\end{pmatrix}, \begin{pmatrix} 1 & 2 & 3 & 4 \\ 3&1&2&4\end{pmatrix} \right\}\]
+\end{itemize}
+Всего получилось по 8 левых и правых смежных классов, ответ отдельно выписывать не буду, чтобы не дублировать и не тратить место, ответом соответственно являются все $aH$ и $Ha$, которые я оставил.
+
+\begin{center}
+[Cорри за глину, надеюсь такого больше не буду делать]
+\end{center}
+\clearpage
+\section*{Номер 4}
+Введем обозначения:
+\begin{center}
+$G$ -- циклическая группа
+
+$H$ -- подгруппа $G$
+
+$a$ -- образующий элемент для $G$ 
+\end{center}
+Рассмотрим отдельно примитивные случаи:
+\begin{enumerate}
+\item
+$|G| = 1$
+\[
+H = G \rightarrow \text{H циклична}
+\]
+\item 
+$|H| = 1$
+\[
+H = \{ e = a^0\} = \langle e \rangle
+\]
+\end{enumerate}
+Теперь считаем, что $|G| \neq 1, |H| \neq 1$
+\\\\
+Тогда по определению образующего элемента \;
+$
+a^k \in G \;  \; \forall k \in \mathbb{Z}
+$
+\\\\
+Пускай $ n = \text{min } \{ i : a^i \in H, i > 0\}, \; a^n = b $. 
+\\\\
+Такая степень есть (хотя бы одна), т.к если $a^{-k} \in H$, то $\left(a^{-k} \right)^{-1} = a^k  \in H $
+\\\\
+Мы знаем, что $
+\forall c  \in H \;  \; \exists \;  m : a^m = c
+$.
+\\\\
+Представим $m$ как $m = qn + r$, \;$0 \leq  r < n, q \in \mathbb{Z}$.
+\\\\
+Тогда получаем, что $
+\frac{a^m}{a^{qn}} = a^{m - qn} = a^r  = a^m \cdot a^{-qn} = a^m \cdot \left( a^{n} \right)^{-q} = c \cdot b^{-q} = \big| c \in H, b \in H \big | = a^r \in H
+$
+\\\\
+Если $ r \neq 0$,  то из $ (r < n)$ получаем противоречие ($n \neq \text{min } \{ i : a^i \in H, i > 0\}$). 
+\\\\
+Значит $ r = 0$. Тогда $m = qn + 0 = qn$. Получается, что мы любой элемент $c \in H$ можем представить как $a^m = a^{qn}$, а значит наша подгруппа H является циклической, а ее образующим элементом будет $a^n$.
+\begin{center}
+\textbf{Ч.Т.Д}
+\end{center}
+
+\clearpage
+\begin{center}
+\includegraphics[scale=0.6]{1.jpg}
+\end{center}
+\end{document}

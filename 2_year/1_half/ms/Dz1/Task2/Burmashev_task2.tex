@@ -1,0 +1,86 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\section*{Задание 2}
+Для малых $n$ можем понять на пальцах. Если взять 1 прямую, плоскость поделится ровно на 2 части. Если взять 2 прямые, то возможно 3 случая:
+\begin{itemize}
+\item Прямые совпадают:
+
+возвращаемся к случаю 1 прямой
+
+\item Прямые параллельны (т.е никогда не пересекутся):
+
+плоскость, очевидно, разобьется на три части
+
+\item Прямые пересекаются:
+
+плоскость разобьется на 4 части (тоже достаточно очевидно)
+\end{itemize}
+
+Нас интересует случай \textbf{максимального разбиения}, поэтому прямые нужно пересекать. Если к двум пересекающимся прямым добавить третью, которая будет пересекать их в новой точке, то мы получим 3 новые области и суммарно 7 областей.
+Можем наблюдать закономерность:
+\[
+P_1 = 2
+\]
+\[
+P_2 = 4
+\]
+\[
+P_3 = 7
+\]
+Можно предположить (ибо похоже), что искомой нами формулой будет $P_n = S_n  + 1 =  1 + \frac{n(n+1)}{2}$
+\\\\
+Докажем это методом мат.индукции (база уже доказана выше)
+
+Пусть верно для $n$ прямых, тогда для $n + 1$ прямой:
+
+Если наша новая прямая пересечет предыдущие в $q$ разных точках, то добавится $q + 1$ область. Чтобы максимизировать это $q$, нужно провести прямую через новые точки пересечения (т.е не проходить через предыдущие), в таком случае $q = n$. Тогда получаем:
+\[
+ P_{n} + (n + 1) = 1 + \frac{n(n+1)}{2} + n + 1 = 1 + \frac{(n+1)(n+2)}{2} = P_{n + 1}
+\]
+\begin{center}
+\textbf{Ч.Т.Д } 
+\end{center}
+\begin{center}
+\textbf{Ответ: } $P_n = S_n  + 1 =  1 + \frac{n(n+1)}{2}$
+\end{center}
+\end{document}

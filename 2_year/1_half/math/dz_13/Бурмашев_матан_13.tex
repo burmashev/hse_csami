@@ -1,0 +1,147 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- 13}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{Номер 1}
+\[
+\iint\limits_{x^2 + y^2 \geq 1}  \frac{dxdy}{(x^2+y^2)^p}, \; p > 0
+\]
+Номер почти как 1й с семинаров, функция все также неотрицательная, а значит предел не зависит от выбора $D_n$. Проблема теперь не с точкой (0, 0), а с бесконечностью. Тогда для исчерпания (чтобы прижиматься к бесконечности) кладем $D_n$ как:
+\[
+D_n : 1 \leq x^2 + y^2 \leq n^2
+\]
+Теперь переходим к пределу:
+\[
+\iint\limits_{x^2 + y^2 \geq 1}  \frac{dxdy}{(x^2+y^2)^p} = \lim\limits_{n \rightarrow \infty} \iint\limits_{1 \leq x^2 + y^2 \leq n^2} \frac{dxdy}{(x^2+y^2)^p} = 
+\]
+Для удобства переходим в полярные координаты:
+\[
+\begin{cases}
+x = r \cos \varphi \\
+y = r \sin \varphi 
+\end{cases}
+\]
+\[
+=\lim\limits_{n \rightarrow \infty} \int_{1}^{2 \pi} d \varphi \int_1^{\sqrt{n^2}} \frac{ 1}{(r^2 \cos^2 \varphi + r^2 \sin^2 \varphi)^p} rdr = \lim\limits_{n \rightarrow \infty} \int_{1}^{2 \pi} d \varphi \int_1^n \frac{ 1}{(r^2 \cdot 1)^p} rdr  = 
+\]
+\[
+= 
+\lim\limits_{n \rightarrow \infty} \int_{1}^{2 \pi} d \varphi \int_1^n \frac{r}{r^{2p}} dr = 2 \pi  \cdot \lim_{n \rightarrow \infty} \int_1^{n} \frac{1}{r^{2p - 1}} dr = 2 \pi \int_1^{\infty} \frac{1}{r^{2p - 1}} dr
+\]
+Привели к понятному виду, $\frac{1}{r^{2p-1}}$ сходится при степени больше 1, т.е $2p - 1 > 1 \rightarrow $ $p > 1$, теперь вычислим интеграл:
+\[
+2 \pi \frac{r^{2-2n}}{2-2p} \Bigg|^{\infty}_{1} = \pi \cdot \frac{1}{p - 1}, \; p > 1
+\]
+Ну а при $p \leq 1$ имеем расходимость 
+\clearpage
+\section*{Номер 2}
+\[
+\iiint\limits_{D} \frac{dxdydz}{(x^2+y^2+z^2)^{\frac43}}, \; D : x^2 + y^2 \leq z^2, \; 0 \leq z \leq 1
+\]
+Функция неотрицательная, проблема здесь при $z = 0$, потому что в знаменателе получается ноль. Тогда введем $D_n$:
+\[
+D_n : D \cap \left\{(x, y, z) \Big| \frac{1}{n} \leq z \leq 1 \right\}
+\]
+Теперь переходим к пределу:
+\[
+\iiint\limits_{D} \frac{dxdydz}{(x^2+y^2+z^2)^{\frac43}} = \lim_{n \rightarrow \infty}  \iiint\limits_{D_n} \frac{dxdydz}{(x^2 + y^2+z^2)^{\frac43 }}
+\]
+Теперь можем перейти к цилиндрическим координатам:
+\[
+\begin{cases}
+x = r \cos \varphi \\
+y = r \sin \varphi \\
+ z = h \\ 
+r > 0,
+\varphi \in [0, 2 \pi)
+\end{cases}
+\]
+\[
+D : r^2 \leq h^2 , 0 \leq h \leq 1
+\]
+\[
+ \lim_{n \rightarrow \infty}  \iiint\limits_{D_n} \frac{dxdydz}{(x^2 + y^2+z^2)^{\frac43 }}= \lim_{n \rightarrow \infty} \int_0^{2\pi} d \varphi  \int_{\frac1n}^{1} dh \int_0^h \frac{1}{\left(r^2 + h^2\right)^{\frac43}} rdr  = 
+\]
+\[
+= 2 \pi \lim_{n \rightarrow \infty} \int_{\frac1n}^{1} dh \int_0^h \frac{1}{\left(r^2 + h^2\right)^{\frac43}} rdr  = (\times)
+\]
+Посчитаем отдельно:
+\[
+\int \frac{1}{(r^2+h^2)^{\frac{4}{3}}} rdr = \begin{vmatrix}
+u = r^2 + h^2 \\
+du = 2r dr  \\
+dr = \frac{du}{2r}
+\end{vmatrix} = \int  \frac{r}{2 \cdot r \cdot u^{\frac43}} du  = \frac12 \int u^{-\frac43} du =  \frac{1}{2} \cdot \left(-\frac{3}{\sqrt[3]{u}}\right) = 
+\]
+\[
+=
+-\frac{3}{2 \sqrt[3]{u^2}} =-\frac{3}{2 \sqrt[3]{r^2 + h^2}}
+\] 
+\[
+-\frac{3}{2 \sqrt[3]{r^2 + h^2}}\Bigg|^h_0 = -\frac{3}{2\sqrt[3]{2h^2}} - \left(- \frac{3}{2\sqrt[3]{h^2}}\right) = \frac{-3 + 3 \sqrt[3]{2}}{2 \sqrt[3]{2h^2} }
+\]
+Берем еще раз интеграл:
+\[
+\int \frac{-3 + 3 \sqrt[3]{2}}{2 \sqrt[3]{2h^2} } dh= -\frac12 \int \frac{3(1 - \sqrt[3]{2})}{\sqrt[3]{2} \cdot \sqrt[3]{h^2}}dh = -\frac{3(1 - \sqrt[3]{2})}{2\sqrt[3]{2}} \int \frac{1}{ \sqrt[3]{h^2}}dh  = -\frac{3(1- \sqrt[3]{2})}{2\sqrt[3]{2}} \cdot 3 \sqrt[3]{h} = 
+ \]
+\[
+=
+-\frac{9(1 - \sqrt[3]{2})}{2\sqrt[3]{2}} \cdot  \sqrt[3]{h}  = -\frac{9(1 - \sqrt[3]{2})}{2\sqrt[3]{2}}\cdot \frac{\sqrt[3]{4}}{\sqrt[3]{4}} \cdot  \sqrt[3]{h}  = -\frac{9\sqrt[3]{4} - 18}{4} \sqrt[3]{h}
+\]
+\[
+-\frac{9\sqrt[3]{4} - 18}{4} \sqrt[3]{h} \Bigg|^1_{\frac1n} = -\frac{9\sqrt[3]{4} - 18}{4} + \frac{9\sqrt[3]{4} - 18}{4} \sqrt[3]{\frac{1}{n}} = \frac{9\sqrt[3]{4} - 18}{4} \left(\sqrt[3]{\frac1n} - 1 \right)
+\]
+ Теперь возвращаемся к пределу:
+\[
+(\times) = 2 \pi \lim_{n \rightarrow \infty} \frac{9\sqrt[3]{4} - 18}{4} \left(\sqrt[3]{\frac1n} - 1 \right) = 2 \pi \frac{9\sqrt[3]{4} - 18}{4} \lim_{n \rightarrow \infty} \left(\sqrt[3]{\frac1n} - 1 \right) = -2 \pi \frac{9\sqrt[3]{4} - 18}{4}=
+\]
+\[
+=
+-\pi \cdot \frac{9(\sqrt[3]{4} - 2)}{2}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+-\pi \cdot \frac{9(\sqrt[3]{4} - 2)}{2}
+\]
+\end{center}
+\end{document}

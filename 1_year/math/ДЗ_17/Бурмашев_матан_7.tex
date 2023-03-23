@@ -1,0 +1,344 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий. 208. Матан -- 7 
+\end{center}
+ \begin{center}
+\includegraphics[scale=0.34]{1.jpg}
+\end{center}
+\clearpage
+\section*{Номер 6}
+\subsection*{3)}
+\[
+\int \frac{x^2 + 3x -2}{(x-1)(x^2+x+1)^2} \, dx
+\]
+По методу Остроградского
+\[
+\int \frac{x^2 + 3x -2}{(x-1)(x^2+x+1)^2} \, dx = \frac{ax+b}{x^2+x+1} + \int \frac{\text{что-то}}{(x-1)(x^2+x+1)} \,dx =
+\]
+\[
+=
+ \frac{ax+b}{x^2+x+1} + \int  \left[ \frac{\text{с}}{(x-1)}  + \frac{dx + e}{x^2+x+1} \right] \,dx = 
+\]
+Продифференцируем:
+\[
+\frac{x^2+3x-2}{(x-1)(x^2+x+1)^2} = \frac{a(x^2+x+1) -(2x+1)(ax+b)}{(x^2+x+1)^2} + \frac{c}{x-1} + \frac{dx+e}{x^2+x+1}
+\]
+Тогда:
+\[
+x^2 +3x -2 =
+\]
+\[
+=
+ (x-1)\left[ a(x^2+x+1) - (2x+1)(ax+b) \right]  + 
+\]
+\[
++ c(x^2 + x +1)^2 + (dx+e)(x-1)(x^2+x+1) = 
+\]
+\[
+= 
+-ax^3 + ax^2 + ax - a - 2bx^2 + bx + b + cx^4 + 2cx^3 + 3cx^2 + 2cx + c + dx^4 -dx + ex^3 - e = 
+\]
+\[
+= 
+(c+d)x^4 + (-2+2c+e)x^3 + (a-2b+3c)x^2 + (a +b + 2c -d)x + (-a + b + c - e) 
+\]
+Получаем систему:
+\[
+\begin{cases}
+c  + d = 0 \\ 
+-a + 2c + e = 0 \\
+a -2b + 3c = 1 \\
+a + b + 2c - d = 3\\
+-a + b + c - e = -2
+\end{cases}
+\]
+Надо (к сожалению) её решать, приведем к матричному виду:
+\[
+\begin{pmatrix}
+0 & 0 & 1 & 1 & 0 & \vrule &0 & \\
+0 & -2 & 5 & 0 & 1 & \vrule &1 & \\
+1 & -2 & 3 & 0 & 0 & \vrule &1 & \\
+1 & 1 & 2 & -1 & 0 & \vrule &3 & \\
+-1 & 1 & 1 & 0 & -1 & \vrule &-2 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 0 & 1 & 1 & 0 & \vrule &0 & \\
+0 & -2 & 5 & 0 & 1 & \vrule &1 & \\
+0 & -3 & 1 & 1 & 0 & \vrule &-2 & \\
+1 & 1 & 2 & -1 & 0 & \vrule &3 & \\
+-1 & 1 & 1 & 0 & -1 & \vrule &-2 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+0 & 0 & 1 & 1 & 0 & \vrule &0 & \\
+0 & -2 & 5 & 0 & 1 & \vrule &1 & \\
+0 & -3 & 1 & 1 & 0 & \vrule &-2 & \\
+1 & 1 & 2 & -1 & 0 & \vrule &3 & \\
+0 & 2 & 3 & -1 & -1 & \vrule &1 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 1 & 2 & -1 & 0 & \vrule &3 & \\
+0 & 0 & 8 & -1 & 0 & \vrule &2 & \\
+0 & -1 & 4 & 0 & -1 & \vrule &-1 & \\
+0 & 0 & 1 & 1 & 0 & \vrule &0 & \\
+0 & 2 & 3 & -1 & -1 & \vrule &1 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 1 & 2 & -1 & 0 & \vrule &3 & \\
+0 & 1 & -4 & 0 & 1 & \vrule &1 & \\
+0 & 0 & 0 & -9 & 0 & \vrule &2 & \\
+0 & 0 & 1 & 1 & 0 & \vrule &0 & \\
+0 & 0 & 11 & -1 & -3 & \vrule &-1 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 1 & 2 & -1 & 0 & \vrule &3 & \\
+0 & 1 & -4 & 0 & 1 & \vrule &1 & \\
+0 & 0 & 0 & -9 & 0 & \vrule &2 & \\
+0 & 0 & 1 & 1 & 0 & \vrule &0 & \\
+0 & 0 & 0 & -12 & -3 & \vrule &-1 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 1 & 2 & -1 & 0 & \vrule &3 & \\
+0 & 1 & -4 & 0 & 1 & \vrule &1 & \\
+0 & 0 & 1 & 1 & 0 & \vrule &0 & \\
+0 & 0 & 0 & -9 & 0 & \vrule &2 & \\
+0 & 0 & 0 & -3 & -3 & \vrule &-3 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 1 & 2 & -1 & 0 & \vrule &3 & \\
+0 & 1 & -4 & 0 & 1 & \vrule &1 & \\
+0 & 0 & 1 & 1 & 0 & \vrule &0 & \\
+0 & 0 & 0 & 0 & 9 & \vrule &11 & \\
+0 & 0 & 0 & 1 & 1 & \vrule &1 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 1 & 2 & -1 & 0 & \vrule &3 & \\
+0 & 1 & -4 & 0 & 1 & \vrule &1 & \\
+0 & 0 & 1 & 1 & 0 & \vrule &0 & \\
+0 & 0 & 0 & 1 & 1 & \vrule &1 & \\
+0 & 0 & 0 & 0 & 9 & \vrule &11 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & \vrule &\frac{5}{3} \\
+0 & 1 & 0& 0 & 0& \vrule &\frac{2}{3} \\
+0 & 0 & 1 & 0 & 0 & \vrule &\frac{2}{9} \\
+0 & 0 & 0 & 1 & 0 & \vrule &-\frac{2}{9} \\
+0 & 0 & 0 & 0 & 1& \vrule &\frac{11}{9} \\
+\end{pmatrix}
+\]
+А значит:
+\[
+\begin{cases}
+a = \frac{5}{3}\\
+b = \frac{2}{3} \\
+c = \frac{2}{9} \\
+d =  -\frac{2}{9} \\
+e = \frac{11}{9} \\
+\end{cases}
+\]
+\[
+ \frac{ax+b}{x^2+x+1} + \int  \left[ \frac{c}{(x-1)}  + \frac{dx + e}{x^2+x+1} \right] \,dx = 
+\]
+\[
+= 
+ \frac{\frac{5}{3}x+\frac{2}{3}}{x^2+x+1} + \int  \left[ \frac{ \frac{2}{9}}{(x-1)}  + \frac{-\frac{2}{9}x + \frac{11}{9}}{x^2+x+1} \right] \,dx
+\]
+Посчитаем интеграл по отдельности:
+\[
+\int  \left[ \frac{ \frac{2}{9}}{(x-1)}  + \frac{-\frac{2}{9}x + \frac{11}{9}}{x^2+x+1} \right] \,dx = \frac{2}{9} \int \frac{1}{x-1} \, dx  - \frac{1}{9} \int \frac{2x-11}{x^2 +x + 1} \, dx  = 
+\]
+\[
+= \frac{2}{9} \ln|x-1| - \frac{1}{9}\int \frac{2x - 11}{x^2 +x + 1} \, dx
+\]
+\[
+\int \frac{2x - 11}{x^2 + x + 1} \, dx = \int \frac{(2x+1) - 12 }{x^2 + x + 1} \, dx  = \int \frac{2x+1}{x^2 + x + 1} \, dx  - \int \frac{12}{x^2 + x +1} \, dx =
+\]
+\[
+=
+\frac{2}{9} \ln |x-1| - \frac{1}{9} \int \frac{2x-11}{x^2+x+1} \, dx
+\]
+\[
+\int \frac{2x-11}{x^2 + x +1} \, dx = \int \frac{(2x+1) - 12}{x^2 + x + 1} \, dx = \int \frac{2x+1}{x^2 + x + 1} \, dx - \int \frac{12}{x^2 + x + 1} \, dx = 
+\]
+\[
+=
+\int \frac{(2x+1)}{(x^2+x+1)(2x+1)} \, d(x^2 + x + 1) -12 \int \frac{1}{(x + \frac{1}{2})^2 + \frac{3}{4}} \, dx = 
+\]
+
+\[
+=
+\ln (x^2 + x + 1) - 12 \int \frac{1}{(x + \frac{1}{2})^2 + \frac{3}{4}} \, dx = 
+\]
+\[
+= \ln (x^2 + x + 1) - \frac{12}{\sqrt{\frac{3}{4}}} \cdot \arctan \left( \frac{x+ \frac{1}{2}}{\sqrt{\frac{3}{4}}}\right) + C = 
+\]
+\[
+= 
+\ln (x^2 + x + 1) + \frac{20}{\sqrt{3}} \arctan \left( \frac{2x+1}{\sqrt{3}}\right) + C\]
+Тогда возвращаемся к исходному выражению:
+\[
+ \frac{\frac{5}{3}x+\frac{2}{3}}{x^2+x+1} +  \frac{2}{9} \ln|x-1| - \frac{1}{9} \ln (x^2 + x + 1) + \frac{8 \sqrt{3}}{9} \arctan \left( \frac{2x+1}{\sqrt{3}}\right) + C
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+ \frac{\frac{5}{3}x+\frac{2}{3}}{x^2+x+1} +  \frac{2}{9} \ln|x-1| - \frac{1}{9} \ln (x^2 + x + 1) +\frac{ 8 \sqrt{3}}{9} \arctan \left( \frac{2x+1}{\sqrt{3}}\right) + C
+\]
+\end{center}
+\subsection*{4)}
+\[
+\int \frac{dx}{x(x^3+1)^2}
+\]
+По методу Остроградского:
+\[
+\int \frac{dx}{x(x^3+1)^2} = \frac{ax^2 +bx + c}{x^3 + 1} + \int \frac{\text{что-то}}{x(x^3+1)} \,dx = \frac{ax^2 + bx + c}{x^3 +1} + \int \left( \frac{d}{x} + \frac{ex^2 + fx + g}{x^3 + 1}\right) \, dx 
+\]
+Продифференцируем:
+\[
+\frac{1}{x(x^3 + 1)^2} = \frac{(2ax + b)(x^3 +1) - (3x^2)(ax^2 + bx +c)}{(x^3 + 1)^2} + \frac{d}{x} + \frac{ex^2 +fx +g}{x^3 + 1} 
+\]
+\[
+1 = x((ax+b)(x^3+1) - 3x^2(ax^2+bx+c) + d(x^3+1)^2 + (ex^2+fx+g)(x^2+1)x) = 
+\]
+\[
+= -ax^5 + 2ax - 2x^4 + bx - 3ex^3 + dx^6 + 2dx^3 + d + ex^6 + ex^3 + fx^5 + fx^2 + gx^4+ gx
+\]
+\[
+\begin{cases}
+d + e = 0 \\
+-a + f = 0 \\
+-2b + g = 0 \\
+-3c + 2d + e = 0 \\
+f = 0\\
+2a + b + g = 0 \\
+d = 1\\
+\end{cases}
+\]
+\[
+\begin{cases}
+e = -1 \\
+ a = 0 \\
+c = \frac{1}{3}  \\
+d = 1\\
+f = 0 \\
+b = 0 \\
+ g = 0 \\
+\end{cases}
+\]
+Тогда:
+\[
+\int \frac{dx}{x(x^3 + 1)^2} = \frac{1}{3(x^3 + 1)} + \int \left(\frac{1}{x} - \frac{x^2}{x^3 + 1}\right) \, dx
+\]
+Посчитаем интеграл отдельно:
+\[
+\int \left( \frac{1}{x} - \frac{x^2}{x^3 + 1}\right) \, dx = \int \frac{dx}{x} - \int \frac{x^2}{x^3 + 1} \, dx = 
+\]
+\[
+= \ln |x| - \frac{1}{3} \int \frac{x^2}{(x^3+1)x^2} \, d(x^3 + 1) = \ln |x| - \frac{1}{3} \int \frac{d(x^3 + 1)}{x^3 + 1} = 
+\]
+\[
+= \ln |x| - \frac{1}{3} \ln |x^3 + 1| + C
+\]
+\[
+\int \frac{dx}{x(x^3+1)} =  \frac{1}{3(x^3 + 1)} + \ln |x| - \frac{1}{3} \ln |x^3 + 1| + C
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+ \frac{1}{3(x^3 + 1)} + \ln |x| - \frac{1}{3} \ln |x^3 + 1| + C
+\]
+\end{center}
+\section*{Номер 7}
+\subsection*{1)}
+\[
+\int \frac{dx}{3 + \sin x}
+\]
+Универсальная триг.подстановка:
+\[
+\tan \frac{x}{2} = t
+\]
+\[
+\sin x = \frac{ 2 \tan \frac{x}{2}}{1 + \tan^2 \frac{x}{2}} = \frac{2t}{1 + t^2}
+\]
+\[
+dx = \frac{2dt}{1 + t^2}
+\]
+Тогда получаем:
+\[
+\int \frac{dx}{3 + \sin x} =  \int \frac{2dt}{(3 + \frac{2t}{1 + t^2})(1+t^2)} = 
+\]
+\[
+=\int  \frac{1+t^2}{3(1+t^2) + 2t} \cdot \frac{2dt}{1+t^2} = 2 \int \frac{dt}{3t^2 + 2t + 3} = \frac{2}{3} \int \frac{dt}{t^2 + \frac{2}{3}t + 1} = 
+\]
+\[
+=
+\frac{2}{3} \int \frac{dt}{(t^2 + \frac{1}{3})^2 + \frac{8}{9}}   = \frac{3}{4} \cdot \int \frac{dt}{\left( \frac{3t+1}{2\sqrt{2}}\right)^2 + 1}= \frac{\arctan \left(\frac{3 \tan \frac{x}{2} + 1}{2\sqrt{2}}\right)}{\sqrt{2}} + C
+\]
+\begin{center}
+\textbf{Ответ: } \[ \frac{\arctan \left(\frac{3 \tan \frac{x}{2} + 1}{2\sqrt{2}}\right)}{\sqrt{2}} + C\]
+\end{center}
+\end{document}

@@ -1,0 +1,336 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий. 208. Алгебра -- 4
+\end{center}
+\section*{Номер 1}
+\begin{itemize}
+\item Обратимые элементы:
+
+\begin{center}
+Пусть $ X= \begin{pmatrix}
+a & b \\ 0 & c
+\end{pmatrix}\in R$. 
+\end{center}
+
+По определению $X$ будет называться обратимым, если для него будет существовать обратный элемент $X^{-1}$ такой, что $$XX^{-1} = X^{-1}X = E$$
+ Из курса линала знаем, что условие обратимости матрицы эквивалентно условию её невырожденности. 
+
+А значит $\text{det } X \neq 0 \rightarrow ac \neq 0 \rightarrow \begin{cases}
+a \neq 0 \\ c \neq 0 
+\end{cases}$. 
+
+При таком условии $X^{-1}$ будет иметь вид:
+\[
+X^{-1} = 
+\begin{pmatrix}
+\frac{1}{a} & -\frac{b}{ac} \\ 0 & \frac{1}{c}
+\end{pmatrix} \in R
+\]
+И тогда:
+\[
+XX^{-1}= X^{-1}X = E
+\]
+Обобщая, обратимыми будут все элементы в $R$, определитель которых не равен нулю. Никаких других обратимых элементов очев быть не может.
+\clearpage
+\item Делители нуля:
+
+\begin{center}
+Найдем все левые делители нуля:
+\end{center}
+
+\begin{center}
+ Пусть $A = \begin{pmatrix}
+a & b \\ 0 & c 
+\end{pmatrix} \in R, A \neq 0$ -- левый делитель. 
+
+Тогда $\exists \;B = \begin{pmatrix}
+d & e \\ 0 & f
+\end{pmatrix} \in R, B \neq 0$, причем $AB = 0$, т.е:
+\end{center}
+\[
+AB = \begin{pmatrix}
+ad & bf + ae \\ 0 & cf
+\end{pmatrix} = 0 \rightarrow \begin{cases}
+ad = 0 \\ bf + ae = 0 \\ cf = 0
+\end{cases}
+\]
+
+Рассмотрим возможные случаи:
+
+\textbf{1)} Если $a = 0$, то $bf = 0$, $cf = 0 \rightarrow bf = cf$.
+
+ $b$ и $c$ одновременно не могут быть равны нулю, т.к в таком случае нарушается условие $A \neq 0$, а значит $ f = 0 $. По итогу:
+\[
+\begin{cases}
+a = 0 \\ 
+f = 0 \\
+A = \begin{pmatrix}
+0 & b \\ 0 & c
+\end{pmatrix} \in R\\
+B = \begin{pmatrix}
+d & e  \\ 0 & 0 
+\end{pmatrix}  \in R 
+\end{cases}
+\]
+
+\clearpage
+\textbf{2) }Если $a \neq 0$, тогда $d = 0$, $ae = -bf$, т.е $e = \frac{bf}{a}$. 
+
+Пусть $c \neq 0$, тогда $f = 0$, отсюда $e = 0$, т.е нарушается условие $B \neq 0$, а значит получаем противоречие и $c = 0$ (на самом деле следует из замечания 4 из конспекта о необратимости делителей нуля, но я чет только во время проверки это заметил). По итогу получаем:
+\[
+\begin{cases}
+a \neq 0 \\
+d = 0 \\
+c = 0 \\ 
+A = \begin{pmatrix}
+a & b \\ 0 & 0
+\end{pmatrix} \in R\\
+B = \begin{pmatrix}
+0 & e \\ 0 & f 
+\end{pmatrix} \in R
+\end{cases}
+\]
+Других случаев быть не может (ибо я тупо перебрал все возможные виды матриц, которые нам подходят и не противоречат условию). Получили две системы, т.е $A$ (левый делитель) имеет вид либо матрицы с нулями в первом столбце, либо матрицы с нулями во второй строчке. Отсюда определитель такой матрицы будет  равен нулю. А значит левыми делителями будут все \textbf{вырожденные} ненулевые матрицы в $R$. 
+
+Абсолютно тоже самое получаем для правых делителей, только в тех же системах мы будем фиксировать $B$ как правый делитель и для него уже подбирать A (система уравнений для AB будет такой же). В любом случае, $B$ будет также вырожденной ненулевой матрицей.
+
+\clearpage
+\item Нильпотентные элементы:
+
+\begin{center}
+Такие $A \in R, A \neq 0$, что $\exists \; n \in \mathbb{N}, A^n = 0$
+\end{center}
+Пусть $A = \begin{pmatrix}
+a & b \\ 0 & c 
+\end{pmatrix}, A \neq 0 $. 
+
+Попробуем ручками возводить в степени:
+\[
+A^2 = \begin{pmatrix}
+a^2 & ab + bc \\ 0 & c^2
+\end{pmatrix}
+\]
+\[
+A^3 = \begin{pmatrix}
+a^3 & a^2 b + bc^2 + abc \\ 0 & c^3
+\end{pmatrix}
+\]
+Видно, что на диагонали стоят $a^n$ и $c^n$. Покажем это строго методом математической индукции:
+
+База : показана выше
+
+Переход: пусть верно для $< n$, тогда:
+\[
+A^{n-1} = \begin{pmatrix}
+a^{n - 1} & \text{пофиг что тут} \\
+0 & c^{n - 1}
+\end{pmatrix}
+\]
+\[
+A^n = A^{n-1} \cdot A = \begin{pmatrix}
+a^{n - 1} & \text{пофиг что тут} \\
+0 & c^{n - 1}
+\end{pmatrix} \cdot \begin{pmatrix}
+a & b \\0 & c
+\end{pmatrix} = \begin{pmatrix}
+a^n & \text{пофиг что тут} \\ 0 & c^n
+\end{pmatrix}
+\]
+
+Получаем условие $ a = c = 0$, без которого не найдется ни одного $n$, при котором $A^n = 0$ (из доказанного выше). Тогда получаем ограничение на $b \neq 0$, чтобы выполнялось неравенство $A \neq 0 $.
+
+Теперь остается заметить, что $\forall b \in \{ \mathbb{Q} \setminus 0 \}$ равенство $A^n = 0$ выполняется уже при $n = 2$:
+\[
+ab + bc = 0 \cdot b + b \cdot 0 = 0 
+\]
+А значит $b$ мы можем брать произвольно (кроме нуля), основное условие у нас на $a = c  = 0$.
+\end{itemize}
+\begin{center}
+\textbf{Ответ: } 
+\begin{itemize}
+\item Обратимые:
+
+Все \textbf{невырожденные} матрицы.
+
+\item Делители нуля:
+
+Все \textbf{вырожденные} ненулевые матрицы.
+
+\item Нильпотентные:
+
+Матрицы вида $\begin{pmatrix}
+0 & b \\ 0 & 0
+\end{pmatrix}$, где $b \neq 0$.
+\end{itemize}
+\end{center}
+
+\section*{Номер 2}
+Решим от противного (да и вообще 1 в 1 как на семинаре):
+
+Пусть $(x + 2, y)$ -- главный идеал.  Если предположить, что $(x+ 2, y) = (f)$, то мы получим, что все многочлены внутри идеала делятся на f, но:
+\[
+x + 2 \in (x+2, y)
+\]
+\[
+y \in (x + 2, y)
+\]
+А значит:
+\[
+x + 2\;  \vdots \; f
+\]
+\[
+y \; \vdots \; f
+\]
+Тогда $\text{deg } f \leq 1$.
+\begin{itemize}
+\item Предположим, что deg $f$ = 1:
+
+Тогда $f = c \cdot (x + 2)$, но $y$ не делится на $c \cdot (x + 2)$, \textbf{противоречие}.
+
+\item Предположим, что deg $f$ = 0:
+
+Тогда $ f = c_0 $ -- константа, причем $c_0 \neq 0$. А значит:
+\[
+(x + 2, y) = (c_0)
+\]
+Но $c_0$ -- обратимый элемент, тогда из упражнения 2 из конспекта Авдеева получаем, что $(x  + 2, y) = \mathbb{R}[x, y]$. Теперь можем заметить что $1 \notin (x + 2, y)$. Иначе в точке (x, y) = (-2, 0), получаем, что 1 $=$ $f_1 \cdot (x + 2) + f_2 \cdot y = 0$, а это \textbf{противоречие} (аналогично семинару Авдеева) и 1 не лежит в (x + 2, y). 
+\end{itemize}
+По итогу получаем противоречие с упражнением 2 из конспекта и (x + 2, y) не является главным идеалом
+
+
+\clearpage
+\section*{Номер 3}
+
+Чтобы применить теорему о гомоморфизме, надо выбрать какое-то хорошее отображение $\phi$, чтобы потом показать, что его ядром будет $(x^2 - x)$. У данного многочлена два различных корня, кольцо у нас является парами из двух чисел. Значит достаточно удобно будет взять такое отображение, которое переводит нас в корни. Т.е в $x(x - 1) = 0$, в 1 и в 0. Назовем такое отображение $\phi : \mathbb{C}[x] \rightarrow C \oplus C$.  Тогда оно будет многочлен P(x) переводить в $(P(1), P(0))$
+
+Теперь покажем, что оно будет гомоморфизмом (пусть P и Q многочлены собственно):
+\begin{itemize}
+\item Сложение:
+\[
+\phi \left(P(x) + Q(x) \right) = \phi \left((P + Q)x \right) = \left[ (P + Q)(1), (P + Q)(0) \right] =
+\]
+\[
+= \left[P(1) + Q(1), P(0) + Q(0) \right] = \phi \left( P(x) \right) + \phi \left( Q(x) \right)
+\]
+\item Умножение:
+\[
+\phi \left( P(x) \cdot Q(x) \right) = \phi \left(PQ(x) \right) = \left[PQ(1), PQ(0) \right] = \left[P(1) \cdot Q(1), P(0) \cdot Q(0) \right] =
+\]
+\[
+=  \phi \left(P(x) \right) \cdot \phi \left( Q(x) \right)
+\]
+А значит это действительно гомоморфизм.
+\end{itemize}
+\clearpage
+\textbf{1)} Теперь нужно показать, что ядро будет $(x^2 - x)$, т.е Ker $\phi$ = $(x^2 - x)$. [Ты попросил поподробнее делать такое и показывать включение в обе стороны, поэтому делаю так]
+
+В одну сторону:
+
+$$P(x) \in \text{Ker} \phi $$
+
+Т.е:
+$$\phi(P(x)) = (0, 0)$$
+$$ (P(1), P(0)) = (0, 0) $$
+
+Из следствия теоремы Безу (спс конспекту, вообще забыл про это) получаем, что многочлен делится на $(x - 1)$ и на $(x - 0) = x$, а значит делится и на $x(x-1) = x^2 - x$. Отсюда:
+
+$$P(x) = Q(x) \cdot (x^2 - x)$$
+
+Таким образом:
+
+$$P(x) \in (x^2 - x)$$
+$$\text{Ker} \phi \subseteq (x^2 - x)$$
+
+В другую сторону:
+
+$$\text{Пускай } P(x) \in (x^2 - x)$$
+
+Тогда:
+$$  P(x) = Q(x) \cdot (x^2 - x)$$
+$$\phi(P(x)) = (P(1), P(0)) = \left(Q(1) \cdot (1 - 1), Q(0) \cdot (0 - 0) \right) = (0, 0)    $$
+
+
+Т.е:
+$$
+P(x) \in \text{Ker} \phi
+$$
+$$
+(x^2 - x) \subseteq \text{Ker} \phi
+$$
+
+По итогу доказали в две стороны, а значит:
+
+$$\text{Ker} \phi = (x^2 - x)$$
+\clearpage
+\textbf{2)} 
+Теперь покажем, что Im $\phi = \mathbb{C} \oplus \mathbb{C}$
+\\\\
+В одну сторону по определению образа (Im $\phi \subseteq \mathbb{C} \oplus \mathbb{C}$)
+\\\\
+В другую:
+$$ \text{Пускай } (a, b) \in \mathbb{C} \oplus \mathbb{C}$$
+Найдется такой многочлен $P$, который перейдет в $(a, b)$. $a$ есть значение многочлена в единице, $b$ есть значение многочлена в нуле. Тогда многочлен будет иметь вид $(a - b) \cdot x + b$. В нуле он равен b, в единице $a - b + b = a$. 
+
+Значит:
+\[
+(a, b) \in \text{Im} \phi
+\]
+\[
+\mathbb{C} \oplus \mathbb{C} \subseteq \text{Im} \phi
+\]
+\[
+\text{Im } \phi = \mathbb{C} \oplus \mathbb{C}
+\]
+
+Теперь применяем теорему о гомоморфизме и получаем:
+\[
+C[x]\; / \;\text{Ker } \phi \cong \text{Im } \phi
+\]
+\[
+C[x] \;/ \;(x^2 - x) \cong \mathbb{C} \oplus \mathbb{C}
+\]
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\end{document}

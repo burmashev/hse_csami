@@ -1,0 +1,227 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- какое-то там}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{Номер 1}
+\[
+\lim\limits_{n \rightarrow \infty} \frac{z^n}{1 + z^{2n}} = \frac{0}{1 + 0} = 0
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+0
+\]
+\end{center}
+\subsection*{b)}
+\[
+\lim\limits_{z \rightarrow 0 }  \frac{z \cdot Re(z) }{|z|}
+\]
+\[
+\frac{Re(z) }{|z|} \in [-1;1] \rightarrow \lim\limits_{z \rightarrow 0 }  \frac{z \cdot Re(z) }{|z|} = \lim\limits_{z \rightarrow 0 }  z = 0
+\]
+\begin{center}
+\textbf{Ответ: } 0
+\end{center}
+\clearpage
+\section*{Номер 2}
+\[
+\sin z = \frac{e^{iz} - e^{-iz}}{2i} = \frac{e^{ix}e^{-y} - e^{-ix} e^y}{2i} = \frac{-e^{-y} \cos x \cdot  i + e^{-y} \sin x + e^y \cos x \cdot i + e^y \sin x}{2}  =
+\]
+\[
+=
+\frac{e^{-y} sin x + e^{y} \sin x  + (-e^{-y} \cos x + e^y \cos x)i }{2}
+\]
+Тогда кладем:
+\[
+\begin{cases}
+u = \frac{e^{-y} sin x + e^{y} \sin x }{2}  \\
+v = \frac{(-e^{-y} \cos x + e^y \cos x)}{2}
+\end{cases}
+\]
+Отсюда:
+\[
+\begin{cases}
+(u)'_x = \frac{e^{-y} \cos x + e^y \cos x}{2} \\
+(u)'_u = \frac{-e^{-y} \sin x + e^y \sin x}{2}
+\end{cases} \sim \begin{cases}
+(u)'_x = v'_y \\
+(u)'_y = (-v)'_x
+\end{cases}
+\]
+Условие Коши Римана выполнено, значит функция $\mathbb{C}$-- дифференцируема и производная равна $w' = \cos z$
+\clearpage
+\section*{Номер 3}
+Заметим, что:
+\[
+u = \sqrt{|xy} \\
+v = 0
+\]
+Смотрим производные в $z = 0$:
+\[
+u'_x(0, 0) = \lim_{x \rightarrow 0} \frac{u(x, 0) - u(0, 0)}{x - 0} = 0 = v'_y (0, 0)
+\]
+\[
+u'_y(0, 0) = \lim_{y \rightarrow 0} \frac{u(0, y) - u(0, 0)}{y - 0} = 0 = -v'_x(0, 0)
+\]
+Тобишь:
+\[
+\begin{cases}
+u'_x = v'_y \\
+u'_y = -v'_x 
+\end{cases}
+\]
+Доказали, что выполнено условия Коши-Римана.
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+ Теперь покажем, что $f'(0)$ не существует:
+Смотрим:
+\[ 
+f'(0) = \lim\limits_{z \rightarrow 0 } \frac{f(z) - f(0)}{z - 0 } = 
+\lim_{\begin{matrix}
+x \rightarrow 0 \\
+y \rightarrow 0
+\end{matrix}}  \frac{\sqrt{|xy|} - 0}{x + iy} = 
+\]
+Переходим к полярным координатам:
+\[
+=
+\lim_{r \rightarrow 0} \frac{r \sqrt{|\sin \varphi \cos \varphi |}}{r(\cos \varphi + i \sin\varphi )} = 
+\lim_{r \rightarrow 0} \frac{\sqrt{|\sin \varphi \cos \varphi |}}{(\cos\varphi + i \sin\varphi )}
+\] 
+Видим, что предел от $r$ не зависит, значит предела нет, значит производной в точке $f'(0)$ не существует 
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\clearpage
+\section*{Номер 4}
+\[
+u = Re(f) = 3x^2 - 4xy - 3y^2
+\]
+Используем Коши-Римана, получаем систему:
+\[
+\begin{cases}
+u'_x = 6x - 4y = v'_y \\
+u'_y = -4x -6y = -v'_x
+\end{cases}
+\]
+Так что интегрируем:
+\[
+v = \int (6x -4y) dy = 6xy - 2y^2 + \varphi(x)
+\]
+\[
+v'_x = 4x + 6y = 6y + \varphi'(x)
+\]
+Получили:
+\[
+\varphi'(x) = 4x 
+\]
+\[
+\varphi(x) = \int (4x) dx = 2x^2 + C 
+\]
+Т.е итого:
+\[
+v = 6xy - 2y^2 + 2x^2 + C
+\]
+А теперь константу находим из условия, что$f(1) = 3 + 2i$:
+\[
+f(1) = u(1) + iv(1) = 3 + 2i  \rightarrow C = 0
+\]
+Так что:
+\[
+f = 3x^2 - 4xy - 3y^2+ i(6xy - 2y^2 + 2x^2)
+\] 
+\begin{center}
+\textbf{Ответ: } 
+\[
+f = 3x^2 - 4xy - 3y^2+ i(6xy - 2y^2 + 2x^2)
+\]
+\end{center}
+\clearpage
+\section*{Номер 5}
+Делаем аналогично предыдущему номеру:
+\[
+v = 
+\text{Im} (f) = \ln(x^2 +y^2) + x - 2y
+\]
+По Коши-Риману:
+\[
+\begin{cases}
+v'_y = \frac{2y}{x^2 + y^2} - 2 = u'_x \\
+-v'_x = - \frac{2x}{x^2 + y^2}  -1 = u'_y 
+\end{cases}
+\]
+Так что интегрируем:
+\[
+u = \int \left(
+\frac{2y}{x^2 + y^2} - 2 
+\right) dx  = 2 \arctg \frac{x}{y} - 2x + \varphi(y) 
+\]
+\[
+u'_y = - \frac{2x}{x^2 + y^2}  -1 = -\frac{2x}{x^2 + y^2} + \varphi'(y) 
+\]
+Получили:
+\[
+\varphi'(y)  = -1
+\]
+\[
+\varphi(y) = -y + C
+\]
+Т.е итого:
+\[
+u = 2\arctg \frac{x}{y} - 2x - y + C
+\]
+Находим константу:
+\[
+f(i) = 2 \arctg 0 - 1 + C = i( \ln(1) -2)  = -2i \rightarrow C = 1
+\]
+Так что:
+\[
+f = 2 \arctg \frac{x}{y} - 2x - y + 1 + i (\ln(x^2 + y^2) + x - 2y) 
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+f = 2 \arctg \frac{x}{y} - 2x - y + 1 + i (\ln(x^2 + y^2) + x - 2y) 
+\]
+\end{center}
+\end{document}

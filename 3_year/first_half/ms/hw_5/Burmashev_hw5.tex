@@ -1,0 +1,116 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\maketitle
+\clearpage
+\section*{Номер 1}
+Являются ли общезначимыми следующие формулы:
+\subsection*{a)}
+\[
+(\exists x P(x) \rightarrow \exists y Q(y))
+\rightarrow \exists y \forall (P(x) \rightarrow Q(y))
+\]
+Видим, что:
+\[
+(\exists x P(x) \rightarrow \exists y Q(y))
+\equiv 
+\overline{(\exists x P(x))} \vee \exists y Q(y) 
+\equiv
+\forall x \exists y \overline{(P(x)} \vee Q(y))
+\]
+Второе:
+\[
+\exists y \forall (P(x) \rightarrow Q(y))
+\equiv
+\exists y \forall x (\overline{P(x)} \vee Q(y))
+\]
+С помощью этих преобразований исходная формула принимает вид:
+\[
+\forall x \exists y \overline{(P(x)} \vee Q(y))
+\rightarrow
+\exists y \forall x (\overline{P(x)} \vee Q(y))
+\]
+Пусть существует такая модель, что формула ложна, т.е принимает вид $1 \rightarrow 0$. Тогда заметим, что левая и правая часть не зависят друг от друга из-за перемены $x$ и $y$ местами, следовательно левая часть может быть истина только при выполнении хотя бы одного из:
+\begin{itemize}
+\item $\forall x \overline{P(x)}$
+\item $\exists y Q(y)$
+\end{itemize}
+Но тогда мы получаем истинность заключения в нашей формуле, из этого следует, что формула \textbf{общезначима}
+\clearpage
+\subsection*{b)}
+\[
+(\forall x P(x, x) \wedge \forall x, y, z ((P(x, y) \wedge P(y, z)) \rightarrow P(x, z))) \rightarrow \forall x, y (P(x, y) \rightarrow P(y, x))
+\]
+Рассмотрим такую модель, где $P(x, y)  \leftrightarrow x \ge y $, тогда можем заметить:
+\[
+\forall x (x \ge x) \equiv 1
+\]
+\[
+\forall x, y, z, ((x \ge y, y \ge z ) \rightarrow x \ge z) \equiv 1
+\]
+Таким образом левая часть нашей исходной формулы принимает вид:
+\[
+\forall x P(x, x) \wedge \forall x, y, z  ((P(x, y) \wedge P(y, z) \rightarrow P(x, z)) \leftrightarrow 1 \wedge 1 \equiv 1
+\]
+Теперь, аналогично, для правой части формулы (заключения) получаем:
+\[
+\forall x, y (x \ge y \rightarrow y \ge x)
+\equiv 0 
+\]
+Тобишь:
+\[
+\forall x, y (P(x, y) \rightarrow P(y, x))
+\equiv 0 
+\]
+Из всего полученного выше получаем, что:
+\[
+(\forall x P(x, x) \wedge \forall x, y, z ((P(x, y) \wedge P(y, z)) \rightarrow P(x, z))) \rightarrow \forall x, y (P(x, y) \rightarrow P(y, x)) \equiv 1 \rightarrow 0 \equiv 0
+\]
+Следовательно формула \textbf{не является} общезначимой
+\begin{center}
+\textbf{Ответ: } 
+\begin{itemize}
+\item a) да, является
+\item b) нет, не является
+\end{itemize}
+\end{center}
+\end{document}

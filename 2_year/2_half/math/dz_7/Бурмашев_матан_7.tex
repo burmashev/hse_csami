@@ -1,0 +1,302 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- 7}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{Номер 1}
+Доказываем неортонормированность системы:
+\[
+\langle 1, x^2\rangle = \int\limits_{-1}^{1} 1 \cdot x^2 dx = \frac{x^3}{3} \Bigg|_{-1}^1 = \frac{1}{3} + \frac{1}{3} = \frac{2}{3} \neq 0 
+\] 
+Так что система не ортонормирована. Теперь ищем первые четыре элемента:
+\[
+f_1 = 1 
+\]
+\[
+\langle 1, 1\rangle = \int\limits_{-1}^{1} 1 dx  = 1 + 1 = 2
+\]
+Нормируем:
+\[
+\widetilde{f_1} = \frac{1}{\sqrt{2}}
+\]
+Второй элемент:
+\[
+f_2 = x - \left\langle \frac{1}{\sqrt{2}}, x \right\rangle  \frac{1}{\sqrt{2}} 
+\] 
+\[
+\left\langle \frac{1}{\sqrt{2}}, x \right\rangle  = \int\limits_{-1}^1 \frac{1}{\sqrt{2}} x dx = 0
+\]
+\[
+f_2 = x
+\]
+Тогда:
+\[
+\langle x, x \rangle = \int\limits_{-1}^1 x^2 dx = \frac{2}{3}
+\]
+Нормируем:
+\[
+\widetilde{f_2} = \sqrt{\frac{3}{2}} x
+\]
+Третий элемент:
+\[
+f_3  = x^2 - \left\langle x^2, \widetilde{f_1} \right\rangle  \widetilde{f_1} - \left\langle x^2, \widetilde{f_2} \right\rangle  \widetilde{f_2}  = 
+ x^2 - \left\langle x^2, \frac{1}{\sqrt{2}} \right\rangle  \frac{1}{\sqrt{2}} - \left\langle x^2, \sqrt{\frac{3}{2}} x \right\rangle  \sqrt{\frac{3}{2}} x
+\]
+\[
+\left\langle x^2, \frac{1}{\sqrt{2}} \right\rangle  = \int\limits_{-1}^1 x^2 \frac{1}{\sqrt{2}} dx = \frac{\sqrt{2}}{3} 
+\]
+\[
+\left\langle x^2, \sqrt{\frac{3}{2}} x \right\rangle  =  \int\limits_{-1}^1 x^3 
+\sqrt{\frac{3}{2}} dx  = 0
+\]
+\[
+f_3 = x^2 - \frac{\sqrt{2}}{3} \frac{1}{\sqrt{2}} = x^2 - \frac{1}{3}
+\]
+Тогда:
+\[
+\left\langle x^2 - \frac{1}{3}, x^2 - \frac{1}{3} \right\rangle
+=
+\int\limits_{-1}^1 \left(x^2 - \frac{1}{3}  \right)^2 dx =  \int\limits_{-1}^1 \left( x^4 - \frac{2x^2}{3} + \frac{1}{9}  \right)dx = 
+\]
+\[
+=
+\int\limits_{-1}^1 x^4 dx - \frac{2}{3} \int\limits_{-1}^1 x^2 dx + 
+\frac{1}{9}\int\limits_{-1}^1 dx = \left(
+\frac{x^5}{5} - \frac{2x^3}{9} + \frac{x}{9}
+\right) \Bigg|_{-1}^1 = \frac{8}{45}
+\]
+Нормируем:
+\[
+\widetilde{f_3} = \sqrt{\frac{45}{8}} \cdot \left(x^2 - \frac{1}{3}\right)
+\] 
+Четвертый элемент:
+\[
+f_4 = x^3 - \left\langle x^3, \frac{1}{\sqrt{2}} \right\rangle \frac{1}{\sqrt{2}} - \left\langle x^3, \sqrt{\frac{3}{2}}x \right\rangle
+\sqrt{\frac{3}{2}}x  - \left\langle x^3, \sqrt{\frac{45}{8}} \cdot \left(x^2 - \frac{1}{3}\right) \right\rangle\sqrt{\frac{45}{8}} \cdot \left(x^2 - \frac{1}{3}\right)
+\]
+\[
+\left\langle x^3, \frac{1}{\sqrt{2}} \right\rangle = \int\limits_{-1}^1 x^3 \frac{1}{\sqrt{2}} dx = 0
+\]
+\[
+\left\langle x^3, \sqrt{\frac{3}{2}}x \right\rangle = \int\limits_{-1}^1 x^4  \sqrt{\frac{3}{2}} dx = \sqrt{\frac{3}{2}} \left(\frac{x^5}{5}\right) \Bigg|_{-1}^1 = \frac{\sqrt{6}}{5}
+\]
+\[
+\left\langle x^3, \sqrt{\frac{45}{8}} \cdot \left(x^2 - \frac{1}{3}\right) \right\rangle = \int\limits_{-1}^1 \left( x^3\sqrt{\frac{45}{8}} \cdot \left(x^2 - \frac{1}{3}\right) \right) dx  = 0
+\]
+\[
+f_4 = x^3 -\frac{\sqrt{6}}{5} \sqrt{\frac{3}{2}} x= x^3 - \frac{3}{5}x
+\]
+Тогда:
+\[
+\left\langle x^3 - \frac{3}{5}x, x^3 - \frac{3}{5}x \right\rangle = \int\limits_{-1}^1 \left( x^3 - \frac{3}{5}x\right)^2 dx = \int\limits_{-1}^1 \left(x^6 - \frac{6x^4}{5} + \frac{9x^2}{25}\right) dx = \left(\frac{x^7}{7} - \frac{6x^5}{25} + \frac{3x^3}{25}\right) \Bigg|_{-1}^1 = \frac{8}{175}
+\]
+Нормируем:
+\[
+\widetilde{f_4} = \sqrt{\frac{175}{8}} \left(x^3 - \frac{3x}{5}\right)
+ \]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\widetilde{f_1} = \frac{1}{\sqrt{2}}
+\]
+\[
+\widetilde{f_2} = \sqrt{\frac{3}{2}} x
+\]
+\[
+\widetilde{f_3} =\sqrt{\frac{45}{8}} \cdot \left(x^2 - \frac{1}{3}\right)
+\]
+\[
+\widetilde{f_4} = \sqrt{\frac{175}{8}} \left(x^3 - \frac{3x}{5}\right)
+\]
+\end{center}
+\clearpage
+\section*{Номер 2}
+\[
+f(x) = x \sin x, \; \left[ -\pi, \pi \right]
+\]
+Сразу посчитаем интеграл от функции:
+\[
+\int x \sin x dx = - x \cos x + \int \cos x dx = - x \cos x + \sin x
+\]
+Функция четная, раскладываем по константе и косинусу:
+\[
+a_0 = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} x \sin x  dx= \frac{1}{\pi} \left(  - x \cos x + \sin x \right) \Bigg|_{-\pi}^{\pi} = \frac{1}{\pi} 2\pi = 2
+\]
+\[
+a_k = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} x \sin x \cos (kx) dx
+\]
+Посчитаем этот интеграл отдельно:
+\[
+\int\limits_{-\pi}^{\pi} x \sin x \cos (kx) dx = \frac{1}{2} \int\limits_{-\pi}^{\pi}x \left( \sin (kx + x) -\sin (kx - x)\right) =
+\]
+\[
+=
+ \frac{1}{2} \int\limits_{-\pi}^{\pi} x \sin (kx + x) dx -  \frac{1}{2} \int\limits_{-\pi}^{\pi}  x \sin (kx - x) dx = (\times)
+\]
+\[
+\int\limits_{-\pi}^{\pi} x \sin (kx + x) dx  = \left(- \frac{x \cos (kx + x)}{k + 1}\right) \Bigg|_{-\pi}^{\pi} + \frac{1}{k + 1} \int\limits_{-\pi}^{\pi} 1 \cdot \cos (kx + x) dx = 
+\]
+\[
+=
+\left(- \frac{x \cos (kx + x)}{k + 1}\right) \Bigg|_{-\pi}^{\pi} + \frac{\sin (kx + x)}{(k + 1)^2} \Bigg|_{-\pi}^{\pi} = \frac{2\pi(k + 1) \cos \pi k - 2 \sin \pi k}{(k + 1)^2}
+\]
+\[
+\int\limits_{-\pi}^{\pi} x \sin (kx - x) dx = \left(- \frac{x \cos (kx - x)}{k - 1}\right) \Bigg|_{-\pi}^{\pi} + \frac{\sin (kx - x)}{(k -  1)^2} \Bigg|_{-\pi}^{\pi} = -\frac{2(\sin \pi k - \pi(k - 1) \cos \pi k))}{(k - 1)^2}
+\]
+Заметим проблемную точку $k = 1$, значит подставлять сумму для всех $k$ нельзя, посмотрим на эту точку отдельно позже. Возвращаемся к интегралу:
+\[
+(\times) = \frac{1}{2} \left( 
+ \frac{2\pi(k + 1) \cos \pi k - 2 \sin \pi k}{(k + 1)^2} + \frac{2(\sin \pi k - \pi(k - 1) \cos \pi k))}{(k - 1)^2}
+\right) = 
+\]
+\[
+=
+\frac{1}{2} \left( 
+ \frac{2\pi(k + 1) \cos \pi k}{(k + 1)^2} +\frac{2(- \pi(k - 1) \cos \pi k))}{(k - 1)^2}
+\right)  = \frac{1}{2} \left( 
+ \frac{2\pi(k + 1) (-1)^k}{(k + 1)^2} +\frac{2(- \pi(k - 1) (-1)^k))}{(k - 1)^2}
+\right) 
+\]
+Возвращаемся к $a_k$:
+\[
+a_k =   \left( 
+ \frac{(k + 1) (-1)^k}{(k + 1)^2} - \frac{(k - 1) (-1)^k)}{(k - 1)^2}
+\right) = 
+ \left( 
+ \frac{ (-1)^k}{(k + 1)} -\frac{(-1)^k)}{(k - 1)}
+\right) 
+\]
+Теперь вспоминаем про $k = 1$ и смотрим:
+\[
+a_1 = \frac{1}{\pi} \int\limits_{-\pi}^{\pi} x \sin x \cos x dx =  \frac{1}{2 \pi}  \int\limits_{-\pi}^{\pi} x \sin 2x dx = \frac{1}{2\pi} \cdot (-\pi) = - \frac{1}{2}
+\]
+Ну и наконец получаем ряд Фурье:
+\[
+\frac{2}{2} -\frac{1}{2} + \sum_{k = 2}^{\infty}   \left( 
+ \frac{ (-1)^k}{(k + 1)} -\frac{(-1)^k)}{(k - 1)}
+\right) \cos kx 
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\frac{1}{2} + \sum_{k = 2}^{\infty}   \left( 
+ \frac{ (-1)^k}{(k + 1)} - \frac{(-1)^k)}{(k - 1)}
+\right) \cos kx 
+\]
+\end{center}
+\clearpage
+\section*{Номер 3}
+\[
+f(x) = \sin x, \; \left[ -\frac{\pi}{2}, \frac{\pi}{2} \right]
+\]
+Функция нечетная, так что сразу говорим что:
+\[
+a_0 = 0 = a_k 
+\]
+И будем считать только:
+\[
+b_k = \frac{1}{\frac{\pi}{2}} \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \sin x \cdot \sin \left( \frac{k x \cdot \pi}{\frac{\pi}{2}}\right)dx =  \frac{2}{\pi}
+\int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \sin x \cdot \sin \left( 2k \cdot x\right)dx
+\]
+Считаем отдельно интеграл:
+\[
+\int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \sin x \cdot \sin \left( 2k \cdot x\right)dx = \frac{1}{2}  \int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \left(\cos (2kx - x) - \cos (2kx + x) \right)dx = 
+\]
+\[
+=
+\frac{1}{2} 
+\left( 
+\int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \cos (2kx - x)  dx
+-
+\int\limits_{-\frac{\pi}{2}}^{\frac{\pi}{2}} \cos (2kx + x) dx
+\right)
+=
+\frac{1}{2}
+ \left(
+\frac{\sin (2k x - x)}{2k - 1} \Bigg|_{-\frac{\pi}{2}}^{\frac{\pi}{2}}
+-
+\frac{\sin (2k x +x)}{2k + 1} \Bigg|_{-\frac{\pi}{2}}^{\frac{\pi}{2}}
+\right) = 
+\]
+\[
+=
+\frac{1}{2}
+\left(
+\frac{2 \cos \pi k}{1 - 2k}
+-
+\frac{2 \cos \pi k}{2k + 1}
+\right)
+=
+\left(
+\frac{(-1)^k}{1 - 2k}
+-
+\frac{(-1)^k}{2k + 1}
+\right)
+\]
+Возвращаемся к $b_k$:
+\[
+b_k = \frac{2}{\pi}\left(
+\frac{(-1)^k}{1 - 2k}
+-
+\frac{(-1)^k}{2k + 1}
+\right)
+\]
+А значит ряд Фурье:
+\[
+\sum_{k=1}^{\infty}
+\frac{2}{\pi}\left(
+\frac{(-1)^k}{1 - 2k}
+-
+\frac{(-1)^k}{2k + 1}
+\right) \sin (2k \cdot x)
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\sum_{k=1}^{\infty}
+\frac{2}{\pi}\left(
+\frac{(-1)^k}{1 - 2k}
+-
+\frac{(-1)^k}{2k + 1}
+\right) \sin (2k \cdot x)
+\]
+\end{center}
+\end{document}

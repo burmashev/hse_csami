@@ -1,0 +1,74 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{00FFFF} % цвет ссылок
+\definecolor{urlcolor}{HTML}{4682B4} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+\usepackage{enumerate}
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{picture/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмаzшев Григорий, 208. \href{https://teleg.run/burmashev}{@burmashev}}
+\title{Дискретная математика. Коллок -- 1. Определения и задачи по ним.}
+
+\begin{document}
+\begin{center}
+Бурмашев Григорий.  208. Матан. Д/з -- 10 
+\end{center}
+\section*{Номер 6}
+\subsection*{а)}
+\subsection*{b)}
+\subsection*{c)}
+\subsection*{d)}
+\subsection*{e)}
+\subsection*{f)}
+\subsection*{(g)}
+\subsection*{h)}
+\subsection*{i)}
+\subsection*{j)}
+\section*{Номер 7}
+\subsection*{а)}
+\subsection*{b)}
+\subsection*{c)}
+\section*{Номер 8}
+\subsection*{а)}
+\subsection*{b)}
+\subsection*{c)}
+\section*{Номер9}
+\subsection*{а)}
+\subsection*{b)}
+\subsection*{c)}
+\section*{Номер 10}
+\subsection*{а)}
+\subsection*{b)}
+\subsection*{c)}
+\end{document}

@@ -1,0 +1,65 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Математические структуры, дз -- 4}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{Номер 1}
+Выводима ли в \textbf{IPC} следующая секвенция:
+\[
+\Rightarrow (p \rightarrow q) \vee (q \rightarrow p )
+\]
+Пробуем единственный возможный вариант:
+\[
+\dfrac{\Rightarrow (p \rightarrow q),(q \rightarrow p )}{\Rightarrow (p \rightarrow q) \vee (q \rightarrow p ) \; \; (\vee R)}
+\]
+Здесь получаем разветвление, попробуем сначала $(\rightarrow R_i)$ для левой скобки:
+\[
+\dfrac{p \Rightarrow  q}{\Rightarrow (p \rightarrow q),(q \rightarrow p ) \; \; (\rightarrow R_i) }
+\]
+Не выводится, пробуем второй вариант:
+\[
+\dfrac{q \Rightarrow p}{\Rightarrow (p \rightarrow q),(q \rightarrow p ) \; \; (\rightarrow R_i) }
+\]
+Вывести не получилось, значит исходная секвенция \textbf{НЕ} выводима 
+\begin{center}
+\textbf{Ответ: } нет, не выводима
+\end{center}
+\end{document}

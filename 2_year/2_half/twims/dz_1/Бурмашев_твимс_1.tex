@@ -1,0 +1,135 @@
+ \documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{ТВиМС, дз -- 1}
+\date{\today}
+\begin{document}
+\maketitle 
+\section*{Номер 3б)}
+\[
+X_n \overset{P}{ \longrightarrow } X , Y_n \overset{P}{ \longrightarrow } Y
+\]
+По определению:
+\[
+X_n \overset{P}{ \longrightarrow } X \longleftrightarrow \forall \varepsilon > 0  \lim_{n \rightarrow \infty} P \left( |X_n - X| \geq \varepsilon \right) = 0
+\]
+\[
+Y_n \overset{P}{ \longrightarrow } Y \longleftrightarrow \forall \varepsilon > 0  \lim_{n \rightarrow \infty} P \left( |Y_n - Y| \geq \varepsilon \right) = 0
+\]
+А хотим мы доказать:
+\[
+\forall \varepsilon > 0  \lim_{n \rightarrow \infty} P \left( |(X_n + Y_n)- (X + Y) | \geq \varepsilon \right) = 0
+\]
+Для этого заметим:
+\[
+|(X_n + Y_n) - (X + Y)| = |(X_n - X) + (Y_n - Y)| \leq |X_n - X| + |Y_n - Y|  
+\rightarrow
+\]
+\[
+\rightarrow 
+P(|(X_n -X) + (Y_n - Y) | \geq \varepsilon) \leq P\left[ \left(|X_n-X| \geq \frac{\varepsilon}{2} \right) \cup \left(|Y_n - Y| \geq \frac{\varepsilon}{2} \right) \right] 
+\leq 
+\]
+\[
+\leq P \left( |X_n - X| \geq \frac{\varepsilon}{2} \right) + P \left( |Y_n - Y| \geq \frac{\varepsilon}{2} \right) \overset{n \rightarrow \infty }{\longrightarrow} 0 + 0 = 0
+\]
+Отсюда:   
+\[
+P(|(X_n + Y_n) - (X + Y) | \geq \varepsilon) \overset{n \rightarrow \infty }{\longrightarrow} 0
+\]
+Что по определению:
+\[
+X_n + Y_n \overset{P}{ \longrightarrow } X + Y 
+\]
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\clearpage
+
+
+\section*{Номер 10}
+\[
+m_n = \min \{X_1, \ldots X_n \} 
+\]
+Ищем распределение:
+\[
+F_{m_n}(t) = P(m_n \leq t) = 1 - P(m_n > t) 
+\]
+Теперь можем вернуться к определению $m_n$. Каждое из $X_i$ в нем имеет равномерное распределение на $[0, 1]$, а такое считать мы умеем:
+\[
+\forall i : F_{X_i}(t) = P(X_i \leq t) = t 
+\]
+Отсюда:
+\[
+P(X_i > t) = 1 - P(X_i \leq t) = 1 - t
+\]
+Мы хотим узнать $P(m_n > t)$. Т.к $m_n$ это минимум, то эта вероятность означает, что каждая из величин  $X_i$ должна быть больше $t$, отсюда просто получаем произведение вероятностей: $P(m_n > t) = (1-t)^n$.
+Теперь возвращаемся:
+\[
+F_{m_n}(t) =  1 - P(m_n > t) =  1 - (1 - t)^n
+\]
+\begin{center}
+\textbf{Ответ: } \[
+F_{m_n}(t) = 1 - (1 - t)^n
+\]
+\end{center}
+Распределение получили, теперь доказываем сходимость почти наверное к нулю. По определению хотим получить:
+\[
+P(\lim_{n \rightarrow \infty} m_n = 0) = 1?
+\]
+Т.к $\forall i \; : \; X_i \in [0, 1]$, то $m_n \in [0, 1]$. Тогда получаем:
+\[
+P(\lim_{n \rightarrow \infty} m_n = 0) = \int_0^1 \rho_{m_n} dt 
+\] 
+Считаем:
+\[
+\rho_{m_n} = (F_{m_n})' = (1 - (1 - t)^n)' = n(1 -t)^{n-1}
+\]
+Тогда:
+\[
+ \int_0^1 \rho_{m_n} dt  =  \int_0^1 n(1-t)^{n-1} = n \int_0^1 (1-t)^{n-1} = -(1-t)^n \Bigg|^1_0 = - (1 - 1)^n + (1 - 0)^n = 1
+\]
+Т.е:
+\[
+P(\lim_{n \rightarrow \infty} m_n = 0) = \int_0^1 \rho_{m_n} dt = 1
+\]
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\end{document}

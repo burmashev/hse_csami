@@ -1,0 +1,182 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Линал. ИДЗ - 2 Вариант 2.}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий.  208. Матан. Д/з -- 6
+\end{center}
+\includegraphics[scale=0.5]{vishkajpg.jpg}
+\newpage
+\section*{Номер 7}
+\subsection*{а)}
+\[
+\lim_{x \rightarrow 2} \frac{x^2+x-6}{x^2-3x+2} = \lim_{x \rightarrow 2} \frac{(x+3)(x-2)}{(x-1)(x-2)} = \lim_{x \rightarrow 2} \frac{x+3}{x-1} = \frac{2+3}{2 - 1}  = 5
+\]
+\begin{center}
+\textbf{Ответ:} 5
+\end{center}
+\subsection*{b)}
+\[
+\lim_{x \rightarrow 2} \frac{x^3-12x + 16}{x^2 - 4} = \lim_{x \rightarrow 2} \frac{(x-2)(x^2+2x+8)}{(x-2)(x+2)}  = \lim_{x \rightarrow 2} \frac{(x^2+2x-8)}{(x+2)} = \frac{4 + 4 - 8}{2 + 2 } = 0
+\]
+\begin{center}
+\textbf{Ответ:} 0
+\end{center}
+\subsection*{c)}
+\[
+\lim_{x \rightarrow 1} \frac{x^5 - 3x^4 + 3x^3 - x^2}{x^4 - 6x^2 + 8x - 3}  = \lim_{x \rightarrow 1} \frac{x^2(x^3-3x^2+3x-1)}{(x+3)(x^3-3x^2+3x-1)} = \frac{x^2}{x+3} = \frac{1}{1 + 3} = \frac{1}{4}
+\]
+\begin{center}
+\textbf{Ответ:} $\frac{1}{4}$
+\end{center}
+\subsection*{d)}
+\[
+\lim_{x \rightarrow 2} \frac{x^3 - 2x^2 - 4x + 8}{x^4 - 8x^2 + 16 } = 
+= \lim_{x \rightarrow 2} \frac{(x-2)(x-2)(x+2)}{(x-2)(x-2)(x+2)(x+2)} = \lim_{x \rightarrow 2} \frac{1}{x + 2} = \frac{1}{2 + 2} = \frac{1}{4}
+\]
+\begin{center}
+\textbf{Ответ:} $\frac{1}{4}$
+\end{center}
+\newpage
+\section*{Номер 8}
+\subsection*{a)}
+\[
+\lim_{x \rightarrow -8} \frac{\sqrt{1-x} - 3}{2 + \sqrt[3]{x}} = \lim_{x \rightarrow -8}  \left( \sqrt{1-x)} - 3 \right) \cdot \frac{1}{2+\sqrt[3]{x}}
+\]
+Домножим до суммы кубов правый множитель и на сопряженное левый:
+\[
+\lim_{x \rightarrow -8}  \left( \sqrt{1-x)} - 3 \right) \cdot \frac{1}{2+\sqrt[3]{x}}
+= \] 
+\[
+\lim_{x \rightarrow -8}  \frac{(\sqrt{1-x}-3)(\sqrt{1-x}+3)}{\sqrt{1-x} + 3} \cdot \frac{4-2\sqrt[3]{x} + \sqrt[3]{x^2}}{8 + x} = 
+\]
+\[
+= 	\lim_{x \rightarrow -8}  \frac{-(8+x)}{\sqrt{1-x} + 3} \cdot \frac{4-2\sqrt[3]{x} + \sqrt[3]{x^2}}{8 + x} =  \lim_{x \rightarrow -8}  \frac{-1}{\sqrt{1-x} + 3} \cdot \frac{4-2\sqrt[3]{x} + \sqrt[3]{x^2}}{1} = \]
+\[
+= 
+\lim_{x \rightarrow -8}  \frac{-4+2 \sqrt[3]{x} -  \sqrt[3]{x^2}}{\sqrt{1-x} + 3}
+\] 
+\[
+= \frac{-4 -4 - 4}{3 +3}= -\frac{12}{6} = -2
+\]
+\begin{center}
+\textbf{Ответ:} -2
+\end{center}
+\subsection*{b)}
+\[
+\lim_{x \rightarrow 3} \frac{\sqrt{x+13} - 2\sqrt{x+1}}{x^2 -9} =  \lim_{x \rightarrow 3} \frac{(\sqrt{x+13} - 2\sqrt{x+1})(\sqrt{x+13} + 2 \sqrt{x+1})}{(x^2 -9)(\sqrt{x+13} + 2\sqrt{x+1})} =
+\]
+\[
+= \lim_{x \rightarrow 3} \frac{x+13 -4(x+1)}{(x-3)(x+3)(\sqrt{x+13} + 2 \sqrt{x+1})} = \lim_{x \rightarrow 1} \frac{-3(x -  3) }{(x-3)(x+3)(\sqrt{x+13} + 2 \sqrt{x+1})} = 
+\]
+\[
+=\lim_{x \rightarrow 3} \frac{-3}{(x+3)(\sqrt{x+13} + 2 \sqrt{x+1})} = \frac{-3}{6 \cdot (4 + 2 \cdot 2)} = \frac{-1}{2 \cdot 8} = -\frac{1}{16}
+\]
+\begin{center}
+\textbf{Ответ:} $-\frac{1}{16}$
+\end{center}
+\newpage
+\subsection*{c)}
+\[
+\lim_{x \rightarrow -\infty} (\sqrt{x^2 + 5x + x} + x) = \lim_{x \rightarrow -\infty} (x + \sqrt{x^2+6x})= \lim_{x \rightarrow -\infty} \frac{(x + \sqrt{x^2 + 6x} )(x - \sqrt{x^2 + 6x} )}{(x - \sqrt{x^2 + 6x})} =
+\] 
+\[
+= \lim_{x \rightarrow -\infty} \frac{-6x}{(x  - \sqrt{x^2 + 6x} )} = \lim_{x \rightarrow -\infty} \frac{-6}{1 + \sqrt{\frac{x^2 + 6x}{x^2}}} = 
+\]
+\[
+= \lim_{x \rightarrow -\infty} \frac{-6}{1 + \sqrt{\frac{x+6}{x}}} = \lim_{x \rightarrow -\infty} \frac{-6}{1 + \sqrt{1 + \frac{6}{x}}} = \frac{-6}{1 + 1} = -3
+\]
+\begin{center}
+\textbf{Ответ:} -3
+\end{center}
+\subsection*{d)}
+\[
+\lim_{x \rightarrow +\infty} x(\sqrt{4 + 2x + x^2} -\sqrt{x^2 - 4x +1})
+\]
+Домножим на сопряженное:
+\[
+\sqrt{4 + 2x + x^2} -\sqrt{x^2 - 4x +1} = \frac{(\sqrt{4 + 2x + x^2} -\sqrt{x^2 - 4x +1})(\sqrt{4 + 2x + x^2} +\sqrt{x^2 - 4x +1})}{(\sqrt{4 + 2x + x^2} +\sqrt{x^2 - 4x +1})} =
+\]
+\[
+= \frac{4+2x+x^2 - x^2 +4x - 1}{(\sqrt{4 + 2x + x^2} +\sqrt{x^2 - 4x +1})} = \frac{6x + 3}{(\sqrt{4 + 2x + x^2} +\sqrt{x^2 - 4x +1})}
+\]
+Тогда:
+\[
+\lim_{x \rightarrow +\infty} x(\sqrt{4 + 2x + x^2} -\sqrt{x^2 - 4x +1}) = \lim_{x \rightarrow +\infty} \frac{6x^2+ 3x}{(\sqrt{4 + 2x + x^2} +\sqrt{x^2 - 4x +1})} = 
+\]
+\[
+= \lim_{x \rightarrow +\infty} \frac{6x + 3}{(\sqrt{\frac{4+2x+x^2}{x^2}} +\sqrt{\frac{x^2 - 4x +1}{x^2}})} = \lim_{x \rightarrow +\infty} \frac{6x + 3}{\sqrt{\frac{4}{x^2} + \frac{2}{x} + 1} + \sqrt{1 - \frac{4}{x} + \frac{1}{x^2}}} = \frac{+\infty}{1 + 1} = +\infty
+\]
+\begin{center}
+\textbf{Ответ:} $+ \infty$
+\end{center}
+\subsection*{e)}
+\[
+\lim_{x \rightarrow +\infty} (\sqrt[3]{x^3 + 3x^2} - \sqrt{x^2 - 2x})
+\]
+Приведем к разности степеней в числителе ($a^6 - b ^6$):
+\[
+a^6 - b^6 = (a-b)(a^5 + a^4b + a^3b^2 + a^2b^3 + ab^4 + b^5)
+\]
+\[
+\lim_{x \rightarrow +\infty} (\sqrt[3]{x^3 + 3x^2} - \sqrt{x^2 - 2x}) =
+\]
+\[
+= \lim_{x \rightarrow +\infty} \frac{(x^3+3x^2)^2 - (x^2-2x)^3}{\sqrt[3]{(x^3+3x^2)^5} + \sqrt[3]{(x^3+3x^2)^4}\cdot \sqrt[2]{x^2-2x} + (x^3+3x^2)(x^2-2x) +}
+\]
+\[
+\frac{}{
+\sqrt[3]{(x^3+3x^2)^2} \cdot \sqrt[3]{(x^2-2x)^3} + \sqrt[3]{x^3+3x^2} \cdot (x^2-2x)^2 + \sqrt[2]{(x^2-2x)^5}
+} =
+\]
+В числителе мы получим 5ю степень, а значит сможем поделить на $x^5$ числитель и знаменатель. Для вычисления предела нас будут интересовать только коэффициенты при $x^5$ в числителе и знаменателе, а все остальные иксы с меньшими коэффициентами примут вид $\frac{const}{x^n}, n < 5$  и устремятся в ноль, т.е не будут играть роли для нашего предела. Поэтому все эти огромные скобки с маленькими степенями можно не вычислять.
+\[
+= \lim_{x \rightarrow +\infty} \frac{x^6 + 6x^5 + 9x^4 -(x^6 - 6x^5 + 12x^4 - 8x^3)}{6x^5 + A}
+= \lim_{x \rightarrow +\infty} \frac{12x^5-3x^4+8x^3}{6x^5+A}
+\]
+где A -- множество всех остальных слагаемых, где у икса степень меньше 5. Тогда поделим на $x^5$. Все элементы множества А устремятся к нулю:
+\[
+\lim_{x \rightarrow +\infty} \frac{12 - \frac{3}{x} + \frac{8}{x^2}}{6 + A } = \frac{12}{6} = 2
+\]
+\begin{center}
+\textbf{Ответ:} 2
+\end{center}
+\end{document}

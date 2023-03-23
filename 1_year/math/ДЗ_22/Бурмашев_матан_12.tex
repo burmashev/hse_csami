@@ -1,0 +1,201 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий, 208.  Матан -- 12
+\end{center}
+\begin{center}
+\includegraphics[scale=0.4]{1.jpg}
+\end{center}
+\begin{center}
+Тех получился немножко ублюдошным, но я не придумал как его сделать красивым, сорри
+\end{center}
+\clearpage
+\section*{ Номер 8}
+p > 0 по условию задачи
+\subsection*{d)}
+\[
+\int_{0}^{\infty} \frac{ \cos x}{x^p} \, dx = \int_{0}^{1} \frac{ \cos x}{x^p} \, dx  + \int_{1}^{\infty} \frac{ \cos x}{x^p} \, dx 
+\]
+\begin{enumerate}
+\item
+\[
+\int_{0}^{1} \frac{ \cos x}{x^p} \, dx
+\]
+\[
+0 \leq \frac{\cos x}{x^p} \sim \frac{2 - x^2}{2 \cdot x^p} = \frac{1}{x^p} + \frac{1}{2x^{p-2}}
+\]
+Эквивалентность беру из следующих соображений:
+\[
+1 - \cos x \sim \frac{1}{2} x^2 \text{  (знаем)}
+\]
+\[
+2 - x^2 \sim 2\cos x
+\]
+\[
+\cos x \sim \frac{2 - x^2}{2}
+\]
+Сходится при p < 1
+\item
+\[
+\int_{1}^{\infty} \frac{ \cos x}{x^p} \, dx
+\]
+Будем использовать признак Дирихле:
+\\\\
+Во первых:
+\[
+\int_{1}^{x} \cos t \, dt = \sin t \bigg|_1^x
+\]
+\[
+|\sin x  - \sin 1| \leq 2 
+\]
+Имеем ограниченность
+\\\\
+Во вторых:
+\\
+$\frac{1}{x^p} $ -- монотонна и $\lim_{x \rightarrow \infty} \frac{1}{x^p} = 0 $ (p > 0 по условию)
+\\\\
+Выполнены оба условия, значит интеграл сходится
+\end{enumerate}
+Из пунктов 1 и 2 имеем, что $\int_{0}^{\infty} \frac{ \cos x}{x^p} \, dx$  сходится при $p \in (0, 1)$
+{\Large \begin{center}
+\textbf{Ответ: } сходится при $p \in (0, 1)$
+\end{center}}
+\subsection*{f)}
+\[
+\int_0^{\infty} \frac{\ln (1+x)}{x^p} \, dx = \int_0^{1} \frac{\ln (1+x)}{x^p} \, dx + \int_1^{\infty} \frac{\ln (1+x)}{x^p} \, dx
+\]
+\begin{enumerate}
+\item
+\[
+0 \leq  \frac{\ln (1+x)}{x^p} \sim \frac{x}{x^p} = \frac{1}{x^{p-1}}
+\]
+Сходится при p < 2
+\item
+\[
+\int_1^{\infty} \frac{\ln (1+x)}{x^p} \, dx
+\]
+Зажмем функцию:
+\[
+0 \leq \frac{1}{x^p} \leq \frac{\ln (1+x)}{x^p} \leq \frac{1}{x^{p - \varepsilon}}
+\]
+Мы знаем, что $\frac{1}{x^p}$ расходится при $p \leq 1$, а $\frac{1}{x^{p - \varepsilon}}$ сходится при p > 1 + $\varepsilon (> 0)$ 
+
+Отсюда получаем ограничение на сходимость : $(1, \infty)$
+\end{enumerate}
+Из пунктов 1 и 2 имеем, что $\int_0^{\infty} \frac{\ln (1+x)}{x^p} \, dx$  сходится при $p \in (1, 2)$
+{\Large \begin{center}
+\textbf{Ответ: } сходится при $p \in (1, 2)$
+\end{center}}
+\clearpage
+\subsection*{g)}
+\[
+\int_0^{\infty} \cos \left(x^3\right) \, dx = \int_0^{\infty} \frac{\cos t}{3 \sqrt[3]{t^2}} \, dt = \frac{1}{3} \cdot \left( \int_0^{1} \frac{\cos t}{\sqrt[3]{t^2}} \, dt  + \int_1^{\infty} \frac{\cos t}{ \sqrt[3]{t^2}} \, dt  \right)
+\]
+\begin{enumerate}
+\item 
+\[
+\int_0^{1} \frac{\cos t}{\sqrt[3]{t^2}} \, dt = \int_0^{1} \frac{\cos t}{ t^{\frac{2}{3}}} \, dt
+\]
+\[
+0 \leq \frac{\cos t}{ t^{\frac{2}{3}}} \sim \frac{2-t^2}{t^{\frac{2}{3}}} \text{( а это сходится)}
+\]
+Значит $\int_0^{1} \frac{\cos t}{\sqrt[3]{t^2}} \, dt$ сходится
+\item
+\[
+\int_1^{\infty} \frac{\cos t}{ t^{\frac{2}{3}}} \, dt
+\]
+Будем использовать признак Дирихле:
+\\\\
+Во первых:
+\[
+\int_{1}^{t} \cos u \, du = \sin u \bigg|_1^t
+\]
+\[
+|\sin t  - \sin 1| \leq 2 
+\]
+Имеем ограниченность
+\\\\
+Во вторых:
+\\
+$\frac{1}{t^{\frac{2}{3}}} $ -- монотонна и $\lim_{t \rightarrow \infty} \frac{1}{t^{\frac{2}{3}}} = 0 $
+\\\\
+Выполнены оба условия, значит интеграл сходится
+\end{enumerate}
+Из пунктов 1 и 2 следует сходимость $\int_0^{\infty} \cos \left(x^3\right) \, dx$
+{\Large \begin{center}
+\textbf{Ответ: } сходится
+\end{center}
+\clearpage
+\section*{ Номер 9}}
+\subsection*{a)}
+\[
+\frac{d}{dx} \int_{\sin x}^{\cos x} \cos \left( \pi t^2\right) \, dt = \frac{d}{dx} \left(F(t) \bigg|_{\sin x}^{\cos x} \right) = \frac{d}{dx} \left(F(\cos x) - F (\sin x)\right) = F'(\cos x) - F'(\sin x)=
+\]
+\[
+= - \sin x \cos (\pi \cos^2 x) - \cos x \cos (\pi \sin^2 x)
+\]
+{\Large \begin{center}
+\textbf{Ответ: } 
+\[
+- \sin x \cos (\pi \cos^2 x) - \cos x \cos (\pi \sin^2 x)
+\]
+\end{center}}
+\subsection*{b)}
+\[
+\lim_{x \rightarrow +\infty} \frac{\left(\int_0^x e^{u^2}\right)^2}{\int_0^x e^{2u^2} \, du} = \frac{[\infty]}{[\infty]}
+\]
+Применяем Лопиталя:
+\[
+\frac{d}{dx} \left(\int_0^x e^{u^2}\right)^2 = 2 \left(F(u) \bigg|_0^x \right) = 2e^{x^2}
+\]
+\[
+\frac{d}{dx} \int_0^x e^{2u^2} \, du = e^{2x^2}
+\]
+По итогу получаем:
+\[
+\lim_{x \rightarrow +\infty} \frac{\left(\int_0^x e^{u^2}\right)^2}{\int_0^x e^{2u^2} \, du} = \lim_{x \rightarrow +\infty} \frac{2e^{x^2}}{e^{2x^2}} = \lim_{x \rightarrow +\infty} 2 e^{-x^2} = 0
+\] 
+{\Large \begin{center}
+\textbf{Ответ: }  0
+\end{center}}
+\end{document}

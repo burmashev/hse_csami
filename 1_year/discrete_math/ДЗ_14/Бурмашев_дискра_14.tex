@@ -1,0 +1,363 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{00FFFF} % цвет ссылок
+\definecolor{urlcolor}{HTML}{4682B4} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+\usepackage{enumerate}
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{picture/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмаzшев Григорий, 208. \href{https://teleg.run/burmashev}{@burmashev}}
+\title{Дискретная математика. Коллок -- 1. Определения и задачи по ним.}
+
+\begin{document}
+\begin{center}
+Бурмашев Григорий. Дискра -- 14
+\end{center}
+\subsection*{Номер 1}
+Пусть x -- искомое число, тогда (по условию задачи):
+\[
+x \equiv 6 \;(\text{mod} \; 7)
+\]
+\[
+x \equiv 7 \; (\text{mod}\; 8)
+\]
+\[
+x \equiv 8 \; (\text{mod}\; 9)
+\] 
+Если прибавить к числу 1, то оно будет делиться на 7, на 8 и на 9:
+\[
+x +1 \equiv 6 +1 \; (\text{mod} \; 7)
+\]\[
+x +1 \equiv 7 +1  \;(\text{mod}\; 8)
+\]
+\[
+x +1 \equiv 8 +1  \;(\text{mod}\; 9)
+\]
+Т.е $x + 1$ делится на $7 \cdot 8 \cdot 9 = 504$. А поскольку число трехзначное, то единственный вариант: $x+1 = 504, \; x = 503$.
+\begin{center}
+\textbf{Ответ:} 503
+\end{center}
+\subsection*{Номер 2}
+Пусть:
+\[
+x = 15k + 3
+\]
+\[
+x = 21q + 4
+\]
+Тогда из первого условия :
+\[
+15k + 3 = 3(5k + 1)
+\]
+А значит x кратен 3.
+
+При этом:
+\[
+15k + 3 = 21q + 4
+\]
+\[
+15k - 21q = 1
+\]
+\[
+3(5k - 7q) = 1
+\]
+Т.е x \textbf{НЕ} кратен 3. Мы получили противоречие, а значит решений нет
+\begin{center}
+\textbf{Ответ:} нет решений 
+\end{center}
+\subsection*{Номер 3}
+\textbf{а)} 
+\[
+66 = 2 \cdot 3 \cdot 11
+\]
+\[
+19^{10} \equiv 1^{10} = 1 \; (\text{mod} \; 2)
+\]
+\[
+19^{10} \equiv 1^{10} = 1 \; (\text{mod} \; 3)
+\] 
+По малой теореме Ферма:
+\[
+19^{11 - 1} \equiv 1 \; (\text{mod} \; 11)
+\]
+А значит:
+\[
+19^{10} \equiv 1 \; (\text{mod} \; 66)
+\]
+\begin{center}
+\textbf{Ответ:} 1
+\end{center}
+\textbf{б)}
+\[
+105 = 3 \cdot 5 \cdot 7 
+\]
+\[
+2^{2020} \equiv (-1)^{2020} = 1 \; (\text{mod} \; 3)
+\]
+\[
+2^{2020} \equiv 16^{505} \equiv 1^{505} = 1  \; (\text{mod} \; 5)
+\]
+\[
+2^{2020} \equiv 32^{404 }  \equiv 4^{404} \equiv 256^{101} \equiv 4^{101} \; (\text{mod} \; 7)
+\]
+
+
+\[
+4^{\varphi(7)} \equiv 1 \; (\text{mod} \; 7)
+\]
+\[
+\varphi(7) = 6
+\]
+\[
+101 \;  (\text{mod} \; 6) = 5
+\]
+\[
+4^{101} \equiv 4^5  = 1024 \; (\text{mod} \; 7) = 2 
+\]
+Итого:
+\[
+2^{2020} = 1 \; (\text{mod} \; 3)
+\]
+\[
+2^{2020} = 1 \; (\text{mod} \; 5)
+\]
+\[
+2^{2020} = 2 \; (\text{mod} \; 7)
+\]
+Число при делении на 15 дает остаток 1, а при делении на 7 дает остаток 2, очевидно, что это 16.
+\[
+2^{2020} \equiv 16 \; (\text{mod} \; 105)
+\]
+\begin{center}
+\textbf{Ответ:} 16
+\end{center}
+\subsection*{Номер 4}
+\textbf{a)}
+\[
+8^{8^{8^{8}}} \text{ на } 13
+\]
+\[
+8^{\varphi(13)} \equiv 1 \; (\text{mod} \; 13)
+\]
+\[
+\varphi(13) = 12
+\]
+\[
+x = 8^{8^8}  (\text{mod} \; 12)
+\]
+\[
+12 = 4 \cdot 3
+\]
+\[
+8^{8^8} \equiv 0^{8^8} = 0 \; (\text{mod} \; 4)
+\]
+\[
+8^{8^8} \equiv (-1)^{8^8} = 1   \; (\text{mod} \; 3)
+\]
+x кратно четырем и при делении на 3 дает остаток 1, а значит:
+\[
+x \equiv 4  \; (\text{mod} \; 12)
+\]
+\[
+8^{8^{8^{8}}} \equiv 8^{4}  \equiv -5^4 \equiv -25^{2} \equiv 1^2 = 1   \; (\text{mod} \; 13)
+\]
+\begin{center}
+\textbf{Ответ:} 1
+\end{center}
+\textbf{б)}
+\[
+9^{6^{3979}} \text{ на } 19
+\]
+\[
+9^{\varphi(19)} \equiv 1  \; (\text{mod} \; 19)
+\]
+\[
+\varphi(19) = 18
+\]
+\[
+x = 6^{3979}  \; (\text{mod} \; 18)
+\]
+\[
+18 = 9 \cdot 2
+\]
+\[
+6^{3979} \equiv 0^{3979} = 0 \; (\text{mod} \; 9)
+\]
+\[
+6^{3979} \equiv 0^{3979}   = 0 \;(\text{mod} \; 2)
+\]
+\[
+x = 6^{3979} \equiv 0^{3979} = 0 \; (\text{mod} \; 18)
+\]
+\[
+9^{6^{3979}} \equiv 9^{0}  = 1  \; (\text{mod} \; 19)
+\]
+\begin{center}
+\textbf{Ответ:} 1
+\end{center}
+\subsection*{Номер 5}
+\[
+55 = 5 \cdot 11
+\]
+А значит нужно найти все n, при которых число будет делиться и на 5, и на 11, посмотрим по отдельности:
+\begin{itemize}
+\item на 5:
+\[
+n^2 + 3n + 1 \equiv n^2 + 3n - 5n + 1 = n^2 - 2n + 1 = (n-1)^2 \equiv 
+\]
+\[
+\equiv n -1 \; (\text{mod} \; 5)  = 0
+\]
+А значит нужны такие n, что:
+\begin{equation}
+\label{1}
+n \equiv 1 \; (\text{mod} \; 5) 
+\end{equation}
+\item на 11:
+\[
+n^2 + 3n + 1 \equiv n^2 + 3n - 11n + 1 = n^2 - 8n + 1 = n^2 - 8n + 16 - 15 = (n-4)^2 - 15 \equiv (n-4)^2 - 4 = 
+\]
+\[
+= (n-4)^2 - 2^2 = (n-6)(n-2)   \; (\text{mod} \; 11) = 0
+\]
+А значит нужны такие n, что:
+\begin{equation}
+\label{2}
+n \equiv 6  \; (\text{mod} \; 11)
+\end{equation}
+\begin{equation}
+\label{3}
+n \equiv 2  \; (\text{mod} \; 11)
+\end{equation}
+По китайской теореме об остатках, найдется всего 2 числа, которые дают такие остатки (при рассмотрении попарно \ref{1} и \ref{2}; \ref{1} и \ref{3})
+
+\item При рассмотрении остатка 6 при делении на 11:
+\[
+11k + 6
+\]
+\[
+6, 17, 28, \ldots 
+\]
+Нам подходит 6, т.к $6 \; (\text{mod} \; 5) = 1$
+
+\item При рассмотрении остатка 2 при делении на 11:
+\[
+11k + 2
+\]
+\[
+2, 13, 24, 35, 46, 62 \ldots
+\]
+Нам подходит 46, т.к $46 \; (\text{mod} \; 5) = 1$
+\end{itemize}
+\begin{center}
+\textbf{Ответ:} $n \equiv 6   \; (\text{mod} \; 55)$  и $n \equiv 46  \; (\text{mod} \; 55)$ 
+\end{center}
+\subsection*{Номер 6}
+Нам нужно найти $\varphi(10800)$. Разложим 10800 намножители:
+\[
+10800 = 25 \cdot 27 \cdot 16
+\]
+Воспользуемся мультипликативностью функции Эйлера (это можно сделать, т.к НОД(25, 27, 16) = 1):
+\[
+\varphi(25) = \varphi(5^2) = 5 \cdot 4 = 20
+\]
+\[
+\varphi(27) = \varphi(3^3) = 9 \cdot 2 = 18
+\]
+\[
+\varphi(16)  = \varphi(2^4) = 2^3 \cdot 1 = 8
+\]
+\[
+\varphi(10800) = \varphi(25) \cdot \varphi(27) \cdot \varphi(16) =  20 \cdot 18 \cdot 8 = 2880 
+\] 
+\begin{center}
+\textbf{Ответ:} 2880
+\end{center}
+\subsection*{Номер 7}
+\[
+\varphi(x) = \frac{x}{4}
+\]
+\[
+x = \varphi(x)  \cdot 4 
+\]
+x точно делится на 4, тогда пусть x = 4q, q точно делится на два:
+\[
+4 \cdot q = \varphi(4q) \cdot 4
+\]
+\[
+q = \varphi(4q) 
+\]
+Пускай $q = 2^m \cdot y$, причем $y$ не делится на два, т.е разложим $q$ через максимальную возможную степень двойки. Тогда:
+\[
+q = \varphi(4q) = 2^m \cdot y = \varphi(4 \cdot 2^m \cdot y) = \varphi(2^{m+2} \cdot y)
+\]
+НОД($2^m, y$) = 1, т.к $y$ \textbf{не} делится на два, значит:
+\[
+\varphi(2^{m+2} \cdot y) = \varphi(2^{m+2}) \cdot \varphi(y)
+\]
+Поскольку 2 -- простое число, то можем разложить:
+\[
+\varphi(2^{m+2}) = 2^{m+2 - 1} \cdot (2 - 1)
+\]
+\[
+\varphi(2^{m+2}) \cdot \varphi(y) = 2^{m+1} \cdot \varphi(y)
+\]
+Возвращаемся к $q = 2^m \cdot y$, тогда $\frac{q}{2^m} = y$
+\[
+\frac{2^{m+1} \cdot \varphi(y)}{2^m} = \frac{q}{2^m} = 2\varphi(y) = y
+\]
+\[
+y = 2\varphi(y)
+\]
+Т.е $y$ -- четное число, мы получаем противоречие, а значит решений нет.
+\begin{center}
+\textbf{Ответ:} нет решений
+\end{center}
+\section*{Номер 8}
+Возьмем:
+\[
+a_0 = 1
+\]
+\[
+d = (n-1)!
+\]
+Рассмотрим два соседних числа в такой последовательности и покажем, что они взаимно простые:
+\[
+\text{НОД } (1 + a(n-1)!; \;1 + b(n-1)!) = \text{НОД } (1 + a(n-1)!; \;1 - 1 + (a - b) \cdot (n-1)!) =
+\]
+\[ 
+= \text{НОД } (1 + a(n-1)!; \; (a - b) \cdot (n-1)!)
+\]
+Мы видим, что $(a-b) \cdot (n-1)!$ делится на любое число, меньшее $n-1$, а $1 + a(n-1)!$ дает остаток 1 при делении на любое число, меньшее $n-1$, значит их НОД будет равен 1 и они являются взаимно простыми, при этом $a_i = a_0 + id$, а значит условие задачи выполено. Мы построили последовательность, в которой числа попарно взаимно просты.
+\end{document}

@@ -1,0 +1,175 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[left=4cm,right=4cm,
+    top=4cm,bottom=4cm,bindingoffset=0cm]{geometry}
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий. Алгебра. Дз -- 6
+\end{center}
+\section*{Номер 1}
+\begin{center}
+Начинаем с $x_1^3x_2^2x_3$ и заканчиваем $x_1^3x_2x_3^2$. 
+\end{center}
+\begin{center}
+Пусть A$ = x_1^3x_2^2x_3$, B $ = x_1^3x_2x_3^2$ для удобства,
+т.е A --  начало, B -- конец
+\end{center}
+
+Во -- первых $x_1$  роли не играет, т.к у A и B степени при нем одинаковые, нас интересуют степени при $x_2$ и $x_3$. Можем сразу построить цепочку длины 2 из исходных одночленов, т.к степень при $x_2$ у A больше, а именно:
+\[
+x_1^3x_2^2x_3 \succ x_1^3x_2x_3^2
+\]
+Теперь, чтобы удлинять цепочку, нужно впихивать одночлены посередине. Менять степень при $x_1$ нельзя из написанного выше. Вставить одночлен вида $x_1^3x_2^2x_3^m, m > 1 $ тоже не получится, т.к у A степень при $x_3$ равна 1, а значит повышать ее с сохранением степени при $x_2$ не получится. Мы можем вставить одночлен вида $x_1^3x_2^2$, что позволит нам удлинить цепочку до 3 элементов. Остаются многочлены вида $x_1^3x_2x_3^n$. Значит мы сможем для любого сколь угодно большого $n \;(n > 2)$ построить цепочку следующего вида:
+\[
+x_1^3x_2^2x_3 \succ x_1^3x_2^2 \succ x_1^3x_2x_3^n \succ x_1^3x_2x_3^{n-1} \succ \ldots \succ x_1^3x_2x_3^3 \succ  x_1^3x_2x_3^2
+\]
+А значит минимальная длина цепочки будет 2, а максимальная будет соотвественно $n - 2 + 2$ = $n$. (на самом деле без разницы, как называть, суть в том, что это получится сделать для любого сколь угодно большого числа, при этом условие про невозможность построения бесконечной цепи нарушаться не будет, т.к число конечномерное)
+\begin{center}
+\textbf{Ответ: } длины от 2 до $n$ (заданного выше)
+\end{center}
+\clearpage
+\section*{Номер 2}
+\[
+g = x_2^4x_3^5 + 2x_1x_2^4x_3 + x_1^2x_2^2
+\]
+\[
+f = x_2^4x_3 - 2x_1x_2x_3^2 + x_1x_2^2
+\]
+Собственно считаем стандартным алгоритмом с лекции:
+\[
+L(f) =  x_1x_2^2
+\]
+\[
+L(g) = x_1^2x_2^2
+\]
+Первый шаг:
+
+\[
+g \overset{f}{\rightarrow} g - x_1 \cdot f = x_2^4x_3^5 + 2x_1^2x_2x_3^2 + x_1x_2^4x_3 = g_1
+\]
+\[
+L(g_1) = 2x_1^2x_2x_3^2
+\]
+\\\\
+Второй шаг:
+
+по $L(g_1)$ редуцировать не можем, тогда по $x_1x_2^4x_3$ ($-x_2^2x_3 \cdot f$)
+\[
+x_2^4x_3^5 + 2x_1^2x_2x_3^2 + x_1x_2^4x_3 \overset{f}{\rightarrow} -x_2^6x_3^2 + x_2^4x_3^5  + 2x_1x_2^3x_3^3 + 2x_1^2x_2x_3^2 = g_2
+\]
+\[
+L(g_2) = 2x_1^2x_2x_3^2
+\]
+\\\\
+Третий шаг:
+
+тоже не можем, тогда редуцируем по $2x_1x_2^3x_3^3$ ($-2x_2x_3^3 \cdot f$ )
+\[
+-x_2^6x_3^2 + x_2^4x_3^5  + 2x_1x_2^3x_3^3 + 2x_1^2x_2x_3^2  \overset{f}{\rightarrow} -x_2^6x_3^2 - 2x_2^5x_3^4 + x_2^4x_3^5+ 2x_1^2x_2x_3^2 + 4x_1x_2^2x_3^5 = g_3
+\]
+\clearpage
+\noindentЧетвертый шаг:
+
+редуцируем по $4x_1x_2^2x_3^5$ ($-4x_3^5 \cdot f$)
+\[
+-x_2^6x_3^2 - 2x_2^5x_3^4 + x_2^4x_3^5+ 2x_1^2x_2x_3^2 + 4x_1x_2^2x_3^5 
+\overset{f}{\rightarrow}
+8x_1x_2x_3^7 - 4x_2^4x_3^6 + x_2^4x_3^5 - 2x_2^5x_3^4 +
+\]
+\[
++ 2x_1^2x_2x_3^2 - x_2^6x_3^2 = g_4
+\]
+
+\[
+L(g_4) = 2x_1^2x_2x_3^2 
+\]
+По $L(g_4)$ не можем редуцировать, но и по всем остальным одночленам тоже (нет одночленов с $x_1$ и $x_2^2$), а значит это и есть остаток $g$ относительно системы $\{f\}$.
+\begin{center}
+\textbf{Ответ: } 
+\[
+8x_1x_2x_3^7 - 4x_2^4x_3^6 + x_2^4x_3^5 - 2x_2^5x_3^4 + 2x_1^2x_2x_3^2 - x_2^6x_3^2
+\]
+\end{center}
+\clearpage
+\section*{Номер 3}
+\begin{center}
+Будем доказывать по критерию Бухбергера.
+\end{center}
+
+Считаем S полиномы от всех пар $f$ и пытаемся их $\leadsto 0$
+\begin{itemize}
+\item $S(f_1, f_2)$ : lcm$(f_1, f_2) = 4x_1x_2x_3^2$ 
+\[
+S(f_1, f_2) = 2x_3^2 \cdot f_1- x_2 \cdot f_2 = 4x_2  + 2x_2x_3^4 - x_2^2x_3^3 + 8x_1x_3^3 
+\]
+\[
+S(f_1, f_2) \overset{f_2 (2x_3)}{\rightarrow} -x_2^2x_3^3 + 4x_2 + 8x_3 \overset{f_3 (1)}{\rightarrow} 0
+\]
+\begin{center}
+Выполняется
+\end{center}
+\item $S(f_2, f_3)$:  lcm$(f_2, f_3) = 4x_1x_2^2x_3^3$ 
+\[
+S(f_2, f_3) = x_2^2x_3 \cdot f_2 - 4x_1 \cdot f_3 = x_2^3x_3^4 - 4x_2^2x_3 + 32x_1x_3 +16 x_1x_2
+\]
+\[
+S(f_2, f_3) \overset{f_1 (8)}{\rightarrow} x_2^3x_3^4 - 4x_1^2 x_3 - 8x_2x_3^2 \overset{f_3 (x_2x_3)}{\rightarrow} 0
+\]
+\begin{center}
+Выполняется
+\end{center}
+\item $S(f_1, f_3)$:  lcm$(f_1, f_3) = 2x_1x_2^2x_3^3$ 
+\[
+S(f_1, f_3) = x_2x_3^3 \cdot f_1 - 2x_1 \cdot f_3 = x_2^2x_3^5 +4x_1x_2x_3^4 + 16x_1x_3 + 8x_1x_2
+\]
+\[
+S(f_2, f_3) \overset{f_2 (x_2x_3^2)}{\rightarrow} 8x_1x_2 + 16x_1x_3 + 4x_2x_3^2 \overset{f_1 (4)}{\rightarrow} 0 
+\]
+\begin{center}
+Выполняется
+\end{center}
+\end{itemize}
+А значит выполнен критерий Бухбергера и множество $\{f_1, f_2, f_3\}$ является системой Грёбнера
+\begin{center}
+\textbf{Ответ: } да, является
+\end{center}
+\end{document}

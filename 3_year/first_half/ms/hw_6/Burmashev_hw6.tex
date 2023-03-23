@@ -1,0 +1,68 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Математические структуры, дз -- 6}
+\date{\today}
+\begin{document}
+\clearpage
+\section*{Номер 1}
+\begin{center}
+\includegraphics[scale=0.6]{1.png}
+\end{center}
+Строим вывод секвенции снизу вверх:
+\[
+\dfrac{
+P(a) \Rightarrow P(t) \; [\forall R]
+}{
+\dfrac{P(a) \Rightarrow \forall x P(x) \; [\neg R]}{
+\dfrac{
+\dfrac{
+\Rightarrow \neg P(a), \forall x P(x) \; [\exists R]
+}{
+\Rightarrow \exists x \neg P(x), \forall x P(x) \;  [\neg L]
+}
+}
+{
+\neg \exists x \neg P(x) \Rightarrow \forall x P(x) 
+}
+}
+}
+\]
+Заметим, что $a \neq t$, следовательно мы не можем получить аксиому и построить вывод нашей секвенции 
+\end{document}

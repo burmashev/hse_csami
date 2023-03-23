@@ -1,0 +1,278 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий, 208. Алгебра -- 2
+\end{center}
+\section*{Номер 1}
+Для начала проверим, что такие матрицы действительно будут образовывать подгруппу $H$ группы $G$:
+
+\begin{center}
+Замечание:
+\end{center}
+
+Чтобы матрица вида $\begin{pmatrix}
+a^3 & b \\ 0 & a^2
+\end{pmatrix}$ была невырожденной, нужно, чтобы $a \neq 0$, т.к определитель такой матрицы равен $a^5$
+\\\\
+У нас есть три свойства для подгрупп, проверим их:
+\begin{enumerate}
+\item Проверим на наличие нейтрального элемента внутри $H$
+\[
+e = \begin{pmatrix}
+1& 0 \\ 0 & 1
+\end{pmatrix} \in H \; \;(a = 1, \; b = 0)
+\]
+\[
+\text{det } (e) = 1 \neq 0
+\]
+\item Проверим на наличие $ab$ в в $H$:
+
+
+Пусть $x = \begin{pmatrix}
+a^3 & b \\ 0 & a^2
+\end{pmatrix}
+$, $y = \begin{pmatrix}
+c^3 & d \\ 0 & c^2
+\end{pmatrix}
+$, $x, y \in H, a \neq 0, c \neq 0$, тогда:
+
+
+\[
+xy = \begin{pmatrix}
+a^3 & b \\ 0 & a^2
+\end{pmatrix} \cdot \begin{pmatrix}
+c^3 & d \\ 0 & c^2
+\end{pmatrix} = \left(\begin{matrix}
+a^3\cdot c^3 & \left(b \cdot c^2+a^3 \cdot d  \right) \\
+0 & a^2 \cdot c^2
+\end{matrix}\right) = 
+\]
+\[
+=
+\left(\begin{matrix}
+(a\cdot c )^3& \left(b \cdot c^2+a^3 \cdot d  \right) \\
+0 & (a\cdot c)^2
+\end{matrix}\right) \in H 
+\]
+\[
+\text{det } (xy) = a^5 \cdot c^5 \neq 0
+\]
+\item Проверим на принадлежность обратного элемента к $H$:
+
+Пусть $
+x = \begin{pmatrix}
+a^3 & b \\0 & a^2
+\end{pmatrix} \in H, a \neq 0
+$, тогда:
+\[
+\exists \; x^{-1}, \text{ т.к матрица невырожденна}
+\]
+\[
+x^{-1} = \begin{pmatrix}
+\frac{1}{a^3} & -\frac{b}{a^5} \\0 & \frac{1}{a^2}
+\end{pmatrix}
+=
+\begin{pmatrix}
+\left( \frac{1}{a}  \right)^3& -\frac{b}{a^5} \\0 & \left( \frac{1}{a} \right)^2
+\end{pmatrix} \in H
+\] 
+\[
+\text{det } (x^{-1}) \neq 0 \text{ (из $a \neq 0$)}
+\]
+\end{enumerate}
+Заметим, что все коэффициенты во всех получившихся матрицах лежат в $\mathbb{Q}$
+\clearpage
+Убедились в том, что такие матрицы будут подгруппой, теперь докажем нормальность, для этого проверим свойство:
+
+\[
+H \triangleleft G, \text{ если }\forall g \in G, \forall h \in H \rightarrow ghg^{-1} \in H 
+\]
+Возьмем $g = \begin{pmatrix}
+x & y \\ 0 & z
+\end{pmatrix} \in G, x \neq 0, z \neq 0$.
+\\\\
+Тогда $g^{-1} = \begin{pmatrix}
+\frac{1}{x} & -\frac{y}{xz} \\ 0 & \frac{1}{z}
+\end{pmatrix}$. 
+\\\\ 
+А также пусть $h = \begin{pmatrix}
+a^3 & b \\ 0 & a^2
+\end{pmatrix} \in H, a \neq 0 $
+
+Теперь смотрим:
+\[
+ghg^{-1} = \begin{pmatrix}
+x & y \\ 0 & z
+\end{pmatrix} \cdot \begin{pmatrix}
+a^3 & b \\ 0 & a^2
+\end{pmatrix} \cdot \begin{pmatrix}
+\frac{1}{x} & -\frac{y}{xz} \\ 0 & \frac{1}{z}
+\end{pmatrix} = \left(\begin{matrix}
+a^3 \cdot x & b \cdot x+a^2 \cdot y \\
+0 & a^2 \cdot z
+\end{matrix}\right) \cdot \begin{pmatrix}
+\frac{1}{x} & -\frac{y}{xz} \\ 0 & \frac{1}{z}
+\end{pmatrix}
+=
+\]
+\[
+=
+\left(\begin{matrix}
+a^3 & \frac{b \cdot x+a^2 \cdot y-a^3 \cdot y \cdot z^2}{z} \\
+0 & a^2
+\end{matrix}\right)
+\]
+\\\\
+Все коэффициенты в $ghg^{-1}$ лежат в $\mathbb{Q}$, det $\left(ghg^{-1}\right) = a^5 \neq 0$, а значит $ghg^{-1} \in H$, следовательно $H \triangleleft G$
+\begin{center}
+\textbf{Ч.Т.Д}
+\end{center}
+
+\clearpage
+\section*{Номер 2}
+Всего отображений у нас $12^{20}$
+\[
+\phi : Z_{20} \rightarrow Z_{12} \text{ гоморфизм} \leftrightarrow \phi(x+y) = \phi(x) + \phi(y) \; \forall x, y \in Z_{20}
+\]
+\[
+\phi(1) = a
+\]
+\[
+\phi(2) = \phi(1 + 1) = \phi(1) + \phi(1) = 2a
+\]
+\[
+\phi(k) = ka
+\]
+
+Для определения гомоморфизма нам достаточно знать, куда перейдет единица, тогда мы автоматически будем знать куда переходят остальные элементы, а значит количество подходящих отображений сокращается до 20 штук. Для корректности отображения $\phi$ должно выполняться:
+\[
+\phi(x) = \phi(x + 20k) \; \forall k \in \mathbb{Z}
+\]
+\[
+x \cdot a = \phi(x) + \phi(20k) = x\cdot a + 20k \cdot a
+\]
+Что эквивалентно условию:
+\[
+20k \cdot a = 0 \text{ (mod 12) } \forall k \in \mathbb{Z}
+\]
+Возьмем $k = 1$:
+\[
+20a = 0 \text{ (mod 12)} \leftrightarrow 20a \; \vdots \; 12 \leftrightarrow 5a \; \vdots \; 3 \leftrightarrow a \; \vdots \; 3
+\]
+А значит у нас будет всего 4 гомоморфизма, а конкретно:
+\[
+\phi(x) = 0 \; \forall x
+\]
+\[
+\phi(x) = 3x  \; \forall x
+\]
+\[
+\phi(x) = 6x  \; \forall x
+\]
+\[
+\phi(x) = 9x  \; \forall x
+\]
+\clearpage
+\section*{Номер 3}
+Пусть G -- группа по $\mathbb{Q}$, а $F := \{\mathbb{C} \setminus \{0\}, \times\}$. Тогда рассмотрим такое отображение:
+\[
+\phi: G \rightarrow F, a \rightarrow e^{2\pi i a} = \cos(2 \pi a) + i \sin(2\pi a)
+\]
+Видим, что  $\phi$ - гомоморфизм, т.к:
+\[
+\phi(x + y) = e^{2\pi i(x + y)} = e^{2\pi i x} \cdot e^{2\pi i y} = \phi(x) \cdot \phi(y)
+\]Тогда по определению:
+\begin{enumerate}
+\item
+\[
+\text{ker } \phi = \{a \in G\; : \;\phi(a) = e_{F} \}  
+\]
+Заметим,  что $e_{F} = 1$. Т.е мы ищем все такие a из $G$, что $ \cos(2 \pi a) + i \sin(2\pi a) = 1$. Т.к в аргументах $\sin$ и $\cos$ есть $2 \pi$, нам подходят любые $a$ из $\mathbb{Z}$, а значит:
+\[
+\text{ker } \phi  = Z
+\]
+\item
+\[
+\text{Im } \phi  = \{z : |z| = 1, \text{ord } z < \infty  \} = H
+\]
+Это верно, т.к при возведении числа в степень $k$ по формуле Муавра мы получим $1^k \cdot (\cos(2 \pi a k) + i \sin(2\pi a k))$. Т.к $a \in \mathbb{Q}$, то найдется такое $k$, что $ak \in \mathbb{Z}$ ($a = \frac{p}{q}, p \in \mathbb{Z}, q \in \mathbb{N},$ положим $ k = q$). А значит $M(z) \neq \emptyset$ и порядок элемента будет конечным
+\end{enumerate}
+По теореме о гоморфизме для групп:
+\[
+G / \text{ker } \phi \cong \text{ Im } \phi
+\]
+А значит:
+\[
+\mathbb{Q} / \mathbb{Z} \cong H
+\]
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\clearpage
+\section*{Номер 4}
+$m, n \in \mathbb{N}$
+\\
+$G$ -- группа
+\\
+$A$ -- подгруппа порядка $m$
+\\
+$B$ -- подгруппа порядка $n$
+
+
+\begin{itemize}
+\item 1 $\rightarrow$ 2 
+
+Пускай $\text{gcd }(m, n) = 1$. Посмотрим на $A \cap B$. Пусть там лежит элемент g, тогда получаем, что:
+\[
+g^m = g^n = e
+\]
+Из этого следует, что $g = e$. Это будет верно из-за того, что мы можем получить $\frac{g^m}{g^n} = g^{m - n} = \frac{e}{e} = eй$ (или $g^{n - m} = e$ соотвественно). Если мы будем делать эти шаги как в алгоритме Евклида для нахождения gcd, то упремся в конце концов в $\text{gcd }(m, n)$. А поскольку он равен 1, то $g^1 = e$
+\item 2 $\rightarrow$ 1
+
+Попробуем от обратного. Пусть НОД$(m, n) > 1$ и выполняется пункт 2. Возьмем $F = \langle f \rangle, |F| = mn $. И тогда положим подгруппы $A = \langle f^m \rangle, B = \langle f^n \rangle$. 
+Пересекаться они будут по образующему элементу $f^{\text{НОК}(n, m)}$, т.е $A \cap B = \langle f^{\text{НОК}(n, m)} \rangle$. Мы знаем, что НОК = $\frac{mn}{\text{НОД}}$. А также $f^{mn} = e$ (из  F). Т.е $f^{\text{НОД} (m, n)  \cdot \text{НОК}(m, n)} = e$, получается что НОД задает порядок для пересечения. При НОД(m, n) > 1 внутри $A \cap B$ может содержаться что-то кроме $e$ и мы придем к противоречию. А значит НОД($m, n$) = 1
+\begin{center}
+\textbf{Ч.Т.Д}  
+\end{center}
+\end{itemize}
+\end{document}

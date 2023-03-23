@@ -1,0 +1,195 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+\author{Бурмашев Григорий}
+\title{Дискра-1}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий, 208. Дискра-1
+\end{center}
+\section*{1.}
+Доказать, что:\[A \vee B \equiv \neg B \rightarrow A \] 
+
+Построим таблицу истинности:\\\\
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+ $A$& $B $& $ \neg B $&   $A \vee B$ & $\neg B \rightarrow A$ \\
+\hline
+ 0&  0&  1&0 & 0 \\
+\hline
+ 0& 1 & 0 & 1& 1\\
+\hline
+ 1& 0 & 1 & 1 &1\\
+\hline
+1 & 1 &0 & 1&1\\
+\hline 
+\end{tabular}\\\\
+Заметим, что при любых A, B выражения эквивалентны.\\\\
+ \textbf{Ч.Т.Д}
+\section*{2.} 
+Выразить  $A \triangleleft B $, которое ложно, если A ложно, а B истинно, в остальных случаях оно истинно:\\
+
+Это выражение вида: \[ A \vee \neg B \]
+
+Построим таблицу истинности:\\\\
+\begin{tabular}{|c|c|c|c|}
+\hline
+$ A $ & $ B $ & $ \neg B $ & $ A \vee \neg B $ \\
+\hline
+0 & 0 & 1 & 1 \\
+\hline
+0 & 1 & 0 & 0 \\
+\hline
+1 & 0 & 1 & 1 \\
+\hline
+1 & 1 & 0 & 1\\
+\hline
+\end{tabular}\\\\
+Из таблицы истинности видно, что это выражение полностью соотвествует условию задачи.\\
+
+Ответ: $ A \vee \neg B $
+\section*{3.}
+Ассоциативна ли импликация? Другими словами, равносильны ли высказывания:
+\[A \rightarrow (B \rightarrow C) \text{ и } (A \rightarrow B) \rightarrow C \]\\
+
+Рассмотрим случай, когда A = 0, B = 0, C = 0. $(0 \rightarrow (0 \rightarrow 0))$. При указанных значениях  A, B, C левое выражение принимает истину. (Из лжи следует истина). А правое - принимает ложь (Из истины следует ложь) $ ((0\rightarrow 0) \rightarrow 0) $. Значит, эти высказывания \textbf{не} равносильны \\
+
+Ответ: \textbf{нет}
+\section*{4.}
+Выполняется ли дистрибутивность для конъюнкции относительно импликации? Другими словами, равносильны ли высказывания:
+
+\[A \wedge (B \rightarrow C) \text{ и }(A \wedge B) \rightarrow (A \wedge C) \]\\
+
+При A = 0, B = 0, C = 0 мы получим, что $ A \wedge (B \rightarrow C)$ ложно (т.к конъюнкция лжи с чем угодно есть ложь), а $(A \wedge B) \rightarrow (A \wedge C) $ истинно (т.к из лжи следует ложь есть истина). Значит, эти высказывания \textbf{не} равносильны\\
+
+Ответ: \textbf{нет}
+\section*{5.}
+Выполняется ли дистрибутивность для импликации относительно импликации? Другими словами, равносильны ли высказывания:
+\[A \rightarrow (B \rightarrow C) \text{ и } (A \rightarrow B) \rightarrow (A \rightarrow C)\]\\
+
+Рассмотрим случай, когда высказывания ложны. Чтобы левое высказывание было ложно, нужно, чтобы A = 1, B = 1, C = 0. ($ 1 \rightarrow(1 \rightarrow 0)$ Во всех остальных случаях оно будет истинным. При таких значениях A, B, C правое высказывание также принимает ложь ($ (1  \rightarrow 1) \rightarrow (1 \rightarrow 0)$ Аналогично первому высказыванию, при остальных значениях A, B, C  второе высказывание истинно. Значит, эти высказывания равносильны.\\
+
+Ответ: \textbf{да}
+\section*{6.}
+Доказать, что:
+\[
+|x+y| \leq |x| + |y|
+\]\\
+
+Рассмотрим все возможные случаи:\\
+Если $x, y \geq  0$:
+\begin{equation*}
+\begin{gathered}
+|x| = x \\
+|y| = y\\
+x + y \leq x + y
+\end{gathered}
+\end{equation*}
+Если $ x > 0$, $ y < 0$:
+\begin{equation*}
+\begin{gathered}
+|x| = x \\
+|y| = -y\\
+x - y \leq x - y
+\end{gathered}
+\end{equation*}
+Если $ x < 0 $, $ y >	 0 $:
+\begin{equation*}
+\begin{gathered}
+|x| = -x \\
+|y| = y\\
+-x + y \leq -x + y
+\end{gathered}
+\end{equation*}
+Если $ x < 0 $, $ y > 0 $:
+\begin{equation*}
+\begin{gathered}
+|x| = -x \\
+|y| = -y\\
+-x - y \leq -x - y
+\end{gathered}
+\end{equation*}
+\textbf{Ч.Т.Д}
+\section*{7.}
+Доказать, что  $\forall (a, b, n) > 0$:
+
+\[ \text{Из } (a \times b = n) \rightarrow (a \leq \sqrt{n}) \vee (b \leq \sqrt{n}) \]\\
+
+Воспользуемся законом контрпозиции:\\
+\[ (a > \sqrt{n}) \wedge  (b > \sqrt{n}) \rightarrow (a \times b \neq n)\]
+
+Если: 
+\begin{equation*}
+ \begin{cases}
+   a > \sqrt{n} 
+   \\
+   b > \sqrt{n}
+ \end{cases}
+\end{equation*}
+
+То:
+\[ a \times b > n\]
+
+Тогда абсолютно точно:
+\[ a \times b \neq n\]
+
+\textbf{Ч.Т.Д}
+\section*{8.}
+Доказать, что $ \forall \; x,y,z,w \in \mathbb{Z} $:
+\[ x^2 + y^2 + z^2 = w^2\] 
+$ A \equiv B $, где:
+
+A - <<w чётное>>
+B - <<все числа x, y, z чётные>>\\
+
+Рассмотрим случай,  когда  A = 1, B = 1, тогда:
+
+чётное$^2$ + чётное$^2$  + чётное$^2$ = чётное$^2$
+
+Это высказывание \textbf{истино}. Чётное число в квадрате чётно, cумма трех чётных чисел также чётна.\\ 
+
+Рассмотрим случай, когда A = 0, B = 0, тогда:
+
+нечётное$^2$ + нечётное$^2$ + нечётное$^2$ = нечётное$^2$
+
+Это высказывание также \textbf{истино}.  Потому что нечётное число в квадрате нечётно, а сумма трех нечётных цифр также нечётна.\\
+
+Значит, $A \equiv B $ 
+
+\textbf{Ч.Т.Д}
+\section*{9.}
+Пусть $x = \sqrt{10}$, а $ y = \log_{\sqrt{10}}5 $\\\\ $x,\;y$ --- иррациональные. Тогда по основному логарифмическому тождеству:
+\[ x ^ y = \sqrt{10}^{log_{\sqrt10}5} = 5\]
+
+При возведении иррационального числа в иррациональную степень мы получили рациональное число.
+
+\textbf{Ч.Т.Д}
+
+
+\end{document}

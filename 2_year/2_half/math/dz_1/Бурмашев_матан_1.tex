@@ -1,0 +1,383 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- 1}
+\date{\today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+
+\section*{Номер 1}
+Вычислить предел:
+\[
+\lim_{y \rightarrow 1} \int\limits_0^1 x^2 e^{yx^3} dx
+\]
+Рассмотрим прямоугольник $\prod = [0,1 ] \times [1 -\delta, 1 + \delta]$. Заметим, что функция $f = x^2 e^{yx^3}$ является непрерывной, отсюда по теореме о непрерывности можно внести предел:
+\[
+\lim_{y \rightarrow 1} \int_0^1 x^2 e^{yx^3} dx = 
+\int_0^1  \lim_{y \rightarrow 1} x^2 e^{yx^3} dx =
+\int_0^1  x^2 e^{x^3} dx =
+\]
+\[
+=
+\begin{bmatrix}
+u = x^3 \\
+du = 3x^2 dx \\
+\end{bmatrix} 
+=
+\int_0^1 \frac{e^u}{3} du  =
+\frac13 \int_0^1 e^u du  =
+\frac{e^u}{3} \Bigg|^1_0 = \frac{e - 1}{3}
+\]
+\begin{center}
+\textbf{Ответ: }
+\[
+\frac{e-1}{3}
+\]
+\end{center}
+\clearpage
+
+\section*{Номер 2}
+Вычислить предел:
+\[
+\lim_{y \rightarrow 0} \int\limits_{\sin y}^{\pi \sqrt{y + 1}} x \cos ((1 + y)x)dx
+\]
+Рассмотрим прямоугольник $\prod = [\sin (-\delta), \pi \sqrt{\delta + 1} ] \times [-\delta, \delta]$. Заметим, что функция $f = x \cos ((1 + y)x)$ является непрерывной, также являются непрерывными функции $\sin y$, $\pi \sqrt{y + 1}$, отсюда по теореме о непрерывности (случай 2 с лекции) можно внести предел:
+\[
+\lim_{y \rightarrow 0} \int\limits_{\sin y}^{\pi \sqrt{y + 1}} x \cos ((1 + y)x)dx =
+\int\limits_{\sin 0}^{\pi \sqrt{0 + 1}} x \cos ((1 + 0)x)dx  =
+\int\limits_0^{\pi} x \cos x dx \overset{\text{и.п.ч}}{=}
+\]
+\[
+\overset{\text{и.п.ч}}{=}
+ x \sin x \Big|^{\pi}_{0} - \int_0^{\pi} 1 \sin x dx =  x \sin x \Big|^{\pi}_{0} + \cos x \Big|^{\pi}_{0}  = (0 - 0) + (-1 -1) = -2
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+-2
+\]
+\end{center}
+\clearpage
+
+\section*{Номер 3}
+Исследовать на дифференцируемость и найти производную функции:
+\[
+F = \int\limits_{e^{-y}}^{e^y} \ln (1+ x^2y^2) \frac{dx}{x}
+\]
+Сразу заметим, что $e^{-y}$ и $e^y$ являются дифференцируемыми функциями. Рассмотрим прямоугольник $\prod = [e^{-a}, e^{b}] \times [a, b]$. Нам нужно доопределить до непрерывности нашу функцию, т.к при $x \rightarrow 0$ всё плохо (0 в знаменателе), доопределяем:
+\[
+f(x, y) = 
+\begin{cases}
+\frac{ \ln (1+ x^2y^2)}{x}, &x \neq 0 \\
+0, &x = 0
+\end{cases}
+\]
+Доопределенная функция является непрерывной, теперь можем считать частную производную:
+\[
+\left[
+\left( \frac{ \ln (1+ x^2y^2)}{x} \right)'_y = 
+\frac{1}{x} \cdot \left( \ln (1+ x^2y^2) \right)'_y =
+\frac{1}{x} \cdot \frac{2x^2y}{1 +x^2y^2} = 
+\frac{2xy}{1 + x^2y^2}
+\right]
+\]
+\[
+\frac{\partial f}{\partial y} = 
+\begin{cases}
+\frac{2xy}{1 + x^2y^2}, &x \neq 0 \\
+0, &x = 0
+\end{cases}
+\]
+Но если подставить в $\frac{2xy}{1 + x^2y^2}$ $x = 0$, мы получим 0, а значит получаем просто:
+\[
+\frac{\partial f}{\partial y} = 
+\frac{2xy}{1 + x^2y^2}
+\]
+Частная производная непрерывна, теперь можем сослаться на теорему о дифференцируемости (случай 2) и по формуле Лейбница:
+\[
+F' = \ln \left(1 + e^{2y}y^2 \right) \frac{1}{e^y} \cdot  e^y - \ln \left( 1 + e^{-2y}y^2 \right) \frac{1}{e^{-y}} \cdot (-e^{-y}) + \int\limits_{e^{-y}}^{e^y} \frac{2xy}{1 + x^2y^2} dx =
+\]
+\[
+=
+\ln(1 + e^{2y} y^2) + \ln(1 + e^{-2y} y^2 ) + \int\limits_{e^{-y}}^{e^y} \frac{2xy}{1 + x^2y^2} dx = 
+[\times]
+\]
+Посчитаем интеграл отдельно:
+\[
+\int\limits_{e^{-y}}^{e^y} \frac{2xy}{1 + x^2y^2} dx = 
+\begin{bmatrix}
+u = 1 + x^2y^2 \\
+du = 2xy^2dx \\
+\end{bmatrix} =
+\int\limits_{e^{-y}}^{e^y} \frac{2xy}{u} \frac{du}{2xy^2} = 
+\]
+\[
+= 
+\frac{1}{y} \int\limits_{e^{-y}}^{e^y} \frac{du}{u} = 
+\frac{1}{y} \cdot \ln(1 + x^2y^2) \Bigg|^{e^y}_{e^{-y}} =
+\frac{1}{y} \cdot \left(  \ln(1 + e^{2y}y^2)  -  \ln(1 + e^{-2y}y^2)  \right)
+\]
+Возвращаемся:
+\[
+[\times] = 
+\ln(1 + e^{2y} y^2) + \ln(1 + e^{-2y} y^2 ) + \left( \frac{1}{y} \cdot \left(  \ln(1 + e^{2y}y^2)  -  \ln(1 + e^{-2y}y^2)  \right) \right) =
+\]
+\[
+=
+\ln(1 + e^{2y} y^2) + \ln(1 + e^{-2y} y^2 )  + \frac{ \ln(1 + e^{2y}y^2) -  \ln(1 + e^{-2y}y^2)}{y}
+\]
+\begin{center}
+\textbf{Ответ: } 
+функция дифференцируема, производная функции равна:
+\[
+\ln(1 + e^{2y} y^2) + \ln(1 + e^{-2y} y^2 )  + \frac{ \ln(1 + e^{2y}y^2) -  \ln(1 + e^{-2y}y^2)}{y}
+\]
+\end{center}
+\clearpage
+
+\section*{Номер 4}
+Исследовать на дифференцируемость и найти производную функции, исследовать производную на непрерывность:
+\[
+\int\limits_y^{y^2} e^{-x^2y} dx
+\]
+Рассмотрим прямоугольник $\prod = [a, b^2] \times [a, b]$. $e^{-x^2y}$ является непрерывной, поэтому можем сразу считать частную производную:
+\[
+\frac{\partial f}{\partial y}  =  e^{-x^2 y} \cdot (-x^2)
+\]
+Частная производная непрерывна, теперь можем сослаться на теорему о дифференцируемости (случай 2) и по формуле Лейбница:
+\[
+F' = e^{-y^2} \cdot 2y - e^{-y^3} + \int\limits_y^{y^2} -x^2 e^{-x^2y} dx
+\]
+Интеграл не хочет браться, поэтому оставлю его в таком виде. Теперь посмотрим на непрерывность производной нашей функции. Заметим, что $y$ и $y^2$ являются непрерывно дифференцируемыми функциями. Теперь можем сослаться на следствие теоремы о дифференцируемости и отсюда получить непрерывную дифференцируемость F и соответственно непрерывность производной
+\begin{center}
+\textbf{Ответ: } функция дифференцируема, производная функции равна:
+\[
+e^{-y^2} \cdot 2y - e^{-y^3} + \int\limits_y^{y^2} -x^2 e^{-x^2y} dx
+\]
+Производная непрерывна.
+\end{center}
+\clearpage
+
+\section*{Номер 5}
+С помощью дифференцирования по параметру вычислить интеграл:
+\[
+\int\limits_0^{\frac{\pi}{2}} \frac{\arctan (p \tan x)}{\tan x} dx
+\]
+Рассмотрим прямоугольник $\prod = [0, \frac{\pi}{2}] \times [a, b]$. Посмотрим на проблемные точки, где происходит разрыв, это 0 (в знаменателе 0) и $\frac{\pi}{2}$ (в знаменателе бесконечность). Устремим к ним и посмотрим что там:
+\[
+\frac{\arctan (p \tan (x))}{\tan (x)}  \underset{x \rightarrow 0}{\sim} \frac{\frac{\frac{p}{\cos^2x}}{1 + p^2\tan^2x}}{\frac{1}{\cos^2x}} \underset{x \rightarrow 0}{\sim}  \frac{p}{1 + p^2 \tan^2 x} \underset{x \rightarrow 0}{\sim}  p
+ \]
+\[
+\frac{\arctan (p \tan (x))}{\tan (x)}  \underset{x \rightarrow \frac{\pi}{2}}{\sim} \frac{p}{1 + p^2 \tan^2 x}  \underset{x \rightarrow \frac{\pi}{2}}{\sim} 0 
+\]
+Теперь дополним до непрерывной функции:
+\[
+f(x, p) = 
+\begin{cases}
+0, &x = \frac{\pi}{2} \\
+p, &x = 0 \\
+ \frac{\arctan (p \tan x)}{\tan x}, &\text{иначе} \\
+\end{cases}
+\]
+Ну а теперь можем считать частную производную:
+\[
+\frac{\partial f}{\partial p} =
+\begin{cases}
+0, &x = \frac{\pi}{2} \\
+1, &x = 0 \\
+\frac{1}{1 + p^2 \tan^2 (x)}, &\text{иначе} \\
+\end{cases}
+\]
+Теперь можно заметить аналогичный номеру 3 случай, при подстановке в $\frac{1}{1 + p^2 \tan^2 (x)}$ 0 мы получаем 1, при подстановке $\frac{\pi}{2}$ -- 0, поэтому наша частная производная это просто:
+\[
+\frac{\partial f}{\partial p} = \frac{1}{1 + p^2 \tan^2 (x)}
+\]
+Получаем непрерывность. Теперь ссылаемся на теорему о дифференцировании (случай 1) и считаем производную функции:
+\[
+F'(p) = \int\limits_0^{\frac{\pi}{2}} \frac{1}{1 + p^2 \tan^2 (x)} dx =
+\begin{bmatrix}
+u = \tan (x) \\
+du = (1 + u^2) dx 
+\end{bmatrix} = 
+\int\limits_0^{\infty} \frac{1}{(1 + u^2) (1 + p^2 u^2)} du
+\]
+[Какая же глина] разобьем на сумму, чтобы посчитать два интеграла отдельно:
+\[
+\frac{1}{(1 + u^2) (1 + p^2 u^2)} = 
+\frac{Au + B}{1 + u^2} + \frac{Cu + D}{1 +p^2u^2} =
+ \frac{Ap^2u^3 + Au + Bp^2u^2 + B + Cu^3 + Cu +Du^2 + D}{(1 + u^2) (1 + p^2 u^2)}
+\]
+Ищем коэффы:
+\[
+\begin{cases}
+B + D = 1 \\
+A + C = 0\\
+Bp^2 + D = 0 \\
+Ap^2 + C = 0 
+\end{cases}
+\sim
+\begin{cases}
+B + D = 1 \\
+A + C = 0\\
+Bp^2 + D = 0 \\
+Ap^2 + C = 0 
+\end{cases} 
+\sim
+\begin{cases}
+A = 0 \\
+B = \frac{1}{1 - p^2} \\
+C = 0 \\
+D = \frac{p^2}{p^2 - 1} \\
+\end{cases}
+\]
+Из-за знаменателя у коэффов B и D получаем крайние случаи $p = \pm 1 $, где в знаменателе получается 0. Рассмотрим их отдельно позже. Подставляем коэффы (пусть $p \neq \pm 1$):
+\[
+\int\limits_0^{\infty} \frac{1}{(1 + u^2) (1 + p^2 u^2)} du = 
+\int\limits_0^{\infty}  \frac{\frac{1}{1 - p^2}}{1 + u^2}du+ \int\limits_0^{\infty}  \frac{\frac{p^2}{p^2 - 1}}{1 +p^2u^2du} = 
+\]
+\[
+=
+\int\limits_0^{\infty}  \frac{1}{(1 - p^2)(1 + u^2)}du + \int\limits_0^{\infty}  \frac{p^2}{(p^2 - 1)(1 +p^2u^2)}du = 
+\]
+\[
+=
+\frac{1}{1-p^2} \int\limits_0^{\infty} \frac{1}{(1 + u^2)}du + 
+\frac{p^2}{p^2-1}\int\limits_0^{\infty}  \frac{1}{(1 +p^2
+u^2)}du = A 
+\]
+Считаем отдельно:
+\[
+\int \frac{1}{ (1+ p^2u^2)} du = 
+\begin{bmatrix}
+t = pu \\
+du = \frac{dt}{p}
+\end{bmatrix}
+=
+\int \frac{1}{p(1 + t^2)} dt
+=
+\frac{1}{p} \int \frac{1}{1 + t^2} dt = \frac{1}{p} \arctan (pu)
+\]
+\[
+\int \frac{1}{ (1+ u^2)} du = \arctan(u)
+\]
+Возвращаемся:
+\[
+A = 
+\frac{1}{1-p^2} \cdot \left( \arctan (\tan x) \Bigg|^{x=+\infty}_0 \right)+ \frac{p}{p^2 - 1} \cdot \left( \arctan (p \cdot \tan x) 
+\Bigg|^{x=+\infty}_0 \right) 
+=
+\frac{\pi}{2} \cdot 
+\frac{p-1}{p^2 - 1}
+=
+\]
+\[
+=
+\frac{\pi}{2(p+1)}
+\]
+Теперь надо вспомнить (к сожалению) про крайний случай при $p = \pm 1$. У нас получается следующий интеграл:
+\[
+\int\limits_0^{\frac{\pi}{2}} \frac{1}{1 + p^2 \tan^2 (x)} dx  =
+\int\limits_0^{\frac{\pi}{2}} \frac{1}{1 + \tan^2 x} dx =
+\begin{bmatrix}
+t = \tan x \\
+dt = 1 + t^2 dx
+\end{bmatrix}
+=
+\int\limits_0^{\infty} \frac{1}{(1 + t^2)^2} dt
+\]
+Cчитаем этот интеграл отдельно:
+\[
+\int \frac{1}{(1 + t^2)^2} dt = \frac{At + B}{1 + t^2} + \int \frac{Ct + D}{1+t^2} dt
+\]
+\[
+\frac{1}{(1 + t^2)^2} = \frac{-At^2 + A - 2Bt}{(1 + t^2)^2} + \frac{Ct + D}{1 + t^2} = 
+\]
+\[
+=
+ \frac{-At^2 + A - 2Bt +(Ct+D)(1 + t^2)}{1 + t^2} = \frac{-At^2 + A - 2Bt + Ct^3 + Ct + Dt^2 + D}{1+t^2}
+\]
+Находим коэффы:
+\[
+\begin{cases}
+A + D = 1\\
+-2B + C = 0 \\
+-A + D= 0 \\
+C = 0 \\
+\end{cases}
+\sim
+\begin{cases}
+A = \frac12 \\
+B = 0\\
+C = 0 \\
+D = \frac12 
+\end{cases}
+\]
+Возвращаемся:
+\[
+\int \frac{1}{(1 + t^2)^2} dt = \frac{\frac{1}{2}t + 0}{1 + t^2} + \int \frac{\frac{1}{2}t + 0}{1+t^2}dt = 
+\frac{t}{2(1+t^2)} + \frac{\arctan t}{2} 
+\]
+Теперь возвращаемся к нашему интегралу, он будет равен:
+\[
+\left( \frac{t}{2(1+t^2)} + \frac{\arctan t}{2}  \right) \Bigg|_0^{\infty} = \frac{\frac{\pi}{2}}{2} = \frac{\pi}{4}
+\]
+С крайним случаем закончили. Теперь возвращаемся в самое начало, мы хотим найти $F(p)$, при этом мы знаем производную, тогда интегрируем:
+\[
+F(p) = \int \frac{\pi}{2(p + 1)} dp = \frac{\pi}{2} \int \frac{1}{p + 1} dp = \frac{\pi}{2} \cdot \ln |p + 1| + C
+\]
+Нужно найти константу, для этого просто подставим $p =0 $ в $F(p)$:
+\[
+0 = \frac{\pi}{2} \ln1 + C
+\]
+\[
+C = -\frac{\pi}{2} \ln 1 = 0
+\]
+Итого:
+\[
+F(p) = \frac{\pi}{2} \cdot \ln |p + 1| + 0, p \neq \pm 1
+\]
+Но поскольку $F$ непрерывная функция, то мы просто можем доопределить её в точках $p = \pm 1$ и все, а значит все выполняется при любых $p$.
+\begin{center}
+\textbf{Ответ: }
+\[
+F(p) = \frac{\pi}{2} \cdot \ln |p + 1|
+\]
+\end{center}
+\end{document}

@@ -1,0 +1,198 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Математические структуры, контрольная работа, вариант H}
+\date{\today}
+\begin{document}
+\maketitle
+\clearpage
+\section*{Номер 1}
+Пускай:
+\begin{itemize}
+\item a -- счастливый билет
+\item b -- хорошо подготовился
+\item c -- экзамен успешно сдал
+\end{itemize}
+Тогда наше выражение в таком языке будет иметь вид:
+\[
+(((a \vee b) \rightarrow c) \wedge (\neg b \rightarrow \neg c)) \rightarrow (\neg c \rightarrow \neg a)
+\]
+Проверим, может ли следствие быть ложным, это единственный случай, когда вся формула станет ложной, т.е мы хотим:
+\[
+\begin{cases}
+((a \vee b) \rightarrow c) \wedge (\neg b \rightarrow \neg c)) = 1 \\
+ (\neg c \rightarrow \neg a)  = 0 
+\end{cases}
+\]
+Из правой части однозначно получаем:
+\[
+\begin{cases}
+((a \vee b) \rightarrow c) \wedge (\neg b \rightarrow \neg c)) = 1\\
+ ( c \vee \neg a)  = 0 
+\end{cases}
+\]
+\[
+\begin{cases}
+((a \vee b) \rightarrow c) \wedge (\neg b \rightarrow \neg c)) = 1\\
+c = 0 \\ 
+a = 1
+\end{cases}
+\]
+Теперь подставим значения в первое выражение:
+\[
+((1 \vee b) \rightarrow 0) \wedge (\neg b \rightarrow \neg 0)) = 1
+\]
+\[
+(1 \rightarrow 0) \wedge (\neg b \rightarrow 1) = 1
+\]
+В левой	 скобке однозначно 0, значит получаем:
+\[
+0 = 1
+\]
+Что неверно, приходим к противоречию, значит случая $1 \rightarrow 0$ не может быть, следовательно заключение является логическим следствием конъюнкции посылок
+\begin{center}
+\textbf{Ответ: } да, является
+\end{center}
+\section*{Номер 2}
+\[
+((q \wedge r) \rightarrow p) \rightarrow \neg (p \wedge q) 
+\]
+\[
+\neg  (\neg (q \wedge r) \vee p)) \vee \neg (p \wedge q) 
+\]
+\[
+\neg (\neg  q \vee \neg r \vee p) \vee (\neg p \vee \neg q)
+\]
+\[
+(q \wedge r \wedge \neg p) \vee \neg p \vee \neg q
+\]
+\begin{center}
+\textbf{Ответ: } $(q \wedge r \wedge \neg p) \vee \neg p \vee \neg q$
+\end{center}
+\clearpage
+\section*{Номер 3}
+\begin{center}
+\includegraphics[scale=0.4]{3.jpg}
+\end{center}
+\clearpage
+\section*{Номер 4}
+Докажем, что не является:
+\\\\
+Пусть:
+\[
+M, x \not \models \neg (p \rightarrow q) \rightarrow (p \wedge \neg q) 
+\]
+Т.е хотим $\exists y : x \preceq  y$
+\[
+\begin{cases}
+y \models \neg (p \rightarrow  q) \\
+y \not \models (p \wedge \neg q)
+\end{cases}
+\]
+Разберемся сначала со вторым выражением, хотим $\exists y' : y' \preceq  y$, что $y' \not \models p$ или $y' \not \models \neg q \equiv y' \models q$.
+\\\\
+Теперь для первого выражения хотим: $\exists z: y \preceq z$, что:
+\[
+\begin{cases}
+z \models p \\
+z \not \models q
+\end{cases}
+\]
+Построили опровергающаю модель Крипке, но \textbf{не} получили в  ней противоречий, следовательно формула \textbf{не} является интуиционисткой тавтологией.
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\clearpage
+\section*{Номер 5}
+\[
+\neg \neg \neg p \rightarrow \neg p
+\]
+Пусть:
+\[
+M, x \not \models \neg \neg \neg p \rightarrow \neg p
+\]
+Тогда:
+$\exists y: x \preceq y$, что:
+\[
+\begin{cases}
+y \models \neg \neg \neg p \\
+y \not \models p \rightarrow \bot
+\end{cases}
+\]
+Для второго: $\exists z : y \preceq z$:
+\[
+z \models p
+\]
+Для первого:
+\[
+y \models \neg \neg p \rightarrow \bot
+\]
+\[
+y \not \models \neg \neg p
+\]
+\[
+y \not \models \neg p \rightarrow \bot
+\]
+Тобишь $\exists s : y \preceq s$:
+\[
+s \models \neg p
+\]
+Для $z : z \models p$, для $s: s \models \neg p$, посмотрим, будет ли противоречие.
+\\\\
+Заметим, что :
+\[
+p \rightarrow \neg \neg p \text{ есть и-тавтология }
+\]
+Следовательно замечаем:
+\[
+z \models \neg \neg p
+\]
+\textbf{Но} в $y$:
+\[
+y \not \models \neg \neg p
+\]
+Тогда:
+\[
+z \models \bot
+\]
+Получили \textbf{противоречие}, значит исходная формула является и-тавтологией
+\begin{center}
+\textbf{Ч.Т.Д} 
+\end{center}
+\end{document}

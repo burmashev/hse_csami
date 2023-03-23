@@ -1,0 +1,261 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- 6}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{Номер 1}
+\[
+\int\limits_0^{\infty} \frac{\sqrt[3]{x}}{(4 + x^2)^5} dx
+=
+\frac{1}{4^5 }
+\int\limits_0^{\infty} \frac{\sqrt[3]{x}}{(1 + \frac{x^2}{4})^5} dx
+=
+\begin{bmatrix}
+\frac{x^2}{4} = t \\ 
+x = 2\sqrt{t} \\ 
+dt = \frac{x}{2} dx \\
+dx = \frac{dt}{\sqrt{t}}
+\end{bmatrix}
+=
+\frac{1}{4^5 }
+\int\limits_0^{\infty}
+\frac{\sqrt[3]{2\sqrt{t}}}{(1 + t)^5}
+\frac{dt}{\sqrt{t}}
+=
+\frac{\sqrt[3]{2} }{4^5 }
+\int\limits_0^{\infty}
+\frac{\sqrt[6]{t}}{(1 + t)^5} \frac{dt}{\sqrt{t}}
+=
+\]
+\[
+=
+\frac{\sqrt[3]{2} }{4^5 }
+\int\limits_0^{\infty}
+\frac{t^{-\frac{1}{3}}}{(1 + t)^5} dt = (\times)
+\]
+Получили вид $B(p, q)$, но нужно найти сами $p$ и $q$:
+\[
+\begin{cases}
+p - 1 = -\frac{1}{3} \\
+p + q = 5
+\end{cases}
+\sim 
+\begin{cases}
+p  = \frac{2}{3} \\
+q = 5 - \frac{2}{3} = \frac{13}{3}
+\end{cases}
+\]
+Тогда:
+\[
+(\times) = \frac{\sqrt[3]{2} }{4^5 } \cdot \frac{\Gamma \left(\frac{2}{3}\right)\left(\frac{13}{3}\right)}{\left(5\right)}
+=
+ \frac{\sqrt[3]{2} }{4^5 } \cdot \frac{\Gamma \left(\frac{2}{3}\right)
+\frac{10}{3} \cdot \frac{7}{3} \cdot \frac{4}{3} \cdot \frac{1}{3}\Gamma \left(\frac{1}{3}\right)}
+{4!}
+= 
+\begin{bmatrix}
+\Gamma \left(\frac{2}{3}\right)\Gamma \left(\frac{1}{3}\right)= \frac{\pi}{\sin \frac{\pi}{3}}
+\end{bmatrix}
+=
+\]
+\[
+=
+\frac{\sqrt[3]{2} }{4^5 } \cdot 
+\frac{
+\frac{10}{3} \cdot \frac{7}{3} \cdot \frac{4}{3} \cdot \frac{1}{3} \frac{\pi}{\sin \frac{\pi}{3}}}{4!}
+=
+\]
+\[
+=
+\frac{\sqrt[3]{2} }{4^5 } \cdot \frac{\pi}{\sin \frac{\pi}{3}} \cdot \frac{1}{4!} 
+\cdot \frac{10 \cdot 7 \cdot 4}{3^4}  = \frac{\sqrt[3]{2} }{4^5 } \cdot \frac{\pi}{\sin \frac{\pi}{3}}
+\cdot \frac{5 \cdot 7}{81 \cdot 3} 
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\frac{\sqrt[3]{2} }{4^5 } \cdot \frac{\pi}{\sin \frac{\pi}{3}}
+\cdot \frac{35}{243} 
+\]
+\end{center}
+\clearpage
+\section*{Номер 2}
+\[
+\int\limits_0^a x^2 \sqrt{a^2 - x^2} dx, \; (a > 0)
+\]
+\[
+\int\limits_0^a x^2 \sqrt{a^2 - x^2} dx = 
+\int\limits_0^a x^2 a\sqrt{1 - \left(\frac{x}{a}\right)^2} dx = 
+\begin{bmatrix}
+\left(\frac{x}{a}\right)^2 = t \\
+x = a \sqrt{t} \\
+dt = \frac{2x}{a^2} dx \\
+dx = \frac{a}{2\sqrt{t}} dt
+\end{bmatrix}
+=
+\]
+\[
+=
+\int\limits_0^a  a^3 t \sqrt{1 - t} \frac{a}{2\sqrt{t}} dt = 
+\frac{a^4}{2} \int\limits_0^a \sqrt{t} \sqrt{1 - t}  dt = (\times)
+\]
+Получили опять $B(p, q)$, найдем коэффы:
+\[
+\begin{cases}
+p - 1 = \frac{1}{2} \\
+q -1 = \frac{1}{2} \\
+\end{cases}
+\sim
+\begin{cases}
+p = \frac{3}{2} \\
+q= \frac{3}{2} \\ 
+p + q = 3
+\end{cases}
+\]
+\[
+(\times) = 
+\frac{a^4}{2} \frac{\Gamma \left(\frac{3}{2}\right) \Gamma \left(\frac{3}{2}\right)}{\Gamma(3)}
+=
+\frac{a^4}{2} \cdot \frac{\frac{1}{2} \Gamma \left(\frac{1}{2}\right) \frac{1}{2} \Gamma \left(\frac{1}{2}\right)}{2!} = \frac{a^4}{2} \cdot \frac{1}{2^3} \cdot \Gamma \left(\frac{1}{2}\right) \Gamma \left(\frac{1}{2}\right)
+=
+\frac{a^4}{2^4} \cdot \pi
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\frac{a^4}{16} \cdot \pi
+\]
+\end{center}
+\clearpage
+\section*{Номер 3}
+\[
+\int\limits_0^{+\infty} x^p e^{-x^q} dx
+\]
+Около нуля экспонента ведет себя как единичка, значит:
+\[
+f \sim x^p = \frac{1}{x^{-p}} \rightarrow -p < 1 \rightarrow p > -1
+\]
+На бесконечности экспонента все сьест и:
+\[
+|f| \leq e^{\frac{-x^q}{2}}, q > 0
+\]
+Такой интеграл будет сходится. При $q = 0$ получаем интеграл:
+\[
+\int\limits_0^{+\infty} x^p dx 
+\]
+Ну а этот интеграл расходится. Заменяем $x^q = t$ и получам:
+\[
+\int\limits_0^{+\infty} x^p e^{-x^q} dx = 
+\begin{bmatrix}
+x^q = t \\
+x = t^{\frac{1}{q}}\\
+dt = q x^{q-1} dx \\
+dx = \frac{1}{q x^{q-1}}dt
+\end{bmatrix}
+= 
+\int\limits_0^{+\infty} 
+t^{\frac{p}{q}} e^{-t} \frac{1}{qt^{\frac{q-1}{q}}} dt = 
+\frac{1}{q} \int\limits_0^{+\infty} t^{\frac{p}{q}} \cdot e^{-t} \cdot q^{\frac{1-q}{q}} dt
+=
+\]
+\[
+=
+\frac{1}{q} \int\limits_0^{+\infty} e^{-t} \cdot t^{\frac{p-q+1}{q}dt} = 
+\frac{1}{q} \Gamma \left( \frac{p + 1}{q}\right)
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\frac{1}{q} \Gamma \left( \frac{p + 1}{q}\right), \; \; p > -1, \; q > 0
+\]
+\end{center}
+\clearpage
+\section*{Номер 4}
+\[
+\int\limits_0^{\frac{\pi}{2}} (\tg x)^p dx 
+\]
+Тангенс мешает, избавимся от него заменой:
+\[
+\int\limits_0^{\frac{\pi}{2}} (\tg x)^p dx  =
+\begin{bmatrix}
+\tg x = t \\
+dt = \frac{1}{\cos^2 x} dx \\
+dx = \frac{1}{1 + t^2} dt
+\end{bmatrix}
+=
+\int\limits_0^{\infty} \frac{t^p}{1+t^2} dt
+\]
+Получили номер 1 в 1 аналогичный номеру 5 с семинара, только в знаменателе вместо $q$ двойка. Тогда смотрим.
+Около нуля:
+\[
+f \sim t^p = \frac{1}{x^{-p}} \rightarrow p > - 1
+\]
+На бесконечности:
+\[
+f \sim x^{p - 2} \rightarrow p - 2 < -1 \rightarrow p < 1
+\] 
+Итого:
+\[
+-1 < p < 1 
+\]
+Заменим $x^2 = u$:
+\[
+\int\limits_0^{\infty} \frac{t^p}{1+t^2} dt = \begin{bmatrix}
+t^2 = u \\
+t = \sqrt{u}\\
+2tdt = du \\
+dt = \frac{1}{u} dt\\
+\end{bmatrix}
+=
+\int\limits_0^{\infty} \frac{u^{\frac{p}{2}}}{1+u} \cdot \frac{1}{2} \cdot u^{-\frac{1}{2}} du = \frac{1}{2} \int\limits_0^{\infty} \frac{u^{\frac{p-1}{2}}}{1+u} du = \frac{1}{2} \frac{\Gamma \left(\frac{p+1}{2}\right) \cdot \Gamma \left(1 - \frac{p + 1}{2}\right)}{\Gamma(1)} = 
+\]
+\[
+=
+\frac{\pi}{2 \sin \left(\pi \frac{p + 1}{2}\right)}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+\frac{\pi}{2 \sin \left(\pi \frac{p + 1}{2}\right)}, -1 < p < 1
+\]
+\end{center}
+
+\end{document}

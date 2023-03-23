@@ -1,0 +1,664 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Линал. ИДЗ - 1. Вариант 2.}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{1.} Вычислить матрицу (по данным матрицам в условии)
+\[
+-2D \cdot A \cdot A^T + tr(B^T \cdot B) \cdot (A-B) \cdot (A^T + B^T) - 6C^2 - 12C \cdot D - 6D^2
+\]
+\\
+Вычислим по порядку:
+\[
+A^T = \begin{pmatrix}
+5  & -3\\
+-6 & -4\\
+1 & 4\\
+\end{pmatrix}
+\]
+\[
+B^T = \begin{pmatrix}
+-6 & 3\\
+1 & -3\\
+-4 & 7
+\end{pmatrix}
+\]
+\[
+-2D = -2 \cdot
+\begin{pmatrix}
+4 & 7\\
+6& -3 \\
+\end{pmatrix}
+= 
+\begin{pmatrix}
+-8 & 14\\
+-12 & 6\\
+\end{pmatrix}
+\]
+\[
+-2D \cdot A =\begin{pmatrix}
+-8 & 14\\
+-12 & 6\\
+\end{pmatrix} \cdot
+\begin{pmatrix}
+5 & -6 & 1\\
+-3 & -4 & 4\\
+\end{pmatrix} = 
+\begin{pmatrix}
+2 & 104 & -64 \\
+-78 & 48 & 12\\
+\end{pmatrix}
+\]
+\[
+X = -2D \cdot A \cdot A^T = \begin{pmatrix}
+2 & 104 & -64 \\
+-78 & 48 & 12\\
+\end{pmatrix} \cdot
+\begin{pmatrix}
+5  & -3\\
+-6 & -4\\
+1 & 4\\
+\end{pmatrix} = 
+\begin{pmatrix}
+-678 & -678\\
+-666 & 90\\
+\end{pmatrix}
+\]
+
+\[
+B ^ T \cdot B = 
+\begin{pmatrix}
+-6 & 3\\
+1 & -3\\
+-4 & 7\\
+\end{pmatrix}
+\cdot 
+\begin{pmatrix}
+-6 & 1 & -4\\
+3  & -3 & 7
+\end{pmatrix}
+=
+\begin{pmatrix}
+6 \cdot 6 + 3\cdot 3 & -6 - 3\cdot 3& 6 \cdot 4 + 3\cdot 7\\
+-6 - 3\cdot 3 & 1 + 3\cdot 3 & -4 - 3 \cdot 7\\
+4 \cdot  + 7 \cdot 3 & -4 - 7 \cdot 3 & 4 \cdot 4 + 7 \cdot 7\\
+\end{pmatrix} = 
+\]
+\[=
+\begin{pmatrix}
+45 & -15 & 45\\
+-15 & 10 & -25\\
+45 & -25 & 65\\
+\end{pmatrix}
+\]
+\[
+tr(B^T \cdot B) = 45 + 10 + 65 = 120
+\]
+\[
+A - B = 
+\begin{pmatrix}
+5 + 6 & -6 -1 & 1 + 4\\
+-3 -3 & -4 + 3 & 4 - 7\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+11 & -7 & 5\\
+-6 & -1 & -3\\
+\end{pmatrix}
+\]
+\[
+A^T + B^T = 
+\begin{pmatrix}
+5 - 6 & -3 + 3\\
+-6 + 1 & -4 - 3\\
+1  -4 & 4 + 7\\
+\end{pmatrix} = 
+\begin{pmatrix}
+-1 & 0\\
+-5 & -7\\
+-3 & 11\\
+\end{pmatrix}
+\]
+\[
+(A -B) \cdot (A^T + B^T) = \begin{pmatrix}
+11 & -7 & 5\\
+-6 & -1 & -3\\
+\end{pmatrix} \cdot
+\begin{pmatrix}
+-1 & 0\\-5 & -7 \\ -3 & 11\\
+\end{pmatrix} = 
+\begin{pmatrix}
+9 & 104\\20 & -26\\
+\end{pmatrix}
+\] 
+\[
+Y =tr(B^T \cdot B) \cdot (A -B) \cdot (A^T + B^T) = 
+120 \cdot \begin{pmatrix}
+9 & 104 \\ 20 & -26\\
+\end{pmatrix} = 
+\begin{pmatrix}
+1080 & 12480\\ 2400 & -3120\\
+\end{pmatrix}
+\]
+\[
+6C^2 = 6 \cdot \begin{pmatrix}
+28 & -54 \\ -18 & 37\\
+\end{pmatrix} = \begin{pmatrix}
+168 & -324 \\ -108  & 222\\
+\end{pmatrix}
+\]
+\[
+C \cdot D = \begin{pmatrix}
+4 & -6 \\ -2 & 5 
+\end{pmatrix} \cdot 
+\begin{pmatrix}
+4 & 7 \\ 6 & -3\\
+\end{pmatrix}  = \begin{pmatrix}
+-20 & 46\\ 22 & -29
+\end{pmatrix}
+\]
+\[
+12C \cdot D = 12 \cdot \begin{pmatrix}
+-20 & 46 \\ 22 & -29
+\end{pmatrix} = \begin{pmatrix}
+-240 & 552 \\ 264 & -348\\
+\end{pmatrix}
+\]
+\[
+6C^2  + 12C \cdot D =\begin{pmatrix}
+-72 & 228\\ 156 & -126\\
+\end{pmatrix}
+\]
+\[
+6D^2 = 6 \cdot \begin{pmatrix}
+58 & 7 \\ 6 & 51\\
+\end{pmatrix} = \begin{pmatrix}
+348 & 42 \\ 36 & 306\\
+\end{pmatrix}
+\]
+\[
+Z = 6C^2 + 12C \cdot D + 6D^2 = \begin{pmatrix}
+276 & 270 \\ 192 & 180\\
+\end{pmatrix}
+\]
+\[
+X + Y = \begin{pmatrix}
+-679 + 1080 & -678 + 12480 \\ -666 + 2400 & 90 - 3120\\
+\end{pmatrix} = \begin{pmatrix}
+402 & 11802 \\ 1734 & -3030\\
+\end{pmatrix}
+\]
+\[
+X + Y - Z = \begin{pmatrix}
+402- 276 & 11802- 270 \\ 1734 - 192 & -3030 - 180\\
+\end{pmatrix} = 
+\begin{pmatrix}
+126& 11532 \\ 1542 & -3210
+\end{pmatrix}
+\]
+\begin{large}
+\begin{center}
+\textbf{Ответ:} $\begin{pmatrix}
+126 & 11532\\ 1542 & -3210\\
+\end{pmatrix} $
+\end{center}
+\end{large}
+\section*{2.} 
+Решите каждую из приведённых ниже систем линейных уравнений методом Гаусса. Если система совместна, то выпишите её общее решение и укажите одно частное решение
+\subsection*{(а)}
+\[
+\begin{pmatrix}
+5 & -2 & 0 & -11 & \vrule & -5 & \\
+-8 & 4 & -4 & 16 & \vrule & 12 & \\
+8 & 1 & -21 & -26 & \vrule & 13 & \\
+10 & -7 & 15 & -16 & \vrule & -25 \\
+\end{pmatrix} =
+\begin{pmatrix}
+1 & 0 & -2 & -3 & \vrule & 1 & \\
+-4 & 2 & -2 & 8 & \vrule & 6 & \\
+0 & 5 & -25 & -10 & \vrule & 25 & \\
+0 & -3 & 15 & 6& \vrule & -15 \\
+\end{pmatrix}  = 
+\]
+\[=
+\begin{pmatrix}
+1 & 0 & -2 & -3 & \vrule & 1 & \\
+0 & -1 & 5& 2 & \vrule & -5 & \\
+0 & 5 & -25& -10 & \vrule & 25 & \\
+0 & -3 & 15 & 6& \vrule & -15 \\
+\end{pmatrix}  =
+\begin{pmatrix}
+1 & 0 & -2 & -3 & \vrule & 1 & \\
+0 & -1 & 5& 2& \vrule &-5 & \\
+0 & 0 & 0 & 0 & \vrule & 0 & \\
+0 & 0 & 0& 0& \vrule & 0 \\
+\end{pmatrix} 
+\]
+\\\\
+Вернемся к системе уравнений:
+\[
+\begin{cases}
+x_1 - 2x_3 - 3x_4 = 1 \\
+-x_2 +5x_3 + 2x_4 = -5\\
+x_3 - \text{произвольное}\\
+x_4 - \text{произвольное}\\
+\end{cases}
+\]
+\[
+\begin{cases}
+x_1 = 1 + 2x_3 + 3x_4\\
+x_2 = 5  +5x_3 + 2x_4\\
+x_3 - \text{произвольное}\\
+x_4 - \text{произвольное}\\
+\end{cases}
+\]\\
+\begin{large}
+\begin{center}
+\textbf{Ответ:} \\
+общее решение:
+\[
+\begin{cases}
+x_1 = 1 + 2x_3 + 3x_4\\
+x_2 = 5  +5x_3 + 2x_4\\
+x_3 - \text{произвольное}\\
+x_4 - \text{произвольное}\\
+\end{cases}
+\]
+одно частное решение:
+\[
+\begin{cases}
+x_1 = 9\\
+x_2 = 14\\
+x_3 = 1\\
+x_4 = 2\\
+\end{cases}
+\]
+\end{center}
+\end{large}
+\subsection*{(б)}
+\[
+\begin{pmatrix}
+5 & -2 & 0 & -11 & \vrule & -5 & \\
+-8 & 4 & -4 & 16 & \vrule & 0 & \\
+8 & 1 & -21 & -26 & \vrule & -9 & \\
+10 & -7 & 15 & -16 & \vrule & 0\\
+\end{pmatrix} =
+\begin{pmatrix}
+1 & 0 & -2 & -3 & \vrule & -5 & \\
+-4 & 2 & -2 & 8 & \vrule & 0 & \\
+0 & 5 & -25 & -10 & \vrule & -9 & \\
+0 & -3 & 15 & 6& \vrule & 10 \\
+\end{pmatrix}  = 
+\]
+\[=
+\begin{pmatrix}
+1 & 0 & -2 & -3 & \vrule & -5 & \\
+0& -1 & 5 & 2 & \vrule & 10 & \\
+0 & 5 & -25 & -10 & \vrule & -9 & \\
+0 & -3 & 15 & 6& \vrule & 10 \\
+\end{pmatrix}  = 
+\begin{pmatrix}
+1 & 0 & -2 & -3 & \vrule & -5 & \\
+0& -1 & 5 & 2 & \vrule & 10 & \\
+0 & 0 & 0 & 0& \vrule & 41 & \\
+0 & -3 & 15 & 6& \vrule & 10 \\
+\end{pmatrix}  
+\]
+\\
+В третьей строке матрицы:
+\[
+0x_1 + 0x_2 + 0x_3 + 0x_4 = 41
+\]
+\[
+0 = 41
+\]
+\begin{center}
+\textbf{противоречие}, значит система несовместна \\
+\end{center}
+\begin{large}
+\begin{center}
+\textbf{Ответ:}  система несовместна
+\end{center}
+\end{large}
+\section*{3.}
+$AX = XA$, пусть:
+\[
+X = \begin{pmatrix}
+a & 0 & b \\
+c & d & e \\
+0 & 0 & f\\
+\end{pmatrix}
+\]
+Тогда:
+\[
+\begin{pmatrix}
+10 & 0 & 2 \\
+-1 & -4 & 3\\
+0 & 0 & 0 \\
+\end{pmatrix}
+\cdot
+ \begin{pmatrix}
+a & 0 & b \\
+c & d & e \\
+0 & 0 & f\\
+\end{pmatrix} = 
+ \begin{pmatrix}
+a & 0 & b \\
+c & d & e \\
+0 & 0 & f\\
+\end{pmatrix} 
+\cdot
+\begin{pmatrix}
+10 & 0 & 2 \\
+-1 & -4 & 3\\
+0 & 0 & 0 \\
+\end{pmatrix}
+\]
+Умножим матрицы:
+\[
+\begin{pmatrix}
+10a & 0 & 10b+2f\\
+-a-4c& -4d & -b + 3f - 4e\\
+0 & 0 & 0 &
+\end{pmatrix}
+=
+\begin{pmatrix}
+10a & 0 & 2a\\
+-10c-d& -4d & 2c+3d\\
+0 & 0 & 0 &
+\end{pmatrix}
+\]
+Чтобы эти матрицы были равны, должна быть верна система:
+\[
+\begin{cases}
+10b + 2f = 2a\\10c - d = -a -4c\\
+2c + 3d = -b + 3f - 4e\\
+\end{cases}
+\]
+\[
+\begin{cases}
+5b + f = a\\
+14c = d - a\\
+2c + 3d = -b + 3f - 4e\\
+\end{cases}
+\]
+Мы знаем, что:
+\[
+a = 5b + f
+\]
+Выразим c:
+\[
+14c = d - 5v - f
+\]
+\[
+c = \frac{d-5b-f}{14}
+\]
+Выразим d:
+\[
+\frac{d-5b-f}{7} + 3d = -b + 3f - 4e
+\]
+\[
+22d = 22f - 2b - 28e
+\]
+\[
+d = \frac{11f-b-14e}{11}
+\]
+Значит матрица X имеет вид:
+\[
+\begin{pmatrix}
+5b+f & 0 & b\\
+\frac{d-5b-f}{14} & \frac{11f-b-14e}{11} & e\\
+0 & 0 & f\\
+\end{pmatrix}
+\]
+где $b, e, f$ -- произвольные числа
+\begin{large}
+\begin{center}
+\textbf{Ответ:}
+$
+\begin{pmatrix}
+5b+f & 0 & b\\
+\frac{d-5b-f}{14} & \frac{11f-b-14e}{11} & e\\
+0 & 0 & f\\
+\end{pmatrix} 
+$
+\end{center}
+\begin{center}
+где $b, e, f$ -- произвольные 
+\end{center}
+\end{large}
+\section*{4.}
+Определите число решений системы в зависимости от a  и b
+\begin{large}
+\[
+\begin{pmatrix}
+a & -2 & -5 & \vrule &7\\
+2 & 0 & b & \vrule & -9\\
+0 & -1 & -2 & \vrule & 2\\
+\end{pmatrix} =
+\begin{pmatrix}
+a & 0& -1 & \vrule &3\\
+2 & 0 & b & \vrule & -9\\
+0 & 1 & 2 & \vrule & -2\\
+\end{pmatrix} = 
+\begin{pmatrix}
+1 & 0 & \frac{b}{2} & \vrule & -\frac{9}{2}\\
+a & 0& -1 & \vrule &3\\
+0 & 1 & 2 & \vrule & -2\\
+\end{pmatrix} =
+\]
+\[
+= 
+\begin{pmatrix}
+1 & 0 & \frac{b}{2} & \vrule & -\frac{9}{2}\\
+0 & 0& -1-\frac{ab}{2} & \vrule &3 + \frac{9a}{2}\\
+0 & 1 & 2 & \vrule & -2\\
+\end{pmatrix} =
+\begin{pmatrix}
+1 & 0 & \frac{b}{2} & \vrule & -\frac{9}{2}\\
+0 & 0& -1-\frac{ab}{2} & \vrule &3 + \frac{9a}{2}\\
+0 & 1 & 2 & \vrule & -2\\
+\end{pmatrix} =
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & \frac{b}{2} & \vrule & -\frac{9}{2}\\
+0 & 1 & 2 & \vrule & -2\\
+0 & 0& \frac{-2-ab}{2} & \vrule & \frac{6+9a}{2}\\
+\end{pmatrix}
+\]
+\begin{itemize}
+\item Если  $-2 - ab = 0$:
+\[
+0x + 0y + 0z = \frac{6+9a}{2}
+\]
+\textbf{1)} Если $\frac{6+9a}{2} \neq 0$, т.е  $3a+2 \neq 0$, то мы получаем противоречие (cлева ноль, а справа -- что-то, не равное нулю)
+
+\textbf{2)} Если $\frac{6+9a}{2} = 0 $, т.е $3a+2 = 0$, то:
+\[
+\begin{cases}
+a = -\frac{2}{3}\\
+b = 3\\
+\end{cases}
+\]
+\[
+\begin{pmatrix}
+1 & 0 & \frac{3}{2} & \vrule & -\frac{9}{2}\\
+0 & 1 & 2 & \vrule & -2\\
+0 & 0& 0& \vrule & 0\\
+\end{pmatrix}
+\]
+\[
+\begin{cases}
+x =- \frac{9}{2} - \frac{3}{2} \cdot z\\
+y = -2 - 2 \cdot z\\
+z - \text{произвольное}
+\end{cases}
+\]
+\item Если $-2 - ab\neq 0$:
+\[
+\begin{pmatrix}
+1 & 0 & \frac{b}{2} & \vrule & -\frac{9}{2}\\
+0 & 1 & 2 & \vrule & -2\\
+0 & 0& \frac{-2 -ab}{2} & \vrule & \frac{6+9a}{2}\\
+\end{pmatrix} =
+\begin{pmatrix}
+1 & 0 & \frac{b}{2} & \vrule & -\frac{9}{2}\\
+0 & 1 & 2 & \vrule & -2\\
+0 & 0& 1 & \vrule & \frac{6+9a}{-2-ab}\\
+\end{pmatrix} =
+\begin{pmatrix}
+1 & 0 & \frac{b}{2} & \vrule & -\frac{9}{2}\\
+0 & 1 & 0& \vrule & \frac{-18+2a-8}{-2-ab}\\
+0 & 0& 1 & \vrule & \frac{6+9a}{-2-ab}\\
+\end{pmatrix} =
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 0 & \vrule & \frac{9-3b}{-2-ab}\\
+0 & 1 & 0& \vrule & \frac{-18+2a-8}{-2-ab}\\
+0 & 0& 1 & \vrule & \frac{6+9a}{-2-ab}\\
+\end{pmatrix}
+\]
+\[
+\begin{cases}
+x =\frac{9-3b}{-2-ab}\\
+y = \frac{-18+2a-8}{-2-ab}\\
+z = \frac{6+9a}{-2-ab}\\
+\end{cases}
+\]
+\end{itemize}
+\begin{center}
+\textbf{Ответ:}\\
+Если $ab \neq -2$, то система совместна и имеет решение:
+\[
+\begin{cases}
+x =\frac{9-3b}{-2-ab}\\
+y = \frac{-18+2a-8}{-2-ab}\\
+z = \frac{6+9a}{-2-ab}\\
+\end{cases}
+\]
+\\
+Если $ab = -2$, то есть два случая:\\
+\end{center}
+\begin{center}
+\textbf{1)}
+если $a \neq -\frac{2}{3}$, то cистема несовместна
+\\
+\textbf{2)} если $a = -\frac{2}{3}$, то система совместна и имеет бесконечно число решений:
+\[
+\begin{cases}
+x =- \frac{9}{2} - \frac{3}{2} \cdot z\\
+y = -2 - 2 \cdot z\\
+z - \text{произвольное}
+\end{cases}
+\]
+\end{center}
+\end{large}
+\section*{5.}
+Найдите матрицу, обратную данной
+\[
+\begin{pmatrix}
+1 & -2 & -1 & 0 & \vrule & 1 & 0 & 0 & 0\\
+4 & -4 &-1 & -1 & \vrule & 0 & 1  & 0 &0\\
+-1 & -14 & -1 & 3 & \vrule & 0 & 0 & 1 & 0\\
+-1 & -3 & 0 & 1 & \vrule & 0 & 0 & 0 & 1\\
+\end{pmatrix} =
+\begin{pmatrix}
+1 & -2 & -1 & 0 & \vrule & 1 & 0 & 0 & 0\\
+0 & 4&3& -1 & \vrule & -4& 1  & 0 &0\\
+0 & -16 & -2& 3 & \vrule & 1 & 0 & 1 & 0\\
+0 & -5 & -1 & 1 & \vrule & 1 & 0 & 0 & 1\\
+\end{pmatrix} =
+\]
+\[
+= 
+\begin{pmatrix}
+1 & -2 & -1 & 0 & \vrule & 1 & 0 & 0 & 0\\
+0 &1&-2& 0 & \vrule & 3& 1  & 0 &-1\\
+0 & -16 & -2& 3 & \vrule & 1 & 0 & 1 & 0\\
+0 & -5 & -1 & 1 & \vrule & 1 & 0 & 0 & 1\\
+\end{pmatrix} =
+\begin{pmatrix}
+1 & 0 & -5& 0 & \vrule & 7& -2& 0 & -2\\
+0 & 1&-2& 0& \vrule & 3& -1  & 0 &-1\\
+0 & 0& -34& 3 & \vrule & 49& -16 & 1 & -16\\
+0 & 0& -11 & 0 & \vrule & -16& 5 & 0 & 4\\
+\end{pmatrix} =
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & -5& 0 & \vrule & 7& -2& 0 & -2\\
+0 & 1&-2& 0& \vrule & 3& -1  & 0 &-1\\
+0 & 0& 1& 0 & \vrule & -1& 1 & -1& -4\\
+0 & 0& -11 & 0 & \vrule & -16& 5 & 0 & 4\\
+\end{pmatrix} =
+\begin{pmatrix}
+1 & 0 & 0& 0 & \vrule & 2& 3& -5 & -18\\
+0 & 1&0& 0& \vrule & 1& 1  & -2&7\\
+0 & 0& 1& 0 & \vrule & -1& 1 & -1& -4\\
+0 & 0& 0& -1& \vrule & -5& -6 & 11 & -40\\
+\end{pmatrix} =
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 0& 0 & \vrule & 2& 3& -5 & -18\\
+0 & 1&0& 0& \vrule & 1& 1  & -2&7\\
+0 & 0& 1& 0 & \vrule & -1& 1 & -1& -4\\
+0 & 0& 0& 1& \vrule & 5& 6 & -11 & 40\\
+\end{pmatrix} 
+\]
+\begin{large}
+\begin{center}
+\textbf{Ответ:} $\begin{pmatrix}
+ 2& 3& -5 & -18\\
+ 1& 1  & -2&7\\
+-1& 1 & -1& -4\\
+ 5& 6 & -11 & 40\\
+\end{pmatrix} $
+\end{center}
+\end{large}
+
+\end{document}

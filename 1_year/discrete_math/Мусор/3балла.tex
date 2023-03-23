@@ -1,0 +1,82 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+Доказательства 3-х балльные:
+\begin{itemize}
+\item
+критерий обратимости (ОЧЕНЬ МНОГО)
+\item
+теорема Поста
+\item
+формула включений исключений для вероятностей
+\item
+формула включений исключений через индикаторную функцию
+\item
+рамсей
+\item
+дилоурс
+\item
+вероятность пересечения двух k -- элементных множеств в n -- элементном множестве
+\item нижняя и верхняя оценка для поиска самого тяжелого и легкого объекта
+\item cвязность графа (34 док-во)
+\end{itemize}
+Задачи 3-х балльные:
+\begin{itemize}
+\item самолет  100 пассажиров
+\item набор значений переменных задает граф на множестве вершин (функция TREE)
+\item индексная функция IND
+\item арифметическая прогрессия a
+\item числитель несократимой дроби делится на p
+\item a и b независимы, b и c независимы
+\item обозначим через N множество  натуральных чисел, докажите, что существует такая функция
+\item голосование MAJ()
+\item равенство $\sum \phi(d) = n$
+\item в симметрическую разность входят все элементы (глина какая-то)
+\item задача про яйца (двое играют в бой яиц)
+\item про неотрицательную случайную величину известно + мат ожидание
+\item король предлагает сыграть в игру
+\item множество $\mathbb{N}^d$ упорядоченно покординатно. есть ли бесконечная антицепь
+\item в графе на n вершинах + для любой пары вершин
+\item вася и петя бросают монету, вася 10 раз, петя 11
+\item докажите что сравнение по модулю $ax \equiv b (mod N)$ либо не имеет решений либо что-то там
+\end{itemize}
+\end{document}

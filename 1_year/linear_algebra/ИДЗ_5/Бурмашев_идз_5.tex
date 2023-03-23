@@ -1,0 +1,1643 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий.  ИДЗ -- 5
+\end{center}
+\section*{Номер 1}
+\subsection*{a)}
+Введем следующие матрицы:
+\[
+A = \begin{pmatrix}
+a_1 \\a_2 \\ a_3 \\ a_4 \\ a_5
+\end{pmatrix}
+; \; \;
+B = \begin{pmatrix}
+b_1 \\ b_2 \\ b_3 \\ b_4 \\ b_5
+\end{pmatrix}
+\]
+А также введем матрицу линейного отображения $C$ для $\varphi$. Тогда для нахождения этой матрицы нужно решить следующее матричное уравнение:
+\[
+AC^T = B
+\]
+Решим его (матрица С пригодится в пункте b):
+\[
+\begin{pmatrix}
+2 & 1 & 3 & -3 & 0 & \vrule &0 & -5 & -6 & \\
+2 & -3 & 0 & 0 & 3 & \vrule &-2 & 27 & 36 & \\
+-3 & 1 & -2 & 2 & -3 & \vrule &4 & -24 & -36 & \\
+-3 & 1 & -1 & -2 & 0 & \vrule &-27 & -58 & -21 & \\
+2 & 1 & -2 & 0 & 2 & \vrule &-15 & -5 & 21 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+0 & 4 & 3 & -3 & -3 & \vrule &2 & -32 & -42 & \\
+0 & -4 & 2 & 0 & 1 & \vrule &13 & 32 & 15 & \\
+0 & 0 & -1 & 4 & -3 & \vrule &31 & 34 & -15 & \\
+-1 & 2 & -3 & -2 & 2 & \vrule &-42 & -63 & 0 & \\
+0 & 5 & -8 & -4 & 6 & \vrule &-99 & -131 & 21 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -2 & 3 & 2 & -2 & \vrule &42 & 63 & 0 & \\
+0 & 0 & 5 & -3 & -2 & \vrule &15 & 0 & -27 & \\
+0 & 0 & -1 & 4 & -3 & \vrule &31 & 34 & -15 & \\
+0 & 4 & 3 & -3 & -3 & \vrule &2 & -32 & -42 & \\
+0 & 5 & -8 & -4 & 6 & \vrule &-99 & -131 & 21 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -2 & 3 & 2 & -2 & \vrule &42 & 63 & 0 & \\
+0 & 1 & -11 & -1 & 9 & \vrule &-101 & -99 & 63 & \\
+0 & 0 & 1 & -4 & 3 & \vrule &-31 & -34 & 15 & \\
+0 & 0 & 2 & 28 & -21 & \vrule &271 & 364 & -51 & \\
+0 & 0 & 5 & -3 & -2 & \vrule &15 & 0 & -27 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -2 & 3 & 2 & -2 & \vrule &42 & 63 & 0 & \\
+0 & 1 & -11 & -1 & 9 & \vrule &-101 & -99 & 63 & \\
+0 & 0 & 1 & -4 & 3 & \vrule &-31 & -34 & 15 & \\
+0 & 0 & 0 & 36 & -27 & \vrule &333 & 432 & -81 & \\
+0 & 0 & 0 & 1 & -1 & \vrule &10 & 10 & -6 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & -19 & 0 & 16 & \vrule &-160 & -135 & 126 & \\
+0 & 1 & -11 & -1 & 9 & \vrule &-101 & -99 & 63 & \\
+0 & 0 & 1 & -4 & 3 & \vrule &-31 & -34 & 15 & \\
+0 & 0 & 0 & 1 & -1 & \vrule &10 & 10 & -6 & \\
+0 & 0 & 0 & 0 & 1 & \vrule &-3 & 8 & 15 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 0 & -76 & 73 & \vrule &-749 & -781 & 411 & \\
+0 & 1 & 0 & -45 & 42 & \vrule &-442 & -473 & 228 & \\
+0 & 0 & 1 & -4 & 3 & \vrule &-31 & -34 & 15 & \\
+0 & 0 & 0 & 1 & -1 & \vrule &10 & 10 & -6 & \\
+0 & 0 & 0 & 0 & 1 & \vrule &-3 & 8 & 15 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 0 & -76 & 73 & \vrule &-749 & -781 & 411 & \\
+0 & 1 & 0 & -45 & 42 & \vrule &-442 & -473 & 228 & \\
+0 & 0 & 1 & 0 & -1 & \vrule &9 & 6 & -9 & \\
+0 & 0 & 0 & 1 & -1 & \vrule &10 & 10 & -6 & \\
+0 & 0 & 0 & 0 & 1 & \vrule &-3 & 8 & 15 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 0 & -76 & 73 & \vrule &-749 & -781 & 411 & \\
+0 & 1 & 0 & 0 & -3 & \vrule &8 & -23 & -42 & \\
+0 & 0 & 1 & 0 & -1 & \vrule &9 & 6 & -9 & \\
+0 & 0 & 0 & 1 & -1 & \vrule &10 & 10 & -6 & \\
+0 & 0 & 0 & 0 & 1 & \vrule &-3 & 8 & 15 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & \vrule &2 & 3 & 0 & \\
+0 & 1 & 0 & 0 & -3 & \vrule &8 & -23 & -42 & \\
+0 & 0 & 1 & 0 & -1 & \vrule &9 & 6 & -9 & \\
+0 & 0 & 0 & 1 & -1 & \vrule &10 & 10 & -6 & \\
+0 & 0 & 0 & 0 & 1 & \vrule &-3 & 8 & 15 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & \vrule &2 & 3 & 0 & \\
+0 & 1 & 0 & 0 & 0 & \vrule &-1 & 1 & 3 & \\
+0 & 0 & 1 & 0 & 0 & \vrule &6 & 14 & 6 & \\
+0 & 0 & 0 & 1 & -1 & \vrule &10 & 10 & -6 & \\
+0 & 0 & 0 & 0 & 1 & \vrule &-3 & 8 & 15 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 0 & 0 & 0 & \vrule &2 & 3 & 0 & \\
+0 & 1 & 0 & 0 & 0 & \vrule &-1 & 1 & 3 & \\
+0 & 0 & 1 & 0 & 0 & \vrule &6 & 14 & 6 & \\
+0 & 0 & 0 & 1 & 0 & \vrule &7 & 18 & 9 & \\
+0 & 0 & 0 & 0 & 1 & \vrule &-3 & 8 & 15 & \\
+\end{pmatrix}
+\]
+\[
+C^T= 
+\begin{pmatrix}
+2 & 3 & 0 & \\
+-1 & 1 & 3 & \\
+6 & 14 & 6 & \\
+7 & 18 & 9 & \\
+-3 & 8 & 15 & \\
+\end{pmatrix}
+\]
+\[
+C = 
+\begin{pmatrix}
+2 & -1 & 6 & 7 & -3 \\
+3 & 1 & 14 & 18 & 8 \\
+0 & 3 & 6 & 9 & 15
+\end{pmatrix}
+\]
+И так, мы нашли матрицу перехода С, но помимо этого можно заметить еще кое что: мы смогли привести матрицу $A^T$ к улучшенному ступенчатому виду и получить единичную матрицу, что означает, что $rk A^T = 5$, ну тогда и $rk A = 5$. А это означает, что векторы $a_1, a_2, a_3, a_4, a_5$ являются линейно независимыми и образуют базис всего пространства $\mathbb{R}^5$.
+\\\\
+Мы знаем, что линейное отображение $\varphi$ \textbf{единственным} образом определяется базисными векторами (теорема 16.11 из теха лекций Авдеева), т.е:
+\[
+\varphi \left(a_1\right), \varphi \left(a_2\right), \varphi \left(a_3\right), \varphi \left(a_4\right), \varphi \left(a_5\right) 
+\]
+
+Значит существует единственное линейное отображение, которое переводит $a_1, \ldots, a_5$ в $b_1, \ldots, b_5$
+\begin{center}
+\textbf{Ч.Т.Д}
+\end{center}
+\clearpage
+\subsection*{b)}
+В пункте a) мы нашли матрицу линейного отображения, воспользуемся ей:
+\begin{enumerate}
+\item Для нахождения базиса ядра нужно решить ОСЛУ Cx = 0 и найти её ФСР:
+\[
+\begin{pmatrix}
+2 & -1 & 6 & 7 & -3 & \\
+3 & 1 & 14 & 18 & 8 & \\
+0 & 3 & 6 & 9 & 15 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1 & -2 & -8 & -11 & -11 & \\
+3 & 1 & 14 & 18 & 8 & \\
+0 & 3 & 6 & 9 & 15 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -2 & -8 & -11 & -11 & \\
+0 & -5 & -10 & -15 & -25 & \\
+0 & 3 & 6 & 9 & 15 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1 & -2 & -8 & -11 & -11 & \\
+0 & 1 & 2 & 3 & 5 & \\
+0 & 3 & 6 & 9 & 15 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -2 & -8 & -11 & -11 & \\
+0 & 1 & 2 & 3 & 5 & \\
+0 & 0 & 0 & 0 & 0 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 4 & 5 & 1 & \\
+0 & 1 & 2 & 3 & 5 & \\
+0 & 0 & 0 & 0 & 0 & \\
+\end{pmatrix}
+\]
+Отсюда ФСР:
+\[
+\begin{pmatrix}
+-4 \\ -2 \\ 1 \\ 0 \\ 0
+\end{pmatrix}
+,
+\begin{pmatrix}
+-5 \\ -3 \\ 0 \\ 1 \\ 0
+\end{pmatrix}
+,
+\begin{pmatrix}
+-1 \\ -5 \\ 0 \\ 0 \\ 1
+\end{pmatrix}
+\]
+По итогу:
+\[
+\text{Ker} \varphi = 
+<
+\begin{pmatrix}
+-4 \\ -2 \\ 1 \\ 0 \\ 0
+\end{pmatrix}
+,
+\begin{pmatrix}
+-5 \\ -3 \\ 0 \\ 1 \\ 0
+\end{pmatrix}
+,
+\begin{pmatrix}
+-1 \\ -5 \\ 0 \\ 0 \\ 1
+\end{pmatrix}
+>
+\]
+Дополним базис ядра до базиса всего пространства $\mathbb{R}^5$ стандартным алгоритмом:
+\[
+\begin{pmatrix}
+-4 & -2 & 1 & 0 & 0 \\
+-5 & -3 & 0 & 1 & 0 \\
+-1 & -5 & 0 & 0 & 1 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-4 & -2 & 1 & 0 & 0 \\
+-1 & -1 & -1 & 1 & 0 \\
+-1 & -5 & 0 & 0 & 1 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-4 & -2 & 1 & 0 & 0  \\
+0 & 4 & -1 & 1 & -1  \\
+-1 & -5 & 0 & 0 & 1 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 18 & 1 & 0 & -4 \\
+0 & 4 & -1 & 1 & -1 \\
+-1 & -5 & 0 & 0 & 1 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -5 & 0 & 0 & 1 \\
+0 & 4 & -1 & 1 & -1  \\
+0 & 2 & 5 & -4 & 0  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1 & -5 & 0 & 0 & 1 \\
+0 & 0 & -11 & 9 & -1 \\
+0 & 2 & 5 & -4 & 0\\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -5 & 0 & 0 & 1 \\
+0 & 2 & 5 & -4 & 0 \\
+0 & 0 & -11 & 9 & -1  \\
+\end{pmatrix}
+\]
+
+Для дополнения нам нужно взять векторы из стандартного базиса $e_4$ и $e_5$
+\item В таком случае образы векторов $e_4$ и $e_5$ будут образовывать базис $\text{Im} \varphi$ (по теореме 18.5 из теха лекций Авдеева):
+\[
+C \cdot \begin{pmatrix}
+ 0\\ 0 \\ 0\\1\\0
+\end{pmatrix}
+=
+\begin{pmatrix}
+2 & -1 & 6 & 7 & -3 \\
+3 & 1 & 14 & 18 & 8 \\
+0 & 3 & 6 & 9 & 15
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+0\\ 0 \\ 0\\1\\0
+\end{pmatrix}
+=
+\left(\begin{matrix}
+7\\
+18\\
+9
+\end{matrix}\right)
+\]
+\[
+C \cdot \begin{pmatrix}
+0 \\ 0\\ 0\\0\\1
+\end{pmatrix}
+=
+\begin{pmatrix}
+2 & -1 & 6 & 7 & -3 \\
+3 & 1 & 14 & 18 & 8 \\
+0 & 3 & 6 & 9 & 15
+\end{pmatrix}
+\cdot
+\begin{pmatrix}
+0 \\ 0\\ 0\\0\\1
+\end{pmatrix}
+=
+\left(\begin{matrix}
+-3 \\
+8 \\
+15
+\end{matrix}\right)
+\]
+По итогу:
+\[
+\text{Im} \varphi = 
+<
+\left(\begin{matrix}
+7\\
+18 \\
+9\\
+\end{matrix}\right)
+,
+\left(\begin{matrix}
+-3\\
+8\\
+15 \\
+\end{matrix}\right)
+>
+\]
+\end{enumerate}
+{\Large \begin{center}
+\textbf{Ответ: } 
+\[
+\text{Ker} \varphi = 
+<
+\begin{pmatrix}
+-4 \\ -2 \\ 1 \\ 0 \\ 0
+\end{pmatrix}
+,
+\begin{pmatrix}
+-5 \\ -3 \\ 0 \\ 1 \\ 0
+\end{pmatrix}
+,
+\begin{pmatrix}
+-1 \\ -5 \\ 0 \\ 0 \\ 1
+\end{pmatrix}
+>
+\]
+\[
+\text{Im} \varphi = 
+<
+\left(\begin{matrix}
+7 \\
+18\\
+9\\
+\end{matrix}\right)
+,
+\left(\begin{matrix}
+-3\\
+8 \\
+15 \\
+\end{matrix}\right)
+>
+\]
+\end{center}}
+\clearpage
+\section*{Номер 2}
+Найдем базис ядра и образа нашего отображения:
+\[
+\begin{pmatrix}
+1 & -1 & -1 & -1 & 1 & \\
+-2 & 3 & -2 & 1 & 2 & \\
+10 & -8 & 7 & 13 & 18 & \\
+18 & -20 & 5 & -1 & 10 & \\
+3 & -3 & 2 & 2 & 3 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & -1 & -1 & -1 & 1 & \\
+-2 & 3 & -2 & 1 & 2 & \\
+10 & -8 & 7 & 13 & 18 & \\
+-2 & -4 & -9 & -27 & -26 & \\
+3 & -3 & 2 & 2 & 3 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -1 & -1 & -1 & 1 & \\
+-2 & 3 & -2 & 1 & 2 & \\
+10 & -8 & 7 & 13 & 18 & \\
+0 & -7 & -7 & -28 & -28 & \\
+3 & -3 & 2 & 2 & 3 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & -1 & -1 & -1 & 1 & \\
+0 & 1 & -4 & -1 & 4 & \\
+10 & -8 & 7 & 13 & 18 & \\
+0 & -7 & -7 & -28 & -28 & \\
+3 & -3 & 2 & 2 & 3 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -1 & -1 & -1 & 1 & \\
+0 & 1 & -4 & -1 & 4 & \\
+1 & 1 & 1 & 7 & 9 & \\
+0 & -7 & -7 & -28 & -28 & \\
+3 & -3 & 2 & 2 & 3 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & -1 & -1 & -1 & 1 & \\
+0 & 1 & -4 & -1 & 4 & \\
+0 & 2 & 2 & 8 & 8 & \\
+0 & -7 & -7 & -28 & -28 & \\
+3 & -3 & 2 & 2 & 3 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -1 & -1 & -1 & 1 & \\
+0 & 1 & -4 & -1 & 4 & \\
+0 & 2 & 2 & 8 & 8 & \\
+0 & -7 & -7 & -28 & -28 & \\
+0 & 0 & 5 & 5 & 0 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & -1 & -1 & -1 & 1 & \\
+0 & 1 & -4 & -1 & 4 & \\
+0 & 2 & 2 & 8 & 8 & \\
+0 & 0 & -5 & -5 & 0 & \\
+0 & 0 & 5 & 5 & 0 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -1 & -1 & -1 & 1 & \\
+0 & 1 & -4 & -1 & 4 & \\
+0 & 2 & 2 & 8 & 8 & \\
+0 & 0 & -5 & -5 & 0 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & -1 & -1 & -1 & 1 & \\
+0 & 0 & -5 & -5 & 0 & \\
+0 & 1 & 1 & 4 & 4 & \\
+0 & 0 & 1 & 1 & 0 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -1 & -1 & -1 & 1 & \\
+0 & 0 & 0 & 0 & 0 & \\
+0 & 1 & 1 & 4 & 4 & \\
+0 & 0 & 1 & 1 & 0 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & -1 & 0 & 0 & 1 & \\
+0 & 1 & 1 & 4 & 4 & \\
+0 & 0 & 1 & 1 & 0 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -1 & 0 & 0 & 1 & \\
+0 & 1 & 0 & 3 & 4 & \\
+0 & 0 & 1 & 1 & 0 & \\
+\end{pmatrix}
+\]
+Отсюда ФСР:
+\[
+\begin{pmatrix}
+-3 \\ -3 \\ -1 \\ 1 \\ 0 
+\end{pmatrix}
+,
+\begin{pmatrix}
+-5 \\ -4 \\ 0 \\ 0 \\ 1
+\end{pmatrix}
+\]
+Тогда:
+\[
+\text{Ker} \varphi = <\begin{pmatrix}
+-3 \\ -3 \\ -1 \\ 1 \\ 0 
+\end{pmatrix}
+,
+\begin{pmatrix}
+-5 \\ -4 \\ 0 \\ 0 \\ 1
+\end{pmatrix}>
+\]
+Теперь найдем базис образа:
+\[
+\begin{pmatrix}
+-3 & -3 & -1 & 1 & 0 & \\
+-5 & -4 & 0 & 0 & 1 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-3 & -3 & -1 & 1 & 0 & \\
+1 & 2 & 2 & -2 & 1 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+0 & 3 & 5 & -5 & 3 & \\
+1 & 2 & 2 & -2 & 1 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 2 & 2 & -2 & 1 & \\
+0 & 3 & 5 & -5 & 3 & \\
+\end{pmatrix}
+\]
+Значит нам нужны векторы из стандартного базиса $e_3$, $e_4$ и $e_5$
+\\\\
+Тогда:
+\[
+\left(\begin{matrix}
+1 & -1 & -1 & -1 & 1 \\
+-2 & 3 & -2 & 1 & 2 \\
+10 & -8 & 7 & 13 & 18 \\
+18 & -20 & 5 & -1 & 10 \\
+3 & -3 & 2 & 2 & 3
+\end{matrix}\right)
+\cdot
+\left(\begin{matrix}
+0 \\
+0 \\
+1 \\
+0 \\
+0
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+-1 \\
+-2 \\
+7 \\
+5 \\
+2
+\end{matrix}\right)
+\]
+\[
+\left(\begin{matrix}
+1 & -1 & -1 & -1 & 1 \\
+-2 & 3 & -2 & 1 & 2 \\
+10 & -8 & 7 & 13 & 18 \\
+18 & -20 & 5 & -1 & 10 \\
+3 & -3 & 2 & 2 & 3
+\end{matrix}\right)
+\cdot
+\left(\begin{matrix}
+0 \\
+0 \\
+0 \\
+1  \\
+0
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+-1 \\
+1 \\
+13 \\
+-1 \\
+2
+\end{matrix}\right)
+\]
+\[
+\left(\begin{matrix}
+1 & -1 & -1 & -1 & 1 \\
+-2 & 3 & -2 & 1 & 2 \\
+10 & -8 & 7 & 13 & 18 \\
+18 & -20 & 5 & -1 & 10 \\
+3 & -3 & 2 & 2 & 3
+\end{matrix}\right)
+\cdot
+\left(\begin{matrix}
+0 \\
+0 \\
+0 \\
+0  \\
+1
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+1 \\
+2 \\
+18 \\
+10 \\
+3
+\end{matrix}\right)
+\]
+А значит:
+\[
+\text{Im} \varphi = 
+<
+\left(\begin{matrix}
+-1 \\
+-2 \\
+7 \\
+5 \\
+2
+\end{matrix}\right)
+,
+\left(\begin{matrix}
+-1 \\
+1 \\
+13 \\
+-1 \\
+2
+\end{matrix}\right)
+,
+\left(\begin{matrix}
+1 \\
+2 \\
+18 \\
+10 \\
+3
+\end{matrix}\right)
+>
+\]
+По условию задачи мы должны построить такое линейное отображение $\psi$, что $\text{Im} \varphi$ = $\text{Ker} \psi$ и $\text{Im} \psi$ = $\text{Ker} \varphi$ . Введем матрицу $A_{\psi}$ для $\psi$.  Тогда по опредлению ядра:
+\[
+A_{\psi}\cdot 
+\left(\begin{matrix}
+-1 \\
+-2 \\
+7 \\
+5 \\
+2
+\end{matrix}\right)
+= 0
+; \;
+A_{\psi}\cdot 
+\left(\begin{matrix}
+-1 \\
+1\\
+13\\
+-1 \\
+2 \\
+\end{matrix}\right)
+= 0
+; \;
+A_{\psi} \cdot 
+\left(\begin{matrix}
+1 \\
+2 \\
+18 \\
+10 \\
+3
+\end{matrix}\right)
+= 0
+\]
+Дополним тогда базис $\text{Ker} \psi$ = $\text{Im} \varphi$ до базиса всего пространства $\mathbb{R}^5$:
+\[
+\begin{pmatrix}
+-1 & -2 & 7 & 5 & 2 & \\
+-1 & 1 & 13 & -1 & 2 & \\
+1 & 2 & 18 & 10 & 3 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & -3 & -6 & 6 & 0 & \\
+-1 & 1 & 13 & -1 & 2 & \\
+1 & 2 & 18 & 10 & 3 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+0 & -3 & -6 & 6 & 0 & \\
+0 & 3 & 31 & 9 & 5 & \\
+1 & 2 & 18 & 10 & 3 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 2 & 18 & 10 & 3 & \\
+0 & 0 & 25 & 15 & 5 & \\
+0 & -3 & -6 & 6 & 0 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 2 & 18 & 10 & 3 & \\
+0 & 1 & 2 & -2 & 0 & \\
+0 & 0 & 5 & 3 & 1 & \\
+\end{pmatrix}
+\]
+Значит нам понадобятся векторы из стандартного базиса $e_4$ и $e_5$.
+\\\\
+
+Теперь можем выразить $\text{Im} \psi$ с одной стороны через $\text{Ker} \varphi$ (т.к они равны по условию задачи), а с другой через $e_4$ и $e_5$, используя нашу матрицу $A_{\psi}$, т.е:
+\[
+A_{\psi} \cdot \begin{pmatrix}
+0 \\ 0 \\ 0 \\ 1 \\ 0
+\end{pmatrix}
+=
+\begin{pmatrix}
+-3 \\ -3 \\ -1 \\ 1 \\ 0 
+\end{pmatrix}
+\]
+\[
+A_{\psi} \cdot 
+\begin{pmatrix}
+0 \\ 0 \\ 0 \\ 0 \\ 1
+\end{pmatrix}
+=
+\begin{pmatrix}
+-5 \\ -4 \\ 0 \\ 0 \\ 1
+\end{pmatrix}
+\]
+У нас получилось 5 матричных уравнений и мы можем использовать их (соединив их все вместе в одно матричное уравнение), чтобы найти саму эту матрицу $A_{\psi}$:
+\[
+A_{\psi}
+\cdot
+\left(\begin{matrix}
+-1 & -11 & 1 & 0 & 0 \\
+-2 & 1 & 2 & 0 & 0 \\
+7 & 13 & 18 & 0 & 0 \\
+5 & -1 & 10 & 1 & 0 \\
+2 & 2 & 3 & 0 & 1
+\end{matrix}\right)
+=
+\left(\begin{matrix}
+0 & 0 & 0 & -3 & -5 \\
+0 & 0 & 0 & -3 & -4 \\
+0 & 0 & 0 & -1 & 0 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1
+\end{matrix}\right)
+\]
+\[
+\left(\begin{matrix}
+-1 & -11 & 1 & 0 & 0 \\
+-2 & 1 & 2 & 0 & 0 \\
+7 & 13 & 18 & 0 & 0 \\
+5 & -1 & 10 & 1 & 0 \\
+2 & 2 & 3 & 0 & 1
+\end{matrix}\right)^T \cdot A_{\psi}^T= \left(\begin{matrix}
+0 & 0 & 0 & -3 & -5 \\
+0 & 0 & 0 & -3 & -4 \\
+0 & 0 & 0 & -1 & 0 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1
+\end{matrix}\right)^T
+\]
+\[
+\left(\begin{matrix}
+-1 & -2 & 7 & 5 & 2 \\
+-11 & 1 & 13 & -1 & 2 \\
+1 & 2 & 18 & 10 & 3 \\
+0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1
+\end{matrix}\right)
+\cdot A_{\psi}^T 
+=
+\left(\begin{matrix}
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 \\
+-3 & -3 & -1 & 1 & 0 \\
+-5 & -4 & 0 & 0 & 1
+\end{matrix}\right)
+\]
+\clearpage
+Получаем следующее (у меня тех не хочет вставлять такое большое количество элементов на одной строке для разделения вертикальной чертой и я хз как это пофиксить, поэтому оставил без $\vrule $\;, сорри):
+\[
+\begin{pmatrix}
+-1 & -2 & 7 & 5 & 2 & 0 & 0 & 0 & 0 & 0  \\
+-11 & 1 & 13 & -1 & 2 & 0 & 0 & 0 & 0 & 0  \\
+1 & 2 & 18 & 10 & 3 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & -3 & -3 & -1 & 1 & 0  \\
+0 & 0 & 0 & 0 & 1 & -5 & -4 & 0 & 0 & 1 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -2 & 7 & 0 & 2 & 15 & 15 & 5 & -5 & 0  \\
+-11 & 1 & 13 & -1 & 2 & 0 & 0 & 0 & 0 & 0 \\
+1 & 2 & 18 & 10 & 3 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & -3 & -3 & -1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 & -5 & -4 & 0 & 0 & 1  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -2 & 7 & 0 & 2 & 15 & 15 & 5 & -5 & 0 \\
+-11 & 1 & 13 & 0 & 2 & -3 & -3 & -1 & 1 & 0  \\
+1 & 2 & 18 & 10 & 3 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & -3 & -3 & -1 & 1 & 0  \\
+0 & 0 & 0 & 0 & 1 & -5 & -4 & 0 & 0 & 1  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -2 & 7 & 0 & 2 & 15 & 15 & 5 & -5 & 0 \\
+-11 & 1 & 13 & 0 & 2 & -3 & -3 & -1 & 1 & 0  \\
+1 & 2 & 18 & 0 & 3 & 30 & 30 & 10 & -10 & 0 \\
+0 & 0 & 0 & 1 & 0 & -3 & -3 & -1 & 1 & 0  \\
+0 & 0 & 0 & 0 & 1 & -5 & -4 & 0 & 0 & 1  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -2 & 7 & 0 & 0 & 25 & 23 & 5 & -5 & -2  \\
+-11 & 1 & 13 & 0 & 2 & -3 & -3 & -1 & 1 & 0  \\
+1 & 2 & 18 & 0 & 3 & 30 & 30 & 10 & -10 & 0  \\
+0 & 0 & 0 & 1 & 0 & -3 & -3 & -1 & 1 & 0  \\
+0 & 0 & 0 & 0 & 1 & -5 & -4 & 0 & 0 & 1  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -2 & 7 & 0 & 0 & 25 & 23 & 5 & -5 & -2 \\
+-11 & 1 & 13 & 0 & 0 & 7 & 5 & -1 & 1 & -2 \\
+1 & 2 & 18 & 0 & 3 & 30 & 30 & 10 & -10 & 0  \\
+0 & 0 & 0 & 1 & 0 & -3 & -3 & -1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 & -5 & -4 & 0 & 0 & 1  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -2 & 7 & 0 & 0 & 25 & 23 & 5 & -5 & -2 \\
+-11 & 1 & 13 & 0 & 0 & 7 & 5 & -1 & 1 & -2  \\
+1 & 2 & 18 & 0 & 0 & 45 & 42 & 10 & -10 & -3  \\
+0 & 0 & 0 & 1 & 0 & -3 & -3 & -1 & 1 & 0  \\
+0 & 0 & 0 & 0 & 1 & -5 & -4 & 0 & 0 & 1  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -2 & 7 & 0 & 0 & 25 & 23 & 5 & -5 & -2 \\
+0 & 23 & -64 & 0 & 0 & -268 & -248 & -56 & 56 & 20  \\
+1 & 2 & 18 & 0 & 0 & 45 & 42 & 10 & -10 & -3 \\
+0 & 0 & 0 & 1 & 0 & -3 & -3 & -1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 & -5 & -4 & 0 & 0 & 1 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -2 & 7 & 0 & 0 & 25 & 23 & 5 & -5 & -2 \\
+0 & 23 & -64 & 0 & 0 & -268 & -248 & -56 & 56 & 20  \\
+0 & 0 & 25 & 0 & 0 & 70 & 65 & 15 & -15 & -5  \\
+0 & 0 & 0 & 1 & 0 & -3 & -3 & -1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 & -5 & -4 & 0 & 0 & 1 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & -2 & 7 & 0 & 0 & 25 & 23 & 5 & -5 & -2 \\
+0 & 23 & 1 & 0 & 0 & -86 & -79 & -17 & 17 & 7 \\
+0 & 0 & 5 & 0 & 0 & 14 & 13 & 3 & -3 & -1 \\
+0 & 0 & 0 & 1 & 0 & -3 & -3 & -1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 & -5 & -4 & 0 & 0 & 1 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 2 & 0 & 0 & 0 & -\frac{27}{5} & -\frac{24}{5}& -\frac{4}{5} & \frac{4}{5} & \frac{3}{5}\\
+0 & 1& 0 & 0 & 0 & -\frac{444}{115 } & -\frac{408}{115} & -\frac{88}{115} & \frac{88}{115} & \frac{36}{115} \\
+0 & 0 & 1 & 0 & 0 & \frac{14}{5} & \frac{13}{5} & \frac{3}{5} & -\frac{3}{5} & -\frac{1}{5} \\
+0 & 0 & 0 & 1 & 0 & -3 & -3 & -1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 & -5 & -4 & 0 & 0 & 1 \\
+\end{pmatrix} =
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0& 0 & 0 & 0 & -\frac{267}{115} & \frac{264}{115}& \frac{84}{115} & -\frac{84}{115} & -\frac{3}{115}\\
+0 & 1& 0 & 0 & 0 & -\frac{444}{115 } & -\frac{408}{115} & -\frac{88}{115} & \frac{88}{115} & \frac{36}{115} \\
+0 & 0 & 1 & 0 & 0 & \frac{14}{5} & \frac{13}{5} & \frac{3}{5} & -\frac{3}{5} & -\frac{1}{5} \\
+0 & 0 & 0 & 1 & 0 & -3 & -3 & -1 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 & -5 & -4 & 0 & 0 & 1 \\
+\end{pmatrix}
+\]
+И мы (наконец-то...) получаем матрицу $A_{\psi}$:
+
+{\Large 
+\begin{center}
+\textbf{Ответ:}
+\end{center}\[
+\begin{pmatrix}
+ -\frac{267}{115} & \frac{264}{115}& \frac{84}{115} & -\frac{84}{115} & -\frac{3}{115} & \\
+ -\frac{444}{115 } & -\frac{408}{115} & -\frac{88}{115} & \frac{88}{115} & \frac{36}{115} \\
+ \frac{14}{5} & \frac{13}{5} & \frac{3}{5} & -\frac{3}{5} & -\frac{1}{5} \\
+ -3 & -3 & -1 & 1 & 0 \\
+-5 & -4 & 0 & 0 & 1 \\
+\end{pmatrix}
+\]}
+\clearpage
+\section*{Номер 3}
+Найдем базис Ker$\varphi$:
+\[
+\begin{pmatrix}
+-14 & 8 & 12 & -2 & \\
+4 & 16 & -16 & -12 & \\
+10 & 8 & -18 & -8 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-2 & 56 & -36 & -38 & \\
+4 & 16 & -16 & -12 & \\
+10 & 8 & -18 & -8 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-2 & 56 & -36 & -38 & \\
+0 & 128 & -88 & -88 & \\
+10 & 8 & -18 & -8 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-2 & 56 & -36 & -38 & \\
+0 & 128 & -88 & -88 & \\
+0 & 288 & -198 & -198 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-2 & 56 & -36 & -38 & \\
+0 & 128 & -88 & -88 & \\
+0 & 32 & -22 & -22 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-2 & 56 & -36 & -38 & \\
+0 & -32 & 22 & 22 & \\
+0 & 32 & -22 & -22 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-2 & 56 & -36 & -38 & \\
+0 & -32 & 22 & 22 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 4 & -4 & -3 & \\
+0 & 16 & -11 & -11 & \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & -\frac{5}{4} & -\frac{1}{4} & \\
+0 & 1 & -\frac{11}{16} & -\frac{11}{16} & \\
+\end{pmatrix}
+\]
+Отсюда ФСР:
+\[
+\begin{pmatrix}
+\frac{5}{4} \\ \frac{11}{16} \\ 1 \\ 0
+\end{pmatrix}
+, 
+\begin{pmatrix}
+\frac{1}{4} \\ \frac{11}{16} \\ 0 \\ 1
+\end{pmatrix}
+\]
+Координаты были заданы в базисе $\mathbf{e} = (e_1, e_2, e_3, e_4)$, а значит:
+\[
+\varphi \left(\frac{5}{4} e_1 + \frac{11}{16}e_2 + e_3 \right) = 0
+\]
+\[
+\varphi \left(\frac{1}{4} e_1 + \frac{11}{16} e_2 + e_4 \right) = 0
+\]
+Чтобы дополнить базис $\text{Ker} \varphi$ до базиса всего пространства $\mathbb{R}^4$ нужны векторы из стандартного базиса $e_1$ и $e_2$. А значит базисом $\text{Im} \varphi$ будут $\varphi(e_1)$ и $\varphi(e_2)$.
+ 
+Они будут равны (в базисе $\mathbf{f}$):
+\[
+\varphi(e_1) = A \cdot \begin{pmatrix}
+1 \\ 0\\0\\0
+\end{pmatrix}
+=
+\left(\begin{matrix}
+-14 \\
+4 \\
+10
+\end{matrix}\right)
+= -14f_1 + 4f_2 + 10f_3
+\]
+\[
+\varphi(e_2) = A \cdot \begin{pmatrix}
+0 \\ 1\\0\\0
+\end{pmatrix}
+=
+\left(\begin{matrix}
+8 \\
+16 \\
+8
+\end{matrix}\right)
+= 8f_1 + 16f_2 + 8f_3
+\]
+Теперь дополним их до базиса всего пространства $\mathbb{R}^3$:
+\[
+\begin{pmatrix}
+-14 & 4 & 10 \\
+8 & 16 & 8\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+2 & 36 & 26 \\
+8 & 16 & 8 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 18 & 13 \\
+0 & 4 & 3\\
+\end{pmatrix}
+\]
+Мы видим, что нам нужен вектор $\begin{pmatrix}
+0 \\ 0 \\ 1
+\end{pmatrix}$, т.е $f_3$
+\\\\
+Тогда возьмем такой базис $\mathbb{R}^3$:
+\[
+f_1' = -14f_1 + 4f_2 + 10f_3
+\]
+\[
+f_2' = 8f_1 + 16f_2 + 8f_3
+\]
+\[
+f_3' = f_3
+\]
+Тогда сможем составить следующую матрицу перехода:
+\[
+(f_1', f_2' f_3') = (f_1, f_2, f_3) \cdot C_1
+\]
+\[
+C_1 = \begin{pmatrix}
+-14 & 8 & 0 \\4 & 16 & 0 \\ 10 & 8 & 1\\
+\end{pmatrix}
+\]
+И такой базис $\mathbb{R}^5$:
+\[
+e_1' = e_1
+\]
+\[
+e_2' = e_2
+\]
+\[
+e_3' = \frac{5}{4}e_1 + \frac{11}{16}e_2 + e_3
+\]
+\[
+e_4'  = \frac{1}{4} e_1 + \frac{11}{16}e_2 + e_4
+\]
+Тогда сможем составить следующую матрицу перехода:
+\[
+(e_1', e_2', e_3', e_4') = (e_1, e_2, e_3, e_4) \cdot C_2
+\]
+\[
+C_2 = \begin{pmatrix}
+1 & 0 & \frac{5}{4} & \frac{1}{4} \\
+0 & 1 & \frac{11}{16} & \frac{11}{16} \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1\\
+\end{pmatrix}
+\]
+Заметим, что D тогда равна:
+\[
+\left(\begin{matrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{matrix}\right)
+\]
+Потому что:
+\[
+f(e'_1)  = f(e_1) = f'_1 = (1, 0, 0)
+\]
+\[
+f(e'_2)  = f(e_2) = f'_2 = (0, 1, 0)
+\]
+\[
+f(e'_3) = f\left(\frac{5}{4}e_1 + \frac{11}{16}e_2 + e_3\right) = (0, 0, 0)
+\]
+\[
+f(e'_4) = f\left(\frac{1}{4} e_1 + \frac{11}{16} e_2 + e_4 \right)= (0, 0, 0)
+\]
+Тогда:
+\[
+A = C_1 D C_2^{-1}
+\]
+\[
+A  = \begin{pmatrix}
+-14 & 8 & 0 \\4 & 16 & 0 \\ 10 & 8 & 1\\
+\end{pmatrix} \cdot \left(\begin{matrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{matrix}\right)
+\cdot \begin{pmatrix}
+1 & 0 & \frac{5}{4} & \frac{1}{4} \\
+0 & 1 & \frac{11}{16} & \frac{11}{16} \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1\\
+\end{pmatrix}^{-1}
+\]
+{\Large \begin{center}
+\textbf{Ответ: } 
+\[
+\begin{pmatrix}
+-14 & 8 & 0 \\4 & 16 & 0 \\ 10 & 8 & 1\\
+\end{pmatrix} \cdot \left(\begin{matrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0
+\end{matrix}\right)
+\cdot \begin{pmatrix}
+1 & 0 & \frac{5}{4} & \frac{1}{4} \\
+0 & 1 & \frac{11}{16} & \frac{11}{16} \\
+0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 1\\
+\end{pmatrix}^{-1}
+\]
+\end{center}}
+\clearpage
+\section*{Номер 4}
+Нам нужно найти многочлен h, координаты которого заданы в базисе ($f_1, f_2, f_3$). Значит нам нужно найти эти базисные векторы. Многочлен степени не выше 2 от переменной x имеет вид $ax^2 + bx + c$. Тогда, пользуясь условием задачи:
+\[
+\rho_1(f) = f(1) = a \cdot 1^2 + b \cdot 1  + c = a + b + c
+\]
+\[
+\rho_2(f) = f'(-1) = 2ax + b + 0 = -2a + b
+\]
+\[
+\rho_3(f) = \frac{3}{2} \int_{0}^{2} f(x) \, dx = \frac{3}{2} \int_{0}^{2} \left[ ax^2 + bx + c \right] \, dx = \frac{3}{2} \cdot \left( \frac{8a}{3} + 2b + 2c \right) = 4a + 3b + 3c
+\]
+Тогда найдем $f_1$, $f_2$ и $f_3$:
+
+Из пункта 18.11 теха лекций Авдеева мы знаем, что :
+\[
+\rho_i(f_j) = \delta_{ij} = \begin{cases}
+1, \; \; i = j \\
+0, \; \; i \neq j
+\end{cases}
+\]
+\begin{enumerate}
+\item
+\[
+\rho_1(f_1) = 1; \; \rho_2(f_1) = 0; \; \rho_3(f_1) = 0
+\]
+\[
+f_1(1)  = 1; \; f_1'(-1) = 0; \; \frac{3}{2} \cdot \int_{0}^{2} f_1(x) \, dx = 0
+\]
+В начале решения мы получили общие значения для f, тогда получаем систему:
+\[
+\begin{cases}
+a + b + c = 1 \\
+-2a + b = 0 \\
+4a +3b + 3c = 0 \\
+\end{cases}
+\]
+Перейдем к матричному виду:
+\[
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &1  \\
+-2 & 1 & 0 & \vrule &0 \\
+4 & 3 & 3 & \vrule &0  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &1 \\
+-2 & 1 & 0 & \vrule &0 \\
+0 & 5 & 3 & \vrule &0  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &1 \\
+0 & 3 & 2 & \vrule &2 \\
+0 & 5 & 3 & \vrule &0  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &1 \\
+0 & 3 & 2 & \vrule &2  \\
+0 & -1 & -1 & \vrule &-4  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &1 \\
+0 & 0 & -1 & \vrule &-10 \\
+0 & 1 & 1 & \vrule &4  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 0 & \vrule &-3  \\
+0 & 0 & -1 & \vrule &-10 \\
+0 & 1 & 1 & \vrule &4\\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 0 & \vrule &-3 \\
+0 & 1 & 0 & \vrule &-6  \\
+0 & 0 & -1 & \vrule &-10 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 0 & \vrule &-3  \\
+0 & 1 & 0 & \vrule &-6  \\
+0 & 0 & 1 & \vrule &10  \\
+\end{pmatrix}
+\]
+Получаем:
+\[
+\begin{cases}
+a = -3 \\
+b = -6 \\
+c = 10\\
+\end{cases}
+\]
+А значит:
+\[
+f_1 = -3x^2 -6x + 10
+\]
+\item Аналогично предыдущему пункту:
+\[
+\rho_1(f_2) = 0; \; \rho_2(f_2) = 1; \; \rho_2(f_2) = 0
+\]
+\[
+f_2(1)  = 0; \; f_2'(-1) = 1; \; \frac{3}{2} \cdot \int_{0}^{2} f_2(x) \, dx = 0
+\]
+\[
+\begin{cases}
+a + b + c = 0 \\
+-2a + b = 1 \\
+4a +3b + 3c = 0\\
+\end{cases}\\
+\]
+Перейдем к матричному виду:
+\[
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &0 \\
+-2 & 1 & 0 & \vrule &1 \\
+4 & 3 & 3 & \vrule &0  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &0  \\
+-2 & 1 & 0 & \vrule &1 \\
+0 & 5 & 3 & \vrule &2  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &0  \\
+0 & 3 & 2 & \vrule &1  \\
+0 & 5 & 3 & \vrule &2  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &0  \\
+0 & 3 & 2 & \vrule &1 \\
+0 & -1 & -1 & \vrule &0 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &0  \\
+0 & 0 & -1 & \vrule &1  \\
+0 & 1 & 1 & \vrule &0 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 0 & \vrule &0  \\
+0 & 0 & -1 & \vrule &1 \\
+0 & 1 & 1 & \vrule &0  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 0 & \vrule &0 \\
+0 & 1 & 0 & \vrule &1 \\
+0 & 0 & -1 & \vrule &1 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 0 & \vrule &0\\
+0 & 1 & 0 & \vrule &1\\
+0 & 0 & 1 & \vrule &-1\\
+\end{pmatrix}
+\]
+Получаем систему:
+\[
+\begin{cases}
+a = 0\\
+b = 1 \\
+c = -1\\
+\end{cases}
+\]
+А значит:
+\[
+f_2 = 0x^2 + x  - 1 = x - 1
+\]
+\item Для $f_3$:
+\[
+\rho_1(f_3) = 0; \; \rho_2(f_3) = 0; \; \rho_3(f_3) = 1
+\]
+\[
+f_3(1)  = 0; \; f_3'(-1) = 0; \; \frac{3}{2} \cdot \int_{0}^{2} f_3(x) \, dx = 1
+\]
+\[
+\begin{cases}
+a + b + c = 0 \\
+-2a + b = 0 \\
+4a +3b + 3c = 1\\
+\end{cases}\\
+\]
+Перейдем к матричному виду:
+\[
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &0 \\
+-2 & 1 & 0 & \vrule &0  \\
+4 & 3 & 3 & \vrule &1 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &0  \\
+-2 & 1 & 0 & \vrule &0  \\
+0 & 5 & 3 & \vrule &1  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &0  \\
+0 & 3 & 2 & \vrule &0  \\
+0 & 5 & 3 & \vrule &1  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &0 \\
+0 & 3 & 2 & \vrule &0  \\
+0 & -1 & -1 & \vrule &1  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 1 & 1 & \vrule &0  \\
+0 & 0 & -1 & \vrule &3  \\
+0 & 1 & 1 & \vrule &-1  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 0 & \vrule &1  \\
+0 & 0 & -1 & \vrule &3  \\
+0 & 1 & 1 & \vrule &-1 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 0 & \vrule &1 \\
+0 & 1 & 0 & \vrule &2  \\
+0 & 0 & -1 & \vrule &3 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 0 & \vrule &1 \\
+0 & 1 & 0 & \vrule &2 \\
+0 & 0 & 1& \vrule &-3 \\
+\end{pmatrix}
+\]
+Получаем систему:
+\[
+\begin{cases}
+a = 1 \\ b = 2 \\ c = -3\\
+\end{cases}
+\]
+А значит:
+\[
+f_3 = x^2 +2x - 3
+\]
+\end{enumerate}
+Мы получили векторы, а значит теперь можем выразить многочлен $h$. По условию он имеет координаты (1, 4, -1), а значит:
+\[
+h = f_1 + 4f_2 - f_3 = -3x^2 - 6x + 10 + 4(x-1) -(x^2 + 2x -3) = 9 -4x -4x^2
+\]
+\\\\
+Теперь переведем h из координат базиса ($f_1, f_2, f_3$) в координаты базиса ($\varepsilon_1' = -1 - 2x + 4x^2, \; \varepsilon_2' = 3 + 5x -5x^2, \; \varepsilon_3' = 9 + 10x + 19x^2$):
+\[
+h = x_1(-1 - 2x + 4x^2) + x_2(3 + 5x -5x^2) + x_3(9 + 10x + 19x^2) = x_1 \varepsilon_1' + x_2 \varepsilon_2' + x_3 \varepsilon_3' = 9 -4x -4x^2 
+\]
+Переведем это равенство в систему линейных уравнений, чтобы найти коэффициенты:
+\[
+\begin{pmatrix}
+-1 & 3 & 9 & \vrule &9  \\
+-2 & 5 & 10 & \vrule &-4 \\
+4 & -5 & 19 & \vrule &-4 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1 & 3 & 9 & \vrule &9 \\
+-2 & 5 & 10 & \vrule &-4 \\
+0 & 5 & 39 & \vrule &-12  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+-1 & 3 & 9 & \vrule &9 \\
+0 & -1 & -8 & \vrule &-22  \\
+0 & 5 & 39 & \vrule &-12  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1 & 3 & 9 & \vrule &9 \\
+0 & -1 & -8 & \vrule &-22  \\
+0 & 0 & -1 & \vrule &-122\\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -3 & -9 & \vrule &-9  \\
+0 & 1 & 8 & \vrule &22 \\
+0 & 0 & 1 & \vrule &122 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 15 & \vrule &57  \\
+0 & 1 & 8 & \vrule &22 \\
+0 & 0 & 1 & \vrule &122  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 15 & \vrule &57 \\
+0 & 1 & 0 & \vrule &-954 \\
+0 & 0 & 1 & \vrule &122\\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 0 & \vrule &-1773 \\
+0 & 1 & 0 & \vrule &-954 \\
+0 & 0 & 1 & \vrule &122 \\
+\end{pmatrix}
+\]
+А значит:
+\[
+\begin{cases}
+x_1 = -1773\\
+x_2 = -954\\
+x_3 = 122\\
+\end{cases}
+\]
+И $h$ имеет вид:
+\[
+h = -1773\varepsilon_1' -954 \varepsilon_2' + 122\varepsilon_3'
+\]
+Теперь можем перейти к линейной функции $\alpha$. Она в базисе ($\varepsilon_1, \varepsilon_2, \varepsilon_3$) имеет координаты (2, 2, -2), т.е $\alpha = 2\varepsilon_1 + 2\varepsilon_2 - 2\varepsilon_3$. Тогда:
+\[
+\alpha(h) = 2\varepsilon_1(h) + 2 \varepsilon_2(h) -2 \varepsilon_3(h) = 
+\]
+\[
+=  2 \varepsilon_1(-1773\varepsilon_1' -954 \varepsilon_2' + 122\varepsilon_3') + 2 \varepsilon_2(-1773\varepsilon_1' -954 \varepsilon_2' + 122\varepsilon_3') -2\varepsilon_3(-1773\varepsilon_1' -954 \varepsilon_2' + 122\varepsilon_3')
+\]
+Аналогично пункту про $\rho$, мы знаем, что:
+\[
+\varepsilon_i(\varepsilon'_j) = \begin{cases}
+1, \; \; i = j \\
+0, \; \; i \neq j\\
+\end{cases}
+\]
+Тогда часть слагаемых обнуляется (используя линейность и написанное выше):
+\[
+\alpha(h) = 2\varepsilon_1(-1773\varepsilon'_1)  + 2\varepsilon_2(-954 \varepsilon'_2) - 2 \varepsilon_3(122\varepsilon'_3) = 
+\]
+\[
+=
+2 \cdot (-1773) \cdot  \varepsilon_1(\varepsilon'_1) +2 \cdot(-954) \cdot \varepsilon_2(\varepsilon'_2) -2 \cdot 122 \cdot \varepsilon_3(\varepsilon'_3) = 2 \cdot(-1773) + 2  \cdot(-954) - 2 \cdot 122 =
+\]
+\[
+=
+ -3546 - 1908 -244 = -5698
+\]
+{\Large \begin{center}
+\textbf{Ответ: } 
+\[
+\alpha(h) = -5698
+\]
+\end{center}}
+\end{document}

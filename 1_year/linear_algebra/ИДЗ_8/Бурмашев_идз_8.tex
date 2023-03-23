@@ -1,0 +1,809 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий. 208. Идз -- 8 
+\end{center}
+
+\section*{Номер 1}
+\[
+A = \begin{pmatrix}
+5 & -3 & -3 \\
+14 & -14 & -17 \\
+-8 & 10 & 13
+\end{pmatrix}
+\]
+
+Ищем собственные значения, для этого считаем det$(A - \lambda E$):
+\[
+\begin{vmatrix}
+5 - \lambda& -3 & -3 \\
+14 & -14 - \lambda & -17 \\
+-8 & 10 & 13 - \lambda \\
+\end{vmatrix} =
+-\lambda^3 + 4\lambda^2 - \lambda -6 = -(\lambda + 1) (\lambda - 2) (\lambda -3 )
+\]
+Получили три собственных значения : $\lambda = -1, \lambda = 2, \lambda = 3$. 
+
+Все алгебраические кратности равны 1
+\\\\
+Теперь ищем базисы собственных подпространств:
+
+\begin{itemize}
+\item $\lambda = -1 $:
+
+\[
+\begin{pmatrix}
+6 & -3 & -3 & \\
+14 & -13 & -17 & \\
+-8 & 10 & 14 & \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+6 & -3 & -3 \\
+2 & -7 & -11  \\
+-8 & 10 & 14  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+0 & 18 & 30  \\
+2 & -7 & -11  \\
+-8 & 10 & 14  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 18 & 30 \\
+2 & -7 & -11 \\
+0 & -18 & -30  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+2 & -7 & -11\\
+0 & 3& 5  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & \frac13 \\
+0 & 1& \frac53  \\
+\end{pmatrix}
+\]
+Получаем ФСР:
+\[
+\begin{pmatrix}
+-\frac13 \\-\frac53 \\ 1
+\end{pmatrix}
+\]
+
+\[
+g_{\lambda} = 1
+\]
+\clearpage
+\item $\lambda = 2$:
+\[
+\begin{pmatrix}
+1 & -1 & -1  \\
+14 & -16 & -17 \\
+-8 & 10 & 11 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & -1 & -1 \\
+0 & -2 & -3  \\
+-8 & 10 & 11  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & -1 & -1  \\
+0 & 2 &3 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & \frac12 \\
+0 & 0 & \frac32\\
+\end{pmatrix}
+\]
+Получаем ФСР:
+\[
+\begin{pmatrix}
+-\frac12 \\ -\frac32 \\ 1
+\end{pmatrix}
+\]
+\[
+g_{\lambda} = 1
+\]
+\item $\lambda = 3$:
+\[
+\begin{pmatrix}
+2 & -3 & -3 \\
+14 & -17 & -17  \\
+-8 & 10 & 10 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+2 & -3 & -3 \\
+0 & 4 & 4 \\
+-8 & 10 & 10 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+2 & -3 & -3 \\
+0 & 4 & 4 \\
+0 & -2 & -2  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & 0  \\
+0 & 1 & 1  \\
+\end{pmatrix}
+\]
+Получаем ФСР:
+\[
+\begin{pmatrix}
+0 \\ -1 \\ 1
+\end{pmatrix}
+\]
+\[
+g_{\lambda} = 1
+\]
+\end{itemize}
+Получили, что $a_{\lambda} = g_{\lambda}$ для всех получившихся собственных значений, а значит $\varphi$ диагонализуем
+\clearpage
+Фиксируем базис:
+\[
+e_1' = 
+\begin{pmatrix}
+-\frac13 \\-\frac53 \\ 1
+\end{pmatrix}
+\]
+\[
+e_2' = 
+\begin{pmatrix}
+-\frac12 \\ -\frac32 \\ 1
+\end{pmatrix}
+\]
+\[
+e_3' =
+\begin{pmatrix}
+0 \\ -1 \\ 1
+\end{pmatrix}
+\]
+
+Матрица перехода C:
+\[
+C = \begin{pmatrix}
+-\frac13 & -\frac12 & 0 \\
+-\frac53 & -\frac32 & -1 \\
+1 & 1 & 1
+\end{pmatrix}
+\]
+Тогда знаем, что матрица в новом базисе будет задаваться формулой:
+\[
+A' = C^{-1}AC 
+\]
+Cчитаем A':
+\[
+C^{-1} = \begin{pmatrix}
+3 & -3 & -3 \\
+-4 & 2 & 2 \\
+1 & 1 & 2
+\end{pmatrix}
+\]
+\[
+A' = \begin{pmatrix}
+3 & -3 & -3 \\
+-4 & 2 & 2 \\
+1 & 1 & 2
+\end{pmatrix} \cdot \begin{pmatrix}
+5 & -3 & -3 \\
+14 & -14 & -17 \\
+-8 & 10 & 13
+\end{pmatrix} \cdot \begin{pmatrix}
+-\frac13 & -\frac12 & 0 \\
+-\frac53 & -\frac32 & -1 \\
+1 & 1 & 1
+\end{pmatrix} =
+\]
+\[
+=
+\left(\begin{matrix}
+-3 & 3 & 3 \\
+-8 & 4 & 4 \\
+3 & 3 & 6
+\end{matrix}\right) \cdot \begin{pmatrix}
+-\frac13 & -\frac12 & 0 \\
+-\frac53 & -\frac32 & -1 \\
+1 & 1 & 1
+\end{pmatrix} = \left(\begin{matrix}
+-1 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 3
+\end{matrix}\right)
+\]
+\clearpage
+\begin{center}
+\textbf{Ответ: } 
+
+$\lambda = -1$, базис соотв.подпространства:
+\[
+\begin{pmatrix}
+-\frac13 \\-\frac53 \\ 1
+\end{pmatrix}
+\]
+$\lambda = 2$, базис соотв.подпространства: 
+\[
+\begin{pmatrix}
+-\frac12 \\ -\frac32 \\ 1
+\end{pmatrix}
+\]
+$\lambda = 3$, базис соотв.подпространства:  
+\[
+\begin{pmatrix}
+0 \\ -1 \\ 1
+\end{pmatrix}
+\]
+
+$\varphi$ диагонализуем
+
+базис:
+\[
+e_1' = 
+\begin{pmatrix}
+-\frac13 \\-\frac53 \\ 1
+\end{pmatrix},
+e_2' = 
+\begin{pmatrix}
+-\frac12 \\ -\frac32 \\ 1
+\end{pmatrix},
+e_3' =
+\begin{pmatrix}
+0 \\ -1 \\ 1
+\end{pmatrix}
+\]
+матрица:
+\[
+A' = 
+\left(\begin{matrix}
+-1 & 0 & 0 \\
+0 & 2 & 0 \\
+0 & 0 & 3
+\end{matrix}\right)
+\]
+\end{center}
+\clearpage
+\section*{Номер 2}
+\[
+A = \begin{pmatrix}
+1 & -1 & -1 \\
+5 & 6 & 4 \\
+-1 & -1 & 1 \\
+\end{pmatrix}
+\]
+Аналогично предыдущему номеру:
+\[
+\begin{vmatrix}
+1 - \lambda & -1 & -1 \\
+5 & 6 - \lambda  & 4 \\
+-1 & -1 & 1 - \lambda \\
+\end{vmatrix} = -\lambda^3 + 8 \lambda^2 - 21\lambda + 18 = -(\lambda - 3)^2 \cdot (\lambda - 2)
+\]
+Получили два собственных значения : $\lambda = 3, \lambda = 2$. 
+
+Причем у $\lambda  = 3$ : $a_{\lambda} = 2$
+
+Теперь ищем базисы собственных подпространств:
+\begin{itemize}
+\item $\lambda = 3$:
+\[
+\begin{pmatrix}
+-2 & -1 & -1 \\
+5 & 3 & 4 \\
+-1 & -1 & -2 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 1 & 3 \\
+5 & 3 & 4 \\
+-1 & -1 & -2 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+0 & 1 & 3 \\
+0 & -2 & -6  \\
+-1 & -1 & -2  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & -1  \\
+0 & 1 & 3 \\
+\end{pmatrix}
+\]
+Получаем ФСР:
+\[
+\begin{pmatrix}
+1 \\ -3 \\ 1
+\end{pmatrix}
+\]
+\[
+g_{\lambda} = 1  \neq a_{\lambda}
+\]
+Значит критерий диагонализуемости не выполнен и диагонализовать мы не сможем.
+\item $\lambda = 2$:
+\[
+\begin{pmatrix}
+-1 & -1 & -1 \\
+5 & 4 & 4 \\
+-1 & -1 & -1 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+-1 & -1 & -1 \\
+0 & -1 & -1  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 0 & 0  \\
+0 & 1 & 1 \\
+\end{pmatrix}
+\]
+Получаем ФСР:
+\[
+\begin{pmatrix}
+0 \\ -1 \\ 1
+\end{pmatrix}
+\]
+\end{itemize}
+\begin{center}
+\textbf{Ответ: } 
+
+$\lambda = 3$, базис соотв.подпространства: 
+\[
+\begin{pmatrix}
+1 \\ -3 \\ 1
+\end{pmatrix}
+\]
+$\lambda = 2$, базис соотв.подпространства:  
+\[
+\begin{pmatrix}
+0 \\ -1 \\ 1
+\end{pmatrix}
+\]
+\end{center}
+\clearpage
+\section*{Номер 3}
+\[
+Q(x_1, x_2, x_3) = 14x_1^2 + 11x_2^2 + 11x_3^3 - 8x_1x_2 - 8x_1x_3 - 2x_2x_3
+\]
+
+Выпишем матрицу квадратичной формы:
+\[
+A = \begin{pmatrix}
+14 & -4& -4 \\
+-4 & 11 & -1 \\
+-4 & -1 & 11
+\end{pmatrix}
+\]
+Ищем собственные значения:
+\[
+\begin{vmatrix}
+14 - \lambda& -4& -4 \\
+-4 & 11 - \lambda & -1 \\
+-4 & -1 & 11 - \lambda 
+\end{vmatrix} = -\lambda^3 + 36\lambda^2 - 396\lambda + 1296 = -(\lambda - 6)(\lambda  -12)(\lambda - 18)
+\]
+Получили три собственных значения : $\lambda = 6, \lambda = 12, \lambda = 18$
+
+Все алгебраические кратности равны 1
+\\\\
+Считаем:
+\begin{itemize}
+\item $\lambda = 6$:
+\[
+\begin{pmatrix}
+8 & -4 & -4  \\
+-4 & 5 & -1  \\
+-4 & -1 & 5  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 & 6 & -6  \\
+-4 & 5 & -1  \\
+-4 & -1 & 5  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+0 & 1 & -1 \\
+0 & 6 & -6 \\
+-4 & -1 & 5  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 0 & -1 \\
+0 & 1 & -1 \\
+\end{pmatrix}
+=
+\]
+Получаем ФСР:
+\[
+\begin{pmatrix}
+1 \\ 1 \\ 1
+\end{pmatrix}
+\]
+\item $\lambda = 12$:
+\[
+\begin{pmatrix}
+2& -4& -4 \\
+-4 & -1 & -1 \\
+-4 & -1 & -1 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1& -2& -2 \\
+-4 & -1 & -1 \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1& 0& 0 \\
+0 & 1 & 1 \\
+\end{pmatrix}
+\]
+Получаем ФСР:
+\[
+\begin{pmatrix}
+0 \\ -1 \\ 1
+\end{pmatrix}
+\]
+\item $\lambda = 18$:
+\[
+\begin{pmatrix}
+-4 & -4 & -4  \\
+-4 & -7 & -1  \\
+-4 & -1 & -7  \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 1 & 1  \\
+0 & -3 & 3  \\
+-4 & -1 & -7  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 1 & 1  \\
+0 & 1 & -1 \\
+0 & 1 & -1 \\
+\end{pmatrix}
+=
+\begin{pmatrix}
+1 & 1 & 1 \\
+0 & -1 & 1  \\
+\end{pmatrix}
+=
+\]
+\[
+=
+\begin{pmatrix}
+1 & 2 & 0  \\
+0 & 1 & -1  \\
+\end{pmatrix}
+=
+\]
+Получаем ФСР:
+\[
+\begin{pmatrix}
+-2 \\ 1 \\ 1
+\end{pmatrix}
+\]
+\end{itemize}
+Получили, что $a_{\lambda} = g_{\lambda}$ для всех получившихся собственных значений, а значит $\varphi$ диагонализуем. Тогда положим:
+\[
+v_1 = 
+\begin{pmatrix}
+1 \\ 1 \\ 1
+\end{pmatrix}
+\]
+\[
+v_2 = 
+\begin{pmatrix}
+0 \\ -1 \\ 1
+\end{pmatrix}
+\]
+\[
+v_3 = 
+\begin{pmatrix}
+-2 \\ 1 \\ 1
+\end{pmatrix}
+\]
+Теперь ортонормируем:
+\[
+e_1' = \frac{v_1}{|v_1|} = \begin{pmatrix}
+\frac{1}{\sqrt{3}} \\ \frac{1}{\sqrt{3}} \\ \frac{1}{\sqrt{3}}
+\end{pmatrix}
+\]
+\[
+e_2' = \frac{v_2}{|v_2|} = \begin{pmatrix}
+0 \\ \frac{-1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}}
+\end{pmatrix}
+\]
+\[
+e_3' =  \frac{v_3}{|v_3|} = \begin{pmatrix}
+\frac{-2}{\sqrt{6}} \\ \frac{1}{\sqrt{6}}  \\ \frac{1}{\sqrt{6}} 
+\end{pmatrix}
+\]
+Матрица перехода от исходного базиса к $e'$:
+\[
+C = \begin{pmatrix}
+\frac{1}{\sqrt{3}} & 0 & -\frac{2}{\sqrt{6}} \\
+\frac{1}{\sqrt{3}}  & -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{6}}\\
+\frac{1}{\sqrt{3}}  & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{6}}
+\end{pmatrix}
+\]
+Матрица кв.формы:
+\[
+A' = C^{-1} A C = \begin{pmatrix}
+6 & 0 & 0 \\
+0 & 12 & 0 \\
+0 & 0 & 18
+\end{pmatrix}
+\]
+Выражение старых координат через новые:
+\[
+\begin{cases}
+x_1 = \frac{x_1'}{\sqrt{2}}- \frac{2x_3'}{\sqrt{6}} \\
+x_2 = \frac{x_1' }{\sqrt{2}}- \frac{x_2'}{\sqrt{2}}+\frac{ x_3'}{\sqrt{6}} \\
+x_3 = \frac{x_1'}{\sqrt{2}} + \frac{x_2'}{\sqrt{2}}+ \frac{x_3'}{\sqrt{6}}
+\end{cases}
+\]
+Cама квадратичная форма в новом базисе:
+\[
+Q(x_1', x_2', x_3') = 6(x_1')^2 + 12(x_2')^2 + 18(x_3')^2
+\]
+
+\begin{center}
+\textbf{Ответ: } 
+
+выражение координат:
+\[
+\begin{cases}
+x_1 = \frac{x_1'}{\sqrt{2}}- \frac{2x_3'}{\sqrt{6}} \\
+x_2 = \frac{x_1' }{\sqrt{2}}- \frac{x_2'}{\sqrt{2}}+\frac{ x_3'}{\sqrt{6}} \\
+x_3 = \frac{x_1'}{\sqrt{2}} + \frac{x_2'}{\sqrt{2}}+ \frac{x_3'}{\sqrt{6}}
+\end{cases}
+\]
+квадратичная форма:
+\[
+Q(x_1', x_2', x_3') = 6(x_1')^2 + 12(x_2')^2 + 18(x_3')^2
+\]
+\end{center}
+\clearpage
+\section*{Номер 4}
+\begin{center}
+[решаю по аналогии с семинаром 205 под номером 30]
+\end{center}
+\[
+A = \left(\begin{matrix}
+\frac{-1}{9} & \frac{-4}{9} & \frac{-8}{9} \\
+\frac{8}{9} & \frac{-4}{9} & \frac{1}{9} \\
+\frac{4}{9} & \frac{7}{9} & \frac{-4}{9}
+\end{matrix}\right)
+\]
+Из конспекта знаем, что существует базис, в котором матрица будет выглядеть как:
+\[
+\begin{pmatrix}
+\Pi(\alpha) & 0 \\
+0 & \lambda_0 
+\end{pmatrix}, \Pi(\alpha) = \begin{pmatrix}
+\cos \alpha & - \sin \alpha \\
+\sin \alpha & \cos \alpha
+\end{pmatrix}, \lambda_0 \in \{1, -1\}
+\]
+Видим, что $A \neq A^T$, тогда ищем собственные значения среди -1 и 1:
+\begin{itemize}
+\item $\lambda = -1$:
+\[
+\left(\begin{matrix}
+-\frac{1}{9} - (-1) & \frac{-4}{9} & \frac{-8}{9} \\
+\frac{8}{9} & -\frac{4}{9} - (-1)& \frac{1}{9} \\
+\frac{4}{9} & \frac{7}{9} & -\frac{4}{9} - (-1) 
+\end{matrix}\right) = \left(\begin{matrix}
+\frac89 & \frac{-4}{9} & \frac{-8}{9} \\
+\frac{8}{9} & \frac59& \frac{1}{9} \\
+\frac{4}{9} & \frac{7}{9} & \frac59
+\end{matrix}\right)  =
+\]
+\[
+=\left(\begin{matrix}
+\frac{8}{9} & \frac{-4}{9} & \frac{-8}{9} \\
+0 & 1 & 1 \\
+\frac{4}{9} & \frac{7}{9} & \frac{5}{9}
+\end{matrix}\right) = \left(\begin{matrix}
+\frac{8}{9} & \frac{-4}{9} & \frac{-8}{9} \\
+0 & 1 & 1 \\
+0 & 1 & 1
+\end{matrix}\right) = 
+\]
+\[
+=
+\left(\begin{matrix}
+2 & -1 & -2 \\
+0 & 1 & 1 \\
+\end{matrix}\right)
+=
+\begin{pmatrix}
+1 & 0 & -\frac12 \\0 & 1 & 1
+\end{pmatrix}
+\]
+\end{itemize}
+Видим, что ранг уменьшился и $\lambda = -1$ нам подходит, тогда имеем собственный вектор $\left(\frac12, -1, 1\right)$. Теперь положим:
+\[
+e_3 = \frac23 \cdot \begin{pmatrix}
+\frac12 \\ -1 \\ 1
+\end{pmatrix}
+\]
+Тогда:
+\[
+e_3^\perp = \langle \begin{pmatrix}
+0 \\ 1 \\ 1
+\end{pmatrix}, \begin{pmatrix}
+-2 \\ 1 \\ 2
+\end{pmatrix}\rangle
+\]
+Т.к $(e_3, (0, 1, 1)) = 0$, $(e_3, (-2, 1, 2)) = 0$.
+\clearpage
+Пусть:
+\[
+v_1 = \begin{pmatrix}
+0 \\ 1 \\ 1
+\end{pmatrix}
+\]
+\[
+v_2 = \begin{pmatrix}
+-2 \\ 1 \\ 2
+\end{pmatrix}
+\]
+Ортогонализуем:
+\[
+u_1 =  \begin{pmatrix}
+0 \\ 1 \\ 1
+\end{pmatrix}
+\]
+\[
+u_2 = v_2 - \frac{(v_2, u_1)}{(u_1, u_1)} \cdot u_1 = \begin{pmatrix}
+-2 \\ 1 \\ 2
+\end{pmatrix} - \frac{3}{2} \cdot \begin{pmatrix} 0 \\ 1 \\ 1 \end{pmatrix} = \begin{pmatrix} -2 \\ -\frac12 \\ \frac12 \end{pmatrix}
+\]
+А теперь ортонормируем:
+\[
+e_1 = \frac{u_1}{|u_1|} = \frac{1}{\sqrt{2}} \cdot \begin{pmatrix}
+0 \\ 1 \\ 1
+\end{pmatrix}
+\]
+\[
+e_2 = \frac{u_2}{|u_2|} = \frac{\sqrt{2}}{3} \cdot \begin{pmatrix} -2 \\ -\frac12 \\ \frac12 \end{pmatrix}
+\]
+Теперь считаем:
+\[
+\varphi(e_1) = A e_1 = \frac{1}{9} \cdot \begin{pmatrix}
+-1 & -4 & -8 \\ 8 & -4 & 1 \\ 4 & 7 & -4 
+\end{pmatrix} \cdot \frac{1}{\sqrt{2}} \cdot \begin{pmatrix}
+0 \\ 1 \\ 1
+\end{pmatrix} = \frac{1}{9 \sqrt{2}}\left(\begin{matrix}
+-12 \\
+-3 \\
+3
+\end{matrix}\right) = \frac{1}{3 \sqrt{2}} \begin{pmatrix}
+-4 \\ -1 \\1 
+\end{pmatrix}
+\]
+Знаем, что: 
+\[
+\varphi(e_1) = \cos \alpha \cdot e_1 + \sin \alpha \cdot e_2
+\]
+А значит:
+\[
+\cos \alpha = (\varphi(e_1), e_1) = 0
+\]
+\[
+\sin \alpha = (\varphi(e_1), e_2) = 1
+\] 
+По итогу:
+
+в базисе $(e_1, e_2, e_3)$ матрица будет иметь канонический вид, а именно:
+\[
+\begin{pmatrix}
+0 & -1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & -1 \\
+\end{pmatrix}
+\]
+\clearpage
+\begin{center}
+\textbf{Ответ: } 
+
+базис:
+\[
+e_1 = \frac{1}{\sqrt{2}} \cdot \begin{pmatrix}
+0 \\ 1 \\ 1
+\end{pmatrix}, 
+e_2 = \frac{\sqrt{2}}{3} \cdot \begin{pmatrix} -2 \\ -\frac12 \\ \frac12 \end{pmatrix},
+e_3 = \frac23  \cdot \begin{pmatrix}
+\frac12 \\ -1 \\ 1
+\end{pmatrix}
+\]
+матрица:
+\[
+\begin{pmatrix}
+0 & -1 & 0 \\
+1 & 0 & 0 \\
+0 & 0 & -1 \\
+\end{pmatrix}
+\]
+осью будет являться вектор $e_3$
+
+угол поворота : $\alpha = \arccos(0) = \frac{\pi}{2}$
+\end{center}
+\end{document}

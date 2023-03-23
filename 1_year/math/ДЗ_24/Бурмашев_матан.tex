@@ -1,0 +1,82 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{}
+\date{\today}
+\begin{document}
+\begin{center}
+Бурмашев Григорий. 208. Матан -- 14
+\end{center}
+\begin{center}
+Ну я даже мемы вставлять не буду, прекол какой-то
+\end{center}
+\section*{Номер 12}
+\subsection*{а)}
+\[
+x = u \cos v , y = u \sin v 
+\]
+\[
+A =
+\begin{pmatrix}
+\frac{\sigma x}{\sigma u} & \frac{\sigma x}{\sigma v} \\
+\frac{\sigma y}{\sigma u } &
+\frac{\sigma y}{\sigma v}
+\end{pmatrix} = 
+\begin{pmatrix}
+\cos v & -u \sin v\\
+\sin v & u \cos v
+\end{pmatrix}
+\]
+\subsection*{b)}
+\[
+x = u v w, y = uv - uvw, z = v - uv
+\]
+\[
+A = 
+\begin{pmatrix}
+\frac{\sigma x}{\sigma u} & \frac{\sigma x}{\sigma v} & \frac{\sigma x}{\sigma w} \\
+\frac{\sigma y}{\sigma u} & \frac{\sigma y}{\sigma v} &  \frac{\sigma y}{\sigma w} \\
+\frac{\sigma z}{\sigma u} & \frac{\sigma z}{\sigma v}  &\frac{\sigma z}{\sigma w}
+\end{pmatrix} = 
+\begin{pmatrix}
+vw & uw & uv \\v - vw & u - uw& -uv \\
+ -v & 1 - u & 0 
+\end{pmatrix}
+\]
+\end{document}

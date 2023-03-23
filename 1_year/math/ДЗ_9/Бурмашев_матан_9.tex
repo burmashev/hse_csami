@@ -1,0 +1,141 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{00FFFF} % цвет ссылок
+\definecolor{urlcolor}{HTML}{4682B4} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+\usepackage{enumerate}
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{picture/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, 208. \href{https://teleg.run/burmashev}{@burmashev}}
+\title{Дискретная математика. Коллок -- 1. Определения и задачи по ним.}
+\date{}
+\begin{document}
+\begin{center}
+Бурмашев Григорий.  208. Матан. Д/з -- 9
+\end{center}
+\begin{center}
+\includegraphics[scale=0.8]{Ye-Yz56_hB4.jpg}
+\end{center}
+\section*{Номер 8}
+Какие из следующих утверждений справедливы при $x \rightarrow 0$?
+\subsection*{a)}
+\[
+\overline{o}(x^2) + \overline{o}(x)= \overline{o}(x)
+\]
+Пусть:
+\[
+\overline{o} (x^2) = \frac{F(x)}{x^2}
+\]
+\[
+\overline{o} (x) = \frac{G(x)}{x}
+\]
+\[
+ \frac{F(x) + G(x)}{x} = \frac{F(x) \cdot x}{x^2} \rightarrow 0  \equiv \frac{F(x)}{x^2} + \frac{G(x)}{x}= \overline{o}(x)
+\]
+\begin{center}
+\textbf{Ответ:} верно
+\end{center}
+\subsection*{b)}
+\[
+\overline{o}(x) + x^2 = \overline{o}(x)
+\]
+\[
+\frac{x^2}{x} \rightarrow 0 \equiv x^2 = \overline{o}(x)
+\]
+А значит:
+\[
+\overline{o}(x) + x^2  = \overline{o}(x) + \overline{o}(x) = \overline{o}(x)
+\]
+\begin{center}
+\textbf{Ответ:} верно
+\end{center}
+\subsection*{с)}
+\[
+(x + \overline{o}(x))(2x^2 + \overline{o}(x^2)) = 2x^3 + \overline{o}(x^3)
+\]
+\[
+2x^3 + \overline{o}(x) \cdot \overline{o}(x^2) + 2x^2 \cdot  \overline{o}(x)  +  x \cdot \overline{o}(x^2)  = 2x^3 + \overline{o}(x^3)
+\]
+Упростим каждый из множителей:
+\begin{itemize}
+\item 
+\[
+\overline{o}(x) \cdot \overline{o}(x^2) = x \cdot \overline{o}(1) \cdot x^2 \cdot \overline{o}(1) = x^3 \cdot  \overline{o}(1) 
+\]
+\[
+\frac{x^3 \cdot \overline{o}(1)}{x^3} \rightarrow 0 \equiv \overline{o}(x) \cdot \overline{o}(x^2) = \overline{o}(x^3)
+\]
+\item
+\[
+2x^2 \cdot \overline{o}(x) = 2x^2 \cdot x \cdot \overline{o}(1) = 2x^3 \cdot \overline{o}(1)
+\]
+\[
+\frac{2x^3 \cdot \overline{o}(1)}{x^3} \rightarrow 0 \equiv 2x^2 \cdot \overline{o}(x) = \overline{o}(x^3)
+\]
+\item
+\[
+x \cdot \overline{o}(x^2) = x \cdot x \cdot \overline{o}(1) = x^2 \overline{o}(1)
+\]
+\[
+\frac{x^3 \cdot \overline{o}(1)}{x^3} \rightarrow 0 \equiv x \cdot \overline{o}(x^2) = \overline{o}(x^3)
+\]
+А значит:
+\[
+2x^3  + \overline{o}(x^3) + \overline{o}(x^3) + \overline{o}(x^3) = 2x^3 + \overline{o}(x^3)
+\]
+\begin{center}
+\textbf{Ответ:} верно
+\end{center}
+\end{itemize}
+\subsection*{d)}
+\[
+\overline{o}(1) - \overline{o}(1) = 0
+\]
+Пусть левый множитель:
+\[
+\overline{o}(1) = F(x)
+\]
+А правый:
+\[
+\overline{o}(1) = G(x)
+\]
+Тогда:
+\[
+\frac{F(x) - G(x)}{1} \rightarrow 0 \equiv \overline{o}(1) - \overline{o}(1) = \overline{o}(1)
+\]
+А значит, исходное выражение \textbf{неверное}
+\begin{center}
+\textbf{Ответ:} неверно
+\end{center}
+\end{document}

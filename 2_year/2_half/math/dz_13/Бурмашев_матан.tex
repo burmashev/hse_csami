@@ -1,0 +1,174 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+\usepackage{xcolor}
+\usepackage{hyperref}
+ % Цвета для гиперссылок
+\definecolor{linkcolor}{HTML}{799B03} % цвет ссылок
+\definecolor{urlcolor}{HTML}{799B03} % цвет гиперссылок
+
+\hypersetup{pdfstartview=FitH,  linkcolor=linkcolor,urlcolor=urlcolor, colorlinks=true}
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+% графика
+\usepackage{graphicx}
+\graphicspath{{pictures/}}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\author{Бурмашев Григорий, БПМИ-208}
+\title{Матан, дз -- 13}
+\date{\today}
+\begin{document}
+\maketitle
+\section*{Номер 1}
+Надо понять, что такое $\frac{1}{z}$ (если $z = x + iy)$:
+\[
+\frac{1}{z} = \frac{x - iy}{x^2 + y^2} = \frac{x}{x^2 + y^2} +  i \cdot \frac{-y}{x^2 + y^2}  
+\]
+Тогда заменим:
+\[
+x' = \frac{x}{x^2 + y^2}
+\]
+\[
+y' = -\frac{y}{x^2 + y^2}
+\]
+\[
+z' = x' + iy'
+\]
+\[
+|z|^2 = \frac{1}{x^2 + y^2}
+\]
+Знаем:
+\begin{center}
+\includegraphics[scale=0.4]{1.png}
+\end{center}
+Тогда подставляем:
+\[
+\zeta = \frac{ \frac{1}{x^2 + y^2}}{ \frac{1}{x^2 + y^2} + 1} = \frac{1}{x^2 + y^2 + 1}
+\]
+\[
+\xi = \frac{ \frac{x}{x^2 + y^2}}{\frac{1}{x^2 + y^2} + 1} = \frac{x}{x^2 + y^2 + 1}
+\]
+\[
+\eta =  \frac{ -\frac{y}{x^2 + y^2}}{\frac{1}{x^2 + y^2} + 1} = -\frac{y}{x^2 + y^2 + 1}
+\]
+\begin{center}
+\textbf{Ответ: } 
+координаты для $M\left(\frac{1}{z}\right)$:
+\[
+\left(
+\frac{1}{x^2 + y^2 + 1}; \; \frac{x}{x^2 + y^2 + 1}; \; -\frac{y}{x^2 + y^2 + 1}
+\right)
+\]
+\end{center}
+\clearpage
+\section*{Номер 2}
+skip
+\clearpage
+\section*{Номер 3}
+Подставляем в известное нам с семинара уравнение:
+\[
+\frac{z - 0}{z - i} \cdot \frac{\infty - i}{\infty - 0} = \frac{w - (-1)}{w - i} \cdot \frac{\infty - i}{\infty - (-1)}
+\]
+Замечаем:
+\[
+\frac{\infty - 1}{\infty - 0}  = \frac{1 - \frac{1}{\infty}}{1} = 1
+\]
+\[
+\frac{\infty - i}{\infty - (-1)} = \frac{1 - \frac{i}{\infty}}{1 + \frac{1}{\infty}} = 1
+\]
+Тогда получаем:
+\[
+\frac{z - 0}{z - i} = \frac{w + 1}{w - i}
+\]
+\[
+z(w - i) = (z -i)(w + 1)
+\]
+\[
+zw- zi = zw + z - iw - i
+\]
+\[
+- zi =  z - iw - i
+\]
+\[
+iw = z + zi -i 
+\]
+\[
+-w = zi - z + 1
+\]
+\[
+w = -zi + z - 1
+\]
+\[
+w = z(-i + 1) - 1
+\]
+\[
+w = (1 -i) z - 1
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+w = (1 -i) z - 1
+\]
+\end{center}
+\clearpage
+\section*{Номер 4}
+Аналогично предыдущему номеру:
+\[
+\frac{z - 1}{z - 0} \cdot \frac{i - 0}{i - 1} = \frac{w - 1}{w + 1} \cdot \frac{i + 1}{i - 1}
+\]
+\[
+\frac{z-1}{z} \cdot i = \frac{w-1}{w + 1} \cdot (i + 1)
+\]
+\[
+\frac{zi - i}{z} = \frac{wi + w -i -  1}{w + 1}
+\]
+\[
+(zi -i)(w + 1) = (wi + w -i -1) z
+\]
+\[
+ziw + zi - iw - i = wiz + wz - iz - z
+\]
+\[
+ zi - iw - i =  wz - iz - z
+\]
+\[
+zi - i + iz + z = wz + iw 
+\]
+\[
+2iz - i + z = w(z + i)
+\]
+\[
+w = \frac{2iz -i + z}{z + i}
+\]
+\[
+w = \frac{z(1 + 2i) - i}{z + i}
+\]
+\begin{center}
+\textbf{Ответ: } 
+\[
+w = \frac{z(1 + 2i) - i}{z + i}
+\]
+\end{center}
+\end{document}
